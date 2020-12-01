@@ -1,6 +1,6 @@
 import csv
 
-class getter(object):
+class Getter(object):
     def __init__(self) -> None:
         pass
 
@@ -24,7 +24,7 @@ class getter(object):
     def get_certein(ident,filename):
         ident = "123"
         counter = 0
-        obj = getter.get_csv(filename)
+        obj = Getter.get_csv(filename)
 
         for line in obj:
             if line[0] == ident:

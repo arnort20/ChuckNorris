@@ -27,3 +27,8 @@ dagur 6:
 dagur 7:
 plan:
 vinna í forriti á öllum stigum helst að klára data stigið klára layer skipta klasarit
+- náðum að vinna töluvert í forriti og laga klastarit, við náðum hinsvegar elki að klára data layer
+
+dagur 8:
+plan:
+klára import vandræði og ná fullum tökum á data structure og vera búnir að horfa á fyurirlestra
