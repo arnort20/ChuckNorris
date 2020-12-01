@@ -38,7 +38,7 @@ class DataAPI(object):
         Customers = getter.get_csv("Data files\Customers.csv")
     def get_destinations():
         Destinations = getter.get_csv("Data files\Destinations.csv")
-    def get_contracts(self):
+    def get_contracts():
         contracts = getter.get_csv("Data_files\Contracts.csv")
         return contracts
     def get_employees():
