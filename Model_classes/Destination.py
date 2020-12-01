@@ -4,5 +4,4 @@ class Destination(object):
         self.Destination = Destination_name
         self.Phone = Phone
         self.opening_hours = opening_hours
-        self.repor
-        t_filename = reportfilename
+        self.report_filename = reportfilename

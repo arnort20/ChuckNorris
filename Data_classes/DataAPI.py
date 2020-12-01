@@ -42,7 +42,7 @@ def get_Destinations():
 def get_Contracts():
     Contracts = get_csv("Data files\Contracts.csv")
     print(Contracts)
-    
+
 def get_Employees():
     Employees = get_csv("Data files\Employees.csv")
 
@@ -109,6 +109,5 @@ def add_Employee():
 
 
 def main():
+    get_Contracts()
     get_Contract(123)
-
-main()
