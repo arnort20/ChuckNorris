@@ -9,22 +9,22 @@ from get_io import getter
 class DataAPI(object):
     # get single
     def __init__(self) -> None:
-        self.get = getter()
+        pass
     def get_vehicle(self,ID):
-        vehicle = self.get.get_certein(ID,"Data files\Vehicles.csv")
+        vehicle = getter.get_certein(ID,"Data files\Vehicles.csv")
         return vehicle
     def get_customer(self,ID):
-        customer = get_certein(ID,"Data files\Customers.csv")
+        customer = getter.get_certein(ID,"Data files\Customers.csv")
         return customer
     def get_destination(self,ID):
-        Destination = get_certein(ID,"Data files\Destinations.csv")
+        Destination = getter.get_certein(ID,"Data files\Destinations.csv")
         return Destination
     def get_contract(self,ID):
         contract = getter.get_certein(ID,"Data_files\Contracts.csv")
         return contract
 
     def get_employee(self,ID):
-        Employee = get_certein(ID,"Data files\Employees.csv")
+        Employee = getter.get_certein(ID,"Data files\Employees.csv")
         return Employee
 
 
@@ -96,4 +96,4 @@ class DataAPI(object):
 
 Databoy = DataAPI()
 print(Databoy.get_contracts())
-print(Databoy.get_contract(123))
+print(Databoy.get_contract("123"))
