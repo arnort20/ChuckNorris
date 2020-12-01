@@ -1,4 +1,7 @@
-from Data_classes.DataAPI import *
+try:
+    from Data_classesrt.DataAPI import *
+except:
+    print("bad")
 
-def getContract(contractID):
-    contract =
+contract = DataAPI.get_contract(123)
+print(contract)
