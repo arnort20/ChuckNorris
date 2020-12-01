@@ -1,1 +1,2 @@
-contract ID;employee ID;customer ID;vehicle ID (comma seperated);start date;end date;paid?
+contract ID;employee ID;customer ID;vehicle ID;start date;end date;paid?
+123;456;678;910;10.10;11.11;no
