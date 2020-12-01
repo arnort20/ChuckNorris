@@ -23,7 +23,7 @@ def get_destination(ID):
     return Destination
 
 def get_contract(ID):
-    contract = get_certein(ID,"Data files\Contracts.csv")
+    contract = get_certein(ID,"Data_files\Contracts.csv")
     return contract
 
 def get_employee(ID):
@@ -44,7 +44,7 @@ def get_destinations():
     Destinations = get_csv("Data files\Destinations.csv")
 
 def get_contracts():
-    Contracts = get_csv("Data files\Contracts.csv")
+    contracts = get_csv("Data_files\Contracts.csv")
     return contracts
 
 def get_employees():
@@ -99,14 +99,18 @@ def delete_employee():
 
 
 #add single
-def add_vehicle():
+def add_vehicle(ID,vehicle_name,Type,Manufacturer,Model,Color,mileage,age,tax,available):
     pass
-def add_customer():
+def add_customer(ID,Customer_name,License_type,GBP,BBP):
     pass
-def add_destination():
+def add_destination(ID,Destination_name,Phone,opening_hours,reportfilename):
     pass
-def add_contract():
+def add_contract(ID,employee_id,costumer_id,vehicle_id,start_date,end_date,paid):
     pass
-def add_employee():
+def add_employee(ID,Employee_name,SSN,Address,Phone,Email,Location):
     pass
+
+print(get_contracts())
+print()
+print(get_contract("123"))
 

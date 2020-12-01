@@ -24,6 +24,5 @@ def get_certein(ident,filename):
 
     for line in obj:
         if line[0] == ident:
-            print(line)
             return line
 
