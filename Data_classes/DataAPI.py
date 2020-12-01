@@ -1,6 +1,4 @@
 
-
-
 import csv
 from get_io import getter
 
@@ -11,22 +9,18 @@ from get_io import getter
 class DataAPI(object):
     # get single
     def __init__(self) -> None:
-        self.get = getter.__init__()
-
+        self.get = getter()
     def get_vehicle(self,ID):
         vehicle = self.get.get_certein(ID,"Data files\Vehicles.csv")
         return vehicle
-
     def get_customer(self,ID):
         customer = get_certein(ID,"Data files\Customers.csv")
         return customer
-
     def get_destination(self,ID):
         Destination = get_certein(ID,"Data files\Destinations.csv")
         return Destination
-
     def get_contract(self,ID):
-        contract = get_certein(ID,"Data_files\Contracts.csv")
+        contract = getter.get_certein(ID,"Data_files\Contracts.csv")
         return contract
 
     def get_employee(self,ID):
@@ -34,26 +28,18 @@ class DataAPI(object):
         return Employee
 
 
-
     # get multiple
-
     def get_vehicles():
         vehicles = get_csv("Data files\Vehicles.csv")
-
     def get_customers():
         Customers = get_csv("Data files\Customers.csv")
-
     def get_destinations():
         Destinations = get_csv("Data files\Destinations.csv")
-
-    def get_contracts():
-        contracts = get_csv("Data_files\Contracts.csv")
+    def get_contracts(self):
+        contracts = getter.get_csv("Data_files\Contracts.csv")
         return contracts
-
     def get_employees():
         Employees = get_csv("Data files\Employees.csv")
-
-
 
 
     #make id
@@ -69,8 +55,6 @@ class DataAPI(object):
         pass
 
 
-
-
     # change single
     def change_vehicle():
         pass
@@ -82,8 +66,6 @@ class DataAPI(object):
         pass
     def change_Employee():
         pass
-
-
 
 
     #delete single
@@ -99,8 +81,6 @@ class DataAPI(object):
         pass
 
 
-
-
     #add single
     def add_vehicle(ID,vehicle_name,Type,Manufacturer,Model,Color,mileage,age,tax,available):
         pass
@@ -113,7 +93,7 @@ class DataAPI(object):
     def add_employee(ID,Employee_name,SSN,Address,Phone,Email,Location):
         pass
 
-print(get_contracts())
-print()
-print(get_contract("123"))
 
+Databoy = DataAPI()
+print(Databoy.get_contracts())
+print(Databoy.get_contract(123))
