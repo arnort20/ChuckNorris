@@ -61,7 +61,7 @@ class Employee:
     
 
 def makeNewEmpoyee(name, ssn, address, phone, email, location):
-    pass
+    empID = getEmpID()
 
 
 
@@ -89,6 +89,17 @@ age
 tax
 avaiable
 """
-def makeNewVehicle(name, type, manufacturer, model, color, mileage, age, tax):
+def makeNewVehicle(name='N/A', vtype, manufacturer='N/A', model='N/A', color='N/A', age=0, tax):
     pass
+class Vehicle:
+    def __init__(self, name='N/A', vtype, manufacturer='N/A', model='N/A', color='N/A', age=0, tax):
+        self.name = name
+        self.type = vtype
+        self.manufacturer = manufacturer
+        self.model = model
+        self.color = color
+        self.age = age
+        self.tax = tax
+
+
 
