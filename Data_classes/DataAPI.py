@@ -12,19 +12,19 @@ from get_io import *
 # get single
 def get_vehicle(ID):
     vehicle = get_certein(ID,"Data files\Vehicles.csv")
-    
-def get_Customer(ID):
+    return vehicle
+def get_customer(ID):
     customer = get_certein(ID,"Data files\Customers.csv")
-
-def get_Destination(ID):
+    return customer
+def get_destination(ID):
     Destination = get_certein(ID,"Data files\Destinations.csv")
-
-def get_Contract(ID):
+    return Destination
+def get_contract(ID):
     contract = get_certein(ID,"Data files\Contracts.csv")
-
-def get_Employee(ID):
+    return contract
+def get_employee(ID):
     Employee = get_certein(ID,"Data files\Employees.csv")
-
+    return Employee
 
 
 
@@ -33,17 +33,17 @@ def get_Employee(ID):
 def get_vehicles():
     vehicles = get_csv("Data files\Vehicles.csv")
 
-def get_Customers():
+def get_customers():
     Customers = get_csv("Data files\Customers.csv")
 
-def get_Destinations():
+def get_destinations():
     Destinations = get_csv("Data files\Destinations.csv")
 
-def get_Contracts():
+def get_contracts():
     Contracts = get_csv("Data files\Contracts.csv")
-    print(Contracts)
+    return contracts
 
-def get_Employees():
+def get_employees():
     Employees = get_csv("Data files\Employees.csv")
 
 
@@ -82,13 +82,13 @@ def change_Employee():
 #delete single
 def delete_vehicle():
     pass
-def delete_Customer():
+def delete_customer():
     pass
-def delete_Destination():
+def delete_destination():
     pass
-def delete_Contract():
+def delete_contract():
     pass
-def delete_Employee():
+def delete_employee():
     pass
 
 
@@ -97,17 +97,12 @@ def delete_Employee():
 #add single
 def add_vehicle():
     pass
-def add_Customer():
+def add_customer():
     pass
-def add_Destination():
+def add_destination():
     pass
-def add_Contract():
+def add_contract():
     pass
-def add_Employee():
+def add_employee():
     pass
 
-
-
-def main():
-    get_Contracts()
-    get_Contract(123)
