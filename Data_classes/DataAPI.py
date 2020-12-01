@@ -13,15 +13,19 @@ from get_io import *
 def get_vehicle(ID):
     vehicle = get_certein(ID,"Data files\Vehicles.csv")
     return vehicle
+
 def get_customer(ID):
     customer = get_certein(ID,"Data files\Customers.csv")
     return customer
+
 def get_destination(ID):
     Destination = get_certein(ID,"Data files\Destinations.csv")
     return Destination
+
 def get_contract(ID):
     contract = get_certein(ID,"Data files\Contracts.csv")
     return contract
+
 def get_employee(ID):
     Employee = get_certein(ID,"Data files\Employees.csv")
     return Employee
@@ -52,13 +56,13 @@ def get_employees():
 #make id
 def vehicles_makeID():
     pass
-def get_CustomerID():
+def get_customerID():
     pass
-def get_DestinationID():
+def get_destinationID():
     pass
-def get_ContractID():
+def get_contractID():
     pass
-def get_EmployeeID():
+def get_employeeID():
     pass
 
 
