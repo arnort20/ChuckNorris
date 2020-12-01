@@ -11,25 +11,25 @@ from get_io import getter
 class DataAPI(object):
     # get single
     def __init__(self) -> None:
-        get = getter
+        self.get = getter.__init__()
 
-    def get_vehicle(ID):
-        vehicle = get_certein(ID,"Data files\Vehicles.csv")
+    def get_vehicle(self,ID):
+        vehicle = self.get.get_certein(ID,"Data files\Vehicles.csv")
         return vehicle
 
-    def get_customer(ID):
+    def get_customer(self,ID):
         customer = get_certein(ID,"Data files\Customers.csv")
         return customer
 
-    def get_destination(ID):
+    def get_destination(self,ID):
         Destination = get_certein(ID,"Data files\Destinations.csv")
         return Destination
 
-    def get_contract(ID):
+    def get_contract(self,ID):
         contract = get_certein(ID,"Data_files\Contracts.csv")
         return contract
 
-    def get_employee(ID):
+    def get_employee(self,ID):
         Employee = get_certein(ID,"Data files\Employees.csv")
         return Employee
 
