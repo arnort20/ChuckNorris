@@ -1,5 +1,5 @@
-import vehicle_logic
-import contract_logic
+from vehicle_logic import *
+from contract_logic import *
 import customer_logic
 import destination_logic
 import employee_logic
