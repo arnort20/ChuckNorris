@@ -2,44 +2,97 @@
 
 
 import csv
-from get_io.py import *
+import get_io.py
 
 # skila objectum til logic
 # skila listum af objectum til logic
 # taka a moti objectum fra io closum
 
-def get_id(filename):
+
+# get single
+def get_vehicle(ID):
+    vehicle_list = get_certein(ID,"Data files\Vehicles.csv")
+    
+def get_Customer():
+    pass
+def get_Destination():
+    pass
+def get_Contract():
+    pass
+def get_Employee():
     pass
 
 
-def get_csv(filename):
-    obj = open(filename)
-    opener = csv.reader(obj)
-    obj_list = []
-    for line in opener:
 
-        fixed_line = line[0].replace(";",", " )
-        fixed_line = fixed_line.split(",")
-        obj_list.append(fixed_line)
-        print(obj_list)
 
-    return obj_list
-
-def get_certein(ident,filename):
-    ident = "123"
-    counter = 0
-    obj = get_csv(filename)
-
-    for line in obj:
-        if line[0] == ident:
-            print(line)
-            return line
+# get multiple
+def get_vehicles():
+    pass
+def get_Customers():
+    pass
+def get_Destinations():
+    pass
+def get_Contracts():
+    pass
+def get_Employees():
+    pass
 
 
 
-def main():
-    filename = 'excel files\Contracts.csv'
-    get_csv(filename)
-   # get_certein("123",filename)
 
-main()
+#make id
+def vehicles_makeID():
+    pass
+def get_CustomerID():
+    pass
+def get_DestinationID():
+    pass
+def get_ContractID():
+    pass
+def get_EmployeeID():
+    pass
+
+
+
+
+# change single
+def change_vehicle():
+    pass
+def change_Customer():
+    pass
+def change_Destination():
+    pass
+def change_Contract():
+    pass
+def change_Employee():
+    pass
+
+
+
+
+#delete single
+def delete_vehicle():
+    pass
+def delete_Customer():
+    pass
+def delete_Destination():
+    pass
+def delete_Contract():
+    pass
+def delete_Employee():
+    pass
+
+
+
+
+#add single
+def add_vehicle():
+    pass
+def add_Customer():
+    pass
+def add_Destination():
+    pass
+def add_Contract():
+    pass
+def add_Employee():
+    pass
