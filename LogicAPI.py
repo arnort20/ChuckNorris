@@ -11,8 +11,9 @@ start date
 end date
 paid?
 """
+
 class Contract:
-    pass
+    
 def getContract(contractID):
     contract = DataAPI.getContract(contractID)
     return contract
@@ -57,11 +58,10 @@ class Employee:
             self.rvk = True
     def changeInfo(self, data, newInfo):
         pass
-    def makeContract()
+    
 
 def makeNewEmpoyee(name, ssn, address, phone, email, location):
     pass
-
 
 
 
