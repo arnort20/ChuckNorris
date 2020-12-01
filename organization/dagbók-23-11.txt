@@ -26,4 +26,4 @@ dagur 6:
 
 dagur 7:
 plan:
-vinna í forriti á öllum stigum helst að klára data stigið
+vinna í forriti á öllum stigum helst að klára data stigið klára layer skipta klasarit
