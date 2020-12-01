@@ -2,7 +2,7 @@
 
 
 import csv
-from get_io import *
+from get_io import getter
 
 # skila objectum til logic
 # skila listum af objectum til logic
@@ -10,6 +10,9 @@ from get_io import *
 
 class DataAPI(object):
     # get single
+    def __init__(self) -> None:
+        get = getter
+
     def get_vehicle(ID):
         vehicle = get_certein(ID,"Data files\Vehicles.csv")
         return vehicle
