@@ -1,12 +1,5 @@
-
-
-
 import csv
-from get_io.py import *
 
-# skila objectum til logic
-# skila listum af objectum til logic
-# taka a moti objectum fra io closum
 
 def get_id(filename):
     pass
@@ -35,11 +28,3 @@ def get_certein(ident,filename):
             print(line)
             return line
 
-
-
-def main():
-    filename = 'excel files\Contracts.csv'
-    get_csv(filename)
-   # get_certein("123",filename)
-
-main()
