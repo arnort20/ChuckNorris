@@ -1,7 +1,8 @@
 try:
-    from Data_classesrt.DataAPI import *
+#    from Data_classes.DataAPI import *
+    import Data_classes.DataAPI
 except:
     print("bad")
-
-contract = DataAPI.get_contract(123)
+api = Data_classes.DataAPI
+contract = api.get_contract(123)
 print(contract)

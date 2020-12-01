@@ -1,6 +1,7 @@
 from Data_classes.DataAPI import *
 
-def getCustomer(customerID):
-    pass
-def getCustomerTxt(cusdtomerID):
-    pass
+class Customer:
+    def getCustomer(customerID):
+        pass
+    def getCustomerTxt(cusdtomerID):
+        pass
