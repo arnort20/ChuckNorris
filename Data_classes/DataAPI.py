@@ -10,48 +10,51 @@ class DataAPI(object):
     # get single
     def __init__(self) -> None:
         pass
-    def get_vehicle(self,ident):
-        vehicle = getter.get_certein,(ident,"Data files\Vehicles.csv")
+    def get_vehicle(ident):
+        vehicle = getter.get_certein(ident,"Data files\Vehicles.csv")
         return vehicle
-    def get_customer(self,ident):
-        customer = getter.get_certein,(ident,"Data files\Customers.csv")
+
+    def get_customer(ident):
+        customer = getter.get_certein(ident,"Data files\Customers.csv")
         return customer
-    def get_destination(self,ident):
-        Destination = getter.get_certein,(ident,"Data files\Destinations.csv")
+
+    def get_destination(ident):
+        Destination = getter.get_certein(ident,"Data files\Destinations.csv")
         return Destination
-    def get_contract(self,ident):
-        contract = getter.get_certein,(ident,"Data_files\Contracts.csv")
+
+    def get_contract(ident):
+        contract = getter.get_certein(ident,"Data_files\Contracts.csv")
         return contract
 
-    def get_employee(self,ident):
-        Employee = getter.get_certein,(ident,"Data files\Employees.csv")
+    def get_employee(ident):
+        Employee = getter.get_certein(ident,"Data files\Employees.csv")
         return Employee
 
 
     # get multiple
     def get_vehicles():
-        vehicles = get_csv("Data files\Vehicles.csv")
+        vehicles = getter.get_csv("Data files\Vehicles.csv")
     def get_customers():
-        Customers = get_csv("Data files\Customers.csv")
+        Customers = getter.get_csv("Data files\Customers.csv")
     def get_destinations():
-        Destinations = get_csv("Data files\Destinations.csv")
+        Destinations = getter.get_csv("Data files\Destinations.csv")
     def get_contracts(self):
         contracts = getter.get_csv("Data_files\Contracts.csv")
         return contracts
     def get_employees():
-        Employees = get_csv("Data files\Employees.csv")
+        Employees = getter.get_csv("Data files\Employees.csv")
 
 
     #make,ident
-    def vehicles_mak,ident():
+    def vehicles_makeID():
         pass
-    def get_custome,ident():
+    def get_customer_makeID():
         pass
-    def get_destinatio,ident():
+    def get_destination_makeID():
         pass
-    def get_contrac,ident():
+    def get_contract_makeID():
         pass
-    def get_employe,ident():
+    def get_employee_makeID():
         pass
 
 
@@ -82,13 +85,13 @@ class DataAPI(object):
 
 
     #add single
-    def add_vehicle,ident,vehicle_name,Type,Manufacturer,Model,Color,mileage,age,tax,available):
+    def add_vehicle(ID,vehicle_name,Type,Manufacturer,Model,Color,mileage,age,tax,available):
         pass
-    def add_customer,ident,Customer_name,License_type,GBP,BBP):
+    def add_customer(ID,Customer_name,License_type,GBP,BBP):
         pass
-    def add_destination,ident,Destination_name,Phone,opening_hours,reportfilename):
+    def add_destination(ID,Destination_name,Phone,opening_hours,reportfilename):
         pass
-    def add_contract,ident,employee,ident,costumer,ident,vehicle,ident,start_date,end_date,p,ident):
+    def add_contract(ID,employee_id,costumer_id,vehicle_id,start_date,end_date,paid):
         pass
-    def add_employee,ident,Employee_name,SSN,Address,Phone,Email,Location):
+    def add_employee(ID,Employee_name,SSN,Address,Phone,Email,Location):
         pass
