@@ -8,11 +8,10 @@ class RVK_emp():
         
 ( 1 ) = Create new contract
 ( 2 ) = View contract
-( 3 ) = Print contract
-( 4 ) = Print report
-( 5 ) = Add new employee
-( 6 ) = Change employee
-( 7 ) = Delete employee
+( 3 ) = Print report
+( 4 ) = Add new employee
+( 5 ) = Change employee
+( 6 ) = Delete employee
 
 ( q ) = Quit
 -------------------------------------------------------------------------------'''.format(self.employee_num))
@@ -30,8 +29,6 @@ class RVK_emp():
             RVK_emp().menu5()
         elif option == '6':
             RVK_emp().menu6()
-        elif option == '7':
-            RVK_emp().menu7()
         elif option == 'q':
             return
         else:
@@ -49,11 +46,52 @@ class RVK_emp():
 ---------------------------------------------------------------''')
         option = input('Type here: ')
         if option == '1':
-            RVK_emp().menu1_1
+            RVK_emp().menu1_1()
         if option == '2':
-            RVK_emp().menu1_2
+            RVK_emp().menu1_2()
         if option == 'r':
             RVK_emp().main_menu()
+
+    def menu1_1(self):
+        print('''
+-----Returning Customer------''')
+        option = input('Driving registration nr :')
+        while True:
+            print('''
+( r ) = Return
+( f ) = Finish
+------------------------------------------''')
+            option = input('Type here: ')
+            if option == 'r':
+                RVK_emp().menu1()
+            elif option == 'f':
+                #finish?
+                pass
+            else:
+                print('Invalid option')
+
+    def menu1_2(self):
+        print('''
+----New customer---------------------''')
+        cust_info = []
+        info_list = ['Name: ', 'License #: ', 'Phone number: ','Address: ', 'Email: ', "Driver's licence type: "]
+        for i in range(len(info_list)):
+            info = input('{}'.format(info_list[i]))
+            cust_info.append(info)
+        while True:
+            print(''' 
+( r ) = Return
+( f ) = Finish
+------------------------------------------''')
+            option = input('Type here: ')
+            if option == 'r':
+                RVK_emp().menu1()
+            if option == 'f':
+                #finish?
+                pass
+            else:
+                print('Invalid option')
+        
 
     def menu2(self):
         print('''
@@ -63,20 +101,34 @@ class RVK_emp():
         if len(conID) == 4 and conID.isdigit():
             print('Great Success!') #Don't really know what to add here
             #add three options ( c ) change, ( p ) print, ( r ) return
-            RVK_emp().main_menu()
+            print('''\n( c ) change
+( p ) print
+( r ) return
+----------------------------------------''')
+            while True:
+                option = input('Type here: ')
+                if option == 'c':
+                    pass
+                elif option == 'p':
+                    pass
+                elif option == 'r':
+                    RVK_emp().main_menu()
+                else:
+                    print('Not a valid option')
         else:
             print('Invalid contract ID!')
             RVK_emp().menu2() 
 
-    def menu3(self):
-        #Couldn't print contract just be a part of menu 2
-        pass
+    def menu2_1(self):
+        'Changes contract info'
 
-    def menu4(self):
+    def menu2_2(self):
+        'Prints contract'
+    def menu3(self):
         #I might do it fokking later
         pass
 
-    def menu5(self):
+    def menu4(self):
         print('''
 ------------------------New Employee-------------------------
 ''')
@@ -111,7 +163,7 @@ Return ( r ):
             else:
                 print('Not a valid option')
 
-    def menu6(self):
+    def menu5(self):
         print('''
 ------------------------Change Employee------------------
 ''')
@@ -148,7 +200,7 @@ Return ( r ):
             #return emp_info to data bank
         RVK_emp().main_menu()
 
-    def menu7(self):
+    def menu6(self):
         print('''
 ------------------------Change Employee------------------
 ''')
@@ -156,7 +208,8 @@ Return ( r ):
         #here should emp_info come from the data bank
         delete_confirm = input('\nConfirm ( y / n )')
         if delete_confirm == 'y':
-            emp_info = []
+            #kalla á logicið til þess að eyða
+            pass
         RVK_emp().main_menu()   
 
 
