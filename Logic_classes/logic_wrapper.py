@@ -5,7 +5,8 @@ import destination_logic
 import employee_logic
 
 class LogicAPI:
-    pass
+    def getContract(contractID):
+        return contract_logic.getContract(contractID)
 
 
 

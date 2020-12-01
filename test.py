@@ -1,4 +1,4 @@
-from Data_classes.DataAPI import DataAPI
+from Logic_classes.logic_wrapper import 
 api = DataAPI
 contract = api.get_contract("123")
 print(contract)
