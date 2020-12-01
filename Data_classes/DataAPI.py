@@ -10,21 +10,21 @@ class DataAPI(object):
     # get single
     def __init__(self) -> None:
         pass
-    def get_vehicle(self,ID):
-        vehicle = getter.get_certein(ID,"Data files\Vehicles.csv")
+    def get_vehicle(self,ident):
+        vehicle = getter.get_certein,(ident,"Data files\Vehicles.csv")
         return vehicle
-    def get_customer(self,ID):
-        customer = getter.get_certein(ID,"Data files\Customers.csv")
+    def get_customer(self,ident):
+        customer = getter.get_certein,(ident,"Data files\Customers.csv")
         return customer
-    def get_destination(self,ID):
-        Destination = getter.get_certein(ID,"Data files\Destinations.csv")
+    def get_destination(self,ident):
+        Destination = getter.get_certein,(ident,"Data files\Destinations.csv")
         return Destination
-    def get_contract(self,ID):
-        contract = getter.get_certein(ID,"Data_files\Contracts.csv")
+    def get_contract(self,ident):
+        contract = getter.get_certein,(ident,"Data_files\Contracts.csv")
         return contract
 
-    def get_employee(self,ID):
-        Employee = getter.get_certein(ID,"Data files\Employees.csv")
+    def get_employee(self,ident):
+        Employee = getter.get_certein,(ident,"Data files\Employees.csv")
         return Employee
 
 
@@ -42,16 +42,16 @@ class DataAPI(object):
         Employees = get_csv("Data files\Employees.csv")
 
 
-    #make id
-    def vehicles_makeID():
+    #make,ident
+    def vehicles_mak,ident():
         pass
-    def get_customerID():
+    def get_custome,ident():
         pass
-    def get_destinationID():
+    def get_destinatio,ident():
         pass
-    def get_contractID():
+    def get_contrac,ident():
         pass
-    def get_employeeID():
+    def get_employe,ident():
         pass
 
 
@@ -82,13 +82,13 @@ class DataAPI(object):
 
 
     #add single
-    def add_vehicle(ID,vehicle_name,Type,Manufacturer,Model,Color,mileage,age,tax,available):
+    def add_vehicle,ident,vehicle_name,Type,Manufacturer,Model,Color,mileage,age,tax,available):
         pass
-    def add_customer(ID,Customer_name,License_type,GBP,BBP):
+    def add_customer,ident,Customer_name,License_type,GBP,BBP):
         pass
-    def add_destination(ID,Destination_name,Phone,opening_hours,reportfilename):
+    def add_destination,ident,Destination_name,Phone,opening_hours,reportfilename):
         pass
-    def add_contract(ID,employee_id,costumer_id,vehicle_id,start_date,end_date,paid):
+    def add_contract,ident,employee,ident,costumer,ident,vehicle,ident,start_date,end_date,p,ident):
         pass
-    def add_employee(ID,Employee_name,SSN,Address,Phone,Email,Location):
+    def add_employee,ident,Employee_name,SSN,Address,Phone,Email,Location):
         pass
