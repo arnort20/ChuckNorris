@@ -1,6 +1,6 @@
 import csv
 
-class getter(object):
+class Getter(object):
     def __init__(self) -> None:
         pass
 

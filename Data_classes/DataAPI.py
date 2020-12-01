@@ -1,6 +1,6 @@
 
 import csv
-from Data_classes.get_io import getter
+from Data_classes.get_io import Getter
 
 # skila objectum til logic
 # skila listum af objectum til logic
@@ -34,16 +34,20 @@ class DataAPI(object):
     # get multiple
     def get_vehicles():
         vehicles = getter.get_csv("Data files\Vehicles.csv")
+        return vehicles
     def get_customers():
-        Customers = getter.get_csv("Data files\Customers.csv")
+        customers = getter.get_csv("Data files\Customers.csv")
+        return customers
     def get_destinations():
-        Destinations = getter.get_csv("Data files\Destinations.csv")
+        destinations = getter.get_csv("Data files\Destinations.csv")
+        return destinations
     def get_contracts():
         contracts = getter.get_csv("Data_files\Contracts.csv")
         return contracts
-    def get_employees():
-        Employees = getter.get_csv("Data files\Employees.csv")
 
+    def get_employees():
+        employees = getter.get_csv("Data files\Employees.csv")
+        return employees
 
     #make,ident
     def vehicles_makeID():
