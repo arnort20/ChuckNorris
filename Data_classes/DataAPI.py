@@ -1,6 +1,6 @@
 
 import csv
-from get_io import getter
+from Data_classes.get_io import getter
 
 # skila objectum til logic
 # skila listum af objectum til logic
