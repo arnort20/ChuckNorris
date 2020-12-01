@@ -92,8 +92,3 @@ class DataAPI(object):
         pass
     def add_employee(ID,Employee_name,SSN,Address,Phone,Email,Location):
         pass
-
-
-Databoy = DataAPI()
-print(Databoy.get_contracts())
-print(Databoy.get_contract("123"))
