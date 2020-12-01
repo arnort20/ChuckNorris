@@ -108,9 +108,9 @@ class RVK_emp():
             while True:
                 option = input('Type here: ')
                 if option == 'c':
-                    pass
+                    RVK_emp().menu2_1()
                 elif option == 'p':
-                    pass
+                    RVK_emp().menu2_2()
                 elif option == 'r':
                     RVK_emp().main_menu()
                 else:
@@ -121,6 +121,30 @@ class RVK_emp():
 
     def menu2_1(self):
         'Changes contract info'
+        plate_num = 'BR UH21'
+        start = 'yesterday'
+        end = 'today'
+        info_list = ['Vehicle plate: ', 'Start date: ', 'End date: ']
+        contract_info = [plate_num, start, end]
+        print('''
+------------Changing contract---------------
+''')
+        for i in range(len(info_list)):
+            option = input('{}{}\nchange? ( y / n ): '.format(info_list[i],contract_info[i]))
+        while True:
+            print('''
+ 
+( f ) = finish
+( c ) = Cancel
+----------------------------------------''')
+            option = input('Type Here: ')
+            if option == 'c':
+                RVK_emp().menu2()
+            elif option == 'f':
+                #finish?
+                pass
+            else:
+                print('Not a valid option!')
 
     def menu2_2(self):
         'Prints contract'
