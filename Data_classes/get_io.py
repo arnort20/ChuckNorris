@@ -14,7 +14,6 @@ def get_csv(filename):
         fixed_line = line[0].replace(";",", " )
         fixed_line = fixed_line.split(",")
         obj_list.append(fixed_line)
-        print(obj_list)
 
     return obj_list
 

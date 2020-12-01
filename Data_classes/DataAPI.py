@@ -2,7 +2,7 @@
 
 
 import csv
-import get_io.py
+from get_io import *
 
 # skila objectum til logic
 # skila listum af objectum til logic
@@ -11,31 +11,40 @@ import get_io.py
 
 # get single
 def get_vehicle(ID):
-    vehicle_list = get_certein(ID,"Data files\Vehicles.csv")
+    vehicle = get_certein(ID,"Data files\Vehicles.csv")
     
-def get_Customer():
-    pass
-def get_Destination():
-    pass
-def get_Contract():
-    pass
-def get_Employee():
-    pass
+def get_Customer(ID):
+    customer = get_certein(ID,"Data files\Customers.csv")
+
+def get_Destination(ID):
+    Destination = get_certein(ID,"Data files\Destinations.csv")
+
+def get_Contract(ID):
+    contract = get_certein(ID,"Data files\Contracts.csv")
+
+def get_Employee(ID):
+    Employee = get_certein(ID,"Data files\Employees.csv")
 
 
 
 
 # get multiple
+
 def get_vehicles():
-    pass
+    vehicles = get_csv("Data files\Vehicles.csv")
+
 def get_Customers():
-    pass
+    Customers = get_csv("Data files\Customers.csv")
+
 def get_Destinations():
-    pass
+    Destinations = get_csv("Data files\Destinations.csv")
+
 def get_Contracts():
-    pass
+    Contracts = get_csv("Data files\Contracts.csv")
+    print(Contracts)
+    
 def get_Employees():
-    pass
+    Employees = get_csv("Data files\Employees.csv")
 
 
 
@@ -96,3 +105,10 @@ def add_Contract():
     pass
 def add_Employee():
     pass
+
+
+
+def main():
+    get_Contract(123)
+
+main()
