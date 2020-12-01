@@ -11,42 +11,42 @@ class DataAPI(object):
     def __init__(self) -> None:
         pass
     def get_vehicle(ident):
-        vehicle = getter.get_certein(ident,"Data files\Vehicles.csv")
+        vehicle = Getter.get_certein(ident,"Data files\Vehicles.csv")
         return vehicle
 
     def get_customer(ident):
-        customer = getter.get_certein(ident,"Data files\Customers.csv")
+        customer = Getter.get_certein(ident,"Data files\Customers.csv")
         return customer
 
     def get_destination(ident):
-        Destination = getter.get_certein(ident,"Data files\Destinations.csv")
+        Destination = Getter.get_certein(ident,"Data files\Destinations.csv")
         return Destination
 
     def get_contract(ident):
-        contract = getter.get_certein(ident,"Data_files\Contracts.csv")
+        contract = Getter.get_certein(ident,"Data_files\Contracts.csv")
         return contract
 
     def get_employee(ident):
-        Employee = getter.get_certein(ident,"Data files\Employees.csv")
+        Employee = Getter.get_certein(ident,"Data files\Employees.csv")
         return Employee
 
 
     # get multiple
     def get_vehicles():
-        vehicles = getter.get_csv("Data files\Vehicles.csv")
+        vehicles = Getter.get_csv("Data files\Vehicles.csv")
         return vehicles
     def get_customers():
-        customers = getter.get_csv("Data files\Customers.csv")
+        customers = Getter.get_csv("Data files\Customers.csv")
         return customers
     def get_destinations():
-        destinations = getter.get_csv("Data files\Destinations.csv")
+        destinations = Getter.get_csv("Data files\Destinations.csv")
         return destinations
     def get_contracts():
-        contracts = getter.get_csv("Data_files\Contracts.csv")
+        contracts = Getter.get_csv("Data_files\Contracts.csv")
         return contracts
 
     def get_employees():
-        employees = getter.get_csv("Data files\Employees.csv")
+        employees = Getter.get_csv("Data files\Employees.csv")
         return employees
 
     #make,ident
