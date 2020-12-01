@@ -41,9 +41,11 @@ class Contract(object):
         self.end_date = end_date
         self.paid = paid
 
-    def get_contracts():
-        contracts = open("Contracts.csv")
-        
+def get_contracts():
+    contracts = open('Contracts.csv')
+    opener = csv.reader(contracts)
+    for line in opener:
+        print(line)
             
 
 class Employee(object):
@@ -63,4 +65,6 @@ class Vehicle(object):
         pass
 
 def main():
-    print(get_contracts)
+    get_contracts()
+
+main()
