@@ -1,3 +1,4 @@
 from Data_classes.DataAPI import *
 
-def newDestination(name, airport, phone)
+class Destination:
+    def newDestination(name, airport, phone)
