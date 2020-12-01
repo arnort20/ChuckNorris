@@ -1,0 +1,29 @@
+dagur 1:
+hittumst og ræddum um UML og hvernig við ætlum að skipurleggja okkur
+-kláruðum gróft klasarit í UML
+
+dagur 2:
+plan: 
+byrja á notkunnartilvikum, stöðuriti , notendahópagreiningu
+-stöðurit búið og byrjað á use-case+kröfulisti
+
+dagur 3:
+plan:
+Notendahópagreining, klára use-case+kröfulista, byrja á útlitshönnun.
+-kláruðum útlitshönnun, use-case+kröfulista,notendahópagreiningu
+
+dagur 4:
+Plan:
+Byrja á skýrslunni.
+-kláruðum skýrsluna
+
+dagur 5:
+-skiluðum skýrslunni
+
+dagur 6:
+-löguðum klasarit og skýrslu
+-byrjuðum á að forrita data,logic og ui
+
+dagur 7:
+plan:
+vinna í forriti á öllum stigum helst að klára data stigið
