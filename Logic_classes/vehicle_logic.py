@@ -27,3 +27,4 @@ class Vehicle:
     def kill_vehicle(self,vehicleID):
         #removes the vehicle form database
         pass
+    def check_license(self, )
