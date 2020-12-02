@@ -1,4 +1,6 @@
-from Data_classes.DataAPI import *
+from Data_classes.DataAPI import DataAPI as dAPI
 
 class Destination:
-    def newDestination(name, airport, phone)
+    def __init__(self):
+        self.dAPI = dAPI()
+    def new_destination(name, airport, phone)

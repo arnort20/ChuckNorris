@@ -1,14 +1,10 @@
-from vehicle_logic import *
-from contract_logic import *
-import customer_logic
-import destination_logic
-import employee_logic
-
+from .vehicle_logic import Vehicle as vehi_logic
+from .contract_logic import Contract as cont_logic
+from .employee_logic import Employee as emp_logic
+from .destination_logic import Destination as dest_logic
+from .customer_logic import Customer as cust_logic
 class LogicAPI:
     def __init__(self):
-        contract = contract_logic.Contract()
-    def getContract(contractID):
-        return contract_logic.getContract(contractID)
-
-
-
+        self.contract = cont_logic()
+    def get_contract(self, contractID):
+        return self.contract.getContract(contractID)

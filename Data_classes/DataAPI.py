@@ -1,53 +1,86 @@
 
 import csv
 from Data_classes.get_io import Getter
-from Model_classes import *
+from Model_classes.Contract import Contract
+from Model_classes.Customer import Customer
+from Model_classes.Destination import Destination
+from Model_classes.Employee import Employee
+from Model_classes.Vehicle import Vehicle
 
 # skila objectum til logic
 # skila listum af objectum til logic
 # taka a moti objectum fra io closum
 
 class DataAPI(object):
-    # get single
     def __init__(self):
-        pass
-    def get_vehicle(ident):
-        vehicle = Getter.get_certein(ident,"Data files\Vehicles.csv")
-        return vehicle
+        self.get = Getter
 
-    def get_customer(ident):
-        customer = Getter.get_certein(ident,"Data files\Customers.csv")
+    #make stuff
+    def make_vehicle(ride):
+        return Vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["mileage"],ride["age"],ride["tax"],ride["available"])
+
+    def make_customer(info):
+  
+        return Customer(info["ID"],info["Customer name"],info["License type"],info["GBP"],info["BBP"])
+
+    def make_destination(ident):
+        pass
+
+    def make_contract(info):
+     
+        return Contract(info["contract ID"],info["employee ID"],info["customer ID"],info["vehicle ID"],info["start date"],info["end date"],info["paid?"])
+
+    def make_employee(info):
+        pass
+
+
+
+    # get single
+
+    def get_vehicle(self,ident):
+        vehicle = self.get.get_certein(ident,"Data files\Vehicles.csv")
+        return DataAPI.make_contract(vehicle)
+
+    def get_customer(self,ident):
+        customer = self.get.get_certein(ident,"Data files\Customers.csv")
         return customer
 
-    def get_destination(ident):
-        Destination = Getter.get_certein(ident,"Data files\Destinations.csv")
+    def get_destination(self,ident):
+        Destination = self.get.get_certein(ident,"Data files\Destinations.csv")
         return Destination
 
     def get_contract(self,ident):
-        contract = Getter.get_certein(ident,"Data_files\Contracts.csv")
-        return contract
+        contract = self.get.get_certein(ident,"Data_files\Contracts.csv")
+        return DataAPI.make_contract(contract)
 
-    def get_employee(ident):
-        Employee = Getter.get_certein(ident,"Data files\Employees.csv")
+    def get_employee(self,ident):
+        Employee = self.get.get_certein(ident,"Data files\Employees.csv")
         return Employee
 
 
     # get multiple
-    def get_vehicles():
-        vehicles = Getter.get_csv("Data files\Vehicles.csv")
+    def get_vehicles(self):
+        vehicles = self.get.get_csv("Data files\Vehicles.csv")
         return vehicles
-    def get_customers():
-        customers = Getter.get_csv("Data files\Customers.csv")
-        return customers
-    def get_destinations():
-        destinations = Getter.get_csv("Data files\Destinations.csv")
-        return destinations
-    def get_contracts():
-        contracts = Getter.get_csv("Data_files\Contracts.csv")
-        return contracts
 
-    def get_employees():
-        employees = Getter.get_csv("Data files\Employees.csv")
+    def get_customers(self):
+        customers = self.get.get_csv("Data files\Customers.csv")
+        return customers
+
+    def get_destinations(self):
+        destinations = self.get.get_csv("Data files\Destinations.csv")
+        return destinations
+
+    def get_contracts(self):
+        Vehicle_list = []
+        contracts = self.get.get_csv("Data_files\Contracts.csv")
+        for obj in contracts:
+            vehicle = DataAPI.make_contract(obj)
+            Vehicle_list.append(vehicle)
+        return Vehicle_list
+
+    def get_employees(self):
+        employees = self.get.get_csv("Data files\Employees.csv")
         return employees
 
     #make,ident
