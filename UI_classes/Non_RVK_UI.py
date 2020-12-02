@@ -1,9 +1,9 @@
-from Logic_classes.logic_wrapper import LogicAPI as logic
-from Model_classes.Vehicle import Vehicle as vehicle
+#from Logic_classes.logic_wrapper import LogicAPI as logic
+#from Model_classes.Vehicle import Vehicle as vehicle
 GBP = 0
 
 def make_vehicle(ride):
-    print(Vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"]))
+    print(vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"]))
 
 class Non_Rvk():
     def __init__(self):
@@ -21,24 +21,25 @@ class Non_Rvk():
     
     -----------------------------------------------------------""".format(self.employee_num))
 
-        option = input("Enter Choise here: ")
-        if option == "1":
-            Non_Rvk().menu1()
-        elif option == "2":
-            Non_Rvk().menu2()
-        elif option == "3":
-            Non_Rvk().menu3()
-        elif option == "4":
-            Non_Rvk().menu4()
-        elif option == "q":
-            return
-        else:
-            print("Not a valid Option!: ")
-        
+        while True:
+            option = input("Enter Choise here: ")
+            if option == "1":
+                Non_Rvk().menu1()
+            elif option == "2":
+                Non_Rvk().menu2()
+            elif option == "3":
+                Non_Rvk().menu3()
+            elif option == "4":
+                Non_Rvk().menu4()
+            elif option == "q":
+                break
+            else:
+                print("Not a valid Option! ")
+                Non_Rvk().main_menu()
+
     def menu1(self):
         print("---------Register New Vehicle---------\n")
-
-            
+   
         vehicle_ID = input("Input Vehicle ID number: ")
         vehicle_name = input("Vehicle name / licence plate: ")
         vehicle_type = input("Vehicle type: ") # What kinda vehicle can be from a Polar bear or scuba piledriver to a tricecle
@@ -55,16 +56,20 @@ class Non_Rvk():
                 print("Invalid input, Try again")
             
         register_more = input("Wish to register more vehicles? y/n: ")
+        if register_more == "y" :
+            Non_Rvk().menu1()
         # Making dict list of all the information on the newly registerd car to be kept in the Vehicles.csv file
         
         new_car_info = [vehicle_name, vehicle_type, vehicle_manufacturer, vehicle_model, vehicle_color, vehicle_age, vehicle_tax,]
         vehicle_ID_dict = {}
-        vehicle_ID_dict[vehicle_ID] = new_car_info 
+        vehicle_ID_dict[vehicle_ID] = new_car_info
 
-        if register_more == "y" :
-            Non_Rvk().menu1()
+        return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
+        if return_to_mainmenu == "y":
+            Non_Rvk().main_menu()
         else:
             return None
+        
         return vehicle_ID_dict
 
     def menu2(self):
@@ -95,10 +100,13 @@ class Non_Rvk():
             print(f"You have {GBP}, GBP to your exposal")
         else:
             print("Chuck is not happy!")
+        return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
+        if return_to_mainmenu == "y":
+            Non_Rvk().main_menu()
+        else:
+            return None
         return GBP
 
-        
-        
         # Adda GBP 
 
     def menu4(self):
@@ -106,16 +114,17 @@ class Non_Rvk():
         print("---------Check Vehicle---------\n")
         checking_vehicle_ID = input("Enter vehicle ID: ")
         
-        checking_more = input("Wish to check on more vehicles? y/n")
+        checking_more = input("Wish to check on more vehicles? y/n: ")
         if checking_more == "y" :
             Non_Rvk().menu4()
+        return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
+        if return_to_mainmenu == "y":
+            Non_Rvk().main_menu()
+        else:
+            return None
 
-        
 
-    def Register_Vehicle(self):
-        pass
 
-    
 
 Non_Rvk().main_menu()
   
