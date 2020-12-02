@@ -125,15 +125,22 @@ class DataAPI(object):
         vehicle_dict = {"ID":ident,"Vehicle name":vehicle_name,"Type":Type,"Manufacturer":Manufacturer,"Model":Model,"Color":Color,"age":age,"tax":tax,"available":available}
         self.add.add(vehicle_dict,"Data_files\Vehicles.csv")
 
+    def add_customer(self,ident,Customer_name,License_type,gbp,bbp):
+        dicter = {"ID":ident,"Customer name":Customer_name,"License_type":License_type,"GBP":gbp,"BBP":bbp}
+        self.add.add(dicter,"Data_files\Customers.csv")
 
-    def add_customer(ID,Customer_name,License_type,GBP,BBP):
-        pass
-    def add_destination(ID,Destination_name,Phone,opening_hours,reportfilename):
-        pass
-    def add_contract(ID,employee_id,costumer_id,vehicle_id,start_date,end_date,paid):
-        pass
-    def add_employee(ID,Employee_name,SSN,Address,Phone,Email,Location):
-        pass
+
+    def add_destination(self,ident,Destination_name,phone,opening_hours,report_filename):
+        dicter = {"ID":ident,"Destination name":Destination_name,"Phone":phone,"opening hours":opening_hours,"report filename":report_filename}
+        self.add.add(dicter,"Data_files\Destinations.csv")
+
+    def add_contract(self,ident,employee_id,costumer_id,vehicle_id,start_date,end_date,paid):
+        dicter = {"ID":ident,"employee_id":employee_id,"costumer_id":costumer_id,"vehicle_id":vehicle_id,"start_date":start_date,"end_date":end_date,"paid":paid}
+        self.add.add(dicter,"Data_files\Contracts.csv")
+
+    def add_employee(self,ident,Employee_name,ssn,Address,Phone,Email,Location):
+        dicter = {"ID":ident,"Employee_name":Employee_name,"SSN":ssn,"Address":Address,"Phone":Phone,"Email":Email,"Location":Location}
+        self.add.add(dicter,"Model_classes\Employee.py")
 
     # change single
     def change_vehicle():
