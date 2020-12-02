@@ -1,5 +1,5 @@
 class Vehicle(object):
-    def __init__(self,ID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available) -> None:
+    def __init__(self,ID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,) -> None:
         self.id = ID
         self.vehicle_name = vehicle_name
         self.type = Type
@@ -9,6 +9,7 @@ class Vehicle(object):
         self.age = age
         self.tax = tax
         self.available = available
+        self.location = location_id
 
     def __str__(self) -> str:
         return(self.id +" "+ self.vehicle_name+" "+self.type+" "+self.manufacturer+" "+self.model+" "+self.color+" "+self.age+" "+self.tax+" "+self.available)
