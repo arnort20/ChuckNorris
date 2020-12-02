@@ -65,5 +65,8 @@ class LogicAPI:
         self.customer.kill_customer(customerID)
 
     #employee stuff
-
+    def hire_employee(self,emp_name,ssn,address,phone,email,location):
+        self.employee_wrapper()
+        self.employee.hire(emp_name,ssn,address,phone,email,location)
+    
     #destination stuff
