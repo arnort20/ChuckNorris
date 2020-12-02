@@ -1,4 +1,3 @@
-#from Data_classes.DataAPI import DataAPI
 from Data_classes.DataAPI import DataAPI as dAPI
 
 class Contract:
