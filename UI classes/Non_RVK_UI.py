@@ -71,9 +71,16 @@ class Non_Rvk():
         
         # Adda GBP 
 
-
     def menu4(self):
-        pass
+        print("---------Check Vehicle---------")
+        checking_vehicle_ID = input("Enter vehicle ID: ")
+        print(f"Licence Plate: {}") #Setja inn Licence plate frá Dict
+        print(f"Condition: {}") # Setja inn Condition frá dict
+        print(f"Is car available? {}") # Setja yes/ No frá dict
+        checking_more = input("Wish to check on more vehicles? y/n")
+        if checking_more == "y" :
+            Non_Rvk().menu4()
+
 
 
     def Register_Vehicle(self):
