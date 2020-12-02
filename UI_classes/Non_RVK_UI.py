@@ -1,5 +1,5 @@
-#from Logic_classes.logic_wrapper import LogicAPI as logic
-#from Model_classes.Vehicle import Vehicle as vehicle
+from Logic_classes.logic_wrapper import LogicAPI as logic
+from Model_classes.Vehicle import Vehicle as vehicle
 GBP = 0
 
 def make_vehicle(ride):
@@ -38,6 +38,7 @@ class Non_Rvk():
     def menu1(self):
         print("---------Register New Vehicle---------\n")
 
+            
         vehicle_ID = input("Input Vehicle ID number: ")
         vehicle_name = input("Vehicle name / licence plate: ")
         vehicle_type = input("Vehicle type: ") # What kinda vehicle can be from a Polar bear or scuba piledriver to a tricecle
@@ -45,16 +46,17 @@ class Non_Rvk():
         vehicle_manufacturer = input("Input vehicle Manufacturer: ")
         vehicle_color = input("Vehicle Color: ")
         vehicle_condition = input("Vehicle Condition: ")
-        try:
-            vehicle_age = input(float("Input year that the vehicle was Manufacturerd: "))
-            vehicle_tax = input(float("Input the tax on the vehicle rent: "))
-        except ValueError:
-            print("Invalid Input, Try again ")
-        
+        while True:
+            try:
+                vehicle_age = float(input("Input year that the vehicle was Manufacturerd: "))
+                vehicle_tax = float(input("Input the tax on the vehicle rent: "))
+                break
+            except:
+                print("Invalid input, Try again")
+            
         register_more = input("Wish to register more vehicles? y/n: ")
-
         # Making dict list of all the information on the newly registerd car to be kept in the Vehicles.csv file
-
+        
         new_car_info = [vehicle_name, vehicle_type, vehicle_manufacturer, vehicle_model, vehicle_color, vehicle_age, vehicle_tax,]
         vehicle_ID_dict = {}
         vehicle_ID_dict[vehicle_ID] = new_car_info 
@@ -65,14 +67,13 @@ class Non_Rvk():
             return None
         return vehicle_ID_dict
 
-
     def menu2(self):
         print("---------Lone Vehicle---------\n")
 
         vehicle_ID = input("Input Vehicle ID number: ")
         loned_car_name = input("Vehicle name / Licence Plate: ")
         persons_licence = input("Driving Licence: ")
-        use_GBP = input("Use GBP: ")
+        use_GBP = input("Use GBP y/n: ")
         return_to_mainmenu = input("Wish to return to main menu? y/n: ")
         if return_to_mainmenu == "y":
             Non_Rvk().main_menu()
@@ -101,13 +102,15 @@ class Non_Rvk():
         # Adda GBP 
 
     def menu4(self):
+        #Here it needs to get the list of vehicles from Vehicles.csv and look up the Key word[ID] and print out everything about the car.
         print("---------Check Vehicle---------\n")
         checking_vehicle_ID = input("Enter vehicle ID: ")
+        
         checking_more = input("Wish to check on more vehicles? y/n")
         if checking_more == "y" :
             Non_Rvk().menu4()
 
-
+        
 
     def Register_Vehicle(self):
         pass
