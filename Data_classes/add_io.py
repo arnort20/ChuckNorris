@@ -6,5 +6,5 @@ class Adder(object):
         pass
 
     def add(self,dict,filename):
-        writing = csv.DictWriter()
-        writing.writerow()
+        writing = csv.DictWriter(filename)
+        writing.writerow(dict)
