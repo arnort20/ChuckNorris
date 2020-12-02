@@ -89,5 +89,7 @@ class LogicAPI:
     def change_employee_location(self,emp_ID,new_loc):
         self.employee_wrapper()
         self.employee.change_name(emp_ID,new_loc)
-    def get_employee(self,)
+    def get_employee(self,emp_ID):
+        self.employee_wrapper()
+        self.employee.get_employee(emp_ID)
     #destination stuff
