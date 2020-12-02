@@ -9,7 +9,7 @@ from Model_classes import *
 
 class DataAPI(object):
     # get single
-    def __init__(self) -> None:
+    def __init__(self):
         pass
     def get_vehicle(ident):
         vehicle = Getter.get_certein(ident,"Data files\Vehicles.csv")
