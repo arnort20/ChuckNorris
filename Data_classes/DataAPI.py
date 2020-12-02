@@ -121,8 +121,8 @@ class DataAPI(object):
 
     #add single
     #available ætti að byrja sem True
-    def add_vehicle(self,ID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available):
-        vehicle_dict = {"ID":ID,"vehicle_name":vehicle_name,"Type":Type,"Manufacturer":Manufacturer,"Model":Model,"Color":Color,"age":age,"tax":tax,"available":available}
+    def add_vehicle(self,ident,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available):
+        vehicle_dict = {"ID":ident,"Vehicle name":vehicle_name,"Type":Type,"Manufacturer":Manufacturer,"Model":Model,"Color":Color,"age":age,"tax":tax,"available":available}
         self.add.add(vehicle_dict,"Data_files\Vehicles.csv")
 
 

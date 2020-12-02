@@ -5,6 +5,9 @@ class Adder(object):
     def __init__(self) -> None:
         pass
 
-    def add(self,dict,filename):
-        writing = csv.DictWriter(filename)
-        writing.writerow(dict)
+    def add(dicter,filename):
+        filed = open(filename,"a+", newline='')
+        fields = dicter.keys()
+        writing = csv.DictWriter(filed,fieldnames=fields)
+        writing.writerow(dicter)
+        filed.close()

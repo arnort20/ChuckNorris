@@ -20,7 +20,7 @@ class Getter(object):
         opener = csv.DictReader(obj)
         obj_list = []
         for line in opener:
-            print
+            #test dict here
             obj_list.append(line)
 
         return obj_list

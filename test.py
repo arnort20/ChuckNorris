@@ -1,12 +1,7 @@
 from Data_classes.DataAPI import DataAPI
 api = DataAPI()
-contracts = api.vehicles_makeID()
-print(contracts)
+contracts = api.add_vehicle("2","jojo","jingle","jambajuice","akakaka","blue","25","20","yes")
 
 
-
-# #from Data_classes.DataAPI import DataAPI
-# from Logic_classes.logic_wrapper import LogicAPI as lAPI
-# api = lAPI()
-# #print(api.get_contracts())
-# print(api.getContract("123"))
+# print(api.get_contracts())
+# print(api.get_contract("123"))
