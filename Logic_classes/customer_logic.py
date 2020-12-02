@@ -6,7 +6,7 @@ class Customer:
     def get_customer(self,customerID):
         return self.api.bring_customer(customerID)
     def new_customer(self,customerID,name,email,phone,address,license_type):
-        api.add_customer(customerID,name,license_type,0,0)
+        self.api.add_customer(customerID,name,email,phone,address,license_type,0,0)
     def add_GBP(self,customerID,added_points):
         return self.api.add_points(customerID,added_points)
     def add_BBP(self,customerID,added_points):
