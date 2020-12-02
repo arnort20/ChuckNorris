@@ -41,6 +41,9 @@ class LogicAPI:
         #returns True if it succeeds, otherwise false
     def change_information(self, vehicleID):
         pass
+    def kill_vehicle(self, vehicle_ID):
+        self.vehicle_wrapper()
+        self.vehicle.kill_vehicle(vehicle_ID)
 
     #customer stuff
     def new_customer(self,customerID,name,license_type):
