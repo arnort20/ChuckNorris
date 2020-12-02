@@ -3,8 +3,7 @@ class RVK_emp():
         self.employee_num = '69'
 
     def main_menu(self):
-        print(
-        '''----------------------Welcome, Employee {}----------------------
+        print('''----------------------Welcome, Employee {}----------------------
         
 ( 1 ) = Create new contract
 ( 2 ) = View contract
@@ -31,42 +30,52 @@ class RVK_emp():
             RVK_emp().menu6()
         elif option == 'q':
             return
+            #maybe go back to loginUI?
+        elif option == '':
+                print('Please input an option')
         else:
             print('Not a valid option!')
             RVK_emp().main_menu()
     
     def menu1(self):
         print('''
------Creating new Contract-------------------------------------
+-----Create new contract-------------------------------------
         
-( 1 ) = Returning Customer
-( 2 ) = New Customer
+( 1 ) = Returning customer
+( 2 ) = New customer
 
 ( r ) = Return
 ---------------------------------------------------------------''')
         option = input('Type here: ')
         if option == '1':
             RVK_emp().menu1_1()
-        if option == '2':
+        elif option == '2':
             RVK_emp().menu1_2()
-        if option == 'r':
+        elif option == 'r':
             RVK_emp().main_menu()
+        elif option == '':
+            print('Please input an option')
+        else:
+            print('Invalid option')
 
     def menu1_1(self):
         print('''
 -----Returning Customer------''')
-        option = input('Driving registration nr :')
+        cost_reg = input('Driving registration nr: ')
         while True:
             print('''
-( r ) = Return
+( c ) = Cancel
 ( f ) = Finish
 ------------------------------------------''')
             option = input('Type here: ')
-            if option == 'r':
+            if option == 'c':
                 RVK_emp().menu1()
             elif option == 'f':
-                #finish?
+                #finds the costumer and create a new contract
+
                 pass
+            elif option == '':
+                print('Please input an option')
             else:
                 print('Invalid option')
 
@@ -80,18 +89,33 @@ class RVK_emp():
             cust_info.append(info)
         while True:
             print(''' 
-( r ) = Return
+( c ) = Cancel
 ( f ) = Finish
 ------------------------------------------''')
             option = input('Type here: ')
-            if option == 'r':
+            if option == 'c':
                 RVK_emp().menu1()
-            if option == 'f':
-                #finish?
+            elif option == 'f':
+                #register new costumer and create new contract
+                RVK_emp().menu1_3()
                 pass
+            elif option == '':
+                print('Please input an option')
             else:
                 print('Invalid option')
         
+    def menu1_3(self):
+        print('''
+-----Creating new Contract------
+good boy points: {}''')#here should good boy points be extracted from data 
+        use_gbp = input('Use Good Boy Points ( y / n ): ')
+        start_date = input('Rental start date: ')
+        end_date = input('Rental end date: ')
+        location = input('Location: ')
+        option = input('''( r ) = Return
+( f ) = Finish
+------------------------------------------
+Type here: ''')
 
     def menu2(self):
         print('''
@@ -99,11 +123,12 @@ class RVK_emp():
  ''')
         conID = input('Contract ID: #')
         if len(conID) == 4 and conID.isdigit():
-            print('Great Success!') #Don't really know what to add here
+            #should be able to ask the logic wrapper for the whole contract
+            print('Great Success!')
             #add three options ( c ) change, ( p ) print, ( r ) return
-            print('''\n( c ) change
-( p ) print
-( r ) return
+            print('''\n( c ) Change
+( p ) = Print
+( r ) = Return
 ----------------------------------------''')
             while True:
                 option = input('Type here: ')
@@ -113,6 +138,8 @@ class RVK_emp():
                     RVK_emp().menu2_2()
                 elif option == 'r':
                     RVK_emp().main_menu()
+                elif option == '':
+                    print('Please input an option')
                 else:
                     print('Not a valid option')
         else:
@@ -121,9 +148,6 @@ class RVK_emp():
 
     def menu2_1(self):
         'Changes contract info'
-        plate_num = 'BR UH21'
-        start = 'yesterday'
-        end = 'today'
         info_list = ['Vehicle plate: ', 'Start date: ', 'End date: ']
         contract_info = [plate_num, start, end]
         print('''
@@ -134,20 +158,23 @@ class RVK_emp():
         while True:
             print('''
  
-( f ) = finish
+( f ) = Finish
 ( c ) = Cancel
 ----------------------------------------''')
             option = input('Type Here: ')
             if option == 'c':
                 RVK_emp().menu2()
             elif option == 'f':
-                #finish?
+                #saves the contracts
                 pass
+            elif option == '':
+                print('Please input an option')
             else:
-                print('Not a valid option!')
+                print('Invalid option')
 
     def menu2_2(self):
         'Prints contract'
+        pass
     def menu3(self):
         #I might do it fokking later
         pass
@@ -173,8 +200,8 @@ class RVK_emp():
         while True:
             print('''
 
-Add employee( y ):
-Return ( r ):
+( y ) = Add employee
+( r ) = Return
 --------------------------------------------------------------------
 ''')
             option = input('Type here: ')
@@ -184,6 +211,8 @@ Return ( r ):
                 emp_dict[empID] = emp_info #Here's is where the employee is added
             elif option == 'r':
                 RVK_emp().main_menu()
+            elif option == '':
+                print('Please input an option')
             else:
                 print('Not a valid option')
 
@@ -191,18 +220,6 @@ Return ( r ):
         print('''
 ------------------------Change Employee------------------
 ''')
-        empID = '21'
-        emp_name = 'Herra Dæmi'
-        emp_ssn = '200469-1337'
-        emp_address = 'Órafjarlýju 42'
-        emp_location = 'Þarna'
-        emp_email = 'peepee@poopoo.com'
-        emp_homephone = '800-588-2300'
-        emp_mobilephone = '2'
-        emp_password = 'chiblade'
-        emp_info = [emp_name, emp_ssn, emp_address, emp_location, emp_email, emp_homephone, emp_mobilephone, emp_password]
-        info_list = ['Name:', 'Social security number:', 'Address:', 'Location:', 'Email:', 'Home phone number:', 'Mobile phone number:', 'Password:']
-        info_list2 = ['name',  'ssn', 'address', 'location', 'email', 'home phone', 'mobile phone', 'password']
         search = input('Employee ID: ') #the output should be able to extract a list of information from the employee id
         #here should emp_info come from the data bank
         for i in range(len(emp_info)):
@@ -226,13 +243,13 @@ Return ( r ):
 
     def menu6(self):
         print('''
-------------------------Change Employee------------------
+------------------------Delete Employee------------------
 ''')
         search = input('Employee ID: ')
         #here should emp_info come from the data bank
         delete_confirm = input('\nConfirm ( y / n )')
         if delete_confirm == 'y':
-            #kalla á logicið til þess að eyða
+            #makes the logic wrapper find it to delete
             pass
         RVK_emp().main_menu()   
 
