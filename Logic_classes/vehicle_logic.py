@@ -4,11 +4,22 @@ class Vehicle:
     def __init__(self):
         self.dAPI = dAPI()
     def get_vehicle_txt(self,vehicleID):
+        #text form of vehicle object
         pass
     def get_vehicle(self,vehicleID):
-        pass
+        return self.dAPI.get_vehicle(vehicleID)
     def reserve_vehicle(self,vehicleID):
+        #change available = False
         pass
-    def create_new_vehicle(self,vehicle_name,Type,Manufacturer,Model,Color,mileage,age,tax,available):
+    def return_vehicle(self, vehicleID):
+        #change available = True
+        #if available == True:
+            #return an error message and do nothing
+        pass
+    def create_new_vehicle(self,vehicle_name,Type,Manufacturer,Model,Color,mileage,age,tax):
         vehicleID = self.dAPI.vehicle_makeID()
+        self.dAPI.add_vehicle(vehicleID,vehicle_name,Type,Manufacturer,Model,Color,mileage,age,tax)
+    def change_details(self, vehicleID):
+        #lotsa stuff goes here
+        pass
         
