@@ -2,6 +2,7 @@
 import csv
 from Data_classes.add_io import Adder
 from Data_classes.get_io import Getter
+from Data_classes.deleter_io import Dell
 from Model_classes.Contract import Contract
 from Model_classes.Customer import Customer
 from Model_classes.Destination import Destination
@@ -16,6 +17,7 @@ class DataAPI(object):
     def __init__(self):
         self.get = Getter
         self.add = Adder
+        self.dell = Dell
 
     #make stuff-------------done
     def make_vehicle(ride):
