@@ -47,19 +47,19 @@ class DataAPI(object):
 
     def get_customer(self,ident):
         customer = self.get.get_certein(ident,"Data files\Customers.csv")
-        return customer
+        return DataAPI.make_customer(customer)
 
     def get_destination(self,ident):
-        Destination = self.get.get_certein(ident,"Data files\Destinations.csv")
-        return Destination
+        destination = self.get.get_certein(ident,"Data files\Destinations.csv")
+        return DataAPI.make_Destination(destination)
 
     def get_contract(self,ident):
         contract = self.get.get_certein(ident,"Data_files\Contracts.csv")
         return DataAPI.make_contract(contract)
 
     def get_employee(self,ident):
-        Employee = self.get.get_certein(ident,"Data files\Employees.csv")
-        return Employee
+        employee = self.get.get_certein(ident,"Data files\Employees.csv")
+        return DataAPI.make_employee(employee)
 
 
     # get multiple
@@ -72,12 +72,20 @@ class DataAPI(object):
         return vehicle_list
 
     def get_customers(self):
+        customer_list = []
         customers = self.get.get_csv("Data files\Customers.csv")
-        return customers
+        for obj in customers:
+            customer = DataAPI.make_customer(obj)
+            customer_list.append(customer)
+        return customer_list
 
     def get_destinations(self):
         destinations = self.get.get_csv("Data files\Destinations.csv")
-        return destinations
+        destination_list = []
+        for obj in destinations:
+            destination = DataAPI.make_destination(obj)
+            destination_list.append(destination)
+        return destination_list
 
     def get_contracts(self):
         contract_list = []
@@ -89,7 +97,11 @@ class DataAPI(object):
 
     def get_employees(self):
         employees = self.get.get_csv("Data files\Employees.csv")
-        return employees
+        employee_list = []
+        for obj in employees:
+            employee = DataAPI.make_employee(obj)
+            employee_list.append(employee)
+        return employee_list
 
     #make,ident
     def vehicles_makeID():
