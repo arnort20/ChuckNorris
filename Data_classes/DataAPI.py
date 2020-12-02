@@ -16,25 +16,22 @@ class DataAPI(object):
         self.get = Getter
 
     #make stuff
-    def make_vehicle(self,ride):
+    def make_vehicle(ride):
         return Vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["mileage"],ride["age"],ride["tax"],ride["available"])
 
-    def make_customer(self,info):
+    def make_customer(info):
   
         return Customer(info["ID"],info["Customer name"],info["License type"],info["GBP"],info["BBP"])
 
-    def make_destination(self,ident):
-     
-        return Destination
+    def make_destination(ident):
+        pass
 
-    def make_contract(self,info):
+    def make_contract(info):
      
         return Contract(info["contract ID"],info["employee ID"],info["customer ID"],info["vehicle ID"],info["start date"],info["end date"],info["paid?"])
 
-    def make_employee(self,ident):
-        
-        return Employee
-
+    def make_employee(info):
+        pass
 
 
 
@@ -54,7 +51,7 @@ class DataAPI(object):
 
     def get_contract(self,ident):
         contract = self.get.get_certein(ident,"Data_files\Contracts.csv")
-        return contract
+        return DataAPI.make_contract(contract)
 
     def get_employee(self,ident):
         Employee = self.get.get_certein(ident,"Data files\Employees.csv")
@@ -75,8 +72,12 @@ class DataAPI(object):
         return destinations
 
     def get_contracts(self):
+        Vehicle_list = []
         contracts = self.get.get_csv("Data_files\Contracts.csv")
-        return contracts
+        for obj in contracts:
+            vehicle = DataAPI.make_contract(obj)
+            Vehicle_list.append(vehicle)
+        return Vehicle_list
 
     def get_employees(self):
         employees = self.get.get_csv("Data files\Employees.csv")
