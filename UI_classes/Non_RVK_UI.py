@@ -69,7 +69,9 @@ class Non_Rvk():
         if return_to_mainmenu == "y":
             Non_Rvk().main_menu()
         else:
-            return None
+            return
+            
+        
         
         return vehicle_ID_dict
 
