@@ -28,5 +28,9 @@ class Vehicle:
         #removes the vehicle form database
         pass
     def check_license(self, customerID, vehicleID):
-        vehicle = dAPI.get_vehicle(vehicleID)
-        customer = dAPI.get_customer(customerID)
+        vehicle = self.dAPI.get_vehicle(vehicleID)
+        customer = self.dAPI.get_customer(customerID)
+        requirements = vehicle.license_type.split()
+        cust_license = customer.License_type
+        if cust_license in requirements:
+            return True
