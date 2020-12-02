@@ -37,7 +37,7 @@ class Non_Rvk():
 
         vehicle_ID = input("Input Vehicle ID number: ")
         vehicle_name = input("Vehicle name / licence plate: ")
-        vehicle_type = input("Vehicle type: ") # What kinda vehicle
+        vehicle_type = input("Vehicle type: ") # What kinda vehicle can be from a Polar bear or scuba piledriver to a tricecle
         vehicle_model = input("Vehicle Model: ")
         vehicle_manufacturer = input("Input vehicle Manufacturer: ")
         vehicle_color = input("Vehicle Color: ")
