@@ -1,6 +1,6 @@
 class Vehicle(object):
-    def __init__(self,ID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,license_type) -> None:
-        self.id = ID
+    def __init__(self,ident,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,license_type) -> None:
+        self.id = ident
         self.vehicle_name = vehicle_name
         self.type = Type
         self.manufacturer = Manufacturer

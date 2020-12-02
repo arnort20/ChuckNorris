@@ -22,7 +22,7 @@ class DataAPI(object):
     #make stuff-------------done
     def make_vehicle(ride):
 
-        return Vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"],ride["location id"],ride["license_type"])
+        return Vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"],ride["location id"],ride["license type"])
 
     def make_customer(info):
   
