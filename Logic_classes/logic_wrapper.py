@@ -9,6 +9,3 @@ class LogicAPI:
         self.contract = contLogic.Contract()
     def getContract(self, contractID):
         return self.contract.getContract(contractID)
-
-
-
