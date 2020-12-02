@@ -132,6 +132,7 @@ class DataAPI(object):
 
     #add single
     def add_vehicle(ID,vehicle_name,Type,Manufacturer,Model,Color,mileage,age,tax,available):
+        #available ætti að byrja sem True
         pass
     def add_customer(ID,Customer_name,License_type,GBP,BBP):
         pass
