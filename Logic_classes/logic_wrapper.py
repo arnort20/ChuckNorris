@@ -34,9 +34,9 @@ class LogicAPI:
     def get_vehicle(self, vehicleID):
         self.vehicle_wrapper()
         return self.contract.get_vehicle(vehicleID)
-    def make_new_vehicle(self,vehicle_name,Type,Model,Color,age,tax):
+    def make_new_vehicle(self,vehicle_name,Type,manufacturer,Model,Color,age,tax,location):
         self.vehicle_wrapper()
-        self.vehicle.create_new_vehicle(vehicle_name,Type,Model,Color,age,tax)
+        self.vehicle.create_new_vehicle(vehicle_name,Type,manufacturer,Model,Color,age,tax,location)
     def return_vehicle(self,vehicleID,gbp,bbp,customerID):
         self.vehicle_wrapper()
         self.vehicle.return_vehicle(vehicleID)
