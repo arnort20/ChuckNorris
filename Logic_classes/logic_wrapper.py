@@ -28,8 +28,17 @@ class LogicAPI:
         return self.contract.get_vehicle(vehicleID)
     def make_new_vehicle(self,vehicle_name,Type,Model,Color,age,tax):
         self.vehicle_wrapper()
-        try:
-            self.vehicle.create_new_vehicle(vehicle_name,Type,Model,Color,age,tax)
+        self.vehicle.create_new_vehicle(vehicle_name,Type,Model,Color,age,tax)
+    def return_vehicle(self,vehicleID):
+        self.vehicle_wrapper()
+        self.vehicle.return_vehicle(vehicleID)
+        #returns True if it succeeds, otherwise false
+    def reserve_vehicle(self, vehicleID):
+        self.vehicle_wrapper()
+        self.vehicle.reserve_vehicle(vehicleID)
+        #returns True if it succeeds, otherwise false
+    def change_information(self, vehicleID):
+        pass
 
     #customer stuff
 

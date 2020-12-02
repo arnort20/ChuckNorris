@@ -10,6 +10,8 @@ class Vehicle:
         return self.dAPI.get_vehicle(vehicleID)
     def reserve_vehicle(self,vehicleID):
         #change available = False
+        #if available == False:
+            #return an error message and do nothing
         pass
     def return_vehicle(self, vehicleID):
         #change available = True
