@@ -4,6 +4,8 @@ contracts = api.get_vehicles()
 for obj in contracts:
     print(obj)
 
+print(api.get_vehicle("1"))
+
 
 
 # #from Data_classes.DataAPI import DataAPI

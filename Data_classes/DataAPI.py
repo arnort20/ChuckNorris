@@ -43,7 +43,7 @@ class DataAPI(object):
 
     def get_vehicle(self,ident):
         vehicle = self.get.get_certein(ident,"Data_files\Vehicles.csv")
-        return DataAPI.make_contract(vehicle)
+        return DataAPI.make_vehicle(vehicle)
 
     def get_customer(self,ident):
         customer = self.get.get_certein(ident,"Data files\Customers.csv")
