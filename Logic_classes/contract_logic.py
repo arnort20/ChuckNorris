@@ -2,6 +2,6 @@ from Data_classes.DataAPI import DataAPI
 
 class Contract:
     def __init__(self):
-        
-    def getContract(contractID):
-        return 
+        self.dAPI = DataAPI.DataAPI()
+    def getContract(self, contractID):
+        return self.dAPI.get_contract(contractID)
