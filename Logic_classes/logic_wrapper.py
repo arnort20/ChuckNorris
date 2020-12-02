@@ -21,6 +21,13 @@ class LogicAPI:
     def get_contract(self, contractID):
         self.contract_wrapper()
         return self.contract.getContract(contractID)
+    def delete_contract(self,contractID):
+        self.contract_wrapper()
+        self.contract.delete_current_contract(contractID)
+        #returns false if failed, remember to implement
+    def make_contract(self,employeeID,customerID,vehicleID,start_date,end_date):
+        self.contract_wrapper()
+        self.contract.make_contract(employeeID,customerID,vehicleID,start_date,end_date)
     #remember to add a function for calculating penalties and price
 
     #vehicle stuff
