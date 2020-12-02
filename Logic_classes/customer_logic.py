@@ -12,12 +12,16 @@ class Customer:
     def add_BBP(self,customerID,added_points):
         return self.dAPI.add_points(customerID,added_points)
     def change_name(self,customerID,new_name):
+        return self.dAPI.add_new_name(customerID, new_name)
         #make changes
-        pass
     def change_license_type(self,customerID,new_license):
+        return self.dAPI.add_new_license(customerID, new_license)
         #make changes
-        pass
     def kill_customer(self,customerID):
+        try:
+            self.dAPI.delete_customer(customerID)
+        except ValueError:
+            return False
         #removes the customer from the database
-        pass
+
     

@@ -21,15 +21,22 @@ class LogicAPI:
     def get_contract(self, contractID):
         self.contract_wrapper()
         return self.contract.getContract(contractID)
+    def delete_contract(self,contractID):
+        self.contract_wrapper()
+        self.contract.delete_current_contract(contractID)
+        #returns false if failed, remember to implement
+    def make_contract(self,employeeID,customerID,vehicleID,start_date,end_date):
+        self.contract_wrapper()
+        self.contract.make_contract(employeeID,customerID,vehicleID,start_date,end_date)
     #remember to add a function for calculating penalties and price
 
     #vehicle stuff
     def get_vehicle(self, vehicleID):
         self.vehicle_wrapper()
         return self.contract.get_vehicle(vehicleID)
-    def make_new_vehicle(self,vehicle_name,Type,Model,Color,age,tax):
+    def make_new_vehicle(self,vehicle_name,Type,manufacturer,Model,Color,age,tax,location):
         self.vehicle_wrapper()
-        self.vehicle.create_new_vehicle(vehicle_name,Type,Model,Color,age,tax)
+        self.vehicle.create_new_vehicle(vehicle_name,Type,manufacturer,Model,Color,age,tax,location)
     def return_vehicle(self,vehicleID,gbp,bbp,customerID):
         self.vehicle_wrapper()
         self.vehicle.return_vehicle(vehicleID)
