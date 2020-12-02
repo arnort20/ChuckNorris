@@ -1,6 +1,6 @@
 from Logic_classes.logic_wrapper import LogicAPI as logic
 from Model_classes.Vehicle import Vehicle as vehicle
-GBP = 0
+GBP = 25
 
 #def make_vehicle(ride):
 #    print(vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"]))
@@ -59,8 +59,8 @@ class Non_Rvk():
         register_more = input("Wish to register more vehicles? y/n: ")
         if register_more == "y" :
             Non_Rvk().menu1()
-        # Making dict list of all the information on the newly registerd car to be kept in the Vehicles.csv file
         
+        # Making a dict list of the info of the newly registerd car
         new_car_info = [vehicle_name, vehicle_type, vehicle_manufacturer, vehicle_model, vehicle_color, vehicle_age, vehicle_tax, vehicle_condition, vehicle_location]
         vehicle_ID_dict = {}
         vehicle_ID_dict[vehicle_ID] = new_car_info
@@ -70,8 +70,6 @@ class Non_Rvk():
             Non_Rvk().main_menu()
         else:
             return
-            
-        
         
         return vehicle_ID_dict
 
@@ -82,12 +80,12 @@ class Non_Rvk():
         loned_car_name = input("Vehicle name / Licence Plate: ")
         persons_licence = input("Driving Licence: ")
         use_GBP = input("Use GBP y/n: ")
-        return_to_mainmenu = input("Wish to return to main menu? y/n: ")
 
         if use_GBP == "y":
             print(f"GBP ballance {GBP}: \n you have used your GBP ")
-            GBP - GBP
+            print(f"your GBP ballance is now {GBP - GBP}")
         
+        return_to_mainmenu = input("Wish to return to main menu? y/n: ")
 
         vehicle_info = [loned_car_name, persons_licence]
         loned_dict = {}
@@ -97,11 +95,11 @@ class Non_Rvk():
             Non_Rvk().main_menu()
         else:
             return
+        return GBP
         # Adda is.digit
         # Need to add all the info to dict list
 
     def menu3(self):
-        GBP = 0
         print("---------Recive Vehicle---------\n")
 
         returning_vehicle_ID = input("Input vehicle ID: ")
@@ -109,7 +107,7 @@ class Non_Rvk():
         returning_vehicle_condition = input("Input vehicle condition: ")
         returning_vehicle_late = input("Is the car late? y/n ")
         if returning_vehicle_late == "n":
-            GBP += 1
+            GBP += 10
             print(f"You have {GBP}, GBP to your exposal")
         else:
             print("Chuck is not happy!")
