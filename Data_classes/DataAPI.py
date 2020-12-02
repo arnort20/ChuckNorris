@@ -11,44 +11,44 @@ class DataAPI(object):
     # get single
     def __init__(self):
         self.get = Getter
+
     def get_vehicle(self,ident):
-        vehicle = Getter.get_certein(ident,"Data files\Vehicles.csv")
+        vehicle = self.get.get_certein(ident,"Data files\Vehicles.csv")
         return vehicle
 
     def get_customer(self,ident):
-        customer = Getter.get_certein(ident,"Data files\Customers.csv")
+        customer = self.get.get_certein(ident,"Data files\Customers.csv")
         return customer
 
     def get_destination(self,ident):
-        Destination = Getter.get_certein(ident,"Data files\Destinations.csv")
+        Destination = self.get.get_certein(ident,"Data files\Destinations.csv")
         return Destination
 
     def get_contract(self,ident):
         contract = self.get.get_certein(ident,"Data_files\Contracts.csv")
-        print("fartins")
         return contract
 
     def get_employee(self,ident):
-        Employee = Getter.get_certein(ident,"Data files\Employees.csv")
+        Employee = self.get.get_certein(ident,"Data files\Employees.csv")
         return Employee
 
 
     # get multiple
     def get_vehicles(self):
-        vehicles = Getter.get_csv("Data files\Vehicles.csv")
+        vehicles = self.get.get_csv("Data files\Vehicles.csv")
         return vehicles
     def get_customers(self):
-        customers = Getter.get_csv("Data files\Customers.csv")
+        customers = self.get.get_csv("Data files\Customers.csv")
         return customers
     def get_destinations(self):
-        destinations = Getter.get_csv("Data files\Destinations.csv")
+        destinations = self.get.get_csv("Data files\Destinations.csv")
         return destinations
     def get_contracts(self):
         contracts = self.get.get_csv("Data_files\Contracts.csv")
         return contracts
 
     def get_employees(self):
-        employees = Getter.get_csv("Data files\Employees.csv")
+        employees = self.get.get_csv("Data files\Employees.csv")
         return employees
 
     #make,ident

@@ -14,20 +14,26 @@ class Getter(object):
         opener = csv.DictReader(obj)
         obj_list = []
         for line in opener:
-            
-
-            #fixed_line = line[0].replace(";",", " )
-            #fixed_line = fixed_line.split(",")
+            print
             obj_list.append(line)
 
         return obj_list
 
+    def get_type(filename):
+        obj = open(filename)
+        opener = csv.reader(obj)
+        for line in opener:
+            return line
+
     def get_certein(ident,filename):
-        ident = "123"
+        ident = "1"
         counter = 0
         obj = Getter.get_csv(filename)
-
-        for line in obj:
-            if line[0] == ident:
-                return line
+        listed_first_line = Getter.get_type(filename)
+        item_id = listed_first_line[0]
+        for item in obj:
+            if item[item_id] == ident:
+                return item
+            else:
+                counter += 1
 
