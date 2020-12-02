@@ -11,15 +11,15 @@ class DataAPI(object):
     # get single
     def __init__(self):
         self.get = Getter
-    def get_vehicle(ident):
+    def get_vehicle(self,ident):
         vehicle = Getter.get_certein(ident,"Data files\Vehicles.csv")
         return vehicle
 
-    def get_customer(ident):
+    def get_customer(self,ident):
         customer = Getter.get_certein(ident,"Data files\Customers.csv")
         return customer
 
-    def get_destination(ident):
+    def get_destination(self,ident):
         Destination = Getter.get_certein(ident,"Data files\Destinations.csv")
         return Destination
 
@@ -28,26 +28,26 @@ class DataAPI(object):
         print("fartins")
         return contract
 
-    def get_employee(ident):
+    def get_employee(self,ident):
         Employee = Getter.get_certein(ident,"Data files\Employees.csv")
         return Employee
 
 
     # get multiple
-    def get_vehicles():
+    def get_vehicles(self):
         vehicles = Getter.get_csv("Data files\Vehicles.csv")
         return vehicles
-    def get_customers():
+    def get_customers(self):
         customers = Getter.get_csv("Data files\Customers.csv")
         return customers
-    def get_destinations():
+    def get_destinations(self):
         destinations = Getter.get_csv("Data files\Destinations.csv")
         return destinations
     def get_contracts(self):
         contracts = self.get.get_csv("Data_files\Contracts.csv")
         return contracts
 
-    def get_employees():
+    def get_employees(self):
         employees = Getter.get_csv("Data files\Employees.csv")
         return employees
 
