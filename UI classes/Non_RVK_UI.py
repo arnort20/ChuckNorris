@@ -39,22 +39,25 @@ class Non_Rvk():
         vehicle_name = input("Vehicle name / licence plate: ")
         vehicle_type = input("Vehicle type: ")
         vehicle_model = input("Vehicle Model: ")
-        vehicle_manufacturer = ("Input vehicle Manufacturer")
+        vehicle_manufacturer = input("Input vehicle Manufacturer: ")
         vehicle_color = input("Vehicle Color: ")
         vehicle_mileage = input("Input vehicle milage: ")
         vehicle_condition = input("Vehicle Condition: ")
-        vehicle_age = input("Input year the car was Manufacturerd")
-        vehicle_tax = input("Input the tax on the vehicle rent")
+        vehicle_age = input("Input year the car was Manufacturerd: ")
+        vehicle_tax = input("Input the tax on the vehicle rent: ")
         register_more = input("Wish to register more vehicles? y/n: ")
-        if register_more == "y" :
-            Non_Rvk().menu1()
-        # Adda is.digit
-        # Need to add all the info to dict list
-        # ID;Vehicle name;Type;Manufacturer;Model;Color;mileage;age;tax;available
-        new_car_info = [Vehicle_name, vehicle_type, vehicle_manufacturer, vehicle_model, vehicle_color, vehicle_mileage, vehicle_age, vehicle_tax,]
+
+        new_car_info = [vehicle_name, vehicle_type, vehicle_manufacturer, vehicle_model, vehicle_color, vehicle_mileage, vehicle_age, vehicle_tax,]
         vehicle_ID_dict = {}
         vehicle_ID_dict[vehicle_ID] = new_car_info
+
         
+        if register_more == "y" :
+            Non_Rvk().menu1()
+        else:
+            return
+        return vehicle_ID_dict
+
     def menu2(self):
         print("---------Lone Vehicle---------\n")
 
@@ -62,7 +65,7 @@ class Non_Rvk():
         loned_car_name = input("Vehicle name / Licence Plate: ")
         persons_licence = input("Driving Licence: ")
         use_GBP = input("Use GBP: ")
-        return_to_mainmenu = input("Wish to return to main menu? y/n ")
+        return_to_mainmenu = input("Wish to return to main menu? y/n: ")
         if return_to_mainmenu == "y":
             Non_Rvk().main_menu()
         else:
@@ -92,9 +95,6 @@ class Non_Rvk():
     def menu4(self):
         print("---------Check Vehicle---------\n")
         checking_vehicle_ID = input("Enter vehicle ID: ")
-        print("Licence Plate: ") #Setja inn Licence plate frá Dict
-        print("Condition: ") # Setja inn Condition frá dict
-        print("Is car available? ") # Setja yes/ No frá dict
         checking_more = input("Wish to check on more vehicles? y/n")
         if checking_more == "y" :
             Non_Rvk().menu4()
