@@ -10,7 +10,7 @@ from Model_classes import *
 class DataAPI(object):
     # get single
     def __init__(self):
-        pass
+        self.get = Getter
     def get_vehicle(ident):
         vehicle = Getter.get_certein(ident,"Data files\Vehicles.csv")
         return vehicle
@@ -24,7 +24,8 @@ class DataAPI(object):
         return Destination
 
     def get_contract(self,ident):
-        contract = Getter.get_certein(ident,"Data_files\Contracts.csv")
+        contract = self.get.get_certein(ident,"Data_files\Contracts.csv")
+        print("fartins")
         return contract
 
     def get_employee(ident):
@@ -42,8 +43,8 @@ class DataAPI(object):
     def get_destinations():
         destinations = Getter.get_csv("Data files\Destinations.csv")
         return destinations
-    def get_contracts():
-        contracts = Getter.get_csv("Data_files\Contracts.csv")
+    def get_contracts(self):
+        contracts = self.get.get_csv("Data_files\Contracts.csv")
         return contracts
 
     def get_employees():
