@@ -12,6 +12,7 @@ class Getter(object):
         last_id = 0
         for line in opener:
             last_id = line[item_id]
+        obj.close()
         return str(int(last_id) + 1)
 
 
@@ -22,13 +23,14 @@ class Getter(object):
         for line in opener:
             #test dict here
             obj_list.append(line)
-
+        obj.close()
         return obj_list
 
     def get_type(filename):
         obj = open(filename)
         opener = csv.reader(obj)
         for line in opener:
+            obj.close()
             return line[0]
 
     def get_certein(ident,filename):

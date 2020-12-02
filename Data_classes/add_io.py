@@ -1,4 +1,3 @@
-from typing import Dict
 import csv
 
 class Adder(object):
