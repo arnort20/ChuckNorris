@@ -32,3 +32,8 @@ vinna í forriti á öllum stigum helst að klára data stigið klára layer ski
 dagur 8:
 plan:
 klára import vandræði og ná fullum tökum á data structure og vera búnir að horfa á fyurirlestra
+- náðum töluverðum árangri, getum búið til nýja bíla og viðskiptavini
+
+dagur 9:
+plan:
+halda áfram að kóða og koma sem flestu í gang
