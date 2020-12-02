@@ -107,6 +107,7 @@ class DataAPI(object):
         return self.get.get_id("Data_files\Vehicles.csv")
 
     def customer_makeID(self):
+        #not needed
         return self.get.get_id("Data_files\Customers.csv")
 
     def destination_makeID(self):
