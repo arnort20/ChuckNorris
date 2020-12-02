@@ -1,1 +1,2 @@
-ID,Vehicle name,Type,Manufacturer,Model,Color,mileage,age,tax,available
+ID,Vehicle name,Type,Manufacturer,Model,Color,age,tax,available
+1,jojo,jingle,jambajuice,akakaka,blue,25,20,yes

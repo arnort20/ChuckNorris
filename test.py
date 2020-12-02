@@ -1,6 +1,6 @@
 from Data_classes.DataAPI import DataAPI
 api = DataAPI()
-contracts = api.get_contracts()
+contracts = api.get_vehicles()
 for obj in contracts:
     print(obj)
 
