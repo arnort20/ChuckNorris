@@ -27,4 +27,6 @@ class Vehicle:
     def kill_vehicle(self,vehicleID):
         #removes the vehicle form database
         pass
-    def check_license(self, )
+    def check_license(self, customerID, vehicleID):
+        vehicle = dAPI.get_vehicle(vehicleID)
+        customer = dAPI.get_customer(customerID)
