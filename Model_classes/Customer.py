@@ -3,8 +3,8 @@ class Customer(object):
         self.id = ID
         self.costumer_name = Customer_name
         self.License_type = License_type
-        self.GBP = GBP
-        self.BBP = BBP
+        self.gbp = GBP
+        self.gbp = BBP
 
     def __str__(self) -> str:
         pass

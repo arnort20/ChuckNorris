@@ -1,5 +1,6 @@
 
 import csv
+from Data_classes.add_io import Adder
 from Data_classes.get_io import Getter
 from Model_classes.Contract import Contract
 from Model_classes.Customer import Customer
@@ -14,6 +15,7 @@ from Model_classes.Vehicle import Vehicle
 class DataAPI(object):
     def __init__(self):
         self.get = Getter
+        self.add = Adder
 
     #make stuff-------------done
     def make_vehicle(ride):
@@ -116,6 +118,19 @@ class DataAPI(object):
     def employee_makeID(self):
         return self.get.get_id("Data_files\Employees.csv")
 
+    #add single
+    #available ætti að byrja sem True
+    def add_vehicle(self,ID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available):
+        
+        self.add.add()
+    def add_customer(ID,Customer_name,License_type,GBP,BBP):
+        pass
+    def add_destination(ID,Destination_name,Phone,opening_hours,reportfilename):
+        pass
+    def add_contract(ID,employee_id,costumer_id,vehicle_id,start_date,end_date,paid):
+        pass
+    def add_employee(ID,Employee_name,SSN,Address,Phone,Email,Location):
+        pass
 
     # change single
     def change_vehicle():
@@ -142,16 +157,3 @@ class DataAPI(object):
     def delete_employee():
         pass
 
-
-    #add single
-    def add_vehicle(ID,vehicle_name,Type,Manufacturer,Model,Color,mileage,age,tax,available):
-        #available ætti að byrja sem True
-        pass
-    def add_customer(ID,Customer_name,License_type,GBP,BBP):
-        pass
-    def add_destination(ID,Destination_name,Phone,opening_hours,reportfilename):
-        pass
-    def add_contract(ID,employee_id,costumer_id,vehicle_id,start_date,end_date,paid):
-        pass
-    def add_employee(ID,Employee_name,SSN,Address,Phone,Email,Location):
-        pass
