@@ -37,26 +37,27 @@ class Non_Rvk():
 
         vehicle_ID = input("Input Vehicle ID number: ")
         vehicle_name = input("Vehicle name / licence plate: ")
-        vehicle_type = input("Vehicle type: ")
+        vehicle_type = input("Vehicle type: ") # What kinda vehicle
         vehicle_model = input("Vehicle Model: ")
         vehicle_manufacturer = input("Input vehicle Manufacturer: ")
         vehicle_color = input("Vehicle Color: ")
-        vehicle_mileage = input("Input vehicle milage: ")
         vehicle_condition = input("Vehicle Condition: ")
         vehicle_age = input("Input year the car was Manufacturerd: ")
         vehicle_tax = input("Input the tax on the vehicle rent: ")
         register_more = input("Wish to register more vehicles? y/n: ")
 
-        new_car_info = [vehicle_name, vehicle_type, vehicle_manufacturer, vehicle_model, vehicle_color, vehicle_mileage, vehicle_age, vehicle_tax,]
+        new_car_info = [vehicle_name, vehicle_type, vehicle_manufacturer, vehicle_model, vehicle_color, vehicle_age, vehicle_tax,]
         vehicle_ID_dict = {}
-        vehicle_ID_dict[vehicle_ID] = new_car_info
+        vehicle_ID_dict[vehicle_ID] = new_car_info 
 
-        
         if register_more == "y" :
             Non_Rvk().menu1()
         else:
             return
         return vehicle_ID_dict
+
+        #def make_vehicle(vehicle_ID_dict):
+        #   print(Vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"])) 
 
     def menu2(self):
         print("---------Lone Vehicle---------\n")
