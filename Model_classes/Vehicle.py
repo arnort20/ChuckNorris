@@ -11,3 +11,5 @@ class Vehicle(object):
         self.tax = tax
         self.available = available
 
+    def __str__(self) -> str:
+        pass
