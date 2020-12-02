@@ -6,7 +6,13 @@ class Getter(object):
 
 
     def get_id(filename):
-        pass
+        obj = open(filename)
+        opener = csv.DictReader(obj)
+        item_id = Getter.get_type(filename)
+        last_id = 0
+        for line in opener:
+            last_id = line[item_id]
+        return str(int(last_id) + 1)
 
 
     def get_csv(filename):
@@ -23,14 +29,13 @@ class Getter(object):
         obj = open(filename)
         opener = csv.reader(obj)
         for line in opener:
-            return line
+            return line[0]
 
     def get_certein(ident,filename):
         ident = "1"
         counter = 0
         obj = Getter.get_csv(filename)
-        listed_first_line = Getter.get_type(filename)
-        item_id = listed_first_line[0]
+        item_id = Getter.get_type(filename)
         for item in obj:
             if item[item_id] == ident:
                 return item

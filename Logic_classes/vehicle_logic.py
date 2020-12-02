@@ -10,6 +10,8 @@ class Vehicle:
         return self.dAPI.get_vehicle(vehicleID)
     def reserve_vehicle(self,vehicleID):
         #change available = False
+        #if available == False:
+            #return an error message and do nothing
         pass
     def return_vehicle(self, vehicleID):
         #change available = True
@@ -18,7 +20,7 @@ class Vehicle:
         pass
     def create_new_vehicle(self,vehicle_name,Type,Manufacturer,Model,Color,age,tax):
         vehicleID = self.dAPI.vehicle_makeID()
-        self.dAPI.add_vehicle(vehicleID,vehicle_name,Type,Model,Color,age,tax)
+        self.dAPI.add_vehicle(vehicleID,vehicle_name,Type,Manufacturer,Model,Color,age,tax)
     def change_details(self, vehicleID):
         #lotsa stuff goes here
         pass

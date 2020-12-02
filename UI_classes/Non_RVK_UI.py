@@ -1,6 +1,9 @@
 #from Logic_classes.logic_wrapper import LogicAPI as logic
-
+#from Model_classes.Vehicle import Vehicle as vehicle
 GBP = 0
+
+def make_vehicle(ride):
+    print(Vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"]))
 
 class Non_Rvk():
     def __init__(self):
@@ -42,9 +45,15 @@ class Non_Rvk():
         vehicle_manufacturer = input("Input vehicle Manufacturer: ")
         vehicle_color = input("Vehicle Color: ")
         vehicle_condition = input("Vehicle Condition: ")
-        vehicle_age = input("Input year the car was Manufacturerd: ")
-        vehicle_tax = input("Input the tax on the vehicle rent: ")
+        try:
+            vehicle_age = input(float("Input year that the vehicle was Manufacturerd: "))
+            vehicle_tax = input(float("Input the tax on the vehicle rent: "))
+        except ValueError:
+            print("Invalid Input, Try again ")
+        
         register_more = input("Wish to register more vehicles? y/n: ")
+
+        # Making dict list of all the information on the newly registerd car to be kept in the Vehicles.csv file
 
         new_car_info = [vehicle_name, vehicle_type, vehicle_manufacturer, vehicle_model, vehicle_color, vehicle_age, vehicle_tax,]
         vehicle_ID_dict = {}
@@ -53,11 +62,9 @@ class Non_Rvk():
         if register_more == "y" :
             Non_Rvk().menu1()
         else:
-            return
+            return None
         return vehicle_ID_dict
 
-        #def make_vehicle(vehicle_ID_dict):
-        #   print(Vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"])) 
 
     def menu2(self):
         print("---------Lone Vehicle---------\n")

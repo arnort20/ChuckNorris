@@ -15,7 +15,7 @@ class DataAPI(object):
     def __init__(self):
         self.get = Getter
 
-    #make stuff
+    #make stuff-------------done
     def make_vehicle(ride):
 
         return Vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"])
@@ -36,10 +36,7 @@ class DataAPI(object):
 
         return Employee(info["ID"],info["Employee name"],info["SSN"],info["Address"],info["Phone"],info["Email"],info["Location"])
 
-
-
-
-    # get single
+    # get single-------------done
 
     def get_vehicle(self,ident):
         vehicle = self.get.get_certein(ident,"Data_files\Vehicles.csv")
@@ -62,7 +59,7 @@ class DataAPI(object):
         return DataAPI.make_employee(employee)
 
 
-    # get multiple
+    # get multiple-------------done
     def get_vehicles(self):
         vehicle_list = []
         vehicles = self.get.get_csv("Data_files\Vehicles.csv")
@@ -96,24 +93,28 @@ class DataAPI(object):
         return contract_list
 
     def get_employees(self):
-        employees = self.get.get_csv("Data files\Employees.csv")
+        employees = self.get.get_csv("Data_files\Employees.csv")
         employee_list = []
         for obj in employees:
             employee = DataAPI.make_employee(obj)
             employee_list.append(employee)
         return employee_list
 
-    #make,ident
-    def vehicles_makeID():
-        pass
-    def get_customer_makeID():
-        pass
-    def get_destination_makeID():
-        pass
-    def get_contract_makeID():
-        pass
-    def get_employee_makeID():
-        pass
+    #make,ident-------------done
+    def vehicles_makeID(self):
+        return self.get.get_id("Data_files\Vehicles.csv")
+
+    def customer_makeID(self):
+        return self.get.get_id("Data_files\Customers.csv")
+
+    def destination_makeID(self):
+        return self.get.get_id("Data_files\Destinations.csv")
+
+    def contract_makeID(self):
+        return self.get.get_id("Data_files\Contracts.csv")
+
+    def employee_makeID(self):
+        return self.get.get_id("Data_files\Employees.csv")
 
 
     # change single
