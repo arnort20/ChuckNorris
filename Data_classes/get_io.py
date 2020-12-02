@@ -11,13 +11,14 @@ class Getter(object):
 
     def get_csv(filename):
         obj = open(filename)
-        opener = csv.reader(obj)
+        opener = csv.DictReader(obj)
         obj_list = []
         for line in opener:
+            
 
-            fixed_line = line[0].replace(";",", " )
-            fixed_line = fixed_line.split(",")
-            obj_list.append(fixed_line)
+            #fixed_line = line[0].replace(";",", " )
+            #fixed_line = fixed_line.split(",")
+            obj_list.append(line)
 
         return obj_list
 
