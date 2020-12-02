@@ -51,6 +51,10 @@ class LogicAPI:
     def kill_vehicle(self, vehicle_ID):
         self.vehicle_wrapper()
         self.vehicle.kill_vehicle(vehicle_ID)
+    def check_license(self, customerID, vehicleID):
+        self.vehicle_wrapper()
+        return self.vehicle.check_license(customerID,vehicleID)
+        
 
     #customer stuff
     def new_customer(self,customerID,name,email,phone,address,license_type):
