@@ -21,6 +21,7 @@ class LogicAPI:
     def get_contract(self, contractID):
         self.contract_wrapper()
         return self.contract.getContract(contractID)
+    #remember to add a function for calculating penalties and price
 
     #vehicle stuff
     def get_vehicle(self, vehicleID):
@@ -29,9 +30,10 @@ class LogicAPI:
     def make_new_vehicle(self,vehicle_name,Type,Model,Color,age,tax):
         self.vehicle_wrapper()
         self.vehicle.create_new_vehicle(vehicle_name,Type,Model,Color,age,tax)
-    def return_vehicle(self,vehicleID):
+    def return_vehicle(self,vehicleID,gbp,bbp,customerID):
         self.vehicle_wrapper()
         self.vehicle.return_vehicle(vehicleID)
+        self.end_of_contract_update_customer(customerID,gbp,bbp)
         #returns True if it succeeds, otherwise false
     def reserve_vehicle(self, vehicleID):
         self.vehicle_wrapper()
@@ -41,7 +43,27 @@ class LogicAPI:
         pass
 
     #customer stuff
-    
+    def new_customer(self,customerID,name,license_type):
+        self.customer_wrapper()
+        self.customer.new_customer(customerID,name,license_type)
+    def get_customer(self,customerID):
+        self.customer_wrapper()
+        self.customer.get_customer(customerID)
+    def end_of_contract_update_customer(self,customerID,gbp,bbp):
+        #part of return_vehicle
+        self.customer_wrapper()
+        self.customer.add_GBP(customerID,gbp)
+        self.customer.add_BBP(customerID,bbp)
+    def change_name(self,customerID,new_name):
+        self.customer_wrapper()
+        self.customer.change_name(customerID,new_name)
+    def change_license_type(self,customerID,new_license):
+        self.customer_wrapper()
+        self.customer.change_license_type(customerID,new_license)
+    def kill_customer(self,customerID):
+        self.customer_wrapper()
+        self.customer.kill_customer(customerID)
+
     #employee stuff
 
     #destination stuff
