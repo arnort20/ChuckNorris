@@ -38,15 +38,14 @@ class Getter(object):
             return line[0]
 
     def get_certein(ident,filename):
-        ident = "1"
         counter = 0
         obj = Getter.get_csv(filename)
         item_id = Getter.get_type(filename)
 
         for item in obj:
+            
             if item[item_id] == ident:
                 return item
-                
             else:
                 counter += 1
 

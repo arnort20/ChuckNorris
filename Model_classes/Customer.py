@@ -1,5 +1,5 @@
 class Customer(object):
-    def __init__(self,ident,Customer_name,email,phone,address,License_type,gbp,bbp) -> None:
+    def __init__(self,ident,Customer_name,email,phone,address,License_type,gbp,bbp):
         self.id = ident
         self.costumer_name = Customer_name
         self.License_type = License_type
@@ -8,6 +8,3 @@ class Customer(object):
         self.email = email
         self.phone = phone
         self.address = address
-
-    def __str__(self) -> str:
-        pass
