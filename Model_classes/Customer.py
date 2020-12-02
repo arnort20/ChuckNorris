@@ -5,3 +5,6 @@ class Customer(object):
         self.License_type = License_type
         self.GBP = GBP
         self.BBP = BBP
+
+    def __str__(self) -> str:
+        pass

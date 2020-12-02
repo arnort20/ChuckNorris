@@ -1,6 +1,7 @@
 
 import csv
 from Data_classes.get_io import Getter
+from Model_classes import *
 
 # skila objectum til logic
 # skila listum af objectum til logic
@@ -22,7 +23,7 @@ class DataAPI(object):
         Destination = Getter.get_certein(ident,"Data files\Destinations.csv")
         return Destination
 
-    def get_contract(ident):
+    def get_contract(self,ident):
         contract = Getter.get_certein(ident,"Data_files\Contracts.csv")
         return contract
 

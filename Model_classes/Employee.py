@@ -7,3 +7,6 @@ class Employee(object):
         self.Phone = Phone
         self.Email = Email
         self.Location = Location
+
+    def __str__(self) -> str:
+        pass

@@ -5,3 +5,6 @@ class Destination(object):
         self.Phone = Phone
         self.opening_hours = opening_hours
         self.report_filename = reportfilename
+
+    def __str__(self) -> str:
+        pass
