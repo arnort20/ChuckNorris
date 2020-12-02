@@ -1,5 +1,5 @@
-#from Logic_classes.logic_wrapper import LogicAPI as logic
-#from Model_classes.Vehicle import Vehicle as vehicle
+from Logic_classes.logic_wrapper import LogicAPI as logic
+from Model_classes.Vehicle import Vehicle as vehicle
 GBP = 0
 
 def make_vehicle(ride):
@@ -22,7 +22,7 @@ class Non_Rvk():
     -----------------------------------------------------------""".format(self.employee_num))
 
         while True:
-            option = input("Enter Choise here: ")
+            option = input("Enter Choice here: ")
             if option == "1":
                 Non_Rvk().menu1()
             elif option == "2":
