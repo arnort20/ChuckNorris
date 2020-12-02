@@ -1,2 +1,2 @@
-ID,Vehicle name,Type,Manufacturer,Model,Color,age,tax,available,location id,
-1,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,1,
+ID,Vehicle name,Type,Manufacturer,Model,Color,age,tax,available,location id,license_type,
+1,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,1,1,
