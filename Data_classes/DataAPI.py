@@ -20,7 +20,7 @@ class DataAPI(object):
     #make stuff-------------done
     def make_vehicle(ride):
 
-        return Vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"],ride["location id"],)
+        return Vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"],ride["location id"],ride["license_type"])
 
     def make_customer(info):
   
@@ -120,8 +120,8 @@ class DataAPI(object):
         return self.get.get_id("Data_files\Employees.csv")
 
     #add single-------------done
-    def add_vehicle(self,ident,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id):
-        vehicle_dict = {"ID":ident,"Vehicle name":vehicle_name,"Type":Type,"Manufacturer":Manufacturer,"Model":Model,"Color":Color,"age":age,"tax":tax,"available":available,"location id":location_id,}
+    def add_vehicle(self,ident,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,license_type):
+        vehicle_dict = {"ID":ident,"Vehicle name":vehicle_name,"Type":Type,"Manufacturer":Manufacturer,"Model":Model,"Color":Color,"age":age,"tax":tax,"available":available,"location id":location_id,"license_type":license_type}
         self.add.add(vehicle_dict,"Data_files\Vehicles.csv")
 
     def add_customer(self,ident,Customer_name,email,phone,address,License_type,gbp,bbp):
