@@ -68,5 +68,26 @@ class LogicAPI:
     def hire_employee(self,emp_name,ssn,address,phone,email,location):
         self.employee_wrapper()
         self.employee.hire(emp_name,ssn,address,phone,email,location)
-    
+    def fire_employee(self,emp_ID):
+        self.employee_wrapper()
+        self.employee.fire(emp_ID)
+    def change_employee_name(self,emp_ID,new_name):
+        self.employee_wrapper()
+        self.employee.change_name(emp_ID,new_name)
+    def change_employee_ssn(self,emp_ID,new_ssn):
+        self.employee_wrapper()
+        self.employee.change_name(emp_ID,new_ssn)
+    def change_employee_address(self,emp_ID,new_address):
+        self.employee_wrapper()
+        self.employee.change_name(emp_ID,new_address)
+    def change_employee_phone(self,emp_ID,new_phone):
+        self.employee_wrapper()
+        self.employee.change_name(emp_ID,new_phone)
+    def change_employee_email(self,emp_ID,new_email):
+        self.employee_wrapper()
+        self.employee.change_name(emp_ID,new_email)
+    def change_employee_location(self,emp_ID,new_loc):
+        self.employee_wrapper()
+        self.employee.change_name(emp_ID,new_loc)
+    def get_employee(self,)
     #destination stuff
