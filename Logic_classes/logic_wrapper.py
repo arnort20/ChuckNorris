@@ -53,9 +53,9 @@ class LogicAPI:
         self.vehicle.kill_vehicle(vehicle_ID)
 
     #customer stuff
-    def new_customer(self,customerID,name,license_type):
+    def new_customer(self,customerID,name,email,phone,address,license_type):
         self.customer_wrapper()
-        self.customer.new_customer(customerID,name,license_type)
+        self.customer.new_customer(customerID,name,email,phone,address,license_type)
     def get_customer(self,customerID):
         self.customer_wrapper()
         self.customer.get_customer(customerID)
