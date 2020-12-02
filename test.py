@@ -1,4 +1,5 @@
-from Data_classes.DataAPI import DataAPI
-api = DataAPI()
-print(api.get_contracts())
-print(api.get_contract("1"))
+#from Data_classes.DataAPI import DataAPI
+from Logic_classes.logic_wrapper import LogicAPI as lAPI
+api = lAPI()
+#print(api.get_contracts())
+print(api.getContract("123"))
