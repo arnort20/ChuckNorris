@@ -24,4 +24,6 @@ class Vehicle:
     def change_details(self, vehicleID):
         #lotsa stuff goes here
         pass
-        
+    def kill_vehicle(self,vehicleID):
+        #removes the vehicle form database
+        pass
