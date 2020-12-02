@@ -1,20 +1,48 @@
 
 import csv
 from Data_classes.get_io import Getter
-from Model_classes import *
+from Model_classes.Contract import Contract
+from Model_classes.Customer import Customer
+from Model_classes.Destination import Destination
+from Model_classes.Employee import Employee
+from Model_classes.Vehicle import Vehicle
 
 # skila objectum til logic
 # skila listum af objectum til logic
 # taka a moti objectum fra io closum
 
 class DataAPI(object):
-    # get single
     def __init__(self):
         self.get = Getter
 
+    #make stuff
+    def make_vehicle(self,ride):
+        return Vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["mileage"],ride["age"],ride["tax"],ride["available"])
+
+    def make_customer(self,info):
+  
+        return Customer(info["ID"],info["Customer name"],info["License type"],info["GBP"],info["BBP"])
+
+    def make_destination(self,ident):
+     
+        return Destination
+
+    def make_contract(self,info):
+     
+        return Contract(info["contract ID"],info["employee ID"],info["customer ID"],info["vehicle ID"],info["start date"],info["end date"],info["paid?"])
+
+    def make_employee(self,ident):
+        
+        return Employee
+
+
+
+
+    # get single
+
     def get_vehicle(self,ident):
         vehicle = self.get.get_certein(ident,"Data files\Vehicles.csv")
-        return vehicle
+        return DataAPI.make_contract(vehicle)
 
     def get_customer(self,ident):
         customer = self.get.get_certein(ident,"Data files\Customers.csv")
@@ -37,12 +65,15 @@ class DataAPI(object):
     def get_vehicles(self):
         vehicles = self.get.get_csv("Data files\Vehicles.csv")
         return vehicles
+
     def get_customers(self):
         customers = self.get.get_csv("Data files\Customers.csv")
         return customers
+
     def get_destinations(self):
         destinations = self.get.get_csv("Data files\Destinations.csv")
         return destinations
+
     def get_contracts(self):
         contracts = self.get.get_csv("Data_files\Contracts.csv")
         return contracts
