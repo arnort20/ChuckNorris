@@ -37,3 +37,8 @@ klára import vandræði og ná fullum tökum á data structure og vera búnir a
 dagur 9:
 plan:
 halda áfram að kóða og koma sem flestu í gang
+- data layer er semi klarað, mikið komið i logic og ui layer líka
+
+dagur 10:
+Plan:
+Tengja layerana saman betur og láta forritið virka á einfaldan máta

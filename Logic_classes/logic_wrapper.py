@@ -95,6 +95,8 @@ class LogicAPI:
     #     self.contract_wrapper()
     #     self.contract.make_contract(employeeID,customerID,vehicleID,start_date,end_date)
 
+
+
     #contract stuff
     def get_contract(self, contractID):
         self.contract_wrapper()
