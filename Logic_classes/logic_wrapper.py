@@ -22,6 +22,15 @@ class LogicAPI:
         self.destination = dest_logic()  
 
 
+    #login stuff
+    def login_user(self, user_ID, user_pwrd):
+        #if username and password are correct:
+        #   returns a value for what privileges the user has
+        #else:
+        #   returns none
+        pass
+
+
 
     #contract stuff
     def get_contract(self, contractID):
@@ -45,7 +54,7 @@ class LogicAPI:
     #vehicle stuff
     def get_vehicle(self, vehicleID):
         self.vehicle_wrapper()
-        return self.contract.get_vehicle(vehicleID)
+        return self.vehicle.get_vehicle(vehicleID)
 
     def make_new_vehicle(self,vehicle_name,Type,manufacturer,Model,Color,age,tax,location):
         self.vehicle_wrapper()
@@ -146,4 +155,4 @@ class LogicAPI:
         self.employee.get_employee(emp_ID)
 
     #destination stuff
-    
+
