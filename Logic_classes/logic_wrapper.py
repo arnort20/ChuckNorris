@@ -9,6 +9,7 @@ class LogicAPI:
         self.user = userID
         self.pword = pword
 
+
     
     def contract_wrapper(self):
         self.contract = cont_logic()
@@ -32,6 +33,10 @@ class LogicAPI:
         #   returns a value for what privileges the user has
         #else:
         #   returns none
+        user = self.get_employee(user_ID)
+        correct_pword = user.password
+        if correct_pword == user_pwrd:
+            return user.location
         pass
     
 
