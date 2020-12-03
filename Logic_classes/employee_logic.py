@@ -6,7 +6,7 @@ class Employee:
         self.dAPI = dAPI()
     def hire(self,Employee_name,ssn,Address,Phone,Email,Location):
         employeeID = dAPI.get_employeeID()
-        dAPI.add_employee(employeeID,Employee_name,ssn,Address,Phone,Email,Location)
+        dAPI.add_employee(employeeID,Employee_name,ssn,Address,Phone,Email,Location,password)
     def fire(self,emp_ID):
         #removes employee form database
         pass
