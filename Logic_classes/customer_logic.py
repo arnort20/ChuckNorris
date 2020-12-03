@@ -10,19 +10,22 @@ class Customer:
     def new_customer(self,customerID,name,email,phone,address,license_type):
         self.api.add_customer(customerID,name,email,phone,address,license_type,0,0)
 
-    def add_GBP(self,customerID,added_points):
-        return self.api.add_points(customerID,added_points)
+    def change_customer(self, customer_ID, change_dict):
+        dAPI.change_Customer(customer_ID, change_dict)
 
-    def add_BBP(self,customerID,added_points):
-        return self.api.add_points(customerID,added_points)
+    # def add_GBP(self,customerID,added_points):
+    #     return self.api.add_points(customerID,added_points)
 
-    def change_name(self,customerID,new_name):
-        return self.api.add_new_name(customerID, new_name)
+    # def add_BBP(self,customerID,added_points):
+    #     return self.api.add_points(customerID,added_points)
 
-        #make changes
-    def change_license_type(self,customerID,new_license):
-        return self.api.add_new_license(customerID, new_license)
-        #make changes
+    # def change_name(self,customerID,new_name):
+    #     return self.api.add_new_name(customerID, new_name)
+
+    #     #make changes
+    # def change_license_type(self,customerID,new_license):
+    #     return self.api.add_new_license(customerID, new_license)
+    #     #make changes
 
     def kill_customer(self,customerID):
         try:
