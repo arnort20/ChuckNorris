@@ -4,18 +4,27 @@ import csv
 
 class Dell(object):
     def __init__(self) -> None:
-        self.get = Getter
+        pass
 
-    def dell(self,filename,ident):
-        got_whole = self.get.get_csv(filename)
-        got_single = self.get.get_certein(ident,filename)
-        new_file = got_whole-got_single
-        Dell.rewrite_file(new_file,filename)
+    def dell(filename,ident):
+        new_list = []
+        got_whole = Getter.get_csv(filename)
+        got_single = Getter.get_certein(ident,filename)
+
+    
+        for obj in got_whole:
+            if obj != got_single:
+                new_list.append(obj)
+        print(new_list)
+        
+        Dell.rewrite_file(got_whole,new_list,filename)
 
 
-    def rewrite_file(new_file,filename):
+    def rewrite_file(old_list,new_list,filename):
         filed = open(filename,"w", newline="")
-        fields = new_file[0].keys()
+        fields = old_list[0].keys()
+
         writing = csv.DictWriter(filed,fieldnames=fields)
-        writing.writerows(new_file)
+        writing.writeheader()
+        writing.writerows(new_list)
 

@@ -69,6 +69,8 @@ class DataAPI(object):
     def get_contract(self,ident):
         try:
             contract = self.get.get_certein(ident,"Data_files\Contracts.csv")
+            #outputs list of dictionaries
+
             return DataAPI.make_contract(contract)
         except:
             return None
@@ -110,7 +112,8 @@ class DataAPI(object):
     def get_contracts(self):
         contract_list = []
         contracts = self.get.get_csv("Data_files\Contracts.csv")
-        
+        #outputs single dictionary
+
         for obj in contracts:
             contract = DataAPI.make_contract(obj)
             contract_list.append(contract)
@@ -188,7 +191,7 @@ class DataAPI(object):
 
     #delete single
     def delete_vehicle(self,ident):
-        self.dell.dell("",ident)
+        self.dell.dell("Data_files\Vehicles.csv",ident)
 
     def delete_customer(self,ident):
         self.dell.dell("",ident)
