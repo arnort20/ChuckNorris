@@ -3,6 +3,7 @@ import csv
 from Data_classes.add_io import Adder
 from Data_classes.get_io import Getter
 from Data_classes.deleter_io import Dell
+from Data_classes.changer_io import Changer
 from Model_classes.Contract import Contract
 from Model_classes.Customer import Customer
 from Model_classes.Destination import Destination
@@ -18,7 +19,7 @@ class DataAPI(object):
         self.get = Getter
         self.add = Adder
         self.dell = Dell
-        self.chang = 
+        self.chang = Changer
 
 
 
@@ -41,7 +42,7 @@ class DataAPI(object):
 
     def make_employee(info):
 
-        return Employee(info["ID"],info["Employee name"],info["SSN"],info["Address"],info["Phone"],info["Email"],info["Location"])
+        return Employee(info["ID"],info["Employee name"],info["SSN"],info["Address"],info["Phone"],info["Email"],info["Location"],info["Location"])
 
 
 
@@ -71,7 +72,7 @@ class DataAPI(object):
         try:
             contract = self.get.get_certein(ident,"Data_files\Contracts.csv")
             #outputs list of dictionaries
-
+            print(contract)
             return DataAPI.make_contract(contract)
         except:
             return None
@@ -173,19 +174,19 @@ class DataAPI(object):
 
 
     # change single
-    def change_vehicle():
+    def change_vehicle(self,ident):
         pass
 
-    def change_Customer():
+    def change_Customer(self,ident):
         pass
 
-    def change_Destination():
+    def change_Destination(self,ident):
         pass
 
-    def change_Contract():
+    def change_Contract(self,obj):
         pass
 
-    def change_Employee():
+    def change_Employee(self,ident):
         pass
 
 
