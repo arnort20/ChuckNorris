@@ -15,6 +15,7 @@ from Model_classes.Vehicle import Vehicle
 # taka a moti objectum fra io closum
 
 class DataAPI(object):
+    
     def __init__(self):
         self.get = Getter
         self.add = Adder

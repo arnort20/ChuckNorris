@@ -29,6 +29,7 @@ class Getter(object):
         obj.close()
         return obj_list
 
+
     def get_type(filename):
         obj = open(filename)
         opener = csv.reader(obj)
@@ -36,6 +37,7 @@ class Getter(object):
         for line in opener:
             obj.close()
             return line[0]
+            
 
     def get_certein(ident,filename):
         counter = 0
