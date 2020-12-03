@@ -1,8 +1,10 @@
+import datetime
 #from Logic_classes.logic_wrapper import LogicAPI
 
 class RVK_emp:
     def __init__(self):
         self.employee_num = '69'
+        #self.logic = LogicAPI()
 
     def main_menu(self):
         while True:
@@ -110,15 +112,20 @@ class RVK_emp:
     def menu1_3(self, previous):
         print('''
 -----Creating new Contract------
-good boy points: {}''')#here should good boy points be extracted from data 
-        use_gbp = input('Use Good Boy Points ( y / n ): ')
-        start_date = input('Rental start date (dd/mm/yy): ')
-        #start_date_list = create_date_list(start_date) 
-        #the string inputted should be outputted as a list of ints [DD, MM, YY]
-        end_date = input('Rental end date (dd/mm/yy): ')
-        location = input('Location: ')
+good boy points: {}''')#here should good boy points be extracted from data
         while True:
-            option = input('''\n( r ) = Return
+            use_gbp = input('Use Good Boy Points ( y / n ): ')
+            if use_gbp == 'y':
+                pass
+                #not sure about function
+            #start_date = datetime.date(int(input('Rental start date (yyyy/mm/dd): ')))
+            print(start_date)
+            #start_date_list = create_date_list(start_date) 
+            #the string inputted should be outputted as a list of ints [DD, MM, YY]
+            end_date = input('Rental end date (dd/mm/yy): ')
+            location = input('Location: ')
+            while True:
+                option = input('''\n( r ) = Return
 ( f ) = Finish
 ------------------------------------------
 Type here: ''').lower()
@@ -248,14 +255,15 @@ Type here: ''').lower()
         print('''
 ------------------------Change Employee------------------
 ''')
+        info_list = ['Name: ', 'Address: ', 'Location: ', 'Email: ', 'Home telephone: ', 'Mobile phone: ', 'Password: ']
         search = input('Employee ID: ') #the output should be able to extract a list of information from the employee id
         #here should emp_info come from the data bank
         for i in range(len(emp_info)):
             if info_list[i] == 'Password:':
                 hidden_password = ''
-                for i in range(len(emp_info[i])):
-                    hidden_password += '*'
-                print(info_list[i],hidden_password)
+                for i in range(len(emp_info[i])):       #for each letter in the password
+                    hidden_password += '*'              #an asterisk (*) is added
+                print(info_list[i],hidden_password)     #and displayed
                 option = input('Change? ( y / n ): ')
                 if option == 'y':
                     new = input('New {}: '.format(info_list2[i]))
