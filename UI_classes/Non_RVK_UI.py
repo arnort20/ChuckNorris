@@ -1,6 +1,6 @@
 from Logic_classes.logic_wrapper import LogicAPI as logic
 from Model_classes.Vehicle import Vehicle as vehicle
-GBP = 25
+gbp = 25
 
 #def make_vehicle(ride):
 #    print(vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"]))
@@ -79,11 +79,11 @@ class Non_Rvk():
         vehicle_ID = input("Input Vehicle ID number: ")
         loned_car_name = input("Vehicle name / Licence Plate: ")
         persons_licence = input("Driving Licence: ")
-        use_GBP = input("Use GBP y/n: ")
+        use_gbp = input("Use GBP y/n: ")
 
-        if use_GBP == "y":
-            print(f"GBP ballance {GBP}: \n you have used your GBP ")
-            print(f"your GBP ballance is now {GBP - GBP}")
+        if use_gbp == "y":
+            print(f"gbp ballance {gbp}: \n you have used your GBP ")
+            print(f"your gbp ballance is now {gbp - gbp}")
         
         return_to_mainmenu = input("Wish to return to main menu? y/n: ")
 
@@ -95,7 +95,7 @@ class Non_Rvk():
             Non_Rvk().main_menu()
         else:
             return
-        return GBP
+        return gbp
         # Adda is.digit
         # Need to add all the info to dict list
 
@@ -107,8 +107,8 @@ class Non_Rvk():
         returning_vehicle_condition = input("Input vehicle condition: ")
         returning_vehicle_late = input("Is the car late? y/n ")
         if returning_vehicle_late == "n":
-            GBP += 10
-            print(f"You have {GBP}, GBP to your exposal")
+            gbp += 10
+            print(f"You have {gbp}, GBP to your exposal")
         else:
             print("Chuck is not happy!")
         return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
@@ -116,9 +116,9 @@ class Non_Rvk():
             Non_Rvk().main_menu()
         else:
             return None
-        return GBP
+        return gbp
 
-        # Adda GBP 
+        # Adda gbp 
 
     def menu4(self):
         #Here it needs to get the list of vehicles from Vehicles.csv and look up the Key word[ID] and print out everything about the car.
