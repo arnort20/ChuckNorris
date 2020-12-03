@@ -32,7 +32,7 @@ class Non_Rvk():
             elif option == "4":
                 Non_Rvk().menu4()
             elif option == "q":
-                break
+                return False
             else:
                 print("Not a valid Option! ")
                 Non_Rvk().main_menu()
