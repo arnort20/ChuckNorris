@@ -1,10 +1,10 @@
 from Data_classes.DataAPI import DataAPI
 api = DataAPI()
 
-api.change_vehicle("7",{"vehicle_name": "ssalamander"})
+api.change_Contract("2",{"employee_id": "sasasoola"})
 
-# apid = api.vehicles_makeID() 
-# api.add_vehicle(apid,"jojo","jingle","jambajuice","akakaka","blue","25","20","yes","12","12")
+apid = api.vehicles_makeID() 
+api.add_vehicle(apid,"jojo","jingle","jambajuice","akakaka","blue","25","20","yes","12","12")
 
 # for item in api.get_contracts():
 #     print(item)
