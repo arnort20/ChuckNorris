@@ -10,15 +10,7 @@ class Destination:
         return self.dAPI.get_destination(destID)
     def get_all_destinations(self):
         return self.dAPI.get_destinations()
-    def change_destination_name(self, dest_ID, new_name):
-        pass
-    def change_destination_airport(self, dest_ID, new_name):
-        pass
-    def change_destination_phone(self, dest_ID, new_phone):
-        pass
-    def change_destination_filename(self, dest_ID, new_filename):
-        pass
-    def change_opening_hours(self, dest_ID):
-        pass
+    def change_destination(self, dest_ID, change_dict):
+        self.dAPI.change_Destination(dest_ID, change_dict)
 
 

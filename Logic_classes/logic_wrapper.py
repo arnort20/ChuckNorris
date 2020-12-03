@@ -86,14 +86,12 @@ class LogicAPI:
         pass
         #returns True if it succeeds, otherwise false
         
-    
-    # def reserve_vehicle(self, vehicleID):
-    #     self.vehicle_wrapper()
-    #     self.vehicle.reserve_vehicle(vehicleID)
-    #     #returns True if it succeeds, otherwise false
-    # def make_contract(self,employeeID,customerID,vehicleID,start_date,end_date):
-    #     self.contract_wrapper()
-    #     self.contract.make_contract(employeeID,customerID,vehicleID,start_date,end_date)
+    def use_GBP(self, customer_ID):
+        Customer = self.get_customer(customer_ID)
+        gbp = Customer.gbp
+        discount = int(gbp)*100
+        
+        
 
 
 
@@ -140,8 +138,9 @@ class LogicAPI:
         self.vehicle.reserve_vehicle(vehicleID)
         #returns True if it succeeds, otherwise false
 
-    def change_information(self, vehicleID):
-        pass
+    def change_information(self, vehicleID, change_dict):
+        self.vehicle_wrapper()
+        self.vehicle.change_details(vehicleID, change_dict)
 
     def kill_vehicle(self, vehicle_ID):
         self.vehicle_wrapper()
@@ -164,19 +163,24 @@ class LogicAPI:
         self.customer_wrapper()
         return self.customer.get_customer(customerID)
 
-    def end_of_contract_update_customer(self,customerID,gbp,bbp):
-        #part of return_vehicle
-        self.customer_wrapper()
-        self.customer.add_GBP(customerID,gbp)
-        self.customer.add_BBP(customerID,bbp)
+    # def end_of_contract_update_customer(self,customerID,gbp,bbp):
+    #     #part of return_vehicle
+    #     self.customer_wrapper()
+    #     self.customer.add_GBP(customerID,gbp)
+    #     self.customer.add_BBP(customerID,bbp)
 
-    def change_name(self,customerID,new_name):
-        self.customer_wrapper()
-        self.customer.change_name(customerID,new_name)
+    # def change_name(self,customerID,new_name):
+    #     self.customer_wrapper()
+    #     self.customer.change_name(customerID,new_name)
 
-    def change_license_type(self,customerID,new_license):
+    # def change_license_type(self,customerID,new_license):
+    #     self.customer_wrapper()
+    #     self.customer.change_license_type(customerID,new_license)
+
+    def change_customer(self, customer_ID, changes_dict):
         self.customer_wrapper()
-        self.customer.change_license_type(customerID,new_license)
+        self.customer.change_customer(customer_ID, changes_dict)
+
 
     def kill_customer(self,customerID):
         self.customer_wrapper()
@@ -195,29 +199,9 @@ class LogicAPI:
         self.employee_wrapper()
         self.employee.fire(emp_ID)
 
-    def change_employee_name(self,emp_ID,new_name):
+    def change_employee(self, emp_ID, change_dict):
         self.employee_wrapper()
-        self.employee.change_name(emp_ID,new_name)
-
-    def change_employee_ssn(self,emp_ID,new_ssn):
-        self.employee_wrapper()
-        self.employee.change_name(emp_ID,new_ssn)
-
-    def change_employee_address(self,emp_ID,new_address):
-        self.employee_wrapper()
-        self.employee.change_name(emp_ID,new_address)
-
-    def change_employee_phone(self,emp_ID,new_phone):
-        self.employee_wrapper()
-        self.employee.change_name(emp_ID,new_phone)
-
-    def change_employee_email(self,emp_ID,new_email):
-        self.employee_wrapper()
-        self.employee.change_name(emp_ID,new_email)
-
-    def change_employee_location(self,emp_ID,new_loc):
-        self.employee_wrapper()
-        self.employee.change_name(emp_ID,new_loc)
+        self.employee.change_employee(emp_ID, change_dict)
 
     def get_employee(self,emp_ID):
         self.employee_wrapper()
