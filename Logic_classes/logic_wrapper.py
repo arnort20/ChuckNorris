@@ -22,6 +22,15 @@ class LogicAPI:
         self.destination = dest_logic()  
 
 
+    #login stuff
+    def login_user(self, user_ID, user_pwrd):
+        #if username and password are correct:
+        #   returns a value for what privileges the user has
+        #else:
+        #   returns none
+        pass
+
+
 
     #contract stuff
     def get_contract(self, contractID):
