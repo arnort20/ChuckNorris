@@ -1,2 +1,2 @@
-ID,Employee name,SSN,Address,Phone,Email,Location,
-1,Chuck Norris,1004402509,D�fnah�lar 10,6969420,chuck@chucknorris.is,1,
+id,employee_name,ssn,address,phone,email,location,password
+1,Chuck Norris,1004402509,D�fnah�lar 10,6969420,chuck@chucknorris.is,1,1
