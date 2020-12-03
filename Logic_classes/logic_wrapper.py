@@ -3,6 +3,7 @@ from .contract_logic import Contract as cont_logic
 from .employee_logic import Employee as emp_logic
 from .destination_logic import Destination as dest_logic
 from .customer_logic import Customer as cust_logic
+
 class LogicAPI:
     
     def contract_wrapper(self):
@@ -19,6 +20,8 @@ class LogicAPI:
 
     def destination_wrapper(self):
         self.destination = dest_logic()  
+
+
 
     #contract stuff
     def get_contract(self, contractID):
