@@ -73,7 +73,7 @@ class LogicAPI:
 
     #when returning the vehicle/s
     def return_vehicles(contractID, date_returned):
-        pass
+        
         
     
     # def reserve_vehicle(self, vehicleID):
