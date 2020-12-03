@@ -60,6 +60,9 @@ class LogicAPI:
         self.contract.make_contract(employeeID,customerID,vehicleID,start_date,end_date)
     #remember to add a function for calculating penalties and price
 
+    def all_contracts():
+    #So chuck can get a list of all current contracts
+
 
 
 
