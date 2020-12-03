@@ -7,8 +7,10 @@ class Contract:
     def get_contract(self, contractID):
         return self.dAPI.bring_contract(contractID)
     def change_contract(self, contractID, change_value):
-        #veit ekki alveg hvernig þetta er forritað
-        pass
+        dAPI.change_Contract(contractID, change_value)
+
+        #sends contractID and dict with value for change to the data layer
+        
     def delete_current_contract(self, contractID):
         try:
             self.dAPI.delete_contract(contractID)

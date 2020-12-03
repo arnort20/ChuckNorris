@@ -96,10 +96,15 @@ class LogicAPI:
 
     def new_contract(self,employeeID,customerID,vehicleID,start_date,end_date):
         self.contract_wrapper()
-        self.contract.add_contract(employeeID,customerID,vehicleID,start_date,end_date)
+        self.contract.make_contract(employeeID,customerID,vehicleID,start_date,end_date)
     #remember to add a function for calculating penalties and price
+    def change_contract(self,contractID,change_value):
+        self.contract_wrapper()
+        self.contract.change_contract(contractID, change_value)
 
-    def all_contracts():
+    def all_contracts(self):
+        self.contract_wrapper()
+        self.contract.all_contracts()
     #So chuck can get a list of all current contracts
 
 

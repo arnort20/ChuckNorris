@@ -26,23 +26,23 @@ class DataAPI(object):
     #make stuff-------------done
     def make_vehicle(ride):
 
-        return Vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"],ride["location id"],ride["license type"])
+        return Vehicle(ride["id"],ride["vehicle_name"],ride["type"],ride["manufacturer"],ride["model"],ride["color"],ride["age"],ride["tax"],ride["available"],ride["location_id"],ride["license_type"])
 
     def make_customer(info):
         
-        return Customer(info["ID"],info["Customer name"],info["email"],info["phone"],info["address"],info["License type"],info["GBP"],info["BBP"])
+        return Customer(info["id"],info["customer_name"],info["email"],info["phone"],info["address"],info["license_type"],info["gbp"],info["bbp"])
 
     def make_destination(info):
         
-        return Destination(info["ID"],info["Destination name"],info["Phone"],info["opening hours"],info["report filename"])
+        return Destination(info["id"],info["destination_name"],info["phone"],info["opening_hours"],info["report_filename"])
 
     def make_contract(info):
      
-        return Contract(info["contract ID"],info["employee ID"],info["customer ID"],info["vehicle ID"],info["start date"],info["end date"],info["paid?"])
+        return Contract(info["contract_id"],info["employee_id"],info["customer_id"],info["vehicle_id"],info["start_date"],info["end_date"],info["paid?"])
 
     def make_employee(info):
 
-        return Employee(info["ID"],info["Employee name"],info["SSN"],info["Address"],info["Phone"],info["Email"],info["Location"],info["Location"])
+        return Employee(info["id"],info["employee_name"],info["ssn"],info["address"],info["phone"],info["email"],info["location"],info["password"])
 
 
 
@@ -152,42 +152,42 @@ class DataAPI(object):
 
     #add single-------------done
     def add_vehicle(self,ident,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,license_type):
-        vehicle_dict = {"ID":ident,"Vehicle name":vehicle_name,"Type":Type,"Manufacturer":Manufacturer,"Model":Model,"Color":Color,"age":age,"tax":tax,"available":available,"location id":location_id,"license_type":license_type}
+        vehicle_dict = {"id":ident,"vehicle_name":vehicle_name,"type":Type,"manufacturer":Manufacturer,"model":Model,"color":Color,"age":age,"tax":tax,"available":available,"location_id":location_id,"license_type":license_type}
         self.add.add(vehicle_dict,"Data_files\Vehicles.csv")
 
-    def add_customer(self,ident,Customer_name,email,phone,address,License_type,gbp,bbp):
-        dicter = {"ID":ident,"Customer name":Customer_name,"email":email,"phone":phone,"address":address,"License_type":License_type,"GBP":gbp,"BBP":bbp}
+    def add_customer(self,ident,customer_name,email,phone,address,license_type,gbp,bbp):
+        dicter = {"id":ident,"customer_name":customer_name,"email":email,"phone":phone,"address":address,"license_type":license_type,"gbp":gbp,"bbp":bbp}
         self.add.add(dicter,"Data_files\Customers.csv")
 
     def add_destination(self,ident,Destination_name,phone,opening_hours,report_filename):
-        dicter = {"ID":ident,"Destination name":Destination_name,"Phone":phone,"opening hours":opening_hours,"report filename":report_filename}
+        dicter = {"id":ident,"destination_name":Destination_name,"phone":phone,"opening_hours":opening_hours,"report_filename":report_filename}
         self.add.add(dicter,"Data_files\Destinations.csv")
 
     def add_contract(self,ident,employee_id,costumer_id,vehicle_id,start_date,end_date,paid):
-        dicter = {"ID":ident,"employee_id":employee_id,"costumer_id":costumer_id,"vehicle_id":vehicle_id,"start_date":start_date,"end_date":end_date,"paid":paid}
+        dicter = {"id":ident,"employee_id":employee_id,"costumer_id":costumer_id,"vehicle_id":vehicle_id,"start_date":start_date,"end_date":end_date,"paid":paid}
         self.add.add(dicter,"Data_files\Contracts.csv")
 
-    def add_employee(self,ident,Employee_name,ssn,Address,Phone,Email,Location):
-        dicter = {"ID":ident,"Employee_name":Employee_name,"SSN":ssn,"Address":Address,"Phone":Phone,"Email":Email,"Location":Location}
+    def add_employee(self,ident,employee_name,ssn,address,phone,email,location,password):
+        dicter = {"id":ident,"employee_name":employee_name,"ssn":ssn,"address":address,"phone":phone,"email":email,"location":location,"password":password}
         self.add.add(dicter,"Model_classes\Employee.py")
 
 
 
     # change single
-    def change_vehicle(self,ident):
-        pass
+    def change_vehicle(self,id,changes):
+        self.chang.change("Data_files\Vehicles.csv",id,changes)
 
-    def change_Customer(self,ident):
-        pass
+    def change_Customer(self,filename,id,changes):
+        self.chang.change("Data_files\Customers.csv",id,changes)
 
-    def change_Destination(self,ident):
-        pass
+    def change_Destination(self,filename,id,changes):
+        self.chang.change("Data_files\Destinations.csv",id,changes)
 
-    def change_Contract(self,obj):
-        pass
+    def change_Contract(self,filename,id,changes):
+        self.chang.change("Data_files\Contracts.csv",id,changes)
 
-    def change_Employee(self,ident):
-        pass
+    def change_Employee(self,filename,id,changes):
+        self.chang.change("Model_classes\Employee.py",id,changes)
 
 
 
@@ -206,4 +206,3 @@ class DataAPI(object):
 
     def delete_employee(self,ident):
         self.dell.dell("Data_files\Employees.csv",ident)
-
