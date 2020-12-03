@@ -4,8 +4,7 @@ from .employee_logic import Employee as emp_logic
 from .destination_logic import Destination as dest_logic
 from .customer_logic import Customer as cust_logic
 class LogicAPI:
-    #def __init__(self): #FIXITIJTOPJASOFIN
-        #self.contract = cont_logic()
+    
     def contract_wrapper(self):
         self.contract = cont_logic()
 
@@ -20,7 +19,7 @@ class LogicAPI:
 
     def destination_wrapper(self):
         self.destination = dest_logic()  
-
+        
     #contract stuff
     def get_contract(self, contractID):
         self.contract_wrapper()
@@ -144,3 +143,4 @@ class LogicAPI:
         self.employee.get_employee(emp_ID)
 
     #destination stuff
+
