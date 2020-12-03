@@ -4,7 +4,7 @@ class Customer:
     def __init__(self):
         self.api = dAPI()
     def get_customer(self,customerID):
-        return self.api.bring_customer(customerID)
+        return self.api.get_customer(customerID)
     def new_customer(self,customerID,name,email,phone,address,license_type):
         self.api.add_customer(customerID,name,email,phone,address,license_type,0,0)
     def add_GBP(self,customerID,added_points):

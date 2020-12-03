@@ -19,7 +19,7 @@ class LogicAPI:
 
     def destination_wrapper(self):
         self.destination = dest_logic()  
-        
+
     #contract stuff
     def get_contract(self, contractID):
         self.contract_wrapper()
@@ -143,4 +143,4 @@ class LogicAPI:
         self.employee.get_employee(emp_ID)
 
     #destination stuff
-
+    
