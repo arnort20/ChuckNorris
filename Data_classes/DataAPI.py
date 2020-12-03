@@ -19,8 +19,11 @@ class DataAPI(object):
         self.add = Adder
         self.dell = Dell
 
+
+
     #make stuff-------------done
     def make_vehicle(ride):
+
         return Vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"],ride["location id"],ride["license type"])
 
     def make_customer(info):
@@ -39,27 +42,44 @@ class DataAPI(object):
 
         return Employee(info["ID"],info["Employee name"],info["SSN"],info["Address"],info["Phone"],info["Email"],info["Location"])
 
-    # get single-------------done
 
+
+    # get single-------------done
     def get_vehicle(self,ident):
-        vehicle = self.get.get_certein(ident,"Data_files\Vehicles.csv")
-        return DataAPI.make_vehicle(vehicle)
+        try:
+            vehicle = self.get.get_certein(ident,"Data_files\Vehicles.csv")
+            return DataAPI.make_vehicle(vehicle)
+        except:
+            return None
 
     def get_customer(self,ident):
-        customer = self.get.get_certein(ident,"Data_files\Customers.csv")
-        return DataAPI.make_customer(customer)
+        try:
+            customer = self.get.get_certein(ident,"Data_files\Customers.csv")
+            return DataAPI.make_customer(customer)
+        except:
+            return None
 
     def get_destination(self,ident):
-        destination = self.get.get_certein(ident,"Data_files\Destinations.csv")
-        return DataAPI.make_Destination(destination)
+        try:
+            destination = self.get.get_certein(ident,"Data_files\Destinations.csv")
+            return DataAPI.make_Destination(destination)
+        except:
+            return None
 
     def get_contract(self,ident):
-        contract = self.get.get_certein(ident,"Data_files\Contracts.csv")
-        return DataAPI.make_contract(contract)
+        try:
+            contract = self.get.get_certein(ident,"Data_files\Contracts.csv")
+            return DataAPI.make_contract(contract)
+        except:
+            return None
 
     def get_employee(self,ident):
-        employee = self.get.get_certein(ident,"Data_files\Employees.csv")
-        return DataAPI.make_employee(employee)
+        try:
+            employee = self.get.get_certein(ident,"Data_files\Employees.csv")
+            return DataAPI.make_employee(employee)
+        except:
+            return None
+
 
 
     # get multiple-------------done
@@ -90,6 +110,7 @@ class DataAPI(object):
     def get_contracts(self):
         contract_list = []
         contracts = self.get.get_csv("Data_files\Contracts.csv")
+        
         for obj in contracts:
             contract = DataAPI.make_contract(obj)
             contract_list.append(contract)
@@ -102,6 +123,8 @@ class DataAPI(object):
             employee = DataAPI.make_employee(obj)
             employee_list.append(employee)
         return employee_list
+
+
 
     #make,ident-------------done
     def vehicles_makeID(self):
@@ -119,6 +142,8 @@ class DataAPI(object):
 
     def employee_makeID(self):
         return self.get.get_id("Data_files\Employees.csv")
+
+
 
     #add single-------------done
     def add_vehicle(self,ident,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,license_type):
@@ -141,6 +166,8 @@ class DataAPI(object):
         dicter = {"ID":ident,"Employee_name":Employee_name,"SSN":ssn,"Address":Address,"Phone":Phone,"Email":Email,"Location":Location}
         self.add.add(dicter,"Model_classes\Employee.py")
 
+
+
     # change single
     def change_vehicle():
         pass
@@ -153,19 +180,25 @@ class DataAPI(object):
 
     def change_Contract():
         pass
+
     def change_Employee():
         pass
 
 
+
     #delete single
-    def delete_vehicle():
-        pass
-    def delete_customer():
-        pass
-    def delete_destination():
-        pass
-    def delete_contract():
-        pass
-    def delete_employee():
-        pass
+    def delete_vehicle(self,ident):
+        self.dell.dell("",ident)
+
+    def delete_customer(self,ident):
+        self.dell.dell("",ident)
+
+    def delete_destination(self,ident):
+        self.dell.dell("",ident)
+
+    def delete_contract(self,ident):
+        self.dell.dell("",ident)
+
+    def delete_employee(self,ident):
+        self.dell.dell("",ident)
 
