@@ -9,11 +9,20 @@ class Changer(object):
     def change(filename,id,changes):
         item = Getter.get_certein(id,filename)
         new_item = item
+        list_dict = Getter.get_csv(filename)
 
-        for key,value in changes.items():
-            new_item[key] = value
+        counter = 0
+        for thing in list_dict:
 
-        contracts = Getter.get_csv(filename)
-        contracts[int(id)-1] = new_item
-        Dell.rewrite_file(contracts,contracts,filename)
+            if thing == item:
+
+                for key,value in changes.items():
+                    new_item[key] = value
+                    
+                list_dict[counter] = new_item
+
+            else:
+                counter += 1
+
+        Dell.rewrite_file(list_dict,list_dict,filename)
         
