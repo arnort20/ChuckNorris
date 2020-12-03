@@ -6,6 +6,6 @@ class Dell(object):
     def __init__(self) -> None:
         self.get = Getter
 
-    def delete(filename):
-        pass
+    def dell(filename):
+        
 
