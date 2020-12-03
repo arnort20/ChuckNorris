@@ -1,7 +1,7 @@
 class Customer(object):
-    def __init__(self,ident,Customer_name,email,phone,address,License_type,gbp,bbp):
+    def __init__(self,ident,customer_name,email,phone,address,License_type,gbp,bbp):
         self.id = ident
-        self.costumer_name = Customer_name
+        self.customer_name = customer_name
         self.License_type = License_type
         self.gbp = gbp
         self.gbp = bbp

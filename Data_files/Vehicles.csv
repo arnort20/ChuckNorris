@@ -1,6 +1,6 @@
-id,vehicle_name,type,manufacturer,model,color,age,tax,available,location id,license_type,Vehicle name
-1,arnar,jingle,jambajuice,akakaka,blue,25,20,yes,12,12,arnar
-2,simp,jingle,jambajuice,akakaka,blue,25,20,yes,12,12,
-3,simp,jingle,jambajuice,akakaka,blue,25,20,yes,12,12,
-4,simp,jingle,jambajuice,akakaka,blue,25,20,yes,12,12,
-5,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
+id,vehicle_name,type,manufacturer,model,color,age,tax,available,location_id,license_type
+7,sasasoola,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
+8,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
+9,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
+10,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
+11,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
