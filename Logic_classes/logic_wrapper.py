@@ -5,14 +5,7 @@ from .destination_logic import Destination as dest_logic
 from .customer_logic import Customer as cust_logic
 
 class LogicAPI:
-<<<<<<< Updated upstream
     
-=======
-    #def __init__(self): 
-        #self.contract = cont_logic()
-
-
->>>>>>> Stashed changes
     def contract_wrapper(self):
         self.contract = cont_logic()
 
