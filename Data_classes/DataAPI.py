@@ -18,6 +18,7 @@ class DataAPI(object):
         self.get = Getter
         self.add = Adder
         self.dell = Dell
+        self.chang = 
 
 
 
@@ -189,19 +190,19 @@ class DataAPI(object):
 
 
 
-    #delete single
+    #delete single-------------done
     def delete_vehicle(self,ident):
         self.dell.dell("Data_files\Vehicles.csv",ident)
 
     def delete_customer(self,ident):
-        self.dell.dell("",ident)
+        self.dell.dell("Data_files\Customers.csv",ident)
 
     def delete_destination(self,ident):
-        self.dell.dell("",ident)
+        self.dell.dell("Data_files\Destinations.csv",ident)
 
     def delete_contract(self,ident):
-        self.dell.dell("",ident)
+        self.dell.dell("Data_files\Contracts.csv",ident)
 
     def delete_employee(self,ident):
-        self.dell.dell("",ident)
+        self.dell.dell("Data_files\Employees.csv",ident)
 

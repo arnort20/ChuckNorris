@@ -11,12 +11,12 @@ class Dell(object):
         got_whole = Getter.get_csv(filename)
         got_single = Getter.get_certein(ident,filename)
 
-    
+        # go through all items in the file and add all to new one
+        # except the one that is supposed to be deleted
         for obj in got_whole:
             if obj != got_single:
                 new_list.append(obj)
-        print(new_list)
-        
+
         Dell.rewrite_file(got_whole,new_list,filename)
 
 
