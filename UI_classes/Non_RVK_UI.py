@@ -1,13 +1,20 @@
-from Logic_classes.logic_wrapper import LogicAPI as logic
-from Model_classes.Vehicle import Vehicle as vehicle
-GBP = 25
+from Logic_classes.logic_wrapper import LogicAPI 
+from Model_classes.Vehicle import Vehicle
+from Model_classes.Contract import Contract 
+
 
 #def make_vehicle(ride):
 #    print(vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"]))
 
 class Non_Rvk():
     def __init__(self):
+        self.logic = LogicAPI()
         self.employee_num = "69"
+        self.gbp = "25"
+        self.bbp = "25"
+
+
+
 
     def main_menu(self):
         print(""" 
@@ -37,6 +44,10 @@ class Non_Rvk():
                 print("Not a valid Option! ")
                 Non_Rvk().main_menu()
 
+
+
+
+
     def menu1(self):
         print("---------Register New Vehicle---------\n")
    
@@ -48,11 +59,14 @@ class Non_Rvk():
         vehicle_color = input("Vehicle Color: ")
         vehicle_condition = input("Vehicle Condition: ")
         vehicle_location = input("Input cars location: ")
+
         while True:
+
             try:
                 vehicle_age = float(input("Input year that the vehicle was Manufacturerd: "))
                 vehicle_tax = float(input("Input the tax on the vehicle rent: "))
                 break
+
             except:
                 print("Invalid input, Try again")
             
@@ -73,52 +87,63 @@ class Non_Rvk():
         
         return vehicle_ID_dict
 
+
+
+
+    # Afhenda bilinn til utleigu
     def menu2(self):
-        print("---------Lone Vehicle---------\n")
+        print("---------Loan Vehicle---------\n")
 
-        vehicle_ID = input("Input Vehicle ID number: ")
-        loned_car_name = input("Vehicle name / Licence Plate: ")
-        persons_licence = input("Driving Licence: ")
-        use_GBP = input("Use GBP y/n: ")
-
-        if use_GBP == "y":
-            print(f"GBP ballance {GBP}: \n you have used your GBP ")
-            print(f"your GBP ballance is now {GBP - GBP}")
+        customer_id =       input("input customer ID: ")
+        contract_id =       input("input contract ID: ")
         
-        return_to_mainmenu = input("Wish to return to main menu? y/n: ")
+        contract = LogicAPI.get_contract(contract_id)
+        vehicle_ID = contract.vehicle_id
+        
+        vehicle_condition = {"available":"unavailable"}
+        LogicAPI.change_information(vehicle_ID,vehicle_condition )
 
-        vehicle_info = [loned_car_name, persons_licence]
-        loned_dict = {}
-        loned_dict[vehicle_ID] = vehicle_info
+        return_to_mainmenu = input("Wish to return to main menu? y/n: ")
 
         if return_to_mainmenu == "y":
             Non_Rvk().main_menu()
+
         else:
             return
-        return GBP
-        # Adda is.digit
-        # Need to add all the info to dict list
 
+
+
+    # Taka a moti bilnum ur utleigu
     def menu3(self):
         print("---------Recive Vehicle---------\n")
 
-        returning_vehicle_ID = input("Input vehicle ID: ")
-        returning_vehicle_name = input("Input vehicle name / licence plate: ")
+        returning_contract_ID = input("Input contract ID: ")
         returning_vehicle_condition = input("Input vehicle condition: ")
         returning_vehicle_late = input("Is the car late? y/n ")
+
+        if returning_vehicle_condition == "ok":
+            vehicle_condition = {"available":"available"}
+            contract = LogicAPI.get_contract(returning_contract_ID)
+            LogicAPI.change_information(contract.vehicle_ID,vehicle_condition)
+
+
         if returning_vehicle_late == "n":
-            GBP += 10
-            print(f"You have {GBP}, GBP to your exposal")
+            self.gbp += 10
+            print(f"You have {self.gbp}, GBP to your exposal")
         else:
             print("Chuck is not happy!")
+            self.bbp += 2
+
         return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
+
         if return_to_mainmenu == "y":
             Non_Rvk().main_menu()
         else:
             return None
-        return GBP
 
-        # Adda GBP 
+        return self.gbp
+
+        # Adda gbp 
 
     def menu4(self):
         #Here it needs to get the list of vehicles from Vehicles.csv and look up the Key word[ID] and print out everything about the car.

@@ -1,7 +1,7 @@
 from Data_classes.DataAPI import DataAPI
 api = DataAPI()
 
-api.change_Contract("2",{"employee_id": "sasasoola"})
+api.change_Contract("2",{"employee_id": "1235"})
 
 apid = api.vehicles_makeID() 
 api.add_vehicle(apid,"jojo","jingle","jambajuice","akakaka","blue","25","20","yes","12","12")
