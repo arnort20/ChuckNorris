@@ -5,6 +5,10 @@ from .destination_logic import Destination as dest_logic
 from .customer_logic import Customer as cust_logic
 
 class LogicAPI:
+    def __init__(self, userID, pword):
+        self.user = userID
+        self.pword = pword
+
     
     def contract_wrapper(self):
         self.contract = cont_logic()
@@ -29,13 +33,15 @@ class LogicAPI:
         #else:
         #   returns none
         pass
-
     
+
     #make the contract:
+    #the system ask
     #if new user:
         # def new_customer(self,customerID,name,email,phone,address,license_type):
         #     self.customer_wrapper()
         #     self.customer.new_customer(customerID,name,email,phone,address,license_type)
+    
     
     # def reserve_vehicle(self, vehicleID):
     #     self.vehicle_wrapper()
@@ -55,9 +61,9 @@ class LogicAPI:
         self.contract.delete_current_contract(contractID)
         #returns false if failed, remember to implement
 
-    def make_contract(self,employeeID,customerID,vehicleID,start_date,end_date):
+    def new_contract(self,employeeID,customerID,vehicleID,start_date,end_date):
         self.contract_wrapper()
-        self.contract.make_contract(employeeID,customerID,vehicleID,start_date,end_date)
+        self.contract.add_contract(employeeID,customerID,vehicleID,start_date,end_date)
     #remember to add a function for calculating penalties and price
 
 
