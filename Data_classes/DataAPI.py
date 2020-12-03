@@ -144,10 +144,13 @@ class DataAPI(object):
     # change single
     def change_vehicle():
         pass
+
     def change_Customer():
         pass
+
     def change_Destination():
         pass
+
     def change_Contract():
         pass
     def change_Employee():
