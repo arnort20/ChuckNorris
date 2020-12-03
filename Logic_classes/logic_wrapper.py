@@ -7,7 +7,11 @@ from .customer_logic import Customer as cust_logic
 class LogicAPI:
     def __init__(self, userID, pword):
         self.user = userID
-        self.pword = pword
+        priv_location = self.login_user(userID, pword)
+        if priv_location:
+            return priv_location
+        else: 
+            return None
 
 
     
@@ -37,16 +41,40 @@ class LogicAPI:
         correct_pword = user.password
         if correct_pword == user_pwrd:
             return user.location
-        pass
+        else:
+            return None
     
 
     #make the contract:
-    #the system ask
-    #if new user:
-        # def new_customer(self,customerID,name,email,phone,address,license_type):
-        #     self.customer_wrapper()
-        #     self.customer.new_customer(customerID,name,email,phone,address,license_type)
-    
+    #vehicles_ID must be a list of IDs (if multiple) comma seperated with no whitespace
+    def make_new_contract(customer_ID, vehicles_ID, start_date, end_date):
+        employee = self.get_employee(self.user)
+        customer = self.get_customer(customer_ID)
+        vehicles = vehicles_ID.split(',')
+        #get all the vehicles and put em in a list of objects
+        signed_vehicles = []
+        for vehicleID in vehicles:
+            Vehicle = self.get_vehicle(vehicleID)
+            signed_vehicles.append(vehi)
+        #check if the customer has the appropriate licensing
+        for vehicle in signed_vehicles:
+            if not self.check_license(customer_ID, vehicle.id):
+                return "license_error"
+        #customer has the appropriate license for all vehicles, reserve them all
+        #for vehicle in signed_vehicles:
+            #self.reserve_vehicle(vehicle.id, start_date, end_date)
+            #remember to create reservation function
+        self.make_contract(self.user, customer_ID, vehicles_ID, start_date, end_date)
+        return "success"
+
+    #when the customer picks up the vehicles:
+    #for all the cars:
+    #   available = False
+
+    #when returning the vehicle/s
+    def return_vehicles(contractID, date_returned):
+        
+        
     
     # def reserve_vehicle(self, vehicleID):
     #     self.vehicle_wrapper()
