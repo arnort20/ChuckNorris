@@ -30,7 +30,20 @@ class LogicAPI:
         #   returns none
         pass
 
-
+    
+    #make the contract:
+    #if new user:
+        # def new_customer(self,customerID,name,email,phone,address,license_type):
+        #     self.customer_wrapper()
+        #     self.customer.new_customer(customerID,name,email,phone,address,license_type)
+    
+    # def reserve_vehicle(self, vehicleID):
+    #     self.vehicle_wrapper()
+    #     self.vehicle.reserve_vehicle(vehicleID)
+    #     #returns True if it succeeds, otherwise false
+    # def make_contract(self,employeeID,customerID,vehicleID,start_date,end_date):
+    #     self.contract_wrapper()
+    #     self.contract.make_contract(employeeID,customerID,vehicleID,start_date,end_date)
 
     #contract stuff
     def get_contract(self, contractID):
@@ -93,7 +106,7 @@ class LogicAPI:
 
     def get_customer(self,customerID):
         self.customer_wrapper()
-        self.customer.get_customer(customerID)
+        return self.customer.get_customer(customerID)
 
     def end_of_contract_update_customer(self,customerID,gbp,bbp):
         #part of return_vehicle
