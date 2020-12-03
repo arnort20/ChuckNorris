@@ -1,4 +1,4 @@
-from Logic_classes.logic_wrapper import LogicAPI
+#from Logic_classes.logic_wrapper import LogicAPI
 
 class RVK_emp:
     def __init__(self):
@@ -76,7 +76,7 @@ class RVK_emp:
                 RVK_emp().menu1()
             elif option == 'f':
                 #finds the costumer and creates a new contract
-                RVK_emp().menu1_3()
+                RVK_emp().menu1_3(1)
             elif option == '':
                 print('Please input an option')
             else:
@@ -100,20 +100,22 @@ class RVK_emp:
                 RVK_emp().menu1()
             elif option == 'f':
                 #register new costumer and create new contract
-                RVK_emp().menu1_3()
+                RVK_emp().menu1_3(2)
                 pass
             elif option == '':
                 print('Please input an option')
             else:
                 print('Invalid option')
         
-    def menu1_3(self):
+    def menu1_3(self, previous):
         print('''
 -----Creating new Contract------
 good boy points: {}''')#here should good boy points be extracted from data 
         use_gbp = input('Use Good Boy Points ( y / n ): ')
-        start_date = input('Rental start date: ')
-        end_date = input('Rental end date: ')
+        start_date = input('Rental start date (dd/mm/yy): ')
+        #start_date_list = create_date_list(start_date) 
+        #the string inputted should be outputted as a list of ints [DD, MM, YY]
+        end_date = input('Rental end date (dd/mm/yy): ')
         location = input('Location: ')
         while True:
             option = input('''\n( r ) = Return
@@ -121,10 +123,14 @@ good boy points: {}''')#here should good boy points be extracted from data
 ------------------------------------------
 Type here: ''').lower()
             if option == 'r':
-                RVK_emp().menu1()
+                if previous == 1:
+                    RVK_emp().menu1_1()
+                elif previous == 2:
+                    RVK_emp().menu1_2()
             elif option == 'f':
                 pass
                 #register new contract
+                RVK_emp().main_menu()
             elif option == '':
                 print('Please input an option')
             else:
@@ -269,11 +275,18 @@ Type here: ''').lower()
 ''')
         search = input('Employee ID: ')
         #here should emp_info come from the data bank
-        delete_confirm = input('\nConfirm ( y / n )').lower()
-        if delete_confirm == 'y':
-            #makes the logic wrapper find it to delete
-            pass
-        RVK_emp().main_menu()   
+        while True:
+            delete_confirm = input('\nConfirm ( y / n )').lower()
+            if delete_confirm == 'y':
+                #makes the logic wrapper find it to delete
+                RVK_emp().main_menu()
+            elif delete_confirm == 'n':
+                RVK_emp().main_menu()
+            elif delete_confirm == '':
+                print('Please input an option')
+            else:
+                print('Invalid option')
+
 
 
 
