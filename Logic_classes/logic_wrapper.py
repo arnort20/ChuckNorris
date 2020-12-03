@@ -47,7 +47,7 @@ class LogicAPI:
 
     #make the contract:
     #vehicles_ID must be a list of IDs (if multiple) comma seperated with no whitespace
-    def make_new_contract(customer_ID, vehicles_ID, start_date, end_date):
+    def make_new_contract(self, customer_ID, vehicles_ID, start_date, end_date):
         employee = self.get_employee(self.user)
         customer = self.get_customer(customer_ID)
         vehicles = vehicles_ID.split(',')
@@ -64,7 +64,7 @@ class LogicAPI:
         #for vehicle in signed_vehicles:
             #self.reserve_vehicle(vehicle.id, start_date, end_date)
             #remember to create reservation function
-        self.make_contract(self.user, customer_ID, vehicles_ID, start_date, end_date)
+        self.new_contract(self.user, customer_ID, vehicles_ID, start_date, end_date)
         return "success"
 
     #when the customer picks up the vehicles:
@@ -72,8 +72,19 @@ class LogicAPI:
     #   available = False
 
     #when returning the vehicle/s
-    def return_vehicles(contractID, date_returned):
-        
+    def return_vehicles(self, contractID, date_returned):
+        Contract = self.get_contract(contractID)
+        end_date = Contract.end_date
+        # (function that checks if the date returned is later 
+        # than the contract's end date goes here)
+        #apply BBP to customer if True
+        vehicles = Contract.vehicle_ID
+        for vehicle in vehicles:
+            self.return_vehicle(vehicle.id)
+
+    def return_vehicle(self,vehicleID):
+        pass
+        #returns True if it succeeds, otherwise false
         
     
     # def reserve_vehicle(self, vehicleID):
@@ -120,11 +131,7 @@ class LogicAPI:
         self.vehicle_wrapper()
         self.vehicle.create_new_vehicle(vehicle_name,Type,manufacturer,Model,Color,age,tax,location)
 
-    def return_vehicle(self,vehicleID,gbp,bbp,customerID):
-        self.vehicle_wrapper()
-        self.vehicle.return_vehicle(vehicleID)
-        self.end_of_contract_update_customer(customerID,gbp,bbp)
-        #returns True if it succeeds, otherwise false
+
 
     def reserve_vehicle(self, vehicleID):
         self.vehicle_wrapper()
