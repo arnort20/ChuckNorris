@@ -1,9 +1,13 @@
+from Logic_classes.logic_wrapper import LogicAPI
 #from UI_classes.Login_UI import LoginUI
+from Model_classes.Contract import Contract # Display all contracts overview
+#from Model_classes.Vehicle import Vehicle_reports Á eftir að búa til
+#from Model_classes.Bill overview bæta inn.
 
 
 class Master_login():
     def __init__(self):
-        self
+        self.logic = LogicAPI("1","1")
 
     def chuck_login(self):
         print("""
@@ -60,6 +64,8 @@ class Master_login():
 
     def All_contracts(self):
         # Hérna kallar hann í að sjá lista yfir alla contracts sem hafa gengið í geggnum fyrirtækið.
-        pass
+        
+        for item in self.logic.all_contracts():
+            print(item)
     
 Master_login().chuck_login()
