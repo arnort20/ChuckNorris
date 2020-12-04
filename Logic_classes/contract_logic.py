@@ -19,10 +19,10 @@ class Contract:
             #skilar False þegar contractID er ekki til í data
 
     def make_contract(self, employeeID,customerID,vehicleID,start_date,end_date):
-        contract_name = self.dAPI.get_name(customerID)
-        contract_phone = self.dAPI.get_phone(customerID)
-        contract_address = self.dAPI.get_address(customerID)
-        contract_email = self.dAPI.get_email(customerID)
+        contract_name = self.dAPI.customerID.name
+        contract_phone = self.dAPI.customerID.phone
+        contract_address = self.dAPI.customerID.address
+        contract_email = self.dAPI.customerID.email
         contractID = self.dAPI.contract_makeID()
         self.dAPI.add_contract(contractID, contract_name, contract_phone, contract_address, contract_email, vehicleID, start_date, end_date)
 
