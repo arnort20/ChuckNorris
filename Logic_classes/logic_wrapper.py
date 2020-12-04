@@ -8,8 +8,7 @@ import calendar
 class LogicAPI:
     def __init__(self, userID, pword):
         self.user = userID
-        priv_location = self.login_user(userID, pword)
-
+        self.priv_location = self.login_user(userID, pword)
 
     def login_user(self, user_ID, user_pwrd):
         #if username and password are correct:
@@ -23,6 +22,13 @@ class LogicAPI:
         else:
             return None
 
+    def check_privilege(self):
+        if not self.priv_location:
+            return 0
+        elif self.priv_location >= 3:
+            return 3
+        else:
+            return self.priv_location
 
     def contract_wrapper(self):
         self.contract = cont_logic()
