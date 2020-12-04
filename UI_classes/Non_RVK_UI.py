@@ -8,7 +8,7 @@ from Model_classes.Contract import Contract
 
 class Non_Rvk():
     def __init__(self):
-        self.logic = LogicAPI()
+        self.logic = LogicAPI("1","1")
         self.employee_num = "69"
         self.gbp = "25"
         self.bbp = "25"
@@ -67,30 +67,32 @@ class Non_Rvk():
         vehicle_color = input("Vehicle Color: ")
         vehicle_condition = input("Vehicle Condition: ")
         vehicle_location = input("Input cars location: ")
-
+        vehicle_id_type = input("license needed to drive vehicle: ")
         while True:
-
             try:
                 vehicle_age = float(input("Input year that the vehicle was Manufacturerd: "))
                 vehicle_tax = float(input("Input the tax on the vehicle rent: "))
                 break
-
             except:
                 print("Invalid input, Try again")
-        
+
+        if vehicle_condition == "ok":
+            vehicle_condition = {"available":"available"}
+        else:
+            vehicle_condition = {"available":"unavailable"}
+
+        self.logic.make_new_vehicle(vehicle_name,vehicle_type,vehicle_model,vehicle_manufacturer,vehicle_color,vehicle_location,vehicle_age,vehicle_tax,vehicle_id_type)
 
         register_more = input("Wish to register more vehicles? y/n: ")
         if register_more == "y" :
             Non_Rvk().menu1()
         
         # Making a dict list of the info of the newly registerd car
-        new_car_info = [vehicle_name, vehicle_type, vehicle_manufacturer, vehicle_model, vehicle_color, vehicle_age, vehicle_tax, vehicle_condition, vehicle_location]
-        vehicle_ID_dict = {}
-        vehicle_ID_dict[vehicle_ID] = new_car_info
+        
 
         Non_Rvk().returner()
         
-        return vehicle_ID_dict
+        return
 
 
 
@@ -123,7 +125,7 @@ class Non_Rvk():
         print("---------Recive Vehicle---------\n")
 
         returning_contract_ID = input("Input contract ID: ")
-        returning_vehicle_condition = input("Input vehicle condition: ")
+        returning_vehicle_condition = input("Input vehicle condition(ok/bad): ")
         returning_vehicle_late = input("Is the car late? y/n ")
 
         if returning_vehicle_condition == "ok":
@@ -135,6 +137,7 @@ class Non_Rvk():
         if returning_vehicle_late == "n":
             self.gbp += 10
             print(f"You have {self.gbp}, GBP to your exposal")
+
         else:
             print("Chuck is not happy!")
             self.bbp += 2

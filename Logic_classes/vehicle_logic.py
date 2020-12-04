@@ -25,7 +25,8 @@ class Vehicle:
 
     def create_new_vehicle(self,vehicle_name,Type,Manufacturer,Model,Color,age,tax,location):
         vehicleID = self.dAPI.vehicles_makeID()
-        self.dAPI.add_vehicle(vehicleID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,location,"1")
+        self.dAPI.add_vehicle(vehicleID,vehicle_name,Type,Manufacturer,Model,Color,age,"1",tax,location,"1")
+
     def change_details(self, vehicleID, change_dict):
         dAPI.change_vehicle(vehicleID, change_dict)
 
