@@ -70,19 +70,22 @@ class Master_login():
 
     def All_contracts(self):
         # Hérna kallar hann í að sjá lista yfir alla contracts sem hafa gengið í geggnum fyrirtækið.
-        print("----------------------------------- Contract Overview-----------------------------------")
+        
+        title = ("-----------------------------------------------------Contract Overview------------------------------------------------------")
+        print(title.center(140))
         information = ("ID,Employee ID,Customer ID,Vehicle ID,Start Date,End Date,Paid")
         splitt_info = information.split(",")
         for info in splitt_info:
-            print("{:15}".format(info),end="")
+            print(info.center(20),end="")
            
         print("\n")
         contracts = self.logic.all_contracts()
         for item in contracts:
             new_item = str(item)
             splitted = new_item.split()
-            for word in splitted: 
-                print("{:8}".format(word),end="")
+            for word in splitted:
+                print(word.center(20), end="")
+            print()
         print("\n")
 
         def kickdownstairs(self, name):
