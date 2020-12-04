@@ -60,7 +60,6 @@ class Non_Rvk():
     def menu1(self):
         print("---------Register New Vehicle---------\n")
    
-        vehicle_ID = input("Input Vehicle ID number: ")
         vehicle_name = input("Vehicle name / licence plate: ")
         vehicle_type = input("Vehicle type: ") # What kinda vehicle can be from a Polar bear or scuba piledriver to a tricecle
         vehicle_model = input("Vehicle Model: ")
