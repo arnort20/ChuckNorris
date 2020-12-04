@@ -54,7 +54,10 @@ class LogicAPI:
         self.destination = dest_logic()  
 
 
-    
+    #bill things
+    def make_bill(self,contract_ID):
+        contract_ID.start_date
+        contract_ID.end_date
 
     #make the contract:
     #vehicles_ID must be a list of IDs (if multiple) comma seperated with no whitespace
