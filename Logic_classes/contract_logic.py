@@ -43,5 +43,3 @@ class Contract:
             return dates_reserved
         else:
             return None
-
-    
