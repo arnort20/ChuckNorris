@@ -34,8 +34,7 @@ class Vehicle:
         self.dAPI.change_vehicle(vehicleID, change_dict)
 
     def kill_vehicle(self,vehicleID):
-        #removes the vehicle form database
-        pass
+        dAPI.delete_vehicle(vehicleID)
 
     def check_license(self, customerID, vehicleID):
         vehicle = self.dAPI.get_vehicle(vehicleID)
