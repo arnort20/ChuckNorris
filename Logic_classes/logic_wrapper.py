@@ -3,7 +3,6 @@ from .contract_logic import Contract as cont_logic
 from .employee_logic import Employee as emp_logic
 from .destination_logic import Destination as dest_logic
 from .customer_logic import Customer as cust_logic
-import calendar
 import datetime
 
 class LogicAPI:
@@ -129,7 +128,7 @@ class LogicAPI:
         self.contract_wrapper()
         return self.contract.check_vehicle_reservations(vehicle_ID)
 
-    def change_information(self, vehicleID, change_dict):
+    def change_vehicle_info(self, vehicleID, change_dict):
         self.vehicle_wrapper()
         self.vehicle.change_details(vehicleID, change_dict)
 
