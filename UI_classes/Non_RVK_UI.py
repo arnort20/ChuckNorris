@@ -60,28 +60,28 @@ class Non_Rvk():
     def menu1(self):
         print("---------Register New Vehicle---------\n")
    
-        vehicle_name = input("Vehicle name / licence plate: ")
-        vehicle_type = input("Vehicle type: ") # What kinda vehicle can be from a Polar bear or scuba piledriver to a tricecle
-        vehicle_model = input("Vehicle Model: ")
-        vehicle_manufacturer = input("Input vehicle Manufacturer: ")
-        vehicle_color = input("Vehicle Color: ")
-        vehicle_condition = input("Vehicle Condition: ")
-        vehicle_location = input("Input cars location: ")
-        vehicle_id_type = input("license needed to drive vehicle: ")
+        name = input("Vehicle name / licence plate: ")
+        typer = input("Vehicle type: ") # What kinda vehicle can be from a Polar bear or scuba piledriver to a tricecle
+        model = input("Vehicle Model: ")
+        manufacturer = input("Input vehicle Manufacturer: ")
+        color = input("Vehicle Color: ")
+        condition = input("Vehicle Condition: ")
+        location = input("Input cars location: ")
+        id_type = input("license needed to drive vehicle: ")
         while True:
             try:
-                vehicle_age = float(input("Input year that the vehicle was Manufacturerd: "))
-                vehicle_tax = float(input("Input the tax on the vehicle rent: "))
+                age = float(input("Input year that the vehicle was Manufacturerd: "))
+                tax = float(input("Input the tax on the vehicle rent: "))
                 break
             except:
                 print("Invalid input, Try again")
 
-        if vehicle_condition == "ok":
-            vehicle_condition = {"available":"available"}
+        if condition == "ok":
+            condition = "available"
         else:
-            vehicle_condition = {"available":"unavailable"}
-
-        self.logic.make_new_vehicle(vehicle_name,vehicle_type,vehicle_model,vehicle_manufacturer,vehicle_color,vehicle_location,vehicle_age,vehicle_tax,vehicle_id_type)
+            condition = "unavailable"
+            
+        self.logic.make_new_vehicle(name,typer,manufacturer,model,color,age,tax,condition,location,id_type)
 
         register_more = input("Wish to register more vehicles? y/n: ")
         if register_more == "y" :
