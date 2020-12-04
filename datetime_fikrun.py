@@ -3,7 +3,8 @@ from Logic_classes.logic_wrapper import LogicAPI as lAPI
 api = lAPI("1","1")
 
 
-api.get_contract("2")
+cont = api.get_contract("2")
+
 
 # sasasoola = api.get_vehicle("7")
 # year,month,day = sasasoola.age.split(',')
