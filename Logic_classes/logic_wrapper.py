@@ -111,7 +111,7 @@ class LogicAPI:
 
     def all_contracts(self):
         self.contract_wrapper()
-        self.contract.all_contracts()
+        return self.contract.all_contracts()
     #So chuck can get a list of all current contracts
 
 
@@ -123,9 +123,9 @@ class LogicAPI:
         self.vehicle_wrapper()
         return self.vehicle.get_vehicle(vehicleID)
 
-    def make_new_vehicle(self,vehicle_name,Type,manufacturer,Model,Color,age,tax,location):
+    def make_new_vehicle(self,vehicle_name,Type,manufacturer,Model,Color,age,tax,available,location,license_type):
         self.vehicle_wrapper()
-        self.vehicle.create_new_vehicle(vehicle_name,Type,manufacturer,Model,Color,age,tax,location)
+        self.vehicle.create_new_vehicle(vehicle_name,Type,manufacturer,Model,Color,age,tax,available,location,license_type)
 
 
 

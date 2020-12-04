@@ -26,9 +26,10 @@ class Vehicle:
     #         #return an error message and do nothing
     #     pass
 
-    def create_new_vehicle(self,vehicle_name,Type,Manufacturer,Model,Color,age,tax,location):
+    def create_new_vehicle(self,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location,license_type):
         vehicleID = self.dAPI.vehicles_makeID()
-        self.dAPI.add_vehicle(vehicleID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,location,"1")
+        self.dAPI.add_vehicle(vehicleID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location,license_type)
+
     def change_details(self, vehicleID, change_dict):
         dAPI.change_vehicle(vehicleID, change_dict)
 
