@@ -1,6 +1,7 @@
 from Logic_classes.logic_wrapper import LogicAPI 
 from Model_classes.Vehicle import Vehicle
-from Model_classes.Contract import Contract 
+from Model_classes.Contract import Contract
+from Model_classes.Customer import Customer
 
 
 #def make_vehicle(ride):
@@ -10,10 +11,6 @@ class Non_Rvk():
     def __init__(self):
         self.logic = LogicAPI("1","1")
         self.employee_num = "69"
-        self.gbp = "25"
-        self.bbp = "25"
-
-
 
     #Maine menu loop
     def main_menu(self):
@@ -80,7 +77,7 @@ class Non_Rvk():
             condition = "available"
         else:
             condition = "unavailable"
-            
+
         self.logic.make_new_vehicle(name,typer,manufacturer,model,color,age,tax,condition,location,id_type)
 
         register_more = input("Wish to register more vehicles? y/n: ")
@@ -134,13 +131,18 @@ class Non_Rvk():
             LogicAPI.change_information(contract.vehicle_ID,vehicle_condition)
 
 
+        contract = self.logic.get_contract(returning_contract_ID)
+        customer_id = contract.customer_id()
+        customer = self.logic.get_customer(customer_id)
+
+
         if returning_vehicle_late == "n":
-            self.gbp += 10
-            print(f"You have {self.gbp}, GBP to your exposal")
+
+            print(f"You have {customer.gbp}, GBP to your exposal")
 
         else:
             print("Chuck is not happy!")
-            self.bbp += 2
+            customer.bbp += 2
 
         return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
 

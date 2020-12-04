@@ -112,7 +112,7 @@ class LogicAPI:
 
     def all_contracts(self):
         self.contract_wrapper()
-        self.contract.all_contracts()
+        return self.contract.all_contracts()
     #So chuck can get a list of all current contracts
 
 

@@ -1,6 +1,6 @@
 class Contract(object):
-    def __init__(self,ID,employee_id,customer_id,vehicle_id,start_date,end_date,paid) -> None:
-        self.id = ID
+    def __init__(self,ident,employee_id,customer_id,vehicle_id,start_date,end_date,paid) -> None:
+        self.id = ident
         self.employee_id = employee_id
         self.customer_id = customer_id
         self.vehicle_id = vehicle_id
