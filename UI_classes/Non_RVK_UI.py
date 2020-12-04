@@ -85,8 +85,6 @@ class Non_Rvk():
             Non_Rvk().menu1()
         
         # Making a dict list of the info of the newly registerd car
-        
-
         Non_Rvk().returner()
         
         return
@@ -107,74 +105,56 @@ class Non_Rvk():
         vehicle_condition = {"available":"unavailable"}
         LogicAPI.change_information(vehicle_ID,vehicle_condition )
 
-        return_to_mainmenu = input("Wish to return to main menu? y/n: ")
-
-        if return_to_mainmenu == "y":
-            Non_Rvk().main_menu()
-
-        else:
-            return
-
+        Non_Rvk.returner()
+        return
 
 
     # Taka a moti bilnum ur utleigu
     def menu3(self):
+        contract = self.logic.get_contract(returning_contract_ID)
+        customer_id = contract.customer_id()
+        customer = self.logic.get_customer(customer_id)
+
+
+
         print("---------Recive Vehicle---------\n")
 
-        returning_contract_ID = input("Input contract ID: ")
-        returning_vehicle_condition = input("Input vehicle condition(ok/bad): ")
-        returning_vehicle_late = input("Is the car late? y/n ")
+
+        returning_contract_ID =         input("Input contract ID: ")
+        returning_vehicle_condition =   input("Input vehicle condition(ok/bad): ")
+        returning_vehicle_late =        input("Is the car late? y/n ")
+
+
 
         if returning_vehicle_condition == "ok":
             vehicle_condition = {"available":"available"}
             contract = LogicAPI.get_contract(returning_contract_ID)
             LogicAPI.change_information(contract.vehicle_ID,vehicle_condition)
 
-
-        contract = self.logic.get_contract(returning_contract_ID)
-        customer_id = contract.customer_id()
-        customer = self.logic.get_customer(customer_id)
-
-
         if returning_vehicle_late == "n":
-
             print(f"You have {customer.gbp}, GBP to your exposal")
-
         else:
             print("Chuck is not happy!")
             customer.bbp += 2
-
-        return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
-
-        if return_to_mainmenu == "y":
-            Non_Rvk().main_menu()
-        else:
-            return None
-
-        return self.gbp
-
+        
+        Non_Rvk.returner()
+        return
         # Adda gbp 
 
     def menu4(self):
         #Here it needs to get the list of vehicles from Vehicles.csv and look up the Key word[ID] and print out everything about the car.
         print("---------Check Vehicle---------\n")
         checking_vehicle_ID = input("Enter vehicle ID: ")
-        
+        vehicle = self.logic.get_vehicle(checking_vehicle_ID)
+        print(vehicle)
+
         checking_more = input("Wish to check on more vehicles? y/n: ")
+
         if checking_more == "y" :
             Non_Rvk().menu4()
-        return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
-        if return_to_mainmenu == "y":
-            Non_Rvk().main_menu()
         else:
-            return None
-
-
-
-
-Non_Rvk().main_menu()
-  
-
+            Non_Rvk.returner()
+            return
 
 
 

@@ -73,7 +73,11 @@ class Master_login():
         print("----------------------------------- Contract Overview-----------------------------------")
         contracts = self.logic.all_contracts()
         for item in contracts:
-            print("{0: >14}".format(item))
+            new_item = str(item)
+            splitted = new_item.split()
+            for thing in splitted: 
+                print("{0: >14}".format(thing),end="")
+            
         
     
 Master_login().chuck_login()
