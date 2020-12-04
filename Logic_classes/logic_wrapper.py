@@ -4,6 +4,7 @@ from .employee_logic import Employee as emp_logic
 from .destination_logic import Destination as dest_logic
 from .customer_logic import Customer as cust_logic
 import calendar
+import datetime
 
 class LogicAPI:
     def __init__(self, userID, pword):
@@ -60,14 +61,16 @@ class LogicAPI:
         contract_ID.end_date
 
     #make the contract:
-    #vehicles_ID must be a list of IDs (if multiple) comma seperated with no whitespace
+    
     def make_new_contract(self, customer_ID, vehicle_ID, start_date, end_date):
 
         Vehicle = self.get_vehicle(vehicle_ID)
         #check if the customer has the appropriate licensing
         if not self.check_license(customer_ID, Vehicle.id):
             return "license_error"
-        #customer has the appropriate license for the vehicle, reserve it
+        #customer has the appropriate license for the vehicle, check reservations
+        reservations = self.check_reservations(vehicle_ID)
+
         self.new_contract(self.user, customer_ID, vehicle_ID, start_date, end_date)
         return "success"
         
