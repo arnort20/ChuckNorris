@@ -8,13 +8,21 @@ class LogicAPI:
     def __init__(self, userID, pword):
         self.user = userID
         priv_location = self.login_user(userID, pword)
-        if priv_location:
-            return priv_location
-        else: 
+
+
+    def login_user(self, user_ID, user_pwrd):
+        #if username and password are correct:
+        #   returns a value for what privileges the user has
+        #else:
+        #   returns none
+        user = self.get_employee(user_ID)
+        correct_pword = user.password
+        if correct_pword == user_pwrd:
+            return user.location
+        else:
             return None
 
 
-    
     def contract_wrapper(self):
         self.contract = cont_logic()
 
@@ -31,31 +39,17 @@ class LogicAPI:
         self.destination = dest_logic()  
 
 
-    #login stuff
-    def login_user(self, user_ID, user_pwrd):
-        #if username and password are correct:
-        #   returns a value for what privileges the user has
-        #else:
-        #   returns none
-        user = self.get_employee(user_ID)
-        correct_pword = user.password
-        if correct_pword == user_pwrd:
-            return user.location
-        else:
-            return None
     
 
     #make the contract:
     #vehicles_ID must be a list of IDs (if multiple) comma seperated with no whitespace
     def make_new_contract(self, customer_ID, vehicles_ID, start_date, end_date):
-        employee = self.get_employee(self.user)
-        customer = self.get_customer(customer_ID)
         vehicles = vehicles_ID.split(',')
         #get all the vehicles and put em in a list of objects
         signed_vehicles = []
         for vehicleID in vehicles:
             Vehicle = self.get_vehicle(vehicleID)
-            signed_vehicles.append(vehi)
+            signed_vehicles.append(Vehicle)
         #check if the customer has the appropriate licensing
         for vehicle in signed_vehicles:
             if not self.check_license(customer_ID, vehicle.id):
@@ -90,7 +84,9 @@ class LogicAPI:
         Customer = self.get_customer(customer_ID)
         gbp = Customer.gbp
         discount = int(gbp)*100
-        
+        self.change_customer(customer_ID, {"gbp":"0"})
+        return discount
+
         
 
 
@@ -205,7 +201,7 @@ class LogicAPI:
 
     def get_employee(self,emp_ID):
         self.employee_wrapper()
-        self.employee.get_employee(emp_ID)
+        return self.employee.get_employee(emp_ID)
 
     #destination stuff
 

@@ -15,7 +15,7 @@ class Non_Rvk():
 
 
 
-
+    #Maine menu loop
     def main_menu(self):
         print(""" 
     ------------------ Welcome, Employee {} ------------------\n
@@ -45,13 +45,21 @@ class Non_Rvk():
                 Non_Rvk().main_menu()
 
 
+    def returner(self):
+        return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
+        if return_to_mainmenu == "y":
+            Non_Rvk().main_menu()
+        else:
+            return
 
 
 
+
+
+    #Register vehicle menu
     def menu1(self):
         print("---------Register New Vehicle---------\n")
    
-        vehicle_ID = input("Input Vehicle ID number: ")
         vehicle_name = input("Vehicle name / licence plate: ")
         vehicle_type = input("Vehicle type: ") # What kinda vehicle can be from a Polar bear or scuba piledriver to a tricecle
         vehicle_model = input("Vehicle Model: ")
@@ -69,7 +77,8 @@ class Non_Rvk():
 
             except:
                 print("Invalid input, Try again")
-            
+        
+
         register_more = input("Wish to register more vehicles? y/n: ")
         if register_more == "y" :
             Non_Rvk().menu1()
@@ -79,11 +88,7 @@ class Non_Rvk():
         vehicle_ID_dict = {}
         vehicle_ID_dict[vehicle_ID] = new_car_info
 
-        return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
-        if return_to_mainmenu == "y":
-            Non_Rvk().main_menu()
-        else:
-            return
+        Non_Rvk().returner()
         
         return vehicle_ID_dict
 
