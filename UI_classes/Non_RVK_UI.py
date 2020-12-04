@@ -101,7 +101,7 @@ class Non_Rvk():
         customer_id =       input("input customer ID: ")
         contract_id =       input("input contract ID: ")
         
-        contract = LogicAPI.get_contract(contract_id)
+        contract = self.logic.get_contract(contract_id)
         vehicle_ID = contract.vehicle_id
         
         vehicle_condition = {"available":"unavailable"}

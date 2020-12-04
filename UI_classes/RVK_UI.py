@@ -20,6 +20,8 @@ class RVK_emp:
 ( q ) = Quit
 -------------------------------------------------------------------------------'''.format(self.employee_num))
 
+
+
             option = input('Type here: ')
             if option == '1':
                 RVK_emp().menu1()
@@ -42,6 +44,10 @@ class RVK_emp:
                 print('Not a valid option')
                 RVK_emp().main_menu()
     
+
+
+
+
     def menu1(self):
         while True:
             print('''
@@ -52,6 +58,7 @@ class RVK_emp:
 
 ( r ) = Return
 ---------------------------------------------------------------''')
+
             option = input('Type here: ')
             if option == '1':
                 RVK_emp().menu1_1()
@@ -63,6 +70,9 @@ class RVK_emp:
                 print('Please input an option')
             else:
                 print('Invalid option')
+
+
+
 
     def menu1_1(self):
         print('''
@@ -83,6 +93,9 @@ class RVK_emp:
                 print('Please input an option')
             else:
                 print('Invalid option')
+
+
+
 
     def menu1_2(self):
         print('''
@@ -109,6 +122,9 @@ class RVK_emp:
             else:
                 print('Invalid option')
         
+
+
+
     def menu1_3(self, previous):
         print('''
 -----Creating new Contract------
@@ -143,6 +159,9 @@ Type here: ''').lower()
             else:
                 print('Not a valid option')
 
+
+
+
     def menu2(self):
         while True:
             print('''
@@ -171,6 +190,10 @@ Type here: ''').lower()
                         print('Not a valid option')
             else:
                 print('Invalid contract ID!')
+
+
+
+
 
     def menu2_1(self):
         'Changes contract info'
@@ -207,12 +230,23 @@ Type here: ''').lower()
             else:
                 print('Invalid option')
 
+
+
+
+
     def menu2_2(self):
         'Prints contract'
         pass
+
+
+
+
     def menu3(self):
         #I might do it fokking later
         pass
+
+
+
 
     def menu4(self):
         print('''
@@ -251,6 +285,10 @@ Type here: ''').lower()
             else:
                 print('Not a valid option')
 
+
+
+
+
     def menu5(self):
         print('''
 ------------------------Change Employee------------------
@@ -276,6 +314,10 @@ Type here: ''').lower()
                     emp_info[i] = new
             #return emp_info to data bank
         RVK_emp().main_menu()
+
+
+
+
 
     def menu6(self):
         print('''
