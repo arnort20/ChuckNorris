@@ -9,6 +9,20 @@ class Master_login():
     def __init__(self):
         self.logic = LogicAPI("1","1")
 
+    def print_title(self,title):
+        # Title = Nafn á Völdum kosti
+        name_title = ("-----------------------------------------------------"+title+"------------------------------------------------------")
+        print(name_title.center(140))
+
+
+    def print_out_format(self,information):
+        # Information = Efsta línan sem er upplysingar um hvað er hvað.
+        splitt_info = information.split(",")
+        for info in splitt_info:
+            print(info.center(20), end="")
+
+        print("")
+
     def chuck_login(self):
         print("""
     ------------------Welcome Master Chuck!------------------
@@ -48,7 +62,7 @@ class Master_login():
                 return False
                 
             else:
-                print("Not a valid input")
+                print("Not a valid input!" "\n")
                 Master_login().chuck_login()
 
     def Earnings_report(self):
@@ -61,7 +75,12 @@ class Master_login():
 
     def Bill_overview(self):
         # Hérna þarf að sækja skýrslu frá samningum og skoða lista af öllum reikningum
-        pass
+        Master_login.print_title(self, "Bill Overview")
+        information = ("info")
+        Master_login.print_out_format(self, information)
+        bills = self.logic.Bill_overview()
+        for item in bills:
+            Master_login.print_out_format(self,str(item))
 
     def Round_house(self):
         # Hérna kallar hann kill customer og fire employee. Og Round Housar þau. Þarf að fá til baka númer frá föllunum til að setja í print skipunina.
@@ -70,37 +89,26 @@ class Master_login():
 
     def All_contracts(self):
         # Hérna kallar hann í að sjá lista yfir alla contracts sem hafa gengið í geggnum fyrirtækið.
-        
-        title = ("-----------------------------------------------------Contract Overview------------------------------------------------------")
-        print(title.center(140))
+        Master_login.print_title(self,"Contract Overview")
         information = ("ID,Employee ID,Customer ID,Vehicle ID,Start Date,End Date,Paid")
-        splitt_info = information.split(",")
-        for info in splitt_info:
-            print(info.center(20),end="")
-           
-        print("\n")
+        Master_login.print_out_format(self,information)
         contracts = self.logic.all_contracts()
         for item in contracts:
-            new_item = str(item)
-            splitted = new_item.split()
-            for word in splitted:
-                print(word.center(20), end="")
-            print()
-        print("\n")
+            Master_login.print_out_format(self,str(item))
 
-        def kickdownstairs(self, name):
-            output = """
+    def kickdownstairs(self, name):
+        output = ("""
             THIS IS NAN AIR!
-    ○ 
-    く|)へ
-    〉 
-    ￣￣┗┓          {}
-    　 　 ┗┓　     ヾ○ｼ
-    　　   ┗┓   ヘ/ 　 　 
-    　        ┗┓ノ 
-    　 　 　 　 　 ┗┓
-            """.format(name)
-            return output
+        ○ 
+        く|)へ
+        〉 
+        ￣￣┗┓_         {}
+    　 　      ┗┓_     ヾ○ｼ
+    　　          ┗┓_   ヘ/ 　 　 
+    　               ┗┓ノ_ 
+    　 　 　 　 　        ┗┓
+            """).format(name)
+        return output
             
         
     
