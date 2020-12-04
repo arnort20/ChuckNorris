@@ -1,4 +1,3 @@
-from UI_classes.Non_RVK_UI import Non_Rvk
+from UI_classes.MasterChuck_UI import Master_login
 
-jim = Non_Rvk()
-jim.main_menu()
+Master_login().chuck_login()
