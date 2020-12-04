@@ -4,6 +4,7 @@ from .employee_logic import Employee as emp_logic
 from .destination_logic import Destination as dest_logic
 from .customer_logic import Customer as cust_logic
 import calendar
+import datetime
 
 class LogicAPI:
     def __init__(self, userID, pword):
@@ -54,51 +55,29 @@ class LogicAPI:
         self.destination = dest_logic()  
 
 
-    
+    #bill things
+    def make_bill(self,contract_ID):
+        contract_ID.start_date
+        contract_ID.end_date
 
     #make the contract:
-    #vehicles_ID must be a list of IDs (if multiple) comma seperated with no whitespace
-    def make_new_contract(self, customer_ID, vehicles_ID, start_date, end_date):
-        vehicles = vehicles_ID.split(',')
-        #get all the vehicles and put em in a list of objects
-        signed_vehicles = []
-        for vehicleID in vehicles:
-            Vehicle = self.get_vehicle(vehicleID)
-            signed_vehicles.append(Vehicle)
+    
+    def make_new_contract(self, customer_ID, vehicle_ID, start_date, end_date):
+
+        Vehicle = self.get_vehicle(vehicle_ID)
         #check if the customer has the appropriate licensing
-        for vehicle in signed_vehicles:
-            if not self.check_license(customer_ID, vehicle.id):
-                return "license_error"
-        #customer has the appropriate license for all vehicles, reserve them all
-        #for vehicle in signed_vehicles:
-            #self.reserve_vehicle(vehicle.id, start_date, end_date)
-            #remember to create reservation function
-        self.new_contract(self.user, customer_ID, vehicles_ID, start_date, end_date)
+        if not self.check_license(customer_ID, Vehicle.id):
+            return "license_error"
+        #customer has the appropriate license for the vehicle, check reservations
+        reservations = self.check_reservations(vehicle_ID)
+
+        self.new_contract(self.user, customer_ID, vehicle_ID, start_date, end_date)
         return "success"
-
-    #when the customer picks up the vehicles:
-    #for all the cars:
-    #   available = False
-
-    #when returning the vehicle/s
-    def return_vehicles(self, contractID, date_returned):
-        Contract = self.get_contract(contractID)
-        end_date = Contract.end_date
-        # (function that checks if the date returned is later 
-        # than the contract's end date goes here)
-        #apply BBP to customer if True
-        vehicles = Contract.vehicle_ID
-        for vehicle in vehicles:
-            self.return_vehicle(vehicle.id)
-
-    def return_vehicle(self,vehicleID):
-        pass
-        #returns True if it succeeds, otherwise false
         
     def use_GBP(self, customer_ID):
         Customer = self.get_customer(customer_ID)
         gbp = Customer.gbp
-        discount = int(gbp)*100
+        discount = int(gbp)*1000
         self.change_customer(customer_ID, {"gbp":"0"})
         return discount
 
@@ -141,10 +120,14 @@ class LogicAPI:
         self.vehicle_wrapper()
         self.vehicle.create_new_vehicle(vehicle_name,Type,manufacturer,Model,Color,age,tax,available,location,license_type)
 
-    def reserve_vehicle(self, vehicleID):
-        self.vehicle_wrapper()
-        self.vehicle.reserve_vehicle(vehicleID)
-        #returns True if it succeeds, otherwise false
+    def check_reservations(self, vehicle_ID):
+        """
+        checks all contracts to see which dates the vehicle is reserved, if any
+        returns a list of tuples as (start_date, end_date)
+        returns None if there are none
+        """
+        self.contract_wrapper()
+        return self.contract.check_vehicle_reservations(vehicle_ID)
 
     def change_information(self, vehicleID, change_dict):
         self.vehicle_wrapper()
@@ -184,9 +167,9 @@ class LogicAPI:
 
 
     #employee stuff
-    def hire_employee(self,emp_name,ssn,address,phone,email,location):
+    def hire_employee(self,emp_name,ssn,address,phone,email,location, password):
         self.employee_wrapper()
-        self.employee.hire(emp_name,ssn,address,phone,email,location)
+        self.employee.hire(emp_name,ssn,address,phone,email,location, password)
 
     def fire_employee(self,emp_ID):
         self.employee_wrapper()
