@@ -84,6 +84,20 @@ class Master_login():
             for word in splitted: 
                 print("{:8}".format(word),end="")
         print("\n")
+
+        def kickdownstairs(self, name):
+            output = """
+            THIS IS NAN AIR!
+    ○ 
+    く|)へ
+    〉 
+    ￣￣┗┓          {}
+    　 　 ┗┓　     ヾ○ｼ
+    　　   ┗┓   ヘ/ 　 　 
+    　        ┗┓ノ 
+    　 　 　 　 　 ┗┓
+            """.format(name)
+            return output
             
         
     
