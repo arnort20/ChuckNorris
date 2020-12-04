@@ -1,3 +1,5 @@
+
+
 import datetime
 #from Logic_classes.logic_wrapper import LogicAPI
 
@@ -19,9 +21,6 @@ class RVK_emp:
 
 ( q ) = Quit
 -------------------------------------------------------------------------------'''.format(self.employee_num))
-
-
-
             option = input('Type here: ')
             if option == '1':
                 RVK_emp().menu1()
