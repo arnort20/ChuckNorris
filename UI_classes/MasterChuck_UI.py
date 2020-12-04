@@ -48,7 +48,7 @@ class Master_login():
                 return False
                 
             else:
-                print("Not a valid input ")
+                print("Not a valid input")
                 Master_login().chuck_login()
 
     def Earnings_report(self):
@@ -71,12 +71,19 @@ class Master_login():
     def All_contracts(self):
         # Hérna kallar hann í að sjá lista yfir alla contracts sem hafa gengið í geggnum fyrirtækið.
         print("----------------------------------- Contract Overview-----------------------------------")
+        information = ("ID,Employee ID,Customer ID,Vehicle ID,Start Date,End Date,Paid")
+        splitt_info = information.split(",")
+        for info in splitt_info:
+            print("{:15}".format(info),end="")
+           
+        print("\n")
         contracts = self.logic.all_contracts()
         for item in contracts:
             new_item = str(item)
             splitted = new_item.split()
-            for thing in splitted: 
-                print("{0: >14}".format(thing),end="")
+            for word in splitted: 
+                print("{:8}".format(word),end="")
+        print("\n")
             
         
     

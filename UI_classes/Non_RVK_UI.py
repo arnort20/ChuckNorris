@@ -42,7 +42,7 @@ class Non_Rvk():
                 Non_Rvk().main_menu()
 
 
-    def returner(self):
+    def returner():
         return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
         if return_to_mainmenu == "y":
             Non_Rvk().main_menu()
@@ -111,11 +111,6 @@ class Non_Rvk():
 
     # Taka a moti bilnum ur utleigu
     def menu3(self):
-        contract = self.logic.get_contract(returning_contract_ID)
-        customer_id = contract.customer_id()
-        customer = self.logic.get_customer(customer_id)
-
-
 
         print("---------Recive Vehicle---------\n")
 
@@ -124,6 +119,10 @@ class Non_Rvk():
         returning_vehicle_condition =   input("Input vehicle condition(ok/bad): ")
         returning_vehicle_late =        input("Is the car late? y/n ")
 
+        contract = self.logic.get_contract(returning_contract_ID)
+        print (contract)
+        customer_id = contract.customer_id()
+        customer = self.logic.get_customer(customer_id)
 
 
         if returning_vehicle_condition == "ok":

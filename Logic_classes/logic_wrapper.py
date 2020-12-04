@@ -109,7 +109,7 @@ class LogicAPI:
     #contract stuff
     def get_contract(self, contractID):
         self.contract_wrapper()
-        return self.contract.getContract(contractID)
+        return self.contract.get_contract(contractID)
 
     def delete_contract(self,contractID):
         self.contract_wrapper()
