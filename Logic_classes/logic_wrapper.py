@@ -160,24 +160,9 @@ class LogicAPI:
         self.customer_wrapper()
         return self.customer.get_customer(customerID)
 
-    # def end_of_contract_update_customer(self,customerID,gbp,bbp):
-    #     #part of return_vehicle
-    #     self.customer_wrapper()
-    #     self.customer.add_GBP(customerID,gbp)
-    #     self.customer.add_BBP(customerID,bbp)
-
-    # def change_name(self,customerID,new_name):
-    #     self.customer_wrapper()
-    #     self.customer.change_name(customerID,new_name)
-
-    # def change_license_type(self,customerID,new_license):
-    #     self.customer_wrapper()
-    #     self.customer.change_license_type(customerID,new_license)
-
     def change_customer(self, customer_ID, changes_dict):
         self.customer_wrapper()
         self.customer.change_customer(customer_ID, changes_dict)
-
 
     def kill_customer(self,customerID):
         self.customer_wrapper()
@@ -205,4 +190,18 @@ class LogicAPI:
         return self.employee.get_employee(emp_ID)
 
     #destination stuff
+    def new_destination(self, destination_name, airport, phone, opening_hours):
+        self.destination_wrapper()
+        self.destination.new_destination(destination_name, airport, phone, opening_hours)
 
+    def get_destination(self, dest_ID):
+        self.destination_wrapper()
+        return self.destination.get_destination(dest_ID)
+
+    def get_all_destinations(self):
+        self.destination_wrapper()
+        return self.destination.get_all_destinations
+
+    def change_destination(self, dest_ID, change_dict):
+        self.destination_wrapper()
+        self.destination.change_destination(dest_ID, change_dict)
