@@ -11,10 +11,12 @@ class LogicAPI:
         self.priv_location = self.login_user(userID, pword)
 
     def login_user(self, user_ID, user_pwrd):
-        #if username and password are correct:
-        #   returns a value for what privileges the user has
-        #else:
-        #   returns none
+        """
+        if username and password are correct:
+           returns a value for what privileges the user has
+        else:
+           returns none
+        """
         user = self.get_employee(user_ID)
         correct_pword = user.password
         if correct_pword == user_pwrd:
@@ -23,6 +25,12 @@ class LogicAPI:
             return None
 
     def check_privilege(self):
+        """
+        0: no privileges, access denied
+        1: master access of Chuck Norris
+        2: A Reykjavík employee, has contract making privileges
+        3: Destination employee, has car management privileges
+        """
         if not self.priv_location:
             return 0
         elif self.priv_location >= 3:
