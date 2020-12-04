@@ -71,7 +71,7 @@ class LogicAPI:
     def use_GBP(self, customer_ID):
         Customer = self.get_customer(customer_ID)
         gbp = Customer.gbp
-        discount = int(gbp)*100
+        discount = int(gbp)*1000
         self.change_customer(customer_ID, {"gbp":"0"})
         return discount
 
@@ -114,10 +114,14 @@ class LogicAPI:
         self.vehicle_wrapper()
         self.vehicle.create_new_vehicle(vehicle_name,Type,manufacturer,Model,Color,age,tax,available,location,license_type)
 
-    def reserve_vehicle(self, vehicleID):
-        self.vehicle_wrapper()
-        self.vehicle.reserve_vehicle(vehicleID)
-        #returns True if it succeeds, otherwise false
+    def check_reservations(self, vehicle_ID):
+        """
+        checks all contracts to see which dates the vehicle is reserved, if any
+        returns a list of tuples as (start_date, end_date)
+        returns None if there are none
+        """
+        self.contract_wrapper()
+        return self.contract.check_vehicle_reservations(vehicle_ID)
 
     def change_information(self, vehicleID, change_dict):
         self.vehicle_wrapper()
@@ -157,9 +161,9 @@ class LogicAPI:
 
 
     #employee stuff
-    def hire_employee(self,emp_name,ssn,address,phone,email,location):
+    def hire_employee(self,emp_name,ssn,address,phone,email,location, password):
         self.employee_wrapper()
-        self.employee.hire(emp_name,ssn,address,phone,email,location)
+        self.employee.hire(emp_name,ssn,address,phone,email,location, password)
 
     def fire_employee(self,emp_ID):
         self.employee_wrapper()

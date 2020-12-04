@@ -4,7 +4,7 @@ from Data_classes.DataAPI import DataAPI as dAPI
 class Employee:
     def __init__(self):
         self.dAPI = dAPI()
-    def hire(self,Employee_name,ssn,Address,Phone,Email,Location):
+    def hire(self,Employee_name,ssn,Address,Phone,Email,Location, password):
         employeeID = dAPI.get_employeeID()
         dAPI.add_employee(employeeID,Employee_name,ssn,Address,Phone,Email,Location,password)
     def fire(self,emp_ID):
