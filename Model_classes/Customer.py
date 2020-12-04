@@ -8,3 +8,6 @@ class Customer(object):
         self.email = email
         self.phone = phone
         self.address = address
+
+    def __str__(self) -> str:
+        return "fucka you"
