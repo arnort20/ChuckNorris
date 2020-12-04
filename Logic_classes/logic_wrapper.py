@@ -54,12 +54,18 @@ class LogicAPI:
     def destination_wrapper(self):
         self.destination = dest_logic()  
 
-
     #bill things
-    def make_bill(self,contract_ID):
-        contract_ID.start_date
-        contract_ID.end_date
+    def make_bill(self,contract_ID,return_date):
+        default_cost=10000
+        contract=self.get_contract(contract_ID)
+        vehicle=self.get_vehicle(contract_ID)
+        date_1=contract.start_date
+        date_2=contract.end_date
+        date_3=self.return_date
+        vehicle_rate=vehicle.tax
 
+
+        if date_3 > date_2:
     #make the contract:
     
     def make_new_contract(self, customer_ID, vehicle_ID, start_date, end_date):
