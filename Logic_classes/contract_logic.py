@@ -5,7 +5,8 @@ class Contract:
     def __init__(self):
         self.dAPI = dAPI()
     def get_contract(self, contractID):
-        return self.dAPI.get_contract(contractID)
+        contract=self.dAPI.get_contract(contractID)
+        return contract
     def change_contract(self, contractID, change_value):
         dAPI.change_Contract(contractID, change_value)
 
@@ -19,10 +20,11 @@ class Contract:
             #skilar False þegar contractID er ekki til í data
 
     def make_contract(self, employeeID,customerID,vehicleID,start_date,end_date):
-        contract_name = self.dAPI.get_name(customerID)
-        contract_phone = self.dAPI.get_phone(customerID)
-        contract_address = self.dAPI.get_address(customerID)
-        contract_email = self.dAPI.get_email(customerID)
+        customer=self.dAPI.get_customer(customerID)
+        contract_name = customer.name
+        contract_phone = customer.phone
+        contract_address = customer.address
+        contract_email = customer.email
         contractID = self.dAPI.contract_makeID()
         self.dAPI.add_contract(contractID, contract_name, contract_phone, contract_address, contract_email, vehicleID, start_date, end_date)
 
@@ -43,5 +45,3 @@ class Contract:
             return dates_reserved
         else:
             return None
-
-    

@@ -73,7 +73,6 @@ class DataAPI(object):
         try:
             contract = self.get.get_certein(ident,"Data_files\Contracts.csv")
             #outputs list of dictionaries
-            print(contract)
             return DataAPI.make_contract(contract)
         except:
             return None

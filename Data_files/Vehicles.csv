@@ -1,10 +1,12 @@
 id,vehicle_name,type,manufacturer,model,color,age,tax,available,location_id,license_type
-7,sasasoola,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
+7,sasasoola,jingle,jambajuice,akakaka,blue,"2020,9,10",20,yes,12,12
 8,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
 9,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
 10,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
-11,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
+11,jojo,jingle,jambajuice,akakaka,blue,25,20,unavailable,12,12
 12,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
 13,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
 14,12,12,12,12,12,12,1,12.0,12.0,1
 15,12,fat,Open AI,jooblers,None,1999.0,28.0,available,namibia,scuba
+16,14,Submarine,Aquaman,Scubertrooper,gold,2005.0,70.0,available,2,s
+17,jim,jab,motherfuckers united,joobles,penis,0.0,700.0,unavailable,valhalla,all

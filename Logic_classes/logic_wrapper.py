@@ -3,7 +3,7 @@ from .contract_logic import Contract as cont_logic
 from .employee_logic import Employee as emp_logic
 from .destination_logic import Destination as dest_logic
 from .customer_logic import Customer as cust_logic
-import calendar
+import datetime
 
 class LogicAPI:
     def __init__(self, userID, pword):
@@ -53,21 +53,29 @@ class LogicAPI:
     def destination_wrapper(self):
         self.destination = dest_logic()  
 
-
     #bill things
-    def make_bill(self,contract_ID):
-        contract_ID.start_date
-        contract_ID.end_date
+    def make_bill(self,contract_ID,return_date):
+        default_cost=10000
+        contract=self.get_contract(contract_ID)
+        vehicle=self.get_vehicle(contract_ID)
+        date_1=contract.start_date
+        date_2=contract.end_date
+        date_3=self.return_date
+        vehicle_rate=vehicle.tax
 
+
+        if date_3 > date_2:
     #make the contract:
-    #vehicles_ID must be a list of IDs (if multiple) comma seperated with no whitespace
+    
     def make_new_contract(self, customer_ID, vehicle_ID, start_date, end_date):
 
         Vehicle = self.get_vehicle(vehicle_ID)
         #check if the customer has the appropriate licensing
         if not self.check_license(customer_ID, Vehicle.id):
             return "license_error"
-        #customer has the appropriate license for the vehicle, reserve it
+        #customer has the appropriate license for the vehicle, check reservations
+        reservations = self.check_reservations(vehicle_ID)
+
         self.new_contract(self.user, customer_ID, vehicle_ID, start_date, end_date)
         return "success"
         
@@ -126,7 +134,7 @@ class LogicAPI:
         self.contract_wrapper()
         return self.contract.check_vehicle_reservations(vehicle_ID)
 
-    def change_information(self, vehicleID, change_dict):
+    def change_vehicle_info(self, vehicleID, change_dict):
         self.vehicle_wrapper()
         self.vehicle.change_details(vehicleID, change_dict)
 

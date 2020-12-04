@@ -13,7 +13,7 @@ class Non_Rvk():
         self.employee_num = "69"
 
     #Maine menu loop
-    def main_menu(self):
+    def main_menu(self,going = 0):
         print(""" 
     ------------------ Welcome, Employee {} ------------------\n
     ( 1 ) = Register New Vehicle.
@@ -24,30 +24,32 @@ class Non_Rvk():
     ( q ) = Quit.
     
     -----------------------------------------------------------""".format(self.employee_num))
+        if going == 0:
+            while True:
+                option = input("Enter Choice here: ")
+                if option == "1":
+                    Non_Rvk().menu1()
+                elif option == "2":
+                    Non_Rvk().menu2()
+                elif option == "3":
+                    Non_Rvk().menu3()
+                elif option == "4":
+                    Non_Rvk().menu4()
+                elif option == "q":
+                    return False
+                else:
+                    print("Not a valid Option! ")
+                    Non_Rvk().main_menu()
+        else:
+            print("Bye bye")
 
-        while True:
-            option = input("Enter Choice here: ")
-            if option == "1":
-                Non_Rvk().menu1()
-            elif option == "2":
-                Non_Rvk().menu2()
-            elif option == "3":
-                Non_Rvk().menu3()
-            elif option == "4":
-                Non_Rvk().menu4()
-            elif option == "q":
-                return False
-            else:
-                print("Not a valid Option! ")
-                Non_Rvk().main_menu()
 
-
-    def returner():
+    def returner(self):
         return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
         if return_to_mainmenu == "y":
-            Non_Rvk().main_menu()
+            self.main_menu()
         else:
-            return
+            self.main_menu(25)
 
 
 
@@ -65,6 +67,7 @@ class Non_Rvk():
         condition = input("Vehicle Condition: ")
         location = input("Input cars location: ")
         id_type = input("license needed to drive vehicle: ")
+
         while True:
             try:
                 age = float(input("Input year that the vehicle was Manufacturerd: "))
@@ -85,7 +88,7 @@ class Non_Rvk():
             Non_Rvk().menu1()
         
         # Making a dict list of the info of the newly registerd car
-        Non_Rvk().returner()
+        Non_Rvk.returner()
         
         return
 
@@ -99,13 +102,13 @@ class Non_Rvk():
         customer_id =       input("input customer ID: ")
         contract_id =       input("input contract ID: ")
         
-        contract = LogicAPI.get_contract(contract_id)
+        contract = self.logic.get_contract(contract_id)
         vehicle_ID = contract.vehicle_id
         
         vehicle_condition = {"available":"unavailable"}
-        LogicAPI.change_information(vehicle_ID,vehicle_condition )
+        self.logic.change_information(vehicle_ID,vehicle_condition )
 
-        Non_Rvk.returner()
+        self.returner()
         return
 
 
@@ -117,21 +120,22 @@ class Non_Rvk():
 
         returning_contract_ID =         input("Input contract ID: ")
         returning_vehicle_condition =   input("Input vehicle condition(ok/bad): ")
-        returning_vehicle_late =        input("Is the car late? y/n ")
+        returning_vehicle_late =        input("Is the vehicle late(y/n): ")
+
 
         contract = self.logic.get_contract(returning_contract_ID)
         customer_id = contract.customer_id
         customer = self.logic.get_customer(customer_id)
-
+        vehicle_id = contract.vehicle_id
 
         if returning_vehicle_condition == "ok":
             vehicle_condition = {"available":"available"}
-            contract = self.logic.get_contract(returning_contract_ID)
-            vehicle_id = contract.vehicle_id
             self.logic.change_information(vehicle_id,vehicle_condition)
+
 
         if returning_vehicle_late == "n":
             print(f"You have {customer.gbp}, GBP to your exposal")
+
         else:
             print("Chuck is not happy!")
             customer.bbp += 2
