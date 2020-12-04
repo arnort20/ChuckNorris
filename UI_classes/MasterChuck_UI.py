@@ -21,11 +21,30 @@ class Master_login():
         for info in splitt_info:
             print("{0: >40}".format(info))
 
+<<<<<<< Updated upstream
+=======
+    def print_title(self,title):
+        # Title = Nafn á Völdum kosti
+        name_title = ("-----------------------------------------------------"+title+"------------------------------------------------------")
+        print(name_title.center(140))
+
+
+>>>>>>> Stashed changes
     def print_out_format(self,information):
         # Information = Efsta línan sem er upplysingar um hvað er hvað.
         splitt_info = information.split(",")
         for info in splitt_info:
+<<<<<<< Updated upstream
             print(info.center(20))
+=======
+            print(info.center(20), end="")
+
+        print("")
+
+    def chuck_login(self):
+        print("""
+    ------------------Welcome Master Chuck!------------------
+>>>>>>> Stashed changes
 
         print("")
 
@@ -74,6 +93,7 @@ class Master_login():
         pass
 
     def Bill_overview(self):
+<<<<<<< Updated upstream
         pass
         # Hérna þarf að sækja skýrslu frá samningum og skoða lista af öllum reikningum
         # Master_login.print_title(self, "Bill Overview")
@@ -82,6 +102,15 @@ class Master_login():
         # bills = self.logic.Bill_overview()
         # for item in bills:
         #     Master_login.print_out_format(self,str(item))
+=======
+        # Hérna þarf að sækja skýrslu frá samningum og skoða lista af öllum reikningum
+        Master_login.print_title(self, "Bill Overview")
+        information = ("info")
+        Master_login.print_out_format(self, information)
+        bills = self.logic.Bill_overview()
+        for item in bills:
+            Master_login.print_out_format(self,str(item))
+>>>>>>> Stashed changes
 
     def Round_house(self):
         # Hérna kallar hann kill customer og fire employee. Og Round Housar þau. Þarf að fá til baka númer frá föllunum til að setja í print skipunina.
