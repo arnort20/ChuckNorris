@@ -4,12 +4,10 @@ from Data_classes.DataAPI import DataAPI as dAPI
 class Contract:
     def __init__(self):
         self.dAPI = dAPI()
-        
     def get_contract(self, contractID):
-        return self.dAPI.bring_contract(contractID)
-
-    def change_contract(self, contractID, change_dict):
-        dAPI.change_Contract(contractID, change_dict)
+        return self.dAPI.get_contract(contractID)
+    def change_contract(self, contractID, change_value):
+        dAPI.change_Contract(contractID, change_value)
 
         #sends contractID and dict with value for change to the data layer
         
@@ -29,7 +27,7 @@ class Contract:
         self.dAPI.add_contract(contractID, contract_name, contract_phone, contract_address, contract_email, vehicleID, start_date, end_date)
 
     def all_contracts(self):
-        return self.dAPI.get_all_contracts()
+        return self.dAPI.get_contracts()
 
 
     
