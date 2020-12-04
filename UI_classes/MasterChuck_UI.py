@@ -8,33 +8,33 @@ from Model_classes.Contract import Contract # Display all contracts overview
 class Master_login():
     def __init__(self):
         self.logic = LogicAPI("1","1")
-
+    #106
     def print_title(self,title):
         # Title = Nafn á Völdum kosti
-        name_title = ("-----------------------------------------------------"+title+"------------------------------------------------------")
+        print("")
+        name_title = ('{:-^125}'.format(title))
         print(name_title.center(140))
-
+        print("")
+    def print_main_menu(self,option):
+        # Prentar út Main menu textan í ákveðnu formati
+        splitt_info = option.split(",")
+        for info in splitt_info:
+            print("{0: >40}".format(info))
 
     def print_out_format(self,information):
         # Information = Efsta línan sem er upplysingar um hvað er hvað.
         splitt_info = information.split(",")
         for info in splitt_info:
-            print(info.center(20), end="")
+            print(info.center(20))
 
         print("")
 
     def chuck_login(self):
-        print("""
-    ------------------Welcome Master Chuck!------------------
-
-    ( 1 ) = Review Earnings Report.
-    ( 2 ) = View Vehicle Reports.
-    ( 3 ) = View Bill Overview.
-    ( 4 ) = Round House Kick.
-    ( 5 ) = View All Contracts.
-
-    ( q ) = Quit.
-    ---------------------------------------------------------\n""")
+        title = "Welcome Master Chuck!"
+        Master_login.print_title(self,title)
+        option = "Review Earnings Report ( 1 ),View Vehicle Reports ( 2 ),View Bill Overview ( 3 ), Round House Kick ( 4 ), View All Contracts ( 5 ),Quit ( q )"
+        Master_login.print_main_menu(self,option)
+        Master_login.print_title(self,len(title)*"-")
 
         while True:
             option = input("Enter Choice here: ")
@@ -74,13 +74,14 @@ class Master_login():
         pass
 
     def Bill_overview(self):
+        pass
         # Hérna þarf að sækja skýrslu frá samningum og skoða lista af öllum reikningum
-        Master_login.print_title(self, "Bill Overview")
-        information = ("info")
-        Master_login.print_out_format(self, information)
-        bills = self.logic.Bill_overview()
-        for item in bills:
-            Master_login.print_out_format(self,str(item))
+        # Master_login.print_title(self, "Bill Overview")
+        # information = ("info")
+        # Master_login.print_out_format(self, information)
+        # bills = self.logic.Bill_overview()
+        # for item in bills:
+        #     Master_login.print_out_format(self,str(item))
 
     def Round_house(self):
         # Hérna kallar hann kill customer og fire employee. Og Round Housar þau. Þarf að fá til baka númer frá föllunum til að setja í print skipunina.
