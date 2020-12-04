@@ -11,6 +11,9 @@ class Vehicle:
     def get_vehicle(self,vehicleID):
         return self.dAPI.get_vehicle(vehicleID)
 
+    def get_vehicles(self):
+        return self.dAPI.get_vehicles()
+
     # def reserve_vehicle(self,vehicleID):
     #     #change available = False
     #     #if available == False:
@@ -41,3 +44,4 @@ class Vehicle:
         cust_license = customer.License_type
         if cust_license in requirements:
             return True
+
