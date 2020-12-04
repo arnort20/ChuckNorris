@@ -27,20 +27,26 @@ class Master_login():
             if option == "1":
                 Master_login().Earnings_report()
                 break
+
             elif option == "2":
                 Master_login().Vehicle_reports()
                 break
+
             elif option == "3":
                 Master_login().Bill_overview()
                 break
+
             elif option == "4":
                 Master_login().Round_house()
                 break
+
             elif option == "5":
                 Master_login().All_contracts()
                 break
+
             elif option == "q":
                 return False
+                
             else:
                 print("Not a valid input ")
                 Master_login().chuck_login()
