@@ -29,5 +29,19 @@ class Contract:
     def all_contracts(self):
         return self.dAPI.get_contracts()
 
+    def check_vehicle_reservations(self, vehicle_ID):
+        all_contracts = self.all_contracts()
+        vehicle_contracts = []
+        for cont in all_contracts:
+            if vehicle_ID == cont.vehicle_id:
+                vehicle_contracts.append(cont)
+        if vehicle_contracts:
+            dates_reserved = []
+            for reservation in vehicle_contracts:
+                dates = (reservation.start_date, reservation.end_date)
+                dates_reserved.append(dates)
+            return dates_reserved
+        else:
+            return None
 
     

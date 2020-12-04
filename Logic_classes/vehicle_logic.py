@@ -31,11 +31,10 @@ class Vehicle:
         self.dAPI.add_vehicle(vehicleID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location,license_type)
 
     def change_details(self, vehicleID, change_dict):
-        dAPI.change_vehicle(vehicleID, change_dict)
+        self.dAPI.change_vehicle(vehicleID, change_dict)
 
     def kill_vehicle(self,vehicleID):
-        #removes the vehicle form database
-        pass
+        dAPI.delete_vehicle(vehicleID)
 
     def check_license(self, customerID, vehicleID):
         vehicle = self.dAPI.get_vehicle(vehicleID)
