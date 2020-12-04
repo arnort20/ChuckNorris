@@ -120,15 +120,15 @@ class Non_Rvk():
         returning_vehicle_late =        input("Is the car late? y/n ")
 
         contract = self.logic.get_contract(returning_contract_ID)
-        print (contract)
-        customer_id = contract.customer_id()
+        customer_id = contract.customer_id
         customer = self.logic.get_customer(customer_id)
 
 
         if returning_vehicle_condition == "ok":
             vehicle_condition = {"available":"available"}
-            contract = LogicAPI.get_contract(returning_contract_ID)
-            LogicAPI.change_information(contract.vehicle_ID,vehicle_condition)
+            contract = self.logic.get_contract(returning_contract_ID)
+            vehicle_id = contract.vehicle_id
+            self.logic.change_information(vehicle_id,vehicle_condition)
 
         if returning_vehicle_late == "n":
             print(f"You have {customer.gbp}, GBP to your exposal")

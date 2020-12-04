@@ -141,8 +141,6 @@ class LogicAPI:
         self.vehicle_wrapper()
         self.vehicle.create_new_vehicle(vehicle_name,Type,manufacturer,Model,Color,age,tax,available,location,license_type)
 
-
-
     def reserve_vehicle(self, vehicleID):
         self.vehicle_wrapper()
         self.vehicle.reserve_vehicle(vehicleID)
