@@ -46,5 +46,5 @@ Tengja layerana saman betur og láta forritið virka á einfaldan máta
 
 dagur 11:
 Plan:
-klára að implementa bill og report fall, klára líka að ganga frá date time vonandi.
+klára að implementa bill og report fall, klára líka að ganga frá date time vonandi,búa til sér print/format skjal með format klasa .
 
