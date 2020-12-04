@@ -55,7 +55,7 @@ class Master_login():
 
     def Round_house(self):
         # Hérna kallar hann kill customer og fire employee. Og Round Housar þau. Þarf að fá til baka númer frá föllunum til að setja í print skipunina.
-        #Print(f"Employee {} you have been Roundhoused out of this company! ")
+        # Print(f"Employee {} you have been Roundhoused out of this company! ")
         pass
 
     def All_contracts(self):
