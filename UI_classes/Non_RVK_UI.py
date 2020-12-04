@@ -44,12 +44,12 @@ class Non_Rvk():
             print("Bye bye")
 
 
-    def returner():
+    def returner(self):
         return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
         if return_to_mainmenu == "y":
-            Non_Rvk.main_menu()
+            self.main_menu()
         else:
-            Non_Rvk.main_menu(25)
+            self.main_menu(25)
 
 
 
@@ -67,6 +67,7 @@ class Non_Rvk():
         condition = input("Vehicle Condition: ")
         location = input("Input cars location: ")
         id_type = input("license needed to drive vehicle: ")
+
         while True:
             try:
                 age = float(input("Input year that the vehicle was Manufacturerd: "))
@@ -101,13 +102,13 @@ class Non_Rvk():
         customer_id =       input("input customer ID: ")
         contract_id =       input("input contract ID: ")
         
-        contract = LogicAPI.get_contract(contract_id)
+        contract = self.logic.get_contract(contract_id)
         vehicle_ID = contract.vehicle_id
         
         vehicle_condition = {"available":"unavailable"}
-        LogicAPI.change_information(vehicle_ID,vehicle_condition )
+        self.logic.change_information(vehicle_ID,vehicle_condition )
 
-        Non_Rvk.returner()
+        self.returner()
         return
 
 
