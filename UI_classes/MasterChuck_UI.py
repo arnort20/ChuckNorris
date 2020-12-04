@@ -70,8 +70,10 @@ class Master_login():
 
     def All_contracts(self):
         # Hérna kallar hann í að sjá lista yfir alla contracts sem hafa gengið í geggnum fyrirtækið.
+        print("----------------------------------- Contract Overview-----------------------------------")
         contracts = self.logic.all_contracts()
         for item in contracts:
-            print(item)
+            print("{0: >14}".format(item))
+        
     
 Master_login().chuck_login()
