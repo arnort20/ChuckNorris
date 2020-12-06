@@ -8,56 +8,44 @@ from Model_classes.Contract import Contract # Display all contracts overview
 class Master_login():
     def __init__(self):
         self.logic = LogicAPI("1","1")
-    #106
+    
     def print_title(self,title):
         # Title = Nafn á Völdum kosti
         print("")
         name_title = ('{:-^125}'.format(title))
-        print(name_title.center(140))
+        print(name_title)
+        #Þurfum ekki að hafa center með þessu formati
         print("")
+
     def print_main_menu(self,option):
         # Prentar út Main menu textan í ákveðnu formati
         splitt_info = option.split(",")
         for info in splitt_info:
-            print("{0: >40}".format(info))
+            print("|{:^40}|".format(info))
+            #Þurfum ekki að hafa center með þessu formati
+            #print("{0: >40}".format(info))
 
-<<<<<<< Updated upstream
-=======
-    def print_title(self,title):
-        # Title = Nafn á Völdum kosti
-        name_title = ("-----------------------------------------------------"+title+"------------------------------------------------------")
-        print(name_title.center(140))
-
-
->>>>>>> Stashed changes
     def print_out_format(self,information):
         # Information = Efsta línan sem er upplysingar um hvað er hvað.
         splitt_info = information.split(",")
         for info in splitt_info:
-<<<<<<< Updated upstream
-            print(info.center(20))
-=======
             print(info.center(20), end="")
-
-        print("")
-
-    def chuck_login(self):
-        print("""
-    ------------------Welcome Master Chuck!------------------
->>>>>>> Stashed changes
 
         print("")
 
     def chuck_login(self):
         title = "Welcome Master Chuck!"
         Master_login.print_title(self,title)
-        option = "Review Earnings Report ( 1 ),View Vehicle Reports ( 2 ),View Bill Overview ( 3 ), Round House Kick ( 4 ), View All Contracts ( 5 ),Quit ( q )"
+        option = "( 1 ) Review Earnings Report,( 2 ) View Vehicle Reports,( 3 ) View Bill Overview,( 4 ) Round House Kick,( 5 ) View All Contracts,( q ) Quit"
         Master_login.print_main_menu(self,option)
         Master_login.print_title(self,len(title)*"-")
 
         while True:
             option = input("Enter Choice here: ")
-            if option == "1":
+            if option == "q":
+                return False
+
+            elif option == "1":
                 Master_login().Earnings_report()
                 break
 
@@ -76,24 +64,22 @@ class Master_login():
             elif option == "5":
                 Master_login().All_contracts()
                 break
-
-            elif option == "q":
-                return False
-                
+                   
             else:
                 print("Not a valid input!" "\n")
                 Master_login().chuck_login()
 
     def Earnings_report(self):
-        # Hérna þarf að sækja overall Reportið í logic wrapper, hérna er speninding vs earnings
+        # Hérna þarf að sækja overall Reportið í logic wrapper, spendinding vs earnings
+        # Mögulega eitthvað fleirra
         pass
         
     def Vehicle_reports(self):
         # Hérna þarf að sækja alla bílana frá logic wrappernum, og sýna hvaða bílar eru eftirsóttastir
+        # og hvaða rapport yfir alla bílana sem valið er.
         pass
 
     def Bill_overview(self):
-<<<<<<< Updated upstream
         pass
         # Hérna þarf að sækja skýrslu frá samningum og skoða lista af öllum reikningum
         # Master_login.print_title(self, "Bill Overview")
@@ -102,15 +88,6 @@ class Master_login():
         # bills = self.logic.Bill_overview()
         # for item in bills:
         #     Master_login.print_out_format(self,str(item))
-=======
-        # Hérna þarf að sækja skýrslu frá samningum og skoða lista af öllum reikningum
-        Master_login.print_title(self, "Bill Overview")
-        information = ("info")
-        Master_login.print_out_format(self, information)
-        bills = self.logic.Bill_overview()
-        for item in bills:
-            Master_login.print_out_format(self,str(item))
->>>>>>> Stashed changes
 
     def Round_house(self):
         # Hérna kallar hann kill customer og fire employee. Og Round Housar þau. Þarf að fá til baka númer frá föllunum til að setja í print skipunina.

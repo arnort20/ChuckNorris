@@ -65,7 +65,8 @@ class LogicAPI:
 
 
         if date_3 > date_2:
-    #make the contract:
+            pass
+        #make the contract:
     
     def make_new_contract(self, customer_ID, vehicle_ID, start_date, end_date):
 
