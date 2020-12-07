@@ -1,5 +1,5 @@
 from Logic_classes.logic_wrapper import LogicAPI
-from UI_classes.Print_formats import print_format
+from UI_classes.Print_formats import Print_format
 
 import datetime
 
