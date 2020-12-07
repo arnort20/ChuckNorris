@@ -15,18 +15,22 @@ class Non_rvk():
         self.employee_num = username
         self.login_id = username
         self.format = Print_format()
+        self.width = 200
+
+    def liner(self):
+        print("\n"*12)
 
     #Maine menu loop
     def main_menu(self):
         while True:
             title = 'welcome Employee {}'.format(self.login_id)
-            self.format.print_title(title)
+            self.format.print_title(title,self.width)
             menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,,( q ) Quit."
-            self.format.print_main_menu(menu)
-            self.format.print_title(len(title)*"-")
+            self.format.print_main_menu(menu,self.width)
+            self.format.print_title(len(title)*"-",self.width)
 
 
-            option = input("Enter Choice here: ")
+            option = input(self.format.question("Enter Choice here",self.width))
             if option == "1":
                 self.menu1()
             elif option == "2":
@@ -49,6 +53,7 @@ class Non_rvk():
 
     #Register vehicle menu
     def menu1(self):
+        self.liner()
         title = ("Register new vehicle")
         self.format.print_title(title)
 
@@ -88,6 +93,7 @@ class Non_rvk():
 
     # Afhenda bilinn til utleigu
     def menu2(self):
+        self.liner()
         title =("Loan Vehicle")
         self.format.print_title(title)
 
@@ -108,7 +114,7 @@ class Non_rvk():
 
     # Taka a moti bilnum ur utleigu
     def menu3(self):
-
+        self.liner()
         title = ("Recive Vehicle")
 
         self.formatter.print_title(title)
@@ -145,20 +151,22 @@ class Non_rvk():
 
     def menu4(self):
         #Here it needs to get the list of vehicles from Vehicles.csv and look up the Key word[ID] and print out everything about the car.
+        self.liner()
+        space = 10
         while True:
             title = ("Check Vehicle")
-            self.format.print_title(title)
-            checking_vehicle_ID = input(self.format.question("Enter vehicle ID: "))
+            self.format.print_title(title,self.width)
+            checking_vehicle_ID = input(self.format.question("Enter vehicle ID: ",self.width))
             info = ("ID,Plate,Type,Manufacturer,Model,Color,Age,Tax,Available,Location id,License type")
             vehicle = self.logic.get_vehicle(checking_vehicle_ID)
 
 
-            self.format.print_title(title)
-            self.format.print_out_format(str(info))
+            self.format.print_title(checking_vehicle_ID,self.width)
+            self.format.print_out_format(str(info),space)
             print()
-            self.format.print_out_format(str(vehicle))
+            self.format.print_out_format(str(vehicle),space)
 
-            self.format.print_title(len(title)*"-")
+            self.format.print_title(len(checking_vehicle_ID)*"-",self.width)
 
 
 
