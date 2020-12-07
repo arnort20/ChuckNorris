@@ -1,4 +1,5 @@
 from Logic_classes.logic_wrapper import LogicAPI
+from UI_classes.Print_formats import print_format
 
 import datetime
 
@@ -9,31 +10,27 @@ class RVK_emp:
         self.logic = LogicAPI(username, pword)
 
     def main_menu(self):
-        while True:
-            print('''----------------------Welcome, Employee {}----------------------
-        
-( 1 ) = Create new contract
-( 2 ) = View contract
-( 3 ) = Print report
-( 4 ) = Add new employee
-( 5 ) = Change employee
-( 6 ) = Delete employee
+        title = "(Welcome, Employee {})".format(self.employee_num)
+        print_format.print_title(self,title)
+        option = "( 1 ) Create new contract,( 2 ) View contract,( 3 ) Print report,( 4 ) Add new employee,( 5 ) Change employee, ( 6 ) Delete employee,( q )  Quit "
+        print_format.print_main_menu(self,option)
+        print_format.print_title(self,len(title)*"-")
 
-( q ) = Quit
--------------------------------------------------------------------------------'''.format(self.employee_num))
+        while True:
+
             option = input('Type here: ')
             if option == '1':
-                RVK_emp().menu1()
+                RVK_emp().create_contract()
             elif option == '2':
-                RVK_emp().menu2()
+                RVK_emp().view_contract()
             elif option == '3':
-                RVK_emp().menu3()
+                RVK_emp().print_report()
             elif option == '4':
-                RVK_emp().menu4()
+                RVK_emp().add_new_employee()
             elif option == '5':
-                RVK_emp().menu5()
+                RVK_emp().change_employee()
             elif option == '6':
-                RVK_emp().menu6()
+                RVK_emp().delete_employee()
             elif option.lower() == 'q':
                 return
                 #maybe go back to loginUI?
@@ -47,22 +44,17 @@ class RVK_emp:
 
 
 
-    def menu1(self):
+    def create_contract(self):
         while True:
-            print('''
------Create new contract-------------------------------------
-        
-( 1 ) = Returning customer
-( 2 ) = New customer
-
-( r ) = Return
----------------------------------------------------------------''')
+            print_format.print_title("Creating New Contract")
+            information = ("( 1 ) Returning Customer,( 2 ) New Customer, ( r ) Return")
+            print_format.print_out_format(self, information)
 
             option = input('Type here: ')
             if option == '1':
-                RVK_emp().menu1_1()
+                RVK_emp().returning_customer()
             elif option == '2':
-                RVK_emp().menu1_2()
+                RVK_emp().new_customer()
             elif option.lower() == 'r':
                 RVK_emp().main_menu()
             elif option == '':
@@ -73,7 +65,9 @@ class RVK_emp:
 
 
 
-    def menu1_1(self):
+    def returning_customer(self):
+        print_format.print_title(self,"Returning Customer")
+        information = ("( c ) Cancel, ( f ) Finish")
         print('''
 -----Returning Customer-------------------''')
         cost_reg = input('Driving registration nr: ')
