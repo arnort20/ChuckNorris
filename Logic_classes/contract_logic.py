@@ -4,9 +4,11 @@ from Data_classes.DataAPI import DataAPI as dAPI
 class Contract:
     def __init__(self):
         self.dAPI = dAPI()
+
     def get_contract(self, contractID):
         contract=self.dAPI.get_contract(contractID)
         return contract
+        
     def change_contract(self, contractID, change_value):
         self.dAPI.change_Contract(contractID, change_value)
 

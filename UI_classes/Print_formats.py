@@ -2,8 +2,6 @@
 # Hér eru öll print format commands geymd.
 
 class Print_format():
-    def __init__(self):
-        pass
 
 # Þessi þarf að geta prentað út Title á flottan hátt.
     def print_title(self,title):# Langar að breyta þannig að Title centerist við info úr main menu!
@@ -19,7 +17,7 @@ class Print_format():
         # Prentar út Main menu textan í ákveðnu formati
         splitt_info = option.split(",")
         for info in splitt_info:
-            print("|{:^40}|".format(info))
+            print("|\t{:<40}|".format(info))
             #Þurfum ekki að hafa center með þessu formati
             #print("{0: >40}".format(info))
 
@@ -31,3 +29,7 @@ class Print_format():
             print(info.center(20), end="")
 
         print("")
+
+    def question(self,question):
+        formatted = "|\t{:<40}: ".format(question)
+        return formatted

@@ -3,42 +3,35 @@ from Logic_classes.logic_wrapper import LogicAPI
 from Model_classes.Vehicle import Vehicle
 from Model_classes.Contract import Contract
 from Model_classes.Customer import Customer
-<<<<<<< Updated upstream
 from UI_classes.Print_formats import Print_format
-=======
-from UI_classes.Print_formats import print_format
->>>>>>> Stashed changes
 
 
 #def make_vehicle(ride):
 #    print(vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"]))
 
-class Non_Rvk():
-<<<<<<< Updated upstream
+class Non_rvk():
     def __init__(self, username, pword):
         self.logic = LogicAPI(username, pword)
         self.employee_num = username
         self.login_id = username
-        self.formatter = Print_format()
+        self.format = Print_format()
+
+    def returner(self):
+        return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
+        if return_to_mainmenu == "y":
+            self.main_menu()
+        else:
+            return None
+
 
     #Maine menu loop
-    def main_menu(self,going = 0):
+    def main_menu(self,gogo = "yes"):
         title = 'welcome Employee{}'.format(self.login_id)
-        self.formatter.print_title(title)
+        self.format.print_title(title)
         menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,,( q ) Quit."
-        self.formatter.print_main_menu(menu)
-        self.formatter.print_title(len(title)*"-")
+        self.format.print_main_menu(menu)
+        self.format.print_title(len(title)*"-")
 
-=======
-    def __init__(self):
-        self.login_id = "12"
-        self.logic = LogicAPI("1","1")
-        self.formatter - Print_format()
-
-    #Maine menu loop
-    def main_menu(self,going = 0):
-        self.formatter.print_title('welcome Employee{}'.format(self.login_id))
->>>>>>> Stashed changes
     #     print(""" 
     # ------------------ Welcome, Employee {} ------------------\n
     # ( 1 ) = Register New Vehicle.
@@ -48,33 +41,26 @@ class Non_Rvk():
 
     # ( q ) = Quit.
     
-    # -----------------------------------------------------------""".format(self.employee_num))
-        if going == 0:
-            while True:
-                option = input("Enter Choice here: ")
-                if option == "1":
-                    Non_Rvk.menu1()
-                elif option == "2":
-                    Non_Rvk.menu2()
-                elif option == "3":
-                    Non_Rvk.menu3()
-                elif option == "4":
-                    Non_Rvk.menu4()
-                elif option == "q":
-                    return False
-                else:
-                    print("Not a valid Option! ")
-                    Non_Rvk.main_menu()
-        else:
-            print("Bye bye")
+    # -----------------------------------------------------------""".format(self.employee_num)):
+        while True:
+            if gogo == None:
+                break
+            option = input("Enter Choice here: ")
+            if option == "1":
+                self.menu1()
+            elif option == "2":
+                self.menu2()
+            elif option == "3":
+                self.menu3()
+            elif option == "4":
+                self.menu4()
+            elif option == "q":
+                break
+            else:
+                print("Not a valid Option! ")
 
 
-    def returner(self):
-        return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
-        if return_to_mainmenu == "y":
-            self.main_menu()
-        else:
-            self.main_menu(25)
+
 
 
 
@@ -83,24 +69,28 @@ class Non_Rvk():
     #Register vehicle menu
     def menu1(self):
         title = ("Register new vehicle")
-        self.formatter.print_title(title)
+        self.format.print_title(title)
 
-        name = input("Vehicle name / licence plate: ")
-        typer = input("Vehicle type: ") # What kinda vehicle can be from a Polar bear or scuba piledriver to a tricecle
-        model = input("Vehicle Model: ")
-        manufacturer = input("Input vehicle Manufacturer: ")
-        color = input("Vehicle Color: ")
-        condition = input("Vehicle Condition: ")
-        location = input("Input cars location: ")
-        id_type = input("license needed to drive vehicle: ")
+        name = input(self.format.question("Vehicle name / licence plate "))
+        typer = input(self.format.question("Vehicle type "))    # What kinda vehicle can be from a Polar bear or scuba piledriver to a tricecle
+        model = input(self.format.question("Vehicle Model "))
+        manufacturer = input(self.format.question("Input vehicle Manufacturer "))
+        color = input(self.format.question("Vehicle Color "))
+        condition = input(self.format.question("is car ok ( y / n ) "))
+        location = input(self.format.question("Input cars location "))
+        id_type = input(self.format.question("license needed to drive vehicle "))
 
         while True:
             try:
-                age = float(input("Input year that the vehicle was Manufacturerd: "))
-                tax = float(input("Input the tax on the vehicle rent: "))
+                age = float(input(self.format.question("Manufacturing Year: ")))
+                tax = float(input(self.format.question("vehicle tax: ")))
                 break
             except:
                 print("Invalid input, Try again")
+
+        self.format.print_title(len(title)*"-")
+
+        
 
         if condition == "ok":
             condition = "available"
@@ -111,12 +101,12 @@ class Non_Rvk():
 
         register_more = input("Wish to register more vehicles? y/n: ")
         if register_more == "y" :
-            Non_Rvk().menu1()
+            self.menu1()
         
         # Making a dict list of the info of the newly registerd car
-        Non_Rvk.returner()
+        self.returner()
         
-        return
+        return None
 
 
 
@@ -124,12 +114,12 @@ class Non_Rvk():
     # Afhenda bilinn til utleigu
     def menu2(self):
         title =("Loan Vehicle")
-        self.formatter.print_title(title)
+        self.format.print_title(title)
 
-        customer_id =       input("input customer ID: ")
-        contract_id =       input("input contract ID: ")
+        customer_id =       input(self.format.question("input customer ID "))
+        contract_id =       input(self.format.question("input contract ID "))
         
-        self.formatter.print_title(len(title))
+        self.format.print_title(len(title)*"-")
 
 
         contract = self.logic.get_contract(contract_id)
@@ -148,11 +138,11 @@ class Non_Rvk():
         title = ("Recive Vehicle")
 
         self.formatter.print_title(title)
-        returning_contract_ID =         input("Input contract ID: ")
-        returning_vehicle_condition =   input("Input vehicle condition(ok/bad): ")
-        returning_vehicle_late =        input("Is the vehicle late(y/n): ")
+        returning_contract_ID =         input(self.format.question("Input contract ID: "))
+        returning_vehicle_condition =   input(self.format.question("Input vehicle condition(ok/bad): "))
+        returning_vehicle_late =        input(self.format.question("Is the vehicle late(y/n): "))
 
-        self.formatter.print_title(len(title))
+        self.format.print_title(len(title)*"-")
 
         contract = self.logic.get_contract(returning_contract_ID)
         customer_id = contract.customer_id
@@ -161,7 +151,7 @@ class Non_Rvk():
 
         if returning_vehicle_condition == "ok":
             vehicle_condition = {"available":"available"}
-            self.logic.change_information(vehicle_id,vehicle_condition)
+            self.logic.change_vehicle_info(vehicle_id,vehicle_condition)
 
 
         if returning_vehicle_late == "n":
@@ -171,7 +161,7 @@ class Non_Rvk():
             print("Chuck is not happy!")
             customer.bbp += 2
         
-        Non_Rvk.returner()
+        self.returner()
         return
         # Adda gbp 
 
@@ -185,7 +175,7 @@ class Non_Rvk():
         title = ("Check Vehicle")
         self.formatter.print_title(title)
         checking_vehicle_ID = input("Enter vehicle ID: ")
-        self.formatter.print_title(len(title))
+        self.formatter.print_title(len(title)*"-")
 
 
         vehicle = self.logic.get_vehicle(checking_vehicle_ID)
@@ -194,9 +184,9 @@ class Non_Rvk():
         checking_more = input("Wish to check on more vehicles? y/n: ")
 
         if checking_more == "y" :
-            Non_Rvk().menu4()
+            self.menu4()
         else:
-            Non_Rvk.returner()
+            self.returner()
             return
 
 

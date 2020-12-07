@@ -6,8 +6,9 @@ from UI_classes.Print_formats import Print_format
 import sys #Spurning að breyta yfir í orginal loggin skjá
 
 class Master_login():
-    def __init__(self):
-        self.logic = LogicAPI("1","1")
+    def __init__(self, username, pword):
+        self.logic = LogicAPI(username, pword)
+        self.printer = Print_format()
         
 
     # Upprunalega print formatið ef hitt skyldi fara í klessu!
@@ -59,28 +60,28 @@ class Master_login():
                 sys.exit() # Þessu hérna
 
             elif option == "1":
-                Master_login().Earnings_report()
+                self.Earnings_report()
                 menus = False
 
             elif option == "2":
-                Master_login().Vehicle_reports()
+                self.Vehicle_reports()
                 menus = False
 
             elif option == "3":
-                Master_login().Bill_overview()
+                self.Bill_overview()
                 menus = False
 
             elif option == "4":
-                Master_login().Round_house()
+                self.Round_house()
                 menus = False
 
             elif option == "5":
-                Master_login().All_contracts()
+                self.All_contracts()
                 menus = False
 
             else:
                 print("Not a valid input!" "\n")
-                Master_login().chuck_login()
+                self.chuck_login()
 
     def Earnings_report(self):
         # Print_format.print_title(self, "Earning Report")
@@ -120,13 +121,34 @@ class Master_login():
 
         pass
     def Round_house(self):
-        # Print_format.print_title("Round House Kick")
-        # information = ("( 1 ) Kill Customer,( 2 ) Fire Employee ")
-        # Call Kickdownstairs when fire someone
+        rhk = "Round House Kick"
+        self.printer.print_title(rhk)
+        information = ("( 1 ) Kill Customer,( 2 ) Fire Employee ")
+        self.printer.print_out_format(information)
         #Something Something Something Dark Side
+        who_to_kill = input("Enter Choice here: ")
         # Hérna kallar hann kill customer og fire employee. Og Round Housar þau. Þarf að fá til baka númer frá föllunum til að setja í print skipunina.
-        # Print(f"Employee {} you have been Roundhoused out of this company! ")
-        pass
+        if who_to_kill == "1":
+            cust_ID = input("Enter victim's customer ID ")
+            customer = self.logic.get_customer(cust_ID)
+            if customer:
+                cust_name = customer.customer_name
+                self.kickdownstairs(cust_name)
+                self.logic.kill_customer(cust_ID)
+            else:
+                print("Customer not found")
+        if who_to_kill == "2":
+            emp_ID = input("Enter victim's employee ID ")
+            employee = self.logic.get_employee(emp_ID)
+            if employee:
+                emp_name = employee.employee_name
+                print(self.kickdownstairs(emp_name))
+                self.logic.fire_employee(emp_ID)
+            else:
+                print("Employee not found")
+        else:
+            self.returner()
+        
 
     def All_contracts(self):
         # Hérna kallar hann í að sjá lista yfir alla contracts sem hafa gengið í geggnum fyrirtækið.
@@ -135,24 +157,25 @@ class Master_login():
         Print_format.print_out_format(self,information)
         contracts = self.logic.all_contracts()
         for item in contracts:
-            
             Print_format.print_out_format(self,str(item))
         Print_format.print_title(self,len("Contract Overview")*"-")
 
-        Master_login.returner(self)
+        self.returner()
 
 
     def kickdownstairs(self, name):
         output = ("""
             THIS IS NAN AIR!
-        ○
+
+        ○   < Chuck Norris
         く|)へ
-        〉
-        ￣￣┗┓_         {}
-    　 　      ┗┓_     ヾ○ｼ
+          〉
+        ￣￣┗┓_         V {} V
+    　 　      ┗┓_       ヾ○ｼ
     　　          ┗┓_   ヘ/ 　 　
-    　               ┗┓ノ_
-    　 　 　 　 　        ┗┓
+    　               ┗┓_ノ
+    　 　 　 　 　      ┗┓
             """).format(name)
         return output
+
 

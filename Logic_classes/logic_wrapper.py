@@ -33,7 +33,7 @@ class LogicAPI:
         """
         if not self.priv_location:
             return 0
-        elif self.priv_location >= 3:
+        elif self.priv_location >= "3":
             return 3
         else:
             return self.priv_location
@@ -80,12 +80,12 @@ class LogicAPI:
         self.new_contract(self.user, customer_ID, vehicle_ID, start_date, end_date)
         return "success"
         
-    def use_GBP(self, customer_ID):
-        Customer = self.get_customer(customer_ID)
-        gbp = Customer.gbp
-        discount = int(gbp)*1000
-        self.change_customer(customer_ID, {"gbp":"0"})
-        return discount
+    # def use_GBP(self, customer_ID):
+    #     Customer = self.get_customer(customer_ID)
+    #     gbp = Customer.gbp
+    #     discount = int(gbp)*1000
+    #     self.change_customer(customer_ID, {"gbp":"0"})
+    #     return discount
 
         
 
