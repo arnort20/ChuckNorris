@@ -8,9 +8,9 @@ from Model_classes.Customer import Customer
 #    print(vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"]))
 
 class Non_Rvk():
-    def __init__(self):
-        self.logic = LogicAPI("1","1")
-        self.employee_num = "69"
+    def __init__(self, username, pword):
+        self.logic = LogicAPI(username, pword)
+        self.employee_num = username
 
     #Maine menu loop
     def main_menu(self,going = 0):
