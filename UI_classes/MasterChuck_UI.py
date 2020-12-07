@@ -9,6 +9,7 @@ import sys #Spurning að breyta yfir í orginal loggin skjá
 class Master_login():
     def __init__(self):
         self.logic = LogicAPI("1","1")
+        self.chuck_login()
 
     # Upprunalega print formatið ef hitt skyldi fara í klessu!
     # def print_title(self,title):
