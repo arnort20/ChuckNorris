@@ -36,24 +36,16 @@ class Master_login():
 
     #    print("")
 
-    def returner(self):
-        print("")
-        return_to_mainmenu = input("Would Mr.Chuck like to return to the Main Menu? y/n: ")
-        if return_to_mainmenu == "y":
-            self.chuck_login()
-        else:
-            return None
-
     def chuck_login(self):
         menus = True
         title = "Welcome Master Chuck!"
         Print_format.print_title(self,title)
-        option = "( 1 ) Review Earnings Report,( 2 ) View Vehicle Reports,( 3 ) View Bill Overview,( 4 ) Round House Kick,( 5 ) View All Contracts,( q ) Quit"
-        Print_format.print_main_menu(self,option)
-        Print_format.print_title(self,len(title)*"-")
+        option = "( 1 ) Review Earnings Report,( 2 ) View Vehicle Reports,( 3 ) View Bill Overview,( 4 ) Round House Kick,( 5 ) View All Contracts,,( q ) Quit"
+        self.printer.print_main_menu(option)
+        Print_format.print_line(self,len(title)*"_")
 
 
-        option = input("Enter Choice here: ")
+        option = input(self.printer.question("Enter Choice here: "))
         while menus:
             if option == "q":
                 menus = False
@@ -126,7 +118,7 @@ class Master_login():
         information = ("( 1 ) Kill Customer,( 2 ) Fire Employee ")
         self.printer.print_out_format(information)
         #Something Something Something Dark Side
-        who_to_kill = input("Enter Choice here: ")
+        who_to_kill = input(self.printer.question("Enter Choice here: "))
         # Hérna kallar hann kill customer og fire employee. Og Round Housar þau. Þarf að fá til baka númer frá föllunum til að setja í print skipunina.
         if who_to_kill == "1":
             cust_ID = input("Enter victim's customer ID ")
@@ -147,20 +139,19 @@ class Master_login():
             else:
                 print("Employee not found")
         else:
-            self.returner()
-        
+            return
 
     def All_contracts(self):
         # Hérna kallar hann í að sjá lista yfir alla contracts sem hafa gengið í geggnum fyrirtækið.
-        Print_format.print_title(self,"Contract Overview")
+        self.printer.print_title("Contract Overview")
         information = ("ID,Employee ID,Customer ID,Vehicle ID,Start Date,End Date,Paid")
-        Print_format.print_out_format(self,information)
+        self.printer.print_out_format(information)
         contracts = self.logic.all_contracts()
         for item in contracts:
-            Print_format.print_out_format(self,str(item))
-        Print_format.print_title(self,len("Contract Overview")*"-")
-
-        self.returner()
+            self.printer.print_out_format(str(item))
+        self.printer.print_line(len("Contract Overview")*"_")
+        
+        return
 
 
     def kickdownstairs(self, name):
