@@ -80,12 +80,12 @@ class LogicAPI:
         self.new_contract(self.user, customer_ID, vehicle_ID, start_date, end_date)
         return "success"
         
-    def use_GBP(self, customer_ID):
-        Customer = self.get_customer(customer_ID)
-        gbp = Customer.gbp
-        discount = int(gbp)*1000
-        self.change_customer(customer_ID, {"gbp":"0"})
-        return discount
+    # def use_GBP(self, customer_ID):
+    #     Customer = self.get_customer(customer_ID)
+    #     gbp = Customer.gbp
+    #     discount = int(gbp)*1000
+    #     self.change_customer(customer_ID, {"gbp":"0"})
+    #     return discount
 
         
 

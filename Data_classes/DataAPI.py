@@ -45,6 +45,8 @@ class DataAPI(object):
 
         return Employee(info["id"],info["employee_name"],info["ssn"],info["address"],info["phone"],info["email"],info["location"],info["password"])
 
+    
+
 
 
     # get single-------------done
@@ -160,6 +162,7 @@ class DataAPI(object):
         return self.get.get_id("Data_files\Employees.csv")
 
     def bill_makeID(self):
+        #not needed
         return self.get.get_id("Data_files\bills.csv")
 
 
@@ -186,8 +189,8 @@ class DataAPI(object):
         dicter = {"id":ident,"employee_name":employee_name,"ssn":ssn,"address":address,"phone":phone,"email":email,"location":location,"password":password}
         self.add.add(dicter,"Data_files\Employees.csv")
 
-    def add_bill(self,ident,employee_name,ssn,address,phone,email,location,password):
-        dicter = {"id":ident,"employee_name":employee_name,"ssn":ssn,"address":address,"phone":phone,"email":email,"location":location,"password":password}
+    def add_bill(self, contract_id, return_date, gbp):
+        dicter = {"contract_id":contract_id,"return_date":return_date, "gbp":gbp}
         self.add.add(dicter,"Data_files\bills.csv")
 
 
@@ -207,6 +210,9 @@ class DataAPI(object):
     def change_Employee(self,ident,changes):
         self.chang.change("Data_files\Employees.csv",ident,changes)
 
+    def change_Bill(self,ident,changes):
+        self.chang.change("Data_files\bills.csv",ident,changes)
+
 
 
     #delete single-------------done
@@ -224,3 +230,6 @@ class DataAPI(object):
 
     def delete_employee(self,ident):
         self.dell.dell("Data_files\Employees.csv",ident)
+
+    def delete_bill(self,ident):
+        self.dell.dell("Data_files\bills.csv",ident)
