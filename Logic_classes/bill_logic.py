@@ -10,7 +10,7 @@ class Bill:
     def calculate_price(self, contract_ID):
         fined = False
         the_bill = self.dAPI.get_bill(contract_ID)
-        return_date = the_bill.
+        return_date = the_bill.return_date
         contract = self.dAPI.get_contract(contract_ID)
         vehicle = self.dAPI.get_vehicle(contract.vehicle_id)
         vehi_tax = vehicle.tax
