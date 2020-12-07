@@ -36,7 +36,11 @@ class Non_rvk():
             self.format.print_title(title,self.width)
             menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,,( q ) Quit."
             self.format.print_main_menu(menu,self.width)
+<<<<<<< Updated upstream
             self.format.print_line(len(title)*"_",self.width)
+=======
+            self.format.print_title(len(title)*"-",self.width)
+>>>>>>> Stashed changes
 
 
             option = input(self.format.question("Enter Choice here",self.width))
@@ -67,6 +71,29 @@ class Non_rvk():
 
     #Register vehicle menu
     def menu1(self):
+<<<<<<< Updated upstream
+=======
+        self.liner()
+        title = ("Register new vehicle")
+        self.format.print_title(title)
+
+        name = input(self.format.question("Vehicle name / licence plate "))
+        typer = input(self.format.question("Vehicle type "))    # What kinda vehicle can be from a Polar bear or scuba piledriver to a tricecle
+        model = input(self.format.question("Vehicle Model "))
+        manufacturer = input(self.format.question("Input vehicle Manufacturer "))
+        color = input(self.format.question("Vehicle Color "))
+        condition = input(self.format.question("is car ok ( y / n ) "))
+        location = input(self.format.question("Input cars location "))
+        id_type = input(self.format.question("license needed to drive vehicle "))
+
+        while True:
+            try:
+                age = float(input(self.format.question("Manufacturing Year: ")))
+                tax = float(input(self.format.question("vehicle tax: ")))
+                break
+            except:
+                print("Invalid input, Try again")
+>>>>>>> Stashed changes
 
 
         # name = input(self.format.question("Vehicle name / licence plate ",self.width))
@@ -172,21 +199,37 @@ class Non_rvk():
     def menu4(self):
         #Here it needs to get the list of vehicles from Vehicles.csv and look up the Key word[ID] and print out everything about the car.
         self.liner()
+<<<<<<< Updated upstream
         while True:
             title = ("Check Vehicle")
             self.format.print_title(title,self.width)
             checking_vehicle_ID = input(self.format.question("Enter vehicle ID",self.width))
+=======
+        space = 10
+        while True:
+            title = ("Check Vehicle")
+            self.format.print_title(title,self.width)
+            checking_vehicle_ID = input(self.format.question("Enter vehicle ID: ",self.width))
+>>>>>>> Stashed changes
             info = ("ID,Plate,Type,Manufacturer,Model,Color,Age,Tax,Available,Location id,License type")
             vehicle = self.logic.get_vehicle(checking_vehicle_ID)
 
 
             self.format.print_title(checking_vehicle_ID,self.width)
+<<<<<<< Updated upstream
             self.format.print_out_format(str(info),self.width)
             self.format.print_space(self.width)
 
             self.format.print_out_format(str(vehicle),self.width)
 
             self.format.print_line(len(checking_vehicle_ID)*"_",self.width)
+=======
+            self.format.print_out_format(str(info),space)
+            print()
+            self.format.print_out_format(str(vehicle),space)
+
+            self.format.print_title(len(checking_vehicle_ID)*"-",self.width)
+>>>>>>> Stashed changes
 
 
 
