@@ -174,22 +174,22 @@ class DataAPI(object):
 
 
     # change single
-    def change_vehicle(self,id,changes):
+    def change_vehicle(self,ident,changes):
         #"self" issues again -nori
-        self.chang.change("Data_files\Vehicles.csv",id,changes)
+        self.chang.change("Data_files\Vehicles.csv",ident,changes)
 
-    def change_Customer(self,id,changes):
-        self.chang.change("Data_files\Customers.csv",id,changes)
+    def change_Customer(self,ident,changes):
+        self.chang.change("Data_files\Customers.csv",ident,changes)
 
-    def change_Destination(self,id,changes):
-        self.chang.change("Data_files\Destinations.csv",id,changes)
+    def change_Destination(self,ident,changes):
+        self.chang.change("Data_files\Destinations.csv",ident,changes)
 
-    def change_Contract(self,id,changes):
-        self.chang.change("Data_files\Contracts.csv",id,changes)
+    def change_Contract(self,ident,changes):
+        self.chang.change("Data_files\Contracts.csv",ident,changes)
 
-    def change_Employee(self,id,changes):
+    def change_Employee(self,ident,changes):
         #uhhhh, wrong path? -nori
-        self.chang.change("Model_classes\Employee.py",id,changes)
+        self.chang.change("Data_files\Employees.csv",ident,changes)
 
 
 
