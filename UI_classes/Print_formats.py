@@ -1,7 +1,7 @@
 
 # Hér eru öll print format commands geymd.
 
-class print_format():
+class Print_format():
     def __init__(self):
         pass
 
