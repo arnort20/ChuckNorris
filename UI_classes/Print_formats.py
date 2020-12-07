@@ -4,17 +4,10 @@
 class Print_format():
 
 # Þessi þarf að geta prentað út Title á flottan hátt.
-<<<<<<< Updated upstream
     def print_title(self,title="_",width=200):# Langar að breyta þannig að Title centerist við info úr main menu!
     # Title = Nafn á Völdum kosti
 
         name_title = ('{:_^{size}}'.format(title,size = width)).center(width+40)
-=======
-    def print_title(self,title,width=135):# Langar að breyta þannig að Title centerist við info úr main menu!
-    # Title = Nafn á Völdum kosti
-        print("")
-        name_title = ('{:-^{size}}'.format(title,size = width)).center(width+40)
->>>>>>> Stashed changes
         print(name_title)
         print("{:>20} ".format("|"),end= "")
         print("{:>{size}} ".format("|",size = width))
@@ -35,7 +28,6 @@ class Print_format():
 
 
     # þessi þarf að geta prentað út þægilegt og flott main menu 
-<<<<<<< Updated upstream
     def print_main_menu(self,option,width=200):
         # Prentar út Main menu textan í ákveðnu formati
         splitt_info = option.split(",")
@@ -48,14 +40,6 @@ class Print_format():
             print(title,end="")
 
             print("{:>{size}} ".format("|",size = width-48-int(width/2.4)))
-=======
-    def print_main_menu(self,option,width=0):
-        # Prentar út Main menu textan í ákveðnu formati
-        splitt_info = option.split(",")
-        for info in splitt_info:
-            title = ("|\t{:<40}|".format(info)).center(width+40)
-            print(title)
->>>>>>> Stashed changes
             #Þurfum ekki að hafa center með þessu formati
             #print("{0: >40}".format(info))
 
@@ -78,16 +62,11 @@ class Print_format():
 
 
     # Þessi þarf að geta prentað út textan sem er sóttur úr skjölum á þokkalegan hátt
-<<<<<<< Updated upstream
     def print_out_format(self,information,width=200):
-=======
-    def print_out_format(self,information,width=0):
->>>>>>> Stashed changes
         # Information = Efsta línan sem er upplysingar um hvað er hvað.
 
 
         splitt_info = information.split(",")
-<<<<<<< Updated upstream
         print("{:>20}".format("|"),end = " ")
         for info in splitt_info:
             print(info.center(int(width/len(splitt_info))), end="")
@@ -107,15 +86,4 @@ class Print_format():
     def question(self,question,width = 200):
         print("{:>{size}} ".format("",size = int(width/2-20)),end="")
         formatted = "{:>46}: ".format(question)
-=======
-        streng = ""
-        print((" "*int(width)), end="")
-        for info in splitt_info:
-            print(info.center(20), end="")
-        print("")
-
-
-    def question(self,question,width = 0):
-        formatted = ((" "*int(width/2-2))+"|\t{:<40}: ".format(question))
->>>>>>> Stashed changes
         return formatted
