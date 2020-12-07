@@ -122,6 +122,7 @@ class Master_login():
     def Round_house(self):
         # Print_format.print_title("Round House Kick")
         # information = ("( 1 ) Kill Customer,( 2 ) Fire Employee ")
+        # Call Kickdownstairs when fire someone
         #Something Something Something Dark Side
         # Hérna kallar hann kill customer og fire employee. Og Round Housar þau. Þarf að fá til baka númer frá föllunum til að setja í print skipunina.
         # Print(f"Employee {} you have been Roundhoused out of this company! ")
@@ -134,6 +135,7 @@ class Master_login():
         Print_format.print_out_format(self,information)
         contracts = self.logic.all_contracts()
         for item in contracts:
+            
             Print_format.print_out_format(self,str(item))
         Print_format.print_title(self,len("Contract Overview")*"-")
 
@@ -154,6 +156,3 @@ class Master_login():
             """).format(name)
         return output
 
-
-
-Master_login().chuck_login()
