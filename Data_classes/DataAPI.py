@@ -86,7 +86,7 @@ class DataAPI(object):
 
     def get_bill(self,ident):
         try:
-            bill = self.get.get_certein(ident,"Data_files\bills.csv")
+            bill = self.get.get_certein(ident,"Data_files\Bills.csv")
             return bill
         except:
             return None
@@ -137,7 +137,7 @@ class DataAPI(object):
         return employee_list
 
     def get_bills(self):
-        bills = self.get.get_csv("Data_files\bills.csv")
+        bills = self.get.get_csv("Data_files\Bills.csv")
         return bills
 
 
@@ -160,7 +160,7 @@ class DataAPI(object):
         return self.get.get_id("Data_files\Employees.csv")
 
     def bill_makeID(self):
-        return self.get.get_id("Data_files\bills.csv")
+        return self.get.get_id("Data_files\Bills.csv")
 
 
     #add single-------------done
@@ -186,7 +186,7 @@ class DataAPI(object):
 
     def add_bill(self,ident,employee_name,ssn,address,phone,email,location,password):
         dicter = {"id":ident,"employee_name":employee_name,"ssn":ssn,"address":address,"phone":phone,"email":email,"location":location,"password":password}
-        self.add.add(dicter,"Data_files\bills.csv")
+        self.add.add(dicter,"Data_files\Bills.csv")
 
 
 
