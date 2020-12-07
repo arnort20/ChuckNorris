@@ -3,13 +3,18 @@ from Logic_classes.logic_wrapper import LogicAPI
 from Model_classes.Vehicle import Vehicle
 from Model_classes.Contract import Contract
 from Model_classes.Customer import Customer
+<<<<<<< Updated upstream
 from UI_classes.Print_formats import Print_format
+=======
+from UI_classes.Print_formats import print_format
+>>>>>>> Stashed changes
 
 
 #def make_vehicle(ride):
 #    print(vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"]))
 
 class Non_Rvk():
+<<<<<<< Updated upstream
     def __init__(self, username, pword):
         self.logic = LogicAPI(username, pword)
         self.employee_num = username
@@ -24,6 +29,16 @@ class Non_Rvk():
         self.formatter.print_main_menu(menu)
         self.formatter.print_title(len(title)*"-")
 
+=======
+    def __init__(self):
+        self.login_id = "12"
+        self.logic = LogicAPI("1","1")
+        self.formatter - Print_format()
+
+    #Maine menu loop
+    def main_menu(self,going = 0):
+        self.formatter.print_title('welcome Employee{}'.format(self.login_id))
+>>>>>>> Stashed changes
     #     print(""" 
     # ------------------ Welcome, Employee {} ------------------\n
     # ( 1 ) = Register New Vehicle.
