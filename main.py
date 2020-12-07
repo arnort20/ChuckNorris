@@ -24,6 +24,7 @@ if __name__ == "__main__":
         user.chuck_login()
     elif location == "2":
         user = RVK_emp(username, pword)
+        user.main_menu()
     #elif location == 3:
         #user = Non_Rvk(username, pword)
     else:
