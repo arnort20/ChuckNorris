@@ -6,8 +6,8 @@ from UI_classes.Print_formats import Print_format
 import sys #Spurning að breyta yfir í orginal loggin skjá
 
 class Master_login():
-    def __init__(self):
-        self.logic = LogicAPI("1","1")
+    def __init__(self, username, pword):
+        self.logic = LogicAPI(username, pword)
         
 
     # Upprunalega print formatið ef hitt skyldi fara í klessu!
