@@ -8,7 +8,7 @@ class Contract:
         contract=self.dAPI.get_contract(contractID)
         return contract
     def change_contract(self, contractID, change_value):
-        dAPI.change_Contract(contractID, change_value)
+        self.dAPI.change_Contract(contractID, change_value)
 
         #sends contractID and dict with value for change to the data layer
         

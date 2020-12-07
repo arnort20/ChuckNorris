@@ -175,7 +175,6 @@ class DataAPI(object):
 
     # change single
     def change_vehicle(self,ident,changes):
-        #"self" issues again -nori
         self.chang.change("Data_files\Vehicles.csv",ident,changes)
 
     def change_Customer(self,ident,changes):
@@ -188,7 +187,6 @@ class DataAPI(object):
         self.chang.change("Data_files\Contracts.csv",ident,changes)
 
     def change_Employee(self,ident,changes):
-        #uhhhh, wrong path? -nori
         self.chang.change("Data_files\Employees.csv",ident,changes)
 
 

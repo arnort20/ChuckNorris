@@ -1,12 +1,12 @@
-
+from Logic_classes.logic_wrapper import LogicAPI
 
 import datetime
-#from Logic_classes.logic_wrapper import LogicAPI
+
 
 class RVK_emp:
-    def __init__(self):
-        self.employee_num = '69'
-        #self.logic = LogicAPI()
+    def __init__(self, username, pword):
+        self.employee_num = username
+        self.logic = LogicAPI(username, pword)
 
     def main_menu(self):
         while True:
