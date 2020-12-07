@@ -2,8 +2,9 @@ import datetime
 from Logic_classes.logic_wrapper import LogicAPI as lAPI
 api = lAPI("1","1")
 
+api.change_contract("2", {"start_date":"2021,1,10","end_date":"2021,1,24"})
+#cont = api.get_contract("2")
 
-cont = api.get_contract("2")
 
 
 # sasasoola = api.get_vehicle("7")
