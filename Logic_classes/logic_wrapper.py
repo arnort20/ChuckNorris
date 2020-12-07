@@ -3,6 +3,7 @@ from .contract_logic import Contract as cont_logic
 from .employee_logic import Employee as emp_logic
 from .destination_logic import Destination as dest_logic
 from .customer_logic import Customer as cust_logic
+from .bill_logic import Bill as bill_logic
 import datetime
 
 class LogicAPI:
@@ -53,20 +54,23 @@ class LogicAPI:
     def destination_wrapper(self):
         self.destination = dest_logic()  
 
-    #bill things
-    def make_bill(self,contract_ID,return_date):
-        default_cost=10000
-        contract=self.get_contract(contract_ID)
-        vehicle=self.get_vehicle(contract_ID)
-        date_1=contract.start_date
-        date_2=contract.end_date
-        date_3=self.return_date
-        vehicle_rate=vehicle.tax
+    def bill_wrapper(self):
+        self.bill = bill_logic()
+
+    # #bill things
+    # def make_bill(self,contract_ID,return_date):
+    #     default_cost=10000
+    #     contract=self.get_contract(contract_ID)
+    #     vehicle=self.get_vehicle(contract_ID)
+    #     date_1=contract.start_date
+    #     date_2=contract.end_date
+    #     date_3=self.return_date
+    #     vehicle_rate=vehicle.tax
 
 
-        if date_3 > date_2:
-            pass
-        #make the contract:
+    #     if date_3 > date_2:
+    #         pass
+    #     #make the contract:
     
     def make_new_contract(self, customer_ID, vehicle_ID, start_date, end_date):
 
@@ -205,3 +209,13 @@ class LogicAPI:
     def change_destination(self, dest_ID, change_dict):
         self.destination_wrapper()
         self.destination.change_destination(dest_ID, change_dict)
+
+    #billing stuff
+    def new_bill(self, contractID, return_date, gbp_used):
+        self.bill_wrapper()
+        self.bill.new_bill(contractID, return_date, gbp_used)
+
+    def get_bill_info(self, contractID):
+        self.bill_wrapper()
+        return self.bill.get_bill_info(contractID)
+
