@@ -16,35 +16,16 @@ class Non_rvk():
         self.login_id = username
         self.format = Print_format()
 
-    def returner(self):
-        return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
-        if return_to_mainmenu == "y":
-            self.main_menu()
-        else:
-            return None
-
-
     #Maine menu loop
-    def main_menu(self,gogo = "yes"):
-        title = 'welcome Employee{}'.format(self.login_id)
-        self.format.print_title(title)
-        menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,,( q ) Quit."
-        self.format.print_main_menu(menu)
-        self.format.print_title(len(title)*"-")
-
-    #     print(""" 
-    # ------------------ Welcome, Employee {} ------------------\n
-    # ( 1 ) = Register New Vehicle.
-    # ( 2 ) = Loan Vehicle.
-    # ( 3 ) = Recieve Vehicle.
-    # ( 4 ) = Check Vehicle.
-
-    # ( q ) = Quit.
-    
-    # -----------------------------------------------------------""".format(self.employee_num)):
+    def main_menu(self):
         while True:
-            if gogo == None:
-                break
+            title = 'welcome Employee {}'.format(self.login_id)
+            self.format.print_title(title)
+            menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,,( q ) Quit."
+            self.format.print_main_menu(menu)
+            self.format.print_title(len(title)*"-")
+
+
             option = input("Enter Choice here: ")
             if option == "1":
                 self.menu1()
@@ -90,8 +71,6 @@ class Non_rvk():
 
         self.format.print_title(len(title)*"-")
 
-        
-
         if condition == "ok":
             condition = "available"
         else:
@@ -102,12 +81,8 @@ class Non_rvk():
         register_more = input("Wish to register more vehicles? y/n: ")
         if register_more == "y" :
             self.menu1()
-        
-        # Making a dict list of the info of the newly registerd car
-        self.returner()
-        
-        return None
-
+         
+        return
 
 
 
@@ -128,7 +103,6 @@ class Non_rvk():
         vehicle_condition = {"available":"unavailable"}
         self.logic.change_information(vehicle_ID,vehicle_condition )
 
-        self.returner()
         return
 
 
@@ -160,8 +134,7 @@ class Non_rvk():
         else:
             print("Chuck is not happy!")
             customer.bbp += 2
-        
-        self.returner()
+
         return
         # Adda gbp 
 
@@ -172,22 +145,30 @@ class Non_rvk():
 
     def menu4(self):
         #Here it needs to get the list of vehicles from Vehicles.csv and look up the Key word[ID] and print out everything about the car.
-        title = ("Check Vehicle")
-        self.formatter.print_title(title)
-        checking_vehicle_ID = input("Enter vehicle ID: ")
-        self.formatter.print_title(len(title)*"-")
+        while True:
+            title = ("Check Vehicle")
+            self.format.print_title(title)
+            checking_vehicle_ID = input(self.format.question("Enter vehicle ID: "))
+            info = ("ID,Plate,Type,Manufacturer,Model,Color,Age,Tax,Available,Location id,License type")
+            vehicle = self.logic.get_vehicle(checking_vehicle_ID)
 
 
-        vehicle = self.logic.get_vehicle(checking_vehicle_ID)
-        print(vehicle)
+            self.format.print_title(title)
+            self.format.print_out_format(str(info))
+            print()
+            self.format.print_out_format(str(vehicle))
 
-        checking_more = input("Wish to check on more vehicles? y/n: ")
+            self.format.print_title(len(title)*"-")
 
-        if checking_more == "y" :
-            self.menu4()
-        else:
-            self.returner()
-            return
+
+
+
+            checking_more = input("Wish to check on more vehicles? y/n: ")
+
+            if checking_more != "y" :
+                break
+ 
+        return
 
 
 
