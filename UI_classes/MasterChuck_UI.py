@@ -4,12 +4,12 @@ from Model_classes.Contract import Contract # Display all contracts overview
 #from Model_classes.Vehicle import Vehicle_reports Á eftir að búa til
 #from Model_classes.Bill overview bæta inn.
 from UI_classes.Print_formats import print_format
-
+import sys #Spurning að breyta yfir í orginal loggin skjá
 
 class Master_login():
     def __init__(self):
         self.logic = LogicAPI("1","1")
-        
+
     # Upprunalega print formatið ef hitt skyldi fara í klessu!
     # def print_title(self,title):
     #     # Title = Nafn á Völdum kosti
@@ -41,40 +41,43 @@ class Master_login():
         if return_to_mainmenu == "y":
             self.chuck_login()
         else:
-            self.chuck_login()
+            return None
 
     def chuck_login(self):
+        menus = True
         title = "Welcome Master Chuck!"
         print_format.print_title(self,title)
         option = "( 1 ) Review Earnings Report,( 2 ) View Vehicle Reports,( 3 ) View Bill Overview,( 4 ) Round House Kick,( 5 ) View All Contracts,( q ) Quit"
         print_format.print_main_menu(self,option)
         print_format.print_title(self,len(title)*"-")
 
-        while True:
-            option = input("Enter Choice here: ")
+
+        option = input("Enter Choice here: ")
+        while menus:
             if option == "q":
-                return False
+                menus = False
+                sys.exit() # Þessu hérna
 
             elif option == "1":
                 Master_login().Earnings_report()
-                break
+                menus = False
 
             elif option == "2":
                 Master_login().Vehicle_reports()
-                break
+                menus = False
 
             elif option == "3":
                 Master_login().Bill_overview()
-                break
+                menus = False
 
             elif option == "4":
                 Master_login().Round_house()
-                break
+                menus = False
 
             elif option == "5":
                 Master_login().All_contracts()
-                break
-                   
+                menus = False
+            
             else:
                 print("Not a valid input!" "\n")
                 Master_login().chuck_login()
