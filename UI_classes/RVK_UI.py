@@ -1,5 +1,5 @@
 from Logic_classes.logic_wrapper import LogicAPI
-from UI_classes.Print_formats import print_format
+from UI_classes.Print_formats import Print_format
 
 import datetime
 
@@ -7,6 +7,7 @@ import datetime
 class RVK_emp:
     def __init__(self, username, pword):
         self.employee_num = username
+        self.pword = pword
         self.logic = LogicAPI(username, pword)
 
     def main_menu(self):
@@ -20,17 +21,17 @@ class RVK_emp:
 
             option = input('Type here: ')
             if option == '1':
-                RVK_emp().create_contract()
+                RVK_emp(self.employee_num, self.pword).create_contract()
             elif option == '2':
-                RVK_emp().view_contract()
+                RVK_emp(self.employee_num, self.pword).view_contract()
             elif option == '3':
-                RVK_emp().print_report()
+                RVK_emp(self.employee_num, self.pword).print_report()
             elif option == '4':
-                RVK_emp().add_new_employee()
+                RVK_emp(self.employee_num, self.pword).add_new_employee()
             elif option == '5':
-                RVK_emp().change_employee()
+                RVK_emp(self.employee_num, self.pword).change_employee()
             elif option == '6':
-                RVK_emp().delete_employee()
+                RVK_emp(self.employee_num, self.pword).delete_employee()
             elif option.lower() == 'q':
                 return
                 #maybe go back to loginUI?
@@ -38,7 +39,7 @@ class RVK_emp:
                     print('Please input an option')
             else:
                 print('Not a valid option')
-                RVK_emp().main_menu()
+                RVK_emp(self.employee_num, self.pword).main_menu()
     
 
 
@@ -52,11 +53,11 @@ class RVK_emp:
 
             option = input('Type here: ')
             if option == '1':
-                RVK_emp().returning_customer()
+                RVK_emp(self.employee_num, self.pword).returning_customer()
             elif option == '2':
-                RVK_emp().new_customer()
+                RVK_emp(self.employee_num, self.pword).new_customer()
             elif option.lower() == 'r':
-                RVK_emp().main_menu()
+                RVK_emp(self.employee_num, self.pword).main_menu()
             elif option == '':
                 print('Please input an option')
             else:
@@ -78,10 +79,10 @@ class RVK_emp:
 ------------------------------------------''')
             option = input('Type here: ').lower()
             if option == 'c':
-                RVK_emp().menu1()
+                RVK_emp(self.employee_num, self.pword).create_contract()
             elif option == 'f':
                 #finds the costumer and creates a new contract
-                RVK_emp().menu1_3(1)
+                RVK_emp(self.employee_num, self.pword).menu1_3(1)
             elif option == '':
                 print('Please input an option')
             else:
@@ -90,7 +91,7 @@ class RVK_emp:
 
 
 
-    def menu1_2(self):
+    def new_customer(self):
         print('''
 ----New customer---------------------''')
         cust_info = []
@@ -105,10 +106,10 @@ class RVK_emp:
 ------------------------------------------''')
             option = input('Type here: ').lower()
             if option == 'c':
-                RVK_emp().menu1()
+                RVK_emp(self.employee_num, self.pword).create_contract()
             elif option == 'f':
                 #register new costumer and create new contract
-                RVK_emp().menu1_3(2)
+                RVK_emp(self.employee_num, self.pword).menu1_3(2)
                 pass
             elif option == '':
                 print('Please input an option')
@@ -119,6 +120,7 @@ class RVK_emp:
 
 
     def menu1_3(self, previous):
+        #previous says from what menu you came from
         print('''
 -----Creating new Contract------
 good boy points: {}''')#here should good boy points be extracted from data
@@ -140,13 +142,13 @@ good boy points: {}''')#here should good boy points be extracted from data
 Type here: ''').lower()
             if option == 'r':
                 if previous == 1:
-                    RVK_emp().menu1_1()
+                    RVK_emp(self.employee_num, self.pword).returning_customer()
                 elif previous == 2:
-                    RVK_emp().menu1_2()
+                    RVK_emp(self.employee_num, self.pword).new_customer()
             elif option == 'f':
                 pass
                 #register new contract
-                RVK_emp().main_menu()
+                RVK_emp(self.employee_num, self.pword).main_menu()
             elif option == '':
                 print('Please input an option')
             else:
@@ -155,7 +157,7 @@ Type here: ''').lower()
 
 
 
-    def menu2(self):
+    def view_contract(self):
         while True:
             print('''
 ------------Contract search-------------
@@ -172,11 +174,11 @@ Type here: ''').lower()
                 while True:
                     option = input('Type here: ').lower()
                     if option == 'c':
-                        RVK_emp().menu2_1()
+                        RVK_emp(self.employee_num, self.pword).menu2_1()
                     elif option == 'p':
-                        RVK_emp().menu2_2()
+                        RVK_emp(self.employee_num, self.pword).menu2_2()
                     elif option == 'r':
-                        RVK_emp().main_menu()
+                        RVK_emp(self.employee_num, self.pword).main_menu()
                     elif option == '':
                         print('Please input an option')
                     else:
@@ -214,7 +216,7 @@ Type here: ''').lower()
 ----------------------------------------''')
             option = input('Type Here: ')
             if option == 'c':
-                RVK_emp().menu2()
+                RVK_emp(self.employee_num, self.pword).view_contract()
             elif option == 'f':
                 #saves the contracts
                 pass
@@ -241,7 +243,7 @@ Type here: ''').lower()
 
 
 
-    def menu4(self):
+    def add_new_employee(self):
         print('''
 ------------------------New Employee-------------------------
 ''')
@@ -272,7 +274,7 @@ Type here: ''').lower()
                 emp_dict = {}
                 emp_dict[empID] = emp_info #Here's is where the employee is added
             elif option == 'r':
-                RVK_emp().main_menu()
+                RVK_emp(self.employee_num, self.pword).main_menu()
             elif option == '':
                 print('Please input an option')
             else:
@@ -282,7 +284,7 @@ Type here: ''').lower()
 
 
 
-    def menu5(self):
+    def change_employee(self):
         print('''
 ------------------------Change Employee------------------
 ''')
@@ -306,13 +308,13 @@ Type here: ''').lower()
                     new = input('New {}: '.format(info_list2[i]))
                     emp_info[i] = new
             #return emp_info to data bank
-        RVK_emp().main_menu()
+        RVK_emp(self.employee_num, self.pword).main_menu()
 
 
 
 
 
-    def menu6(self):
+    def delete_employee(self):
         print('''
 ------------------------Delete Employee------------------
 ''')
@@ -322,9 +324,9 @@ Type here: ''').lower()
             delete_confirm = input('\nConfirm ( y / n )').lower()
             if delete_confirm == 'y':
                 #makes the logic wrapper find it to delete
-                RVK_emp().main_menu()
+                RVK_emp(self.employee_num, self.pword).main_menu()
             elif delete_confirm == 'n':
-                RVK_emp().main_menu()
+                RVK_emp(self.employee_num, self.pword).main_menu()
             elif delete_confirm == '':
                 print('Please input an option')
             else:
@@ -333,4 +335,3 @@ Type here: ''').lower()
 
 
 
-RVK_emp().main_menu()

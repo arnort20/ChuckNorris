@@ -33,7 +33,7 @@ class LogicAPI:
         """
         if not self.priv_location:
             return 0
-        elif self.priv_location >= 3:
+        elif self.priv_location >= "3":
             return 3
         else:
             return self.priv_location

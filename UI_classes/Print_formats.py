@@ -2,8 +2,6 @@
 # Hér eru öll print format commands geymd.
 
 class Print_format():
-    def __init__(self):
-        pass
 
 # Þessi þarf að geta prentað út Title á flottan hátt.
     def print_title(self,title):# Langar að breyta þannig að Title centerist við info úr main menu!

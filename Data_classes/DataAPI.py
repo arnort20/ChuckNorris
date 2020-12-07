@@ -184,7 +184,7 @@ class DataAPI(object):
 
     def add_employee(self,ident,employee_name,ssn,address,phone,email,location,password):
         dicter = {"id":ident,"employee_name":employee_name,"ssn":ssn,"address":address,"phone":phone,"email":email,"location":location,"password":password}
-        self.add.add(dicter,"Model_classes\Employee.py")
+        self.add.add(dicter,"Data_files\Employees.csv")
 
     def add_bill(self,ident,employee_name,ssn,address,phone,email,location,password):
         dicter = {"id":ident,"employee_name":employee_name,"ssn":ssn,"address":address,"phone":phone,"email":email,"location":location,"password":password}

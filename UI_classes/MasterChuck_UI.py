@@ -2,12 +2,13 @@ from Logic_classes.logic_wrapper import LogicAPI
 from Model_classes.Contract import Contract # Display all contracts overview
 #from Model_classes.Vehicle import Vehicle_reports Á eftir að búa til
 #from Model_classes.Bill overview bæta inn.
-from UI_classes.Print_formats import print_format
+from UI_classes.Print_formats import Print_format
 import sys #Spurning að breyta yfir í orginal loggin skjá
 
 class Master_login():
-    def __init__(self):
-        self.logic = LogicAPI("1","1")
+    def __init__(self, username, pword):
+        self.logic = LogicAPI(username, pword)
+        self.printer = Print_format()
         
 
     # Upprunalega print formatið ef hitt skyldi fara í klessu!
@@ -46,10 +47,10 @@ class Master_login():
     def chuck_login(self):
         menus = True
         title = "Welcome Master Chuck!"
-        print_format.print_title(self,title)
+        Print_format.print_title(self,title)
         option = "( 1 ) Review Earnings Report,( 2 ) View Vehicle Reports,( 3 ) View Bill Overview,( 4 ) Round House Kick,( 5 ) View All Contracts,( q ) Quit"
-        print_format.print_main_menu(self,option)
-        print_format.print_title(self,len(title)*"-")
+        Print_format.print_main_menu(self,option)
+        Print_format.print_title(self,len(title)*"-")
 
 
         option = input("Enter Choice here: ")
@@ -59,50 +60,50 @@ class Master_login():
                 sys.exit() # Þessu hérna
 
             elif option == "1":
-                Master_login().Earnings_report()
+                self.Earnings_report()
                 menus = False
 
             elif option == "2":
-                Master_login().Vehicle_reports()
+                self.Vehicle_reports()
                 menus = False
 
             elif option == "3":
-                Master_login().Bill_overview()
+                self.Bill_overview()
                 menus = False
 
             elif option == "4":
-                Master_login().Round_house()
+                self.Round_house()
                 menus = False
 
             elif option == "5":
-                Master_login().All_contracts()
+                self.All_contracts()
                 menus = False
 
             else:
                 print("Not a valid input!" "\n")
-                Master_login().chuck_login()
+                self.chuck_login()
 
     def Earnings_report(self):
-        # print_format.print_title(self, "Earning Report")
+        # Print_format.print_title(self, "Earning Report")
         # information = ("Something fun")
-        # print_format.print_out_format(self,information)
+        # Print_format.print_out_format(self,information)
         # #earnings = self.logic_wrapper.HER COMES EARNINGS REPORT
         # for item in earnings:
-        #     print_format.print_out_format(self,str(item))
-        #     print_format.print_title(self,len("Earning Report")*"-")
+        #     Print_format.print_out_format(self,str(item))
+        #     Print_format.print_title(self,len("Earning Report")*"-")
         # Hérna þarf að sækja overall Reportið í logic wrapper, spendinding vs earnings
         # Mögulega eitthvað fleirra
         # Add a Returner
         pass
 
     def Vehicle_reports(self):
-        # print_format.print_title(self,"Vehicle Reports")
+        # Print_format.print_title(self,"Vehicle Reports")
         # information = ("Something about cars")
-        # print_format.print_out_format(self,information)
+        # Print_format.print_out_format(self,information)
         # vehicle_report = self.logic_wrapper.Vehicle_reports <---- Possible change
         # for item in vehicle_report:
-        #     print_format.print_out_format(self,str(vehicle_report))
-        #     print_format.print_title(self,len("Vehicle Reports")*"-")
+        #     Print_format.print_out_format(self,str(vehicle_report))
+        #     Print_format.print_title(self,len("Vehicle Reports")*"-")
         # Hérna þarf að sækja alla bílana frá logic wrappernum, og sýna hvaða bílar eru eftirsóttastir
         # og hvaða rapport yfir alla bílana sem valið er.
         #Add a Returner
@@ -110,50 +111,71 @@ class Master_login():
 
     def Bill_overview(self):
         # #Hérna þarf að sækja skýrslu frá samningum og skoða lista af öllum reikningum
-        # print_format.print_title(self, "Bill Overview")
+        # Print_format.print_title(self, "Bill Overview")
         # information = ("info")
-        # print_format.print_out_format(self, information)
+        # Print_format.print_out_format(self, information)
         # bills = self.logic.Bill_overview() <---- Possible change
         # for item in bills:
-        #      Master_login.print_out_format(self,str(item))
-        #      print_format.print_title(self,len("Bill Overview")*"-")
+        #      Print_format.print_out_format(self,str(item))
+        #      Print_format.print_title(self,len("Bill Overview")*"-")
 
         pass
     def Round_house(self):
-        # print_format.print_title("Round House Kick")
-        # information = ("( 1 ) Kill Customer,( 2 ) Fire Employee ")
+        rhk = "Round House Kick"
+        self.printer.print_title(rhk)
+        information = ("( 1 ) Kill Customer,( 2 ) Fire Employee ")
+        self.printer.print_out_format(information)
         #Something Something Something Dark Side
+        who_to_kill = input("Enter Choice here: ")
         # Hérna kallar hann kill customer og fire employee. Og Round Housar þau. Þarf að fá til baka númer frá föllunum til að setja í print skipunina.
-        # Print(f"Employee {} you have been Roundhoused out of this company! ")
-        pass
+        if who_to_kill == "1":
+            cust_ID = input("Enter victim's customer ID ")
+            customer = self.logic.get_customer(cust_ID)
+            if customer:
+                cust_name = customer.customer_name
+                self.kickdownstairs(cust_name)
+                self.logic.kill_customer(cust_ID)
+            else:
+                print("Customer not found")
+        if who_to_kill == "2":
+            emp_ID = input("Enter victim's employee ID ")
+            employee = self.logic.get_employee(emp_ID)
+            if employee:
+                emp_name = employee.employee_name
+                print(self.kickdownstairs(emp_name))
+                self.logic.fire_employee(emp_ID)
+            else:
+                print("Employee not found")
+        else:
+            self.returner()
+        
 
     def All_contracts(self):
         # Hérna kallar hann í að sjá lista yfir alla contracts sem hafa gengið í geggnum fyrirtækið.
-        print_format.print_title(self,"Contract Overview")
+        Print_format.print_title(self,"Contract Overview")
         information = ("ID,Employee ID,Customer ID,Vehicle ID,Start Date,End Date,Paid")
-        print_format.print_out_format(self,information)
+        Print_format.print_out_format(self,information)
         contracts = self.logic.all_contracts()
         for item in contracts:
-            print_format.print_out_format(self,str(item))
-        print_format.print_title(self,len("Contract Overview")*"-")
+            Print_format.print_out_format(self,str(item))
+        Print_format.print_title(self,len("Contract Overview")*"-")
 
-        Master_login.returner(self)
+        self.returner()
 
 
     def kickdownstairs(self, name):
         output = ("""
             THIS IS NAN AIR!
-        ○
+
+        ○   < Chuck Norris
         く|)へ
-        〉
-        ￣￣┗┓_         {}
-    　 　      ┗┓_     ヾ○ｼ
+          〉
+        ￣￣┗┓_         V {} V
+    　 　      ┗┓_       ヾ○ｼ
     　　          ┗┓_   ヘ/ 　 　
-    　               ┗┓ノ_
-    　 　 　 　 　        ┗┓
+    　               ┗┓_ノ
+    　 　 　 　 　      ┗┓
             """).format(name)
         return output
 
 
-
-Master_login().chuck_login()
