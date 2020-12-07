@@ -3,7 +3,11 @@ from Logic_classes.logic_wrapper import LogicAPI
 from Model_classes.Vehicle import Vehicle
 from Model_classes.Contract import Contract
 from Model_classes.Customer import Customer
+<<<<<<< Updated upstream
+from UI_classes.Print_formats import Print_format
+=======
 from UI_classes.Print_formats import print_format
+>>>>>>> Stashed changes
 
 
 #def make_vehicle(ride):
@@ -14,16 +18,27 @@ class Non_Rvk():
     def __init__(self, username, pword):
         self.logic = LogicAPI(username, pword)
         self.employee_num = username
+        self.login_id = username
+        self.formatter = Print_format()
+
+    #Maine menu loop
+    def main_menu(self,going = 0):
+        title = 'welcome Employee{}'.format(self.login_id)
+        self.formatter.print_title(title)
+        menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,,( q ) Quit."
+        self.formatter.print_main_menu(menu)
+        self.formatter.print_title(len(title)*"-")
+
 =======
     def __init__(self):
         self.login_id = "12"
         self.logic = LogicAPI("1","1")
         self.formatter - Print_format()
->>>>>>> Stashed changes
 
     #Maine menu loop
     def main_menu(self,going = 0):
         self.formatter.print_title('welcome Employee{}'.format(self.login_id))
+>>>>>>> Stashed changes
     #     print(""" 
     # ------------------ Welcome, Employee {} ------------------\n
     # ( 1 ) = Register New Vehicle.
@@ -38,18 +53,18 @@ class Non_Rvk():
             while True:
                 option = input("Enter Choice here: ")
                 if option == "1":
-                    Non_Rvk().menu1()
+                    Non_Rvk.menu1()
                 elif option == "2":
-                    Non_Rvk().menu2()
+                    Non_Rvk.menu2()
                 elif option == "3":
-                    Non_Rvk().menu3()
+                    Non_Rvk.menu3()
                 elif option == "4":
-                    Non_Rvk().menu4()
+                    Non_Rvk.menu4()
                 elif option == "q":
                     return False
                 else:
                     print("Not a valid Option! ")
-                    Non_Rvk().main_menu()
+                    Non_Rvk.main_menu()
         else:
             print("Bye bye")
 
@@ -67,8 +82,9 @@ class Non_Rvk():
 
     #Register vehicle menu
     def menu1(self):
-        print("---------Register New Vehicle---------\n")
-   
+        title = ("Register new vehicle")
+        self.formatter.print_title(title)
+
         name = input("Vehicle name / licence plate: ")
         typer = input("Vehicle type: ") # What kinda vehicle can be from a Polar bear or scuba piledriver to a tricecle
         model = input("Vehicle Model: ")
@@ -107,14 +123,18 @@ class Non_Rvk():
 
     # Afhenda bilinn til utleigu
     def menu2(self):
-        print("---------Loan Vehicle---------\n")
+        title =("Loan Vehicle")
+        self.formatter.print_title(title)
 
         customer_id =       input("input customer ID: ")
         contract_id =       input("input contract ID: ")
         
+        self.formatter.print_title(len(title))
+
+
         contract = self.logic.get_contract(contract_id)
         vehicle_ID = contract.vehicle_id
-        
+
         vehicle_condition = {"available":"unavailable"}
         self.logic.change_information(vehicle_ID,vehicle_condition )
 
@@ -125,13 +145,14 @@ class Non_Rvk():
     # Taka a moti bilnum ur utleigu
     def menu3(self):
 
-        print("---------Recive Vehicle---------\n")
+        title = ("Recive Vehicle")
 
-
+        self.formatter.print_title(title)
         returning_contract_ID =         input("Input contract ID: ")
         returning_vehicle_condition =   input("Input vehicle condition(ok/bad): ")
         returning_vehicle_late =        input("Is the vehicle late(y/n): ")
 
+        self.formatter.print_title(len(title))
 
         contract = self.logic.get_contract(returning_contract_ID)
         customer_id = contract.customer_id
@@ -154,10 +175,19 @@ class Non_Rvk():
         return
         # Adda gbp 
 
+
+
+
+
+
     def menu4(self):
         #Here it needs to get the list of vehicles from Vehicles.csv and look up the Key word[ID] and print out everything about the car.
-        print("---------Check Vehicle---------\n")
+        title = ("Check Vehicle")
+        self.formatter.print_title(title)
         checking_vehicle_ID = input("Enter vehicle ID: ")
+        self.formatter.print_title(len(title))
+
+
         vehicle = self.logic.get_vehicle(checking_vehicle_ID)
         print(vehicle)
 

@@ -1,4 +1,4 @@
-from UI_classes.MasterChuck_UI import Master_login
+#from UI_classes.MasterChuck_UI import Master_login
 from UI_classes.RVK_UI import RVK_emp
 from UI_classes.Non_RVK_UI import Non_Rvk
 from Logic_classes.logic_wrapper import LogicAPI 
@@ -20,7 +20,8 @@ if __name__ == "__main__":
     username, pword = login_menu()
     location = check_your_privilege(username, pword)
     if location == 1:
-        user = Master_login()
+        print("welcome, chuck")
+        #user = Master_login()
     elif location == 2:
         user = RVK_emp(username, pword)
     elif location == 3:
