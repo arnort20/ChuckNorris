@@ -77,32 +77,52 @@ class Master_login():
             elif option == "5":
                 Master_login().All_contracts()
                 menus = False
-            
+
             else:
                 print("Not a valid input!" "\n")
                 Master_login().chuck_login()
 
     def Earnings_report(self):
+        # print_format.print_title(self, "Earning Report")
+        # information = ("Something fun")
+        # print_format.print_out_format(self,information)
+        # #earnings = self.logic_wrapper.HER COMES EARNINGS REPORT
+        # for item in earnings:
+        #     print_format.print_out_format(self,str(item))
+        #     print_format.print_title(self,len("Earning Report")*"-")
         # Hérna þarf að sækja overall Reportið í logic wrapper, spendinding vs earnings
         # Mögulega eitthvað fleirra
+        # Add a Returner
         pass
-        
+
     def Vehicle_reports(self):
+        # print_format.print_title(self,"Vehicle Reports")
+        # information = ("Something about cars")
+        # print_format.print_out_format(self,information)
+        # vehicle_report = self.logic_wrapper.Vehicle_reports <---- Possible change
+        # for item in vehicle_report:
+        #     print_format.print_out_format(self,str(vehicle_report))
+        #     print_format.print_title(self,len("Vehicle Reports")*"-")
         # Hérna þarf að sækja alla bílana frá logic wrappernum, og sýna hvaða bílar eru eftirsóttastir
         # og hvaða rapport yfir alla bílana sem valið er.
+        #Add a Returner
         pass
 
     def Bill_overview(self):
-        pass
-        # Hérna þarf að sækja skýrslu frá samningum og skoða lista af öllum reikningum
-        # Master_login.print_title(self, "Bill Overview")
+        # #Hérna þarf að sækja skýrslu frá samningum og skoða lista af öllum reikningum
+        # print_format.print_title(self, "Bill Overview")
         # information = ("info")
-        # Master_login.print_out_format(self, information)
-        # bills = self.logic.Bill_overview()
+        # print_format.print_out_format(self, information)
+        # bills = self.logic.Bill_overview() <---- Possible change
         # for item in bills:
-        #     Master_login.print_out_format(self,str(item))
+        #      Master_login.print_out_format(self,str(item))
+        #      print_format.print_title(self,len("Bill Overview")*"-")
 
+        pass
     def Round_house(self):
+        # print_format.print_title("Round House Kick")
+        # information = ("( 1 ) Kill Customer,( 2 ) Fire Employee ")
+        #Something Something Something Dark Side
         # Hérna kallar hann kill customer og fire employee. Og Round Housar þau. Þarf að fá til baka númer frá föllunum til að setja í print skipunina.
         # Print(f"Employee {} you have been Roundhoused out of this company! ")
         pass
@@ -118,21 +138,22 @@ class Master_login():
         print_format.print_title(self,len("Contract Overview")*"-")
 
         Master_login.returner(self)
-        
+
+
     def kickdownstairs(self, name):
         output = ("""
             THIS IS NAN AIR!
-        ○ 
+        ○
         く|)へ
-        〉 
+        〉
         ￣￣┗┓_         {}
     　 　      ┗┓_     ヾ○ｼ
-    　　          ┗┓_   ヘ/ 　 　 
-    　               ┗┓ノ_ 
+    　　          ┗┓_   ヘ/ 　 　
+    　               ┗┓ノ_
     　 　 　 　 　        ┗┓
             """).format(name)
         return output
-            
-        
-    
+
+
+
 Master_login().chuck_login()
