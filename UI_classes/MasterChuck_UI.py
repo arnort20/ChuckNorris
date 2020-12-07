@@ -3,42 +3,52 @@ from Logic_classes.logic_wrapper import LogicAPI
 from Model_classes.Contract import Contract # Display all contracts overview
 #from Model_classes.Vehicle import Vehicle_reports Á eftir að búa til
 #from Model_classes.Bill overview bæta inn.
+from UI_classes.Print_formats import print_format
 
 
 class Master_login():
     def __init__(self):
         self.logic = LogicAPI("1","1")
-    
-    def print_title(self,title):
-        # Title = Nafn á Völdum kosti
-        print("")
-        name_title = ('{:-^125}'.format(title))
-        print(name_title)
-        #Þurfum ekki að hafa center með þessu formati
-        print("")
+        
+    # Upprunalega print formatið ef hitt skyldi fara í klessu!
+    # def print_title(self,title):
+    #     # Title = Nafn á Völdum kosti
+    #     print("")
+    #     name_title = ('{:-^125}'.format(title))
+    #     print(name_title)
+    #     #Þurfum ekki að hafa center með þessu formati
+    #     print("")
 
-    def print_main_menu(self,option):
-        # Prentar út Main menu textan í ákveðnu formati
-        splitt_info = option.split(",")
-        for info in splitt_info:
-            print("|{:^40}|".format(info))
-            #Þurfum ekki að hafa center með þessu formati
-            #print("{0: >40}".format(info))
+    # def print_main_menu(self,option):
+    #     # Prentar út Main menu textan í ákveðnu formati
+    #     splitt_info = option.split(",")
+    #     for info in splitt_info:
+    #         print("|{:^40}|".format(info))
+    #         #Þurfum ekki að hafa center með þessu formati
+    #         #print("{0: >40}".format(info))
 
-    def print_out_format(self,information):
-        # Information = Efsta línan sem er upplysingar um hvað er hvað.
-        splitt_info = information.split(",")
-        for info in splitt_info:
-            print(info.center(20), end="")
+    # def print_out_format(self,information):
+    #     # Information = Efsta línan sem er upplysingar um hvað er hvað.
+    #     splitt_info = information.split(",")
+    #     for info in splitt_info:
+    #         print(info.center(20), end="")
 
+    #    print("")
+
+    def returner(self):
         print("")
+        return_to_mainmenu = input("Would Mr.Chuck like to return to the Main Menu? y/n: ")
+        if return_to_mainmenu == "y":
+            self.chuck_login()
+        else:
+            self.chuck_login()
 
     def chuck_login(self):
         title = "Welcome Master Chuck!"
-        Master_login.print_title(self,title)
+        print_format.print_title(self,title)
         option = "( 1 ) Review Earnings Report,( 2 ) View Vehicle Reports,( 3 ) View Bill Overview,( 4 ) Round House Kick,( 5 ) View All Contracts,( q ) Quit"
-        Master_login.print_main_menu(self,option)
-        Master_login.print_title(self,len(title)*"-")
+        print_format.print_main_menu(self,option)
+        print_format.print_title(self,len(title)*"-")
 
         while True:
             option = input("Enter Choice here: ")
@@ -96,13 +106,16 @@ class Master_login():
 
     def All_contracts(self):
         # Hérna kallar hann í að sjá lista yfir alla contracts sem hafa gengið í geggnum fyrirtækið.
-        Master_login.print_title(self,"Contract Overview")
+        print_format.print_title(self,"Contract Overview")
         information = ("ID,Employee ID,Customer ID,Vehicle ID,Start Date,End Date,Paid")
-        Master_login.print_out_format(self,information)
+        print_format.print_out_format(self,information)
         contracts = self.logic.all_contracts()
         for item in contracts:
-            Master_login.print_out_format(self,str(item))
+            print_format.print_out_format(self,str(item))
+        print_format.print_title(self,len("Contract Overview")*"-")
 
+        Master_login.returner(self)
+        
     def kickdownstairs(self, name):
         output = ("""
             THIS IS NAN AIR!
