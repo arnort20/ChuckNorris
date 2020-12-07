@@ -31,7 +31,8 @@ class Bill:
             punishment = 1
         with_tax = baseprice*(vehi_tax/100)+baseprice*(punishment/100)
 
-    def get_bill(self, contract_ID)
+    def get_bill(self, contract_ID):
+        
         
 
 
