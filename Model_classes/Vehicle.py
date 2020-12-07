@@ -13,4 +13,4 @@ class Vehicle(object):
         self.license_type = license_type
 
     def __str__(self) -> str:
-        return(self.id +" "+ self.vehicle_name+" "+self.type+" "+self.manufacturer+" "+self.model+" "+self.color+" "+self.age+" "+self.tax+" "+self.available)
+        return(self.id +","+ self.vehicle_name+","+self.type+","+self.manufacturer+","+self.model+","+self.color+","+self.age+","+self.tax+","+self.available+","+self.location+","+self.license_type)
