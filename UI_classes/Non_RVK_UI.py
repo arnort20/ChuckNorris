@@ -21,7 +21,7 @@ class Non_rvk():
         if return_to_mainmenu == "y":
             self.main_menu()
         else:
-            return 
+            return None
 
 
     #Maine menu loop
