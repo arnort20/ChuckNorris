@@ -155,5 +155,3 @@ class Master_login():
         return output
 
 
-
-Master_login().chuck_login()
