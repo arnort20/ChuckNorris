@@ -163,8 +163,6 @@ class DataAPI(object):
         return self.get.get_id("Data_files\bills.csv")
 
 
-
-
     #add single-------------done
     def add_vehicle(self,ident,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,license_type):
         vehicle_dict = {"id":ident,"vehicle_name":vehicle_name,"type":Type,"manufacturer":Manufacturer,"model":Model,"color":Color,"age":age,"tax":tax,"available":available,"location_id":location_id,"license_type":license_type}
