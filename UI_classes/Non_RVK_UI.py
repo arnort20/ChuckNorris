@@ -16,8 +16,16 @@ class Non_rvk():
         self.login_id = username
         self.format = Print_format()
 
+    def returner(self):
+        return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
+        if return_to_mainmenu == "y":
+            self.main_menu()
+        else:
+            return 
+
+
     #Maine menu loop
-    def main_menu(self,going = 0):
+    def main_menu(self,gogo = "yes"):
         title = 'welcome Employee{}'.format(self.login_id)
         self.format.print_title(title)
         menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,,( q ) Quit."
@@ -33,33 +41,26 @@ class Non_rvk():
 
     # ( q ) = Quit.
     
-    # -----------------------------------------------------------""".format(self.employee_num))
-        if going == 0:
-            while True:
-                option = input("Enter Choice here: ")
-                if option == "1":
-                    self.menu1()
-                elif option == "2":
-                    self.menu2()
-                elif option == "3":
-                    self.menu3()
-                elif option == "4":
-                    self.menu4()
-                elif option == "q":
-                    return False
-                else:
-                    print("Not a valid Option! ")
-                    self.main_menu()
-        else:
-            print("Bye bye")
+    # -----------------------------------------------------------""".format(self.employee_num)):
+        while True:
+            if gogo == None:
+                break
+            option = input("Enter Choice here: ")
+            if option == "1":
+                self.menu1()
+            elif option == "2":
+                self.menu2()
+            elif option == "3":
+                self.menu3()
+            elif option == "4":
+                self.menu4()
+            elif option == "q":
+                break
+            else:
+                print("Not a valid Option! ")
 
 
-    def returner(self):
-        return_to_mainmenu = input("Would you like to return to Main Menu? y/n: ")
-        if return_to_mainmenu == "y":
-            self.main_menu()
-        else:
-            self.main_menu(25)
+
 
 
 
@@ -70,19 +71,19 @@ class Non_rvk():
         title = ("Register new vehicle")
         self.format.print_title(title)
 
-        name = input(self("Vehicle name / licence plate "))
-        typer = input("|\t{:<40}: ".format("Vehicle type: "))    # What kinda vehicle can be from a Polar bear or scuba piledriver to a tricecle
-        model = input("|\t{:<40}: ".format("Vehicle Model: "))
-        manufacturer = input("|\t{:<40}: ".format("Input vehicle Manufacturer: "))
-        color = input("|\t{:<40}: ".format("Vehicle Color: "))
-        condition = input("|\t{:<40}: ".format("is car ok ( y / n ): "))
-        location = input("|\t{:<40}: ".format("Input cars location: "))
-        id_type = input("|\t{:<40}: ".format("license needed to drive vehicle: "))
+        name = input(self.format.question("Vehicle name / licence plate "))
+        typer = input(self.format.question("Vehicle type "))    # What kinda vehicle can be from a Polar bear or scuba piledriver to a tricecle
+        model = input(self.format.question("Vehicle Model "))
+        manufacturer = input(self.format.question("Input vehicle Manufacturer "))
+        color = input(self.format.question("Vehicle Color "))
+        condition = input(self.format.question("is car ok ( y / n ) "))
+        location = input(self.format.question("Input cars location "))
+        id_type = input(self.format.question("license needed to drive vehicle "))
 
         while True:
             try:
-                age = float(input("|\t{:<40}: ".format("Manufacturing Year: ")))
-                tax = float(input("|\t{:<40}: ".format("vehicle tax: ")))
+                age = float(input(self.format.question("Manufacturing Year: ")))
+                tax = float(input(self.format.question("vehicle tax: ")))
                 break
             except:
                 print("Invalid input, Try again")
@@ -105,7 +106,7 @@ class Non_rvk():
         # Making a dict list of the info of the newly registerd car
         self.returner()
         
-        return
+        return None
 
 
 
@@ -115,8 +116,8 @@ class Non_rvk():
         title =("Loan Vehicle")
         self.format.print_title(title)
 
-        customer_id =       input("input customer ID: ")
-        contract_id =       input("input contract ID: ")
+        customer_id =       input(self.format.question("input customer ID "))
+        contract_id =       input(self.format.question("input contract ID "))
         
         self.format.print_title(len(title)*"-")
 
@@ -137,9 +138,9 @@ class Non_rvk():
         title = ("Recive Vehicle")
 
         self.formatter.print_title(title)
-        returning_contract_ID =         input("Input contract ID: ")
-        returning_vehicle_condition =   input("Input vehicle condition(ok/bad): ")
-        returning_vehicle_late =        input("Is the vehicle late(y/n): ")
+        returning_contract_ID =         input(self.format.question("Input contract ID: "))
+        returning_vehicle_condition =   input(self.format.question("Input vehicle condition(ok/bad): "))
+        returning_vehicle_late =        input(self.format.question("Is the vehicle late(y/n): "))
 
         self.format.print_title(len(title)*"-")
 
