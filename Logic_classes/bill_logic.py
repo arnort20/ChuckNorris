@@ -12,7 +12,7 @@ class Bill:
         
 
     def get_bill_info(self, contract_ID):
-        fined = False
+        fined = "o"
         #decompresses all the information contained within the contract
         #returns a dictionary containing ALL information regarding a contract
         contract = self.dAPI.get_contract(contract_ID)
@@ -30,17 +30,17 @@ class Bill:
 
 
         #bill information
-        bill_dictionary["gbp_used"] = the_bill["gbp"]
-        bill_dictionary["gbp_discount"] = int(the_bill["gbp"])*1000
+        bill_dictionary["gbp_used"] = the_bill["gbp_used"]
+        bill_dictionary["gbp_discount"] = int(the_bill["gbp_used"])*1000
         ret_date = self.convert_date(the_bill["return_date"])
         bill_dictionary["return_date"] = str(ret_date)
         contract_period = end_date - start_date
         bill_dictionary["contract_period"] = str(contract_period)
         true_period = ret_date - start_date
         bill_dictionary["true_period"] = str(true_period)
-        if true_period > contract_period:
-            fined = True
-        bill_dictionary["penalty":fined]
+        # if true_period > contract_period:
+        #     fined = "x"
+        # bill_dictionary["penalty":fined]
 
 
         #vehicle information
