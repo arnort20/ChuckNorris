@@ -84,6 +84,13 @@ class DataAPI(object):
         except:
             return None
 
+    def get_bill(self,ident):
+        try:
+            bill = self.get.get_certein(ident,"Data_files\bills.csv")
+            return bill
+        except:
+            return None
+
 
 
     # get multiple-------------done
@@ -129,6 +136,10 @@ class DataAPI(object):
             employee_list.append(employee)
         return employee_list
 
+    def get_bills(self):
+        bills = self.get.get_csv("Data_files\bills.csv")
+        return bills
+
 
 
     #make,ident-------------done
@@ -147,6 +158,10 @@ class DataAPI(object):
 
     def employee_makeID(self):
         return self.get.get_id("Data_files\Employees.csv")
+
+    def bill_makeID(self):
+        return self.get.get_id("Data_files\bills.csv")
+
 
 
 
@@ -171,6 +186,9 @@ class DataAPI(object):
         dicter = {"id":ident,"employee_name":employee_name,"ssn":ssn,"address":address,"phone":phone,"email":email,"location":location,"password":password}
         self.add.add(dicter,"Model_classes\Employee.py")
 
+    def add_bill(self,ident,employee_name,ssn,address,phone,email,location,password):
+        dicter = {"id":ident,"employee_name":employee_name,"ssn":ssn,"address":address,"phone":phone,"email":email,"location":location,"password":password}
+        self.add.add(dicter,"Data_files\bills.csv")
 
 
     # change single

@@ -1,29 +1,39 @@
+from Logic_classes.employee_logic import Employee
 from Logic_classes.logic_wrapper import LogicAPI 
 from Model_classes.Vehicle import Vehicle
 from Model_classes.Contract import Contract
 from Model_classes.Customer import Customer
+from UI_classes.Print_formats import print_format
 
 
 #def make_vehicle(ride):
 #    print(vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"]))
 
 class Non_Rvk():
+<<<<<<< Updated upstream
     def __init__(self, username, pword):
         self.logic = LogicAPI(username, pword)
         self.employee_num = username
+=======
+    def __init__(self):
+        self.login_id = "12"
+        self.logic = LogicAPI("1","1")
+        self.formatter - Print_format()
+>>>>>>> Stashed changes
 
     #Maine menu loop
     def main_menu(self,going = 0):
-        print(""" 
-    ------------------ Welcome, Employee {} ------------------\n
-    ( 1 ) = Register New Vehicle.
-    ( 2 ) = Loan Vehicle.
-    ( 3 ) = Recieve Vehicle.
-    ( 4 ) = Check Vehicle.
+        self.formatter.print_title('welcome Employee{}'.format(self.login_id))
+    #     print(""" 
+    # ------------------ Welcome, Employee {} ------------------\n
+    # ( 1 ) = Register New Vehicle.
+    # ( 2 ) = Loan Vehicle.
+    # ( 3 ) = Recieve Vehicle.
+    # ( 4 ) = Check Vehicle.
 
-    ( q ) = Quit.
+    # ( q ) = Quit.
     
-    -----------------------------------------------------------""".format(self.employee_num))
+    # -----------------------------------------------------------""".format(self.employee_num))
         if going == 0:
             while True:
                 option = input("Enter Choice here: ")
