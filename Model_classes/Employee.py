@@ -1,3 +1,5 @@
+
+
 class Employee(object):
     def __init__(self,ident,Employee_name,ssn,Address,Phone,Email,Location,password):
         self.id = ident
