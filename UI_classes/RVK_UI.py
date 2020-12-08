@@ -167,7 +167,7 @@ Type here: ''').lower()
                     elif option == 'p':
                         self.menu2_2(contract)
                     elif option == 'r':
-                        self.main_menu(contract)
+                        self.main_menu()
                     elif option == '':                        
                         print('Please input an option')
                     else:
