@@ -9,8 +9,6 @@ class Print_format():
 
         name_title = ('{:_^{size}}'.format(title,size = width)).center(width+40)
         print(name_title)
-        print("{:>20} ".format("|"),end= "")
-        print("{:>{size}} ".format("|",size = width))
         #Þurfum ekki að hafa center með þessu formati
 
 
@@ -29,19 +27,20 @@ class Print_format():
 
     # þessi þarf að geta prentað út þægilegt og flott main menu 
     def print_main_menu(self,option,width=200):
-        # Prentar út Main menu textan í ákveðnu formati
+
         splitt_info = option.split(",")
         for info in splitt_info:
             print("{:>20} ".format("|"),end="")
             
-            print("{:>{size}} ".format("",size = width/2-15),end="")
+            print("{:>{size}} ".format("",size = width/2-20),end="")
 
             title = ("\t{:<40}".format(info))
             print(title,end="")
 
-            print("{:>{size}} ".format("|",size = width-48-int(width/2.4)))
-            #Þurfum ekki að hafa center með þessu formati
-            #print("{0: >40}".format(info))
+            print("{:>{size}} ".format("|",size = width-40-int(width/2.4)))
+
+            #extra cash money bil
+            Print_format().print_space()
 
 
 
@@ -73,6 +72,8 @@ class Print_format():
 
         print((width-((int(width/len(splitt_info)))*len(splitt_info))-1)*" "+ "|", end="")
         print("")
+
+
 
     def print_space(self,width=200):
         print("{:>20} ".format("|"),end= "")
