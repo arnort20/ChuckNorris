@@ -1,4 +1,4 @@
-from Logic_classes.employee_logic import Employee
+from Model_classes.Employee import Employee
 from Logic_classes.logic_API import Logic_API 
 from Model_classes.Vehicle import Vehicle
 from Model_classes.Contract import Contract
@@ -35,6 +35,7 @@ class Non_rvk():
             title = 'welcome Employee {}'.format(self.login_id)
             self.format.print_title(title,self.width)
             menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,,( q ) Quit."
+            self.format.print_space()
             self.format.print_main_menu(menu,self.width)
             self.format.print_line(len(title)*"_",self.width)
 
@@ -137,7 +138,7 @@ class Non_rvk():
         self.liner()
         title = ("Recive Vehicle")
 
-        self.formatter.print_title(title)
+        self.format.print_title(title)
         returning_contract_ID =         input(self.format.question("Input contract ID: "))
         returning_vehicle_condition =   input(self.format.question("Input vehicle condition(ok/bad): "))
         returning_vehicle_late =        input(self.format.question("Is the vehicle late(y/n): "))
