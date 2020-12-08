@@ -6,13 +6,14 @@ class RVK_UI:
     def __init__(self, username, pword):
         self.employee_num = username
         self.pword = pword
-        self.logic = LogicAPI(username, pword)
+        self.logic = Logic_API(username, pword)
         self.print = Print_format()
+        self.main_menu()
 
     def main_menu(self):
         title = "(Welcome, Employee {})".format(self.employee_num)
         Print_format.print_title(self,title)
-        option = "( 1 ) Create new contract,( 2 ) View contract,( 3 ) Print report,( 4 ) Add new employee,( 5 ) Change employee, ( 6 ) Delete employee,( q )  Quit "
+        option = "( 1 ) Create new contract,( 2 ) View contract,( 3 ) Print report,( 4 ) Add new employee,( 5 ) Change employee,( 6 ) Delete employee,( q )  Quit "
         Print_format.print_main_menu(self,option)
         Print_format.print_title(self,len(title)*"-")
 
