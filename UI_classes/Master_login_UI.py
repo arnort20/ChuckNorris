@@ -10,7 +10,6 @@ class Master_login():
         self.logic = Logic_API(username, pword)
         self.printer = Print_format()
         
-
     # Upprunalega print formatið ef hitt skyldi fara í klessu!
     # def print_title(self,title):
     #     # Title = Nafn á Völdum kosti
