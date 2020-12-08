@@ -242,6 +242,7 @@ Type here: ''').lower()
                 self.main_menu()
 
             bill_dict = self.logic.get_bill_info(option)
+            print(bill_dict)
 
     def add_new_employee(self):
         print('''

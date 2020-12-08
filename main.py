@@ -1,5 +1,5 @@
 from UI_classes.Master_login_UI import Master_login
-from UI_classes.RVK_UI import RVK_UI
+from UI_classes.RVK_UI import Rvk_ui
 #from UI_classes.Non_RVK_UI import Non_Rvk
 from UI_classes.Non_RVK_UI import Non_rvk
 from Logic_classes.logic_API import Logic_API 
@@ -24,7 +24,7 @@ if __name__ == "__main__":
         user = Master_login(username, pword)
         user.chuck_login()
     elif location == "2":
-        user = RVK_UI(username, pword)
+        user = Rvk_ui(username,pword)
         user.main_menu()
     elif location == 3:
         user = Non_rvk(username, pword)
