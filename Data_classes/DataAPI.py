@@ -146,7 +146,7 @@ class DataAPI(object):
         bill_list = []
         for obj in bills:
             bill = DataAPI.make_employee(obj)
-            bill_list.append(employee)
+            bill_list.append(bill)
         return bill_list
 
 
