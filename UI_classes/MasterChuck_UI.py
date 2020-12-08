@@ -6,8 +6,8 @@ from UI_classes.Print_formats import Print_format
 import sys #Spurning að breyta yfir í orginal loggin skjá
 
 class Master_login():
-    def __init__(self, username, pword):
-        self.logic = LogicAPI(username, pword)
+    def __init__(self ):
+        self.logic = LogicAPI('1', '1')
         self.printer = Print_format()
         
 
@@ -36,13 +36,13 @@ class Master_login():
 
     #    print("")
 
-    def returner(self):
-        print("")
-        return_to_mainmenu = input("Would Mr.Chuck like to return to the Main Menu? y/n: ")
-        if return_to_mainmenu == "y":
-            self.chuck_login()
-        else:
-            return None
+    # def returner(self):
+    #     print("")
+    #     return_to_mainmenu = input("Would Mr.Chuck like to return to the Main Menu? y/n: ")
+    #     if return_to_mainmenu == "y":
+    #         self.chuck_login()
+    #     else:
+    #         return None
 
     def chuck_login(self):
         menus = True
@@ -93,7 +93,7 @@ class Master_login():
         #     Print_format.print_title(self,len("Earning Report")*"-")
         # Hérna þarf að sækja overall Reportið í logic wrapper, spendinding vs earnings
         # Mögulega eitthvað fleirra
-        # Add a Returner
+        
         pass
 
     def Vehicle_reports(self):
@@ -106,7 +106,7 @@ class Master_login():
         #     Print_format.print_title(self,len("Vehicle Reports")*"-")
         # Hérna þarf að sækja alla bílana frá logic wrappernum, og sýna hvaða bílar eru eftirsóttastir
         # og hvaða rapport yfir alla bílana sem valið er.
-        #Add a Returner
+        
         pass
 
     def Bill_overview(self):
@@ -146,8 +146,6 @@ class Master_login():
                 self.logic.fire_employee(emp_ID)
             else:
                 print("Employee not found")
-        else:
-            self.returner()
         
 
     def All_contracts(self):
@@ -159,8 +157,6 @@ class Master_login():
         for item in contracts:
             Print_format.print_out_format(self,str(item))
         Print_format.print_title(self,len("Contract Overview")*"-")
-
-        self.returner()
 
 
     def kickdownstairs(self, name):
