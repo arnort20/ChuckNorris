@@ -1,6 +1,6 @@
 from Data_classes.DataAPI import DataAPI as dAPI
 
-class Customer:
+class Customer_logic:
     def __init__(self):
         self.dAPI = dAPI()
         
@@ -30,5 +30,3 @@ class Customer:
         except ValueError:
             return False
         #removes the customer from the database
-
-    
