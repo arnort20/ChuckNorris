@@ -35,6 +35,7 @@ class Non_rvk():
             title = 'welcome Employee {}'.format(self.login_id)
             self.format.print_title(title,self.width)
             menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,,( q ) Quit."
+            self.format.print_space()
             self.format.print_main_menu(menu,self.width)
             self.format.print_line(len(title)*"_",self.width)
 
