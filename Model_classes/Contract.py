@@ -10,4 +10,4 @@ class Contract(object):
         self.paid = paid
 
     def __str__(self) -> str:
-        return (self.id +","+ self.employee_id+","+self.customer_id+","+self.vehicle_id+","+self.start_date+","+self.end_date+","+self.paid)
+        return (self.id +","+ self.employee_id+","+self.customer_id+","+self.vehicle_id+","+self.destination_id+","+self.start_date+","+self.end_date+","+self.paid)
