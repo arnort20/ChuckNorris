@@ -52,7 +52,7 @@ class Print_format():
             print("{:>{size}} ".format("",size = int(width/2-30)),end="")
             print("\t{:<40}: ".format(key.replace("_"," ")),end="")
             print(value,end="")
-            print("{:>{size}} ".format("|",size = width-17-(len(str(value)))-int(width/2)))
+            print("{:>{size}} ".format("|",size = width-17-(len(value))-int(width/2)))
       
 
 
@@ -65,13 +65,15 @@ class Print_format():
         # Information = Efsta línan sem er upplysingar um hvað er hvað.
 
         splitt_info = information.split(",")
-        print("{:>20}".format("|"),end = " ")
-        
+        print("{:>20}".format("|"),end = "")
+        basic =  int(width/len(splitt_info))
+        fixer = width -(basic*len(splitt_info))
         for info in splitt_info:
-            print(info.center(int(width/len(splitt_info))), end="")
 
-        print((width-((int(width/len(splitt_info)))*len(splitt_info))-1)*" "+ "|", end="")
-        print("")
+            print(info.center(basic), end="")
+
+
+        print(fixer*" "+"|")
 
 
 

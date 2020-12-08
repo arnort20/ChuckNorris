@@ -6,7 +6,17 @@ from Model_classes.Customer import Customer
 from UI_classes.Print_formats import Print_format
 """
 
+1
+As an employee of NaN Air, I need to be able to deliver and receive
+back rental cars
 
+2
+As an employee of NaN Air, I need to be able to check on a vehicle's 
+status and if it's in good enough shape to be rented out
+
+9
+As an employee of NaN Air I need to be able to update the damage status of a 
+vehicle
 
 11
 As an employee of NaN Air I need to be able to update a rental contract to 

@@ -1,6 +1,67 @@
 from Logic_classes.logic_API import Logic_API
 from UI_classes.Print_formats import Print_format
 
+"""
+3
+As Chuck Norris and/or employee of NaN Air I need to be able to 
+register new employees, a list of their information, and their position
+(check)
+
+4
+As an employee of NaN Air I need to be able to put together a rental 
+contract (check)
+
+5
+As an employee of NaN Air I need to be able to find an employees 
+information and edit it (check)
+
+6
+As an employee of NaN Air I need to be able to register new vehicles 
+into a list of all vehicles
+
+7
+As an employee of NaN Air I need to be able to list all vehicles according 
+to location and availability
+
+8
+As an employee of NaN Air I need to be able to list all vehicles according to 
+location and damage status
+
+10
+As an employee of NaN Air I need to be able to register and list all rental 
+contracts
+
+12
+As an employee of NaN Air I need to be able to change the loan time and 
+vehicle of the rental contract
+
+13
+As an employee of NaN Air I need to be able to invalidate a rental contract
+
+14
+As an employee of NaN Air I need to be able to register new destinations and 
+list all of them
+
+15
+As an employee of NaN Air I need to be able to print an invoice based on the 
+information on the rental contract
+
+16
+As an employee of NaN Air I need to be able to see and edit how high the taxes 
+are for each type of vehicle and add taxes to new types of vehicles
+
+17
+As an employee of NaN Air I need to be able to see if the customer has the 
+credentials to use certain types of vehicles
+
+18
+As an employee of NaN Air I need to make sure that the customer's charges are 
+collected so that he will not get charged multiple times
+
+19
+As an employee of NaN Air I need to be able to make a report of my branch's 
+performance
+"""
 
 class Rvk_ui:
     def __init__(self, username, pword):
@@ -88,7 +149,7 @@ class Rvk_ui:
         self.print.print_title('New Costumer')
         information = ("( c ) Cancel, ( f ) Finish")
         cust_info = []
-        info_list = ['ID: ', 'Name: ', 'License #: ', 'Phone number: ','Address: ', 'Email: ', "Driver's licence type: "]
+        info_list = ['ID: ', 'Name: ','Email: ', 'Phone number: ','Address: ', "Driver's licence type: "]
         for i in range(len(info_list)):
             info = input('{}'.format(info_list[i]))
             cust_info.append(info)
@@ -98,7 +159,7 @@ class Rvk_ui:
             if option == 'c':
                 self.create_contract()
             elif option == 'f':
-                self.logic.new_customer(cust_info[0],cust_info[1],cust_info[2],cust_info[3],cust_info[4],cust_info[5],cust_info[6])
+                self.logic.new_customer(cust_info[0],cust_info[1],cust_info[2],cust_info[3],cust_info[4],cust_info[5])
                 self.menu1_3(2)
             elif option == '':
                 print('Please input an option')
