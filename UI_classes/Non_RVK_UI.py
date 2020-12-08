@@ -4,7 +4,16 @@ from Model_classes.Vehicle import Vehicle
 from Model_classes.Contract import Contract
 from Model_classes.Customer import Customer
 from UI_classes.Print_formats import Print_format
+"""
 
+
+
+11
+As an employee of NaN Air I need to be able to update a rental contract to 
+register the return time of a vehicle
+
+
+"""
 class Non_rvk:
     def __init__(self, username, pword):
         self.logic = Logic_API(username, pword)
