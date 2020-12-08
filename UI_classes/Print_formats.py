@@ -70,7 +70,8 @@ class Print_format():
         for info in splitt_info:
             print(info.center(int(width/len(splitt_info))), end="")
 
-        print((width-((int(width/len(splitt_info)))*len(splitt_info))-1)*" "+ "|", end="")
+        fixer = (len(splitt_info)/width) - width 
+        print(((width-((int(width/len(splitt_info)))*len(splitt_info))))*" "+ "|", end="")
         print("")
 
 
