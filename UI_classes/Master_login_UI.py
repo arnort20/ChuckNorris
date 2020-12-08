@@ -153,7 +153,7 @@ class Master_login():
     def All_contracts(self):
         # Hérna kallar hann í að sjá lista yfir alla contracts sem hafa gengið í geggnum fyrirtækið.
         self.printer.print_title("Contract Overview")
-        information = ("ID,Employee ID,Customer ID,Vehicle ID,Start Date,End Date,Paid")
+        information = ("ID,Employee ID,Customer ID,Vehicle ID,Destination ID,Start Date,End Date,Paid")
         self.printer.print_out_format(information)
         contracts = self.logic.all_contracts()
         for item in contracts:
