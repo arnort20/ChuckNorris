@@ -47,9 +47,9 @@ class RVK_emp:
 
     def create_contract(self):
         while True:
-            print_format.print_title("Creating New Contract")
+            Print_format.print_title("Creating New Contract")
             information = ("( 1 ) Returning Customer,( 2 ) New Customer, ( r ) Return")
-            print_format.print_out_format(self, information)
+            Print_format.print_out_format(self, information)
 
             option = input('Type here: ')
             if option == '1':
@@ -241,7 +241,16 @@ Type here: ''').lower()
         pass
 
 
+    def print_report(self):
+        while True:
+            Print_format.print_title("Print bill report")
+            information = "( r ) Return" 
+            Print_format.print_out_format(information)
 
+            option = input('Input contract ID: ')
+            if option == "r":
+                
+            bill_dict = self.logic.get_bill_info(option)
 
     def add_new_employee(self):
         print('''

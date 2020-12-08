@@ -30,5 +30,3 @@ class Customer:
         except ValueError:
             return False
         #removes the customer from the database
-
-    

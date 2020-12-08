@@ -129,7 +129,7 @@ class Master_login():
                 self.logic.kill_customer(cust_ID)
             else:
                 print("Customer not found")
-        if who_to_kill == "2":
+        elif who_to_kill == "2":
             emp_ID = input("Enter victim's employee ID ")
             employee = self.logic.get_employee(emp_ID)
             if employee:
