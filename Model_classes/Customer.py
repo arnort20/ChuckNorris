@@ -10,4 +10,4 @@ class Customer(object):
         self.address = address
 
     def __str__(self) -> str:
-        return "fucka you"
+        pass
