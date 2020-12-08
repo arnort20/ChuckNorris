@@ -10,14 +10,13 @@ class Rvk_ui:
         self.print = Print_format()
 
     def main_menu(self):
-        title = "(Welcome, Employee {})".format(self.employee_num)
-        self.print.print_title(title)
-        option = "( 1 ) Create new contract,( 2 ) View contract,( 3 ) Print report,( 4 ) Add new employee,( 5 ) Change employee,( 6 ) Delete employee,( q )  Quit "
-        self.print.print_main_menu(option)
-        self.print.print_title(len(title)*"")
-
         while True:
-
+            title = "(Welcome, Employee {})".format(self.employee_num)
+            self.print.print_title(title)
+            self.print.print_space()
+            option = "( 1 ) Create new contract,( 2 ) View contract,( 3 ) Print report,( 4 ) Add new employee,( 5 ) Change employee,( 6 ) Delete employee,( q )  Quit "
+            self.print.print_main_menu(option)
+            self.print.print_title(len(title)*"")
             option = input('Type here: ')
             if option == '1':
                 self.create_contract()
@@ -56,7 +55,7 @@ class Rvk_ui:
             elif option == '2':
                 self.new_customer()
             elif option.lower() == 'r':
-                self.main_menu()
+                return
             elif option == '':
                 print('Please input an option')
             else:
@@ -226,25 +225,57 @@ Type here: ''').lower()
  ''')
             conID = input('Contract ID: #')
             if len(conID) == 4 and conID.isdigit():
-                #LogicAPI.get_contract(conID)
-                pass
+                contract = Logic_API.get_contract(conID)
+                print(contract)
             else:
                 print('Invalid contract ID!')
 
-
     def print_report(self):
-        while True:
-            self.print.print_title("Print bill report")
-            information = "( r ) Return" 
-            self.print.print_out_format(information)
+        self.print.print_title("Print bill")
+        information = "( # ) Input the contract ID,( r ) Return" 
+        self.print.print_main_menu(information)
+        self.print.print_line()
+        option = input(self.print.question('Input contract ID: '))
+        if option == "r":
+            return
+        bill_dict = self.logic.get_bill_info(option)
+        relevant_dict = {}
+        relevant_dict["start"] = bill_dict["start_date"]
+        relevant_dict["end"] = bill_dict["end_date"]
+        relevant_dict["Pickup date"] = bill_dict["fetch_date"]
+        relevant_dict["Return date"] = bill_dict["return_date"]
+        relevant_dict["Vehicle tax"] = bill_dict["tax"]
+        relevant_dict["Returned late?"] = bill_dict["late_tax"]
+        true_period = bill_dict["true_period"]
+        contract_period = bill_dict["contract_period"]
+        if relevant_dict["Returned late?"]:
+            relevant_dict["days"] = true_period
+        else:
+            relevant_dict["days"] = contract_period
+        relevant_dict["gbp_used"] = bill_dict["gbp_discount"]
+        relevant_dict["Total price"] = self.logic.calculate_bill(bill_dict)
+        self.print.print_title("Bill for contract #{}".format(option))
+        self.print.print_questions(relevant_dict)
+        self.print.print_line()
 
-            option = input('Input contract ID: ')
-            if option == "r":
-                break
 
-            bill_dict = self.logic.get_bill_info(option)
-            print(bill_dict)
+    # def print_report(self):
+    #     while True:
+    #         self.print.print_title("Print bill report")
+    #         information = "( # ) Input the contract ID associated with the bill, ( r ) Return" 
+    #         self.print.print_main_menu(information)
+
+    #         option = input('Input contract ID: ')
+    #         if option == "r":
+    #             break
+
+    #         bill_dict = self.logic.get_bill_info(option)
             
+    #         self.print.print_questions(bill_dict)
+    #         self.print.print_line()
+            
+    def liner(self):
+        print("\n"*12)
 
     def add_new_employee(self):
         print('''
