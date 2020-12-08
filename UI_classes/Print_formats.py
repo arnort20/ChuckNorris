@@ -82,9 +82,10 @@ class Print_format():
 
 
 
-
-
     def question(self,question,width = 200):
         print("{:>{size}} ".format("",size = int(width/2-20)),end="")
         formatted = "{:>46}: ".format(question)
         return formatted
+
+    def warning(self,text,width = 200):
+        pass
