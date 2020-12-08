@@ -2,21 +2,19 @@ from Logic_classes.logic_API import Logic_API
 from UI_classes.Print_formats import Print_format
 
 
-class RVK_UI:
+class Rvk_ui:
     def __init__(self, username, pword):
         self.employee_num = username
         self.pword = pword
         self.logic = Logic_API(username, pword)
         self.print = Print_format()
-        self.main_menu()
 
     def main_menu(self):
         title = "(Welcome, Employee {})".format(self.employee_num)
         self.print.print_title(title)
-        self.print.print_space()
         option = "( 1 ) Create new contract,( 2 ) View contract,( 3 ) Print report,( 4 ) Add new employee,( 5 ) Change employee,( 6 ) Delete employee,( q )  Quit "
         self.print.print_main_menu(option)
-        self.print.print_line(len(title)*"")
+        self.print.print_title(len(title)*"")
 
         while True:
 
@@ -48,9 +46,9 @@ class RVK_UI:
 
     def create_contract(self):
         while True:
-            Print_format.print_title("Creating New Contract")
+            self.print.print_title("Creating New Contract")
             information = ("( 1 ) Returning Customer,( 2 ) New Customer, ( r ) Return")
-            Print_format.print_out_format(self, information)
+            self.print.print_out_format(information)
 
             option = input('Type here: ')
             if option == '1':
@@ -68,16 +66,11 @@ class RVK_UI:
 
 
     def returning_customer(self):
-        Print_format.print_title(self,"Returning Customer")
+        self.print.print_title("Returning Customer")
         information = ("( c ) Cancel, ( f ) Finish")
-        print('''
------Returning Customer-------------------''')
-        cost_reg = input('Driving registration nr: ')
+        cost_reg = input('Costumer ID: ')
         while True:
-            print('''
-( c ) = Cancel
-( f ) = Finish
-------------------------------------------''')
+            self.print.print_out_format(information)
             option = input('Type here: ').lower()
             if option == 'c':
                 self.create_contract()
@@ -93,25 +86,21 @@ class RVK_UI:
 
 
     def new_customer(self):
-        print('''
-----New customer---------------------''')
+        self.print.print_title('New Costumer')
+        information = ("( c ) Cancel, ( f ) Finish")
         cust_info = []
-        info_list = ['Name: ', 'License #: ', 'Phone number: ','Address: ', 'Email: ', "Driver's licence type: "]
+        info_list = ['ID: ', 'Name: ', 'License #: ', 'Phone number: ','Address: ', 'Email: ', "Driver's licence type: "]
         for i in range(len(info_list)):
             info = input('{}'.format(info_list[i]))
             cust_info.append(info)
         while True:
-            print(''' 
-( c ) = Cancel
-( f ) = Finish
-------------------------------------------''')
+            self.print.print_out_format(information)
             option = input('Type here: ').lower()
             if option == 'c':
                 self.create_contract()
             elif option == 'f':
-                #register new costumer and create new contract
+                self.logic.new_customer(cust_info[0],cust_info[1],cust_info[2],cust_info[3],cust_info[4],cust_info[5],cust_info[6])
                 self.menu1_3(2)
-                pass
             elif option == '':
                 print('Please input an option')
             else:
@@ -122,14 +111,17 @@ class RVK_UI:
 
     def menu1_3(self, previous):
         #previous says from what menu you came from
-        print('''
------Creating new Contract------
-good boy points: {}''')#here should good boy points be extracted from data
+        if previous == 1:
+            pass #get gbp
+        else:
+            gbp = 0
+        self.print.print_title('New Contract')
+        self.print.print_out_format('good boy points: {}'.format(gbp))
         while True:
             use_gbp = input('Use Good Boy Points ( y / n ): ')
             if use_gbp == 'y':
                 pass
-                #not sure about function
+                #UseGBP is commented out in logic_API
             #start_date = datetime.date(int(input('Rental start date (yyyy/mm/dd): ')))
             print(start_date)
             #start_date_list = create_date_list(start_date) 
@@ -160,9 +152,7 @@ Type here: ''').lower()
 
     def view_contract(self):
         while True:
-            print('''
-------------Contract search-------------
- ''')
+            self.print.print_title('Contract Search')
             conID = input('Contract ID: #')
             #should be able to ask the logic wrapper for the whole contract
             print('Great Success!')
@@ -243,9 +233,9 @@ Type here: ''').lower()
 
     def print_report(self):
         while True:
-            Print_format.print_title("Print bill report")
+            self.print.print_title("Print bill report")
             information = "( r ) Return" 
-            Print_format.print_out_format(information)
+            self.print.print_out_format(information)
 
             option = input('Input contract ID: ')
             if option == "r":
