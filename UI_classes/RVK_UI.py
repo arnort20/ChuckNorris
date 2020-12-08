@@ -153,44 +153,67 @@ class Rvk_ui:
 
 
     def new_customer(self):
-        self.print.print_title('New Costumer')
-        information = ("( c ) Cancel, ( f ) Finish")
+
+
         cust_info = []
-        info_list = ['ID: ', 'Name: ','Email: ', 'Phone number: ','Address: ', "Driver's licence type: "]
-        for i in range(len(info_list)):
-            info = input('{}'.format(info_list[i]))
-            cust_info.append(info)
+        info_list = {'ID':"empty","customer_name":"empty",'email':"empty",'phone':"empty",'address':"empty", "license_type":"empty"}
+        title = 'New Customer'
+        option = 0
+
         while True:
-            self.print.print_out_format(information)
-            option = input('Type here: ').lower()
-            if option == 'c':
-                self.create_contract()
-            elif option == 'f':
-                self.logic.new_customer(cust_info[0],cust_info[1],cust_info[2],cust_info[3],cust_info[4],cust_info[5])
-                self.menu1_3(2)
-            elif option == '':
-                print('Please input an option')
-            else:
-                print('Invalid option')
-        
+            for key,value in info_list.items():
+                self.liner()
+                information = ("( c ) Cancel, ( f ) Finish")
+                self.print.print_title(title)
+                #efri gluggi
+                self.print.print_space()
+                self.print.print_out_format(information)
+                self.print.print_space()
+                self.print.print_line(len(title)*"_")
+
+                #nedri
+                self.print.print_space()
+                self.print.print_questions(info_list)
+                self.print.print_space()
+                self.print.print_line(len(title)*"_")
+
+                option = input(self.print.question("Enter Choice here"))
+                info_list[key] = option
+
+                if option == 'c':
+                    return
+                elif option == 'f' and info_list["license_type"] != "empty" :
+                        
+                    self.logic.new_customer(info_list['ID'],info_list['customer_name'],info_list['email'],info_list['phone'],info_list['address'],info_list['license_type'])
+                    self.menu1_3(2)
+                    return
+                else:
+                    self.print.warning("please select option")
+        return
 
 
 
     def menu1_3(self, previous):
         #previous says from what menu you came from
+        title = 'New Contract'
         if previous == 1:
             pass #get gbp
         else:
             gbp = 0
+
+        self.liner()
         self.print.print_title('New Contract')
+        self.print.print_space()
         self.print.print_out_format('good boy points: {}'.format(gbp))
+        self.print.print_line(len(title)*"_")
+
         while True:
-            use_gbp = input('Use Good Boy Points ( y / n ): ')
+            use_gbp = input(self.print.question('Use Good Boy Points ( y / n ): '))
             if use_gbp == 'y':
                 pass
                 #UseGBP is commented out in logic_API
             #start_date = datetime.date(int(input('Rental start date (yyyy/mm/dd): ')))
-            print(start_date)
+            #print(start_date)
             #start_date_list = create_date_list(start_date) 
             #the string inputted should be outputted as a list of ints [DD, MM, YY]
             end_date = input('Rental end date (dd/mm/yy): ')
