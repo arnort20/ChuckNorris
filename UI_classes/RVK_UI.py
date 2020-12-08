@@ -148,7 +148,7 @@ class Rvk_ui:
         self.print.print_title('New Costumer')
         information = ("( c ) Cancel, ( f ) Finish")
         cust_info = []
-        info_list = ['ID: ', 'Name: ', 'License #: ', 'Phone number: ','Address: ', 'Email: ', "Driver's licence type: "]
+        info_list = ['ID: ', 'Name: ','Email: ', 'Phone number: ','Address: ', "Driver's licence type: "]
         for i in range(len(info_list)):
             info = input('{}'.format(info_list[i]))
             cust_info.append(info)
@@ -158,7 +158,7 @@ class Rvk_ui:
             if option == 'c':
                 self.create_contract()
             elif option == 'f':
-                self.logic.new_customer(cust_info[0],cust_info[1],cust_info[2],cust_info[3],cust_info[4],cust_info[5],cust_info[6])
+                self.logic.new_customer(cust_info[0],cust_info[1],cust_info[2],cust_info[3],cust_info[4],cust_info[5])
                 self.menu1_3(2)
             elif option == '':
                 print('Please input an option')
