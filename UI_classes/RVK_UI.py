@@ -2,7 +2,7 @@ from Logic_classes.logic_API import Logic_API
 from UI_classes.Print_formats import Print_format
 
 
-class RVK_UI:
+class Rvk_ui:
     def __init__(self, username, pword):
         self.employee_num = username
         self.pword = pword
