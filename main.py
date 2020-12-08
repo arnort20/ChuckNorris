@@ -1,6 +1,5 @@
 from UI_classes.Master_login_UI import Master_login
 from UI_classes.RVK_UI import Rvk_ui
-#from UI_classes.Non_RVK_UI import Non_Rvk
 from UI_classes.Non_RVK_UI import Non_rvk
 from Logic_classes.logic_API import Logic_API 
 

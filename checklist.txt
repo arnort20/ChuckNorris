@@ -1,0 +1,75 @@
+
+1
+As an employee of NaN Air, I need to be able to deliver and receive
+back rental cars
+
+2
+As an employee of NaN Air, I need to be able to check on a vehicle's 
+status and if it's in good enough shape to be rented out
+
+3
+As Chuck Norris and/or employee of NaN Air I need to be able to 
+register new employees, a list of their information, and their position
+
+4
+As an employee of NaN Air I need to be able to put together a rental 
+contract
+
+5
+As an employee of NaN Air I need to be able to find an employees 
+information and edit it
+
+6
+As an employee of NaN Air I need to be able to register new vehicles 
+into a list of all vehicles
+
+7
+As an employee of NaN Air I need to be able to list all vehicles according 
+to location and availability
+
+8
+As an employee of NaN Air I need to be able to list all vehicles according to 
+location and damage status
+
+9
+As an employee of NaN Air I need to be able to update the damage status of a 
+vehicle
+
+10
+As an employee of NaN Air I need to be able to register and list all rental 
+contracts
+
+11
+As an employee of NaN Air I need to be able to update a rental contract to 
+register the return time of a vehicle
+
+12
+As an employee of NaN Air I need to be able to change the loan time and 
+vehicle of the rental contract
+
+13
+As an employee of NaN Air I need to be able to invalidate a rental contract
+
+14
+As an employee of NaN Air I need to be able to register new destinations and 
+list all of them
+
+15
+As an employee of NaN Air I need to be able to print an invoice based on the 
+information on the rental contract
+
+16
+As an employee of NaN Air I need to be able to see and edit how high the taxes 
+are for each type of vehicle and add taxes to new types of vehicles
+
+17
+As an employee of NaN Air I need to be able to see if the customer has the 
+credentials to use certain types of vehicles
+
+18
+As an employee of NaN Air I need to make sure that the customer's charges are 
+collected so that he will not get charged multiple times
+
+19
+As an employee of NaN Air I need to be able to make a report of my branch's 
+performance
