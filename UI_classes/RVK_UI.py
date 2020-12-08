@@ -152,9 +152,7 @@ Type here: ''').lower()
 
     def view_contract(self):
         while True:
-            print('''
-------------Contract search-------------
- ''')
+            self.print.print_title('Contract Search')
             conID = input('Contract ID: #')
             #should be able to ask the logic wrapper for the whole contract
             print('Great Success!')
