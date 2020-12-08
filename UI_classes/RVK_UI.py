@@ -338,9 +338,7 @@ Type here: ''').lower()
         print("\n"*12)
 
     def add_new_employee(self):
-        print('''
-------------------------New Employee-------------------------
-''')
+        self.print.print_title('New Employee')
         empID = input('Employee ID: #') #should check whether a number is taken or not
         emp_name = input('\nName: ')
         emp_ssn = input('Social Security Number: ')
