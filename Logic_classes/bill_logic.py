@@ -4,8 +4,8 @@ class Bill_logic:
     def __init__(self):
         self.dAPI = dAPI()
 
-    def new_bill(self, contract_ID, return_date, gbp_used):
-        self.dAPI.add_bill(contract_ID, return_date, gbp_used)
+    def new_bill(self, contract_ID, fetch_date, return_date, gbp_used):
+        self.dAPI.add_bill(contract_ID, fetch_date, return_date, gbp_used)
 
     def calculate_price(self, bill_dictionary):
         car_tax = int(bill_dictionary["tax"])
@@ -40,6 +40,8 @@ class Bill_logic:
         #bill information
         bill_dictionary["gbp_used"] = the_bill["gbp_used"]
         bill_dictionary["gbp_discount"] = int(the_bill["gbp_used"])*1000
+        fetch_date = self.convert_date(the_bill["fetch_date"])
+        bill_dictionary["fetch_date"] = str(fetch_date)
         ret_date = self.convert_date(the_bill["return_date"])
         bill_dictionary["return_date"] = str(ret_date)
         contract_period = end_date - start_date

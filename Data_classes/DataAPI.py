@@ -160,6 +160,7 @@ class DataAPI(object):
         return self.get.get_id("Data_files\Employees.csv")
 
     def bill_makeID(self):
+        #not needed
         return self.get.get_id("Data_files\Bills.csv")
 
 
@@ -184,8 +185,8 @@ class DataAPI(object):
         dicter = {"id":ident,"employee_name":employee_name,"ssn":ssn,"address":address,"phone":phone,"email":email,"location":location,"password":password}
         self.add.add(dicter,"Data_files\Employees.csv")
 
-    def add_bill(self,ident,employee_name,ssn,address,phone,email,location,password):
-        dicter = {"id":ident,"employee_name":employee_name,"ssn":ssn,"address":address,"phone":phone,"email":email,"location":location,"password":password}
+    def add_bill(self,contract_id,fetch_date,return_date,gbp):
+        dicter = {"contract_id":contract_id,"fetch_date":fetch_date,"return_date":return_date,"gbp_used":gbp}
         self.add.add(dicter,"Data_files\Bills.csv")
 
 

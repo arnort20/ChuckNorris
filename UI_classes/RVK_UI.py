@@ -152,9 +152,7 @@ Type here: ''').lower()
 
     def view_contract(self):
         while True:
-            print('''
-------------Contract search-------------
- ''')
+            self.print.print_title('Contract Search')
             conID = input('Contract ID: #')
             #should be able to ask the logic wrapper for the whole contract
             print('Great Success!')
@@ -241,9 +239,11 @@ Type here: ''').lower()
 
             option = input('Input contract ID: ')
             if option == "r":
-                self.main_menu()
+                break
 
             bill_dict = self.logic.get_bill_info(option)
+            print(bill_dict)
+            
 
     def add_new_employee(self):
         print('''
