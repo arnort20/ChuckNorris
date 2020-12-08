@@ -44,8 +44,18 @@ Plan:
 Tengja layerana saman betur og láta forritið virka á einfaldan máta
 -kláruðum næstumþví að tengja alla layera, náðum líka að láta forritið virka á beisik máta
 
-dagur 11:
+dagur 11
 Plan:
-klára að implementa bill og report fall, klára líka að ganga frá date time vonandi,búa til sér print/format skjal með format klasa.
+búa til flottara format til að prenta "skjáinn" í TUI
+- gerðum ágætlega flott TUI, þarf að geriða úr hnökrum
+
+dagur 12:
+Plan:
+klára að implementa bill og report fall, klára líka að ganga frá date time vonandi,búa til sér print/format skjal með format klasa .
+- kláruðum bill, reikning á verði, skýrslugerðarvél
+
+dagur 13:
+Plan:
+klára UI klasana og tengja allt þannig allar A kröfur séu uppfylltar
 
 

@@ -157,7 +157,7 @@ class Non_rvk:
             try:
                 contract = self.logic.get_contract(contract_id)
                 vehicle_ID = contract.vehicle_id
-                vehicle_condition = {"available":"n"}
+                vehicle_condition = {"available":"no"}
                 self.logic.change_vehicle_info(vehicle_ID,vehicle_condition )
                 break
 

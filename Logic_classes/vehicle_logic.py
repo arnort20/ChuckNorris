@@ -39,8 +39,8 @@ class Vehicle_logic:
     def check_license(self, customerID, vehicleID):
         vehicle = self.dAPI.get_vehicle(vehicleID)
         customer = self.dAPI.get_customer(customerID)
-        requirements = vehicle.license_type.split()
-        cust_license = customer.License_type
-        if cust_license in requirements:
+        requirements = vehicle.license_type
+        cust_license = customer.License_type.split('.')
+        if requirements in cust_license:
             return True
 
