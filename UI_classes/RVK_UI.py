@@ -1,4 +1,4 @@
-from Logic_classes.logic_wrapper import LogicAPI
+from Logic_classes.logic_API import Logic_API
 from UI_classes.Print_formats import Print_format
 
 import datetime
@@ -8,7 +8,7 @@ class RVK_emp:
     def __init__(self, username, pword):
         self.employee_num = username
         self.pword = pword
-        self.logic = LogicAPI(username, pword)
+        self.logic = Logic_API(username, pword)
 
     def main_menu(self):
         title = "(Welcome, Employee {})".format(self.employee_num)
@@ -249,7 +249,7 @@ Type here: ''').lower()
 
             option = input('Input contract ID: ')
             if option == "r":
-                
+
             bill_dict = self.logic.get_bill_info(option)
 
     def add_new_employee(self):

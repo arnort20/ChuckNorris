@@ -1,12 +1,12 @@
-from .vehicle_logic import Vehicle as vehi_logic
-from .contract_logic import Contract as cont_logic
-from .employee_logic import Employee as emp_logic
-from .destination_logic import Destination as dest_logic
-from .customer_logic import Customer as cust_logic
-from .bill_logic import Bill as bill_logic
+from .vehicle_logic import Vehicle_logic as vehi_logic
+from .contract_logic import Contract_logic as cont_logic
+from .employee_logic import Employe_logice as emp_logic
+from .destination_logic import Destination_logic as dest_logic
+from .customer_logic import Customer_logic as cust_logic
+from .bill_logic import Bill_logic as bill_logic
 import datetime
 
-class LogicAPI:
+class Logic_API:
     def __init__(self, userID, pword):
         self.user = userID
         self.priv_location = self.login_user(userID, pword)

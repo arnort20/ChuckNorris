@@ -1,6 +1,6 @@
 from Data_classes.DataAPI import DataAPI as dAPI
 import datetime
-class Bill:
+class Bill_logic:
     def __init__(self):
         self.dAPI = dAPI()
 

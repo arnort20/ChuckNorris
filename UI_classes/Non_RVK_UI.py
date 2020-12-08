@@ -1,5 +1,5 @@
 from Logic_classes.employee_logic import Employee
-from Logic_classes.logic_wrapper import LogicAPI 
+from Logic_classes.logic_API import Logic_API 
 from Model_classes.Vehicle import Vehicle
 from Model_classes.Contract import Contract
 from Model_classes.Customer import Customer
@@ -11,7 +11,7 @@ from UI_classes.Print_formats import Print_format
 
 class Non_rvk():
     def __init__(self, username, pword):
-        self.logic = LogicAPI(username, pword)
+        self.logic = Logic_API(username, pword)
         self.employee_num = username
         self.login_id = username
         self.format = Print_format()

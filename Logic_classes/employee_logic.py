@@ -1,7 +1,7 @@
 from Data_classes.DataAPI import DataAPI as dAPI
 
 
-class Employee:
+class Employee_logic:
     def __init__(self):
         self.dAPI = dAPI()
     def hire(self,Employee_name,ssn,Address,Phone,Email,Location, password):

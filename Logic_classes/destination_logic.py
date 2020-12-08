@@ -1,6 +1,6 @@
 from Data_classes.DataAPI import DataAPI as dAPI
 
-class Destination:
+class Destination_logic:
     def __init__(self):
         self.dAPI = dAPI()
     def new_destination(self,name, airport, phone, report_filename):

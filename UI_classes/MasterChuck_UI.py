@@ -1,4 +1,4 @@
-from Logic_classes.logic_wrapper import LogicAPI
+from Logic_classes.logic_API import Logic_API
 from Model_classes.Contract import Contract # Display all contracts overview
 #from Model_classes.Vehicle import Vehicle_reports Á eftir að búa til
 #from Model_classes.Bill overview bæta inn.
@@ -7,7 +7,7 @@ import sys #Spurning að breyta yfir í orginal loggin skjá
 
 class Master_login():
     def __init__(self, username, pword):
-        self.logic = LogicAPI(username, pword)
+        self.logic = Logic_API(username, pword)
         self.printer = Print_format()
         
 

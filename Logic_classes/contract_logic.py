@@ -1,7 +1,7 @@
 #from Data_classes.DataAPI import DataAPI
 from Data_classes.DataAPI import DataAPI as dAPI
 
-class Contract:
+class Contract_logic:
     def __init__(self):
         self.dAPI = dAPI()
 

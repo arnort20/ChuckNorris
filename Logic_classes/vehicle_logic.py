@@ -1,6 +1,6 @@
 from Data_classes.DataAPI import DataAPI as dAPI
 
-class Vehicle:
+class Vehicle_logic:
     def __init__(self):
         self.dAPI = dAPI()
 

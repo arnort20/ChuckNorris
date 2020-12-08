@@ -1,6 +1,6 @@
 from Data_classes.DataAPI import DataAPI as dAPI
 
-class Customer:
+class Customer_logic:
     def __init__(self):
         self.dAPI = dAPI()
         
