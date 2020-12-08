@@ -194,8 +194,8 @@ class DataAPI(object):
         dicter = {"id":ident,"employee_name":employee_name,"ssn":ssn,"address":address,"phone":phone,"email":email,"location":location,"password":password}
         self.add.add(dicter,"Data_files\Employees.csv")
 
-    def add_bill(self,contract_id,fetch_date,return_date,gbp):
-        dicter = {"contract_id":contract_id,"fetch_date":fetch_date,"return_date":return_date,"gbp_used":gbp}
+    def add_bill(self,contract_id,fetch_date,return_date,gbp,location_id,price):
+        dicter = {"contract_id":contract_id,"fetch_date":fetch_date,"return_date":return_date,"gbp_used":gbp,"location_id":location_id,"price":price}
         self.add.add(dicter,"Data_files\Bills.csv")
 
 
@@ -216,6 +216,9 @@ class DataAPI(object):
     def change_Employee(self,ident,changes):
         self.chang.change("Data_files\Employees.csv",ident,changes)
 
+    def change_Employee(self,ident,changes):
+        self.chang.change("Data_files\Bills.csv",ident,changes)
+
 
 
     #delete single-------------done
@@ -234,6 +237,8 @@ class DataAPI(object):
     def delete_employee(self,ident):
         self.dell.dell("Data_files\Employees.csv",ident)
 
+    def delete_employee(self,ident):
+        self.dell.dell("Data_files\Bills.csv",ident)
 
 
 
