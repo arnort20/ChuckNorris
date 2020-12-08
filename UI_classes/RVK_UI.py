@@ -72,13 +72,13 @@ class Rvk_ui:
 
     def main_menu(self):
         while True:
-            title = "(Welcome, Employee {})".format(self.employee_num)
+            title = "Welcome, Employee {}".format(self.employee_num)
             self.print.print_title(title)
             self.print.print_space()
-            option = "( 1 ) Create new contract,( 2 ) View contract,( 3 ) Print report,( 4 ) Add new employee,( 5 ) Change employee,( 6 ) Delete employee,( q )  Quit "
+            option = "( 1 ) Create new contract,( 2 ) View contract,( 3 ) Print report,( 4 ) Add new employee,( 5 ) Change employee,( 6 ) Delete employee,,( q )  Quit "
             self.print.print_main_menu(option)
             self.print.print_line(len(title)*"")
-            option = input(self.print.question('Type here: '))
+            option = input(self.print.question('Type here'))
             if option == '1':
                 self.create_contract()
             elif option == '2':
@@ -106,20 +106,26 @@ class Rvk_ui:
 
     def create_contract(self):
         while True:
-            self.print.print_title("Creating New Contract")
+            title = "Creating New Contract"
+            self.print.print_title(title)
             self.print.print_space()
             information = ("( 1 ) Returning Customer,( 2 ) New Customer, ( r ) Return")
             self.print.print_out_format(information)
+            self.print.print_line(len(title)*"_")
 
-            option = input('Type here: ')
+            option = input(self.print.question('Type here'))
             if option == '1':
                 self.returning_customer()
+
             elif option == '2':
                 self.new_customer()
+
             elif option.lower() == 'r':
                 return
+
             elif option == '':
                 print('Please input an option')
+
             else:
                 print('Invalid option')
 

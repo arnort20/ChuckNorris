@@ -20,13 +20,14 @@ class Master_login():
     def __init__(self, username, pword):
         self.logic = Logic_API(username, pword)
         self.printer = Print_format()
-        self.Bill = Bill()
+       # self.Bill = Bill()
 
 
     def chuck_login(self):
         menus = True
         title = "Welcome Master Chuck!"
         Print_format.print_title(self,title)
+        self.printer.print_space()
         option = "( 1 ) Review Earnings Report,( 2 ) View Vehicle Reports,( 3 ) View Bill Overview,( 4 ) Round House Kick,( 5 ) View All Contracts,,( q ) Quit"
         self.printer.print_main_menu(option)
         Print_format.print_line(self,len(title)*"_")
