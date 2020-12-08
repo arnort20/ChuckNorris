@@ -6,7 +6,8 @@ class RVK_UI:
     def __init__(self, username, pword):
         self.employee_num = username
         self.pword = pword
-        self.logic = LogicUI(username, pword)
+        self.logic = LogicAPI(username, pword)
+        self.print = Print_format()
 
     def main_menu(self):
         title = "(Welcome, Employee {})".format(self.employee_num)
