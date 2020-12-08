@@ -5,14 +5,15 @@ from UI_classes.Print_formats import Print_format
 3
 As Chuck Norris and/or employee of NaN Air I need to be able to 
 register new employees, a list of their information, and their position
+(check)
 
 4
 As an employee of NaN Air I need to be able to put together a rental 
-contract
+contract (check)
 
 5
 As an employee of NaN Air I need to be able to find an employees 
-information and edit it
+information and edit it (check)
 
 6
 As an employee of NaN Air I need to be able to register new vehicles 
