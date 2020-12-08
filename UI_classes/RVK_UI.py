@@ -10,14 +10,13 @@ class Rvk_ui:
         self.print = Print_format()
 
     def main_menu(self):
-        title = "(Welcome, Employee {})".format(self.employee_num)
-        self.print.print_title(title)
-        option = "( 1 ) Create new contract,( 2 ) View contract,( 3 ) Print report,( 4 ) Add new employee,( 5 ) Change employee,( 6 ) Delete employee,( q )  Quit "
-        self.print.print_main_menu(option)
-        self.print.print_title(len(title)*"")
-
         while True:
-
+            title = "(Welcome, Employee {})".format(self.employee_num)
+            self.print.print_title(title)
+            self.print.print_space()
+            option = "( 1 ) Create new contract,( 2 ) View contract,( 3 ) Print report,( 4 ) Add new employee,( 5 ) Change employee,( 6 ) Delete employee,( q )  Quit "
+            self.print.print_main_menu(option)
+            self.print.print_title(len(title)*"")
             option = input('Type here: ')
             if option == '1':
                 self.create_contract()
@@ -56,7 +55,7 @@ class Rvk_ui:
             elif option == '2':
                 self.new_customer()
             elif option.lower() == 'r':
-                self.main_menu()
+                return
             elif option == '':
                 print('Please input an option')
             else:
@@ -167,7 +166,7 @@ Type here: ''').lower()
                     elif option == 'p':
                         self.menu2_2(contract)
                     elif option == 'r':
-                        self.main_menu(contract)
+                        self.main_menu()
                     elif option == '':                        
                         print('Please input an option')
                     else:

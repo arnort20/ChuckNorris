@@ -3,7 +3,7 @@ id,vehicle_name,type,manufacturer,model,color,age,tax,available,location_id,lice
 8,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
 9,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
 10,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
-11,jojo,jingle,jambajuice,akakaka,blue,25,20,unavailable,12,12
+11,jojo,jingle,jambajuice,akakaka,blue,25,20,n,12,12
 12,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
 13,jojo,jingle,jambajuice,akakaka,blue,25,20,yes,12,12
 14,12,12,12,12,12,12,1,12.0,12.0,1

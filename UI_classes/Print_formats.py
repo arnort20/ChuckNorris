@@ -64,9 +64,9 @@ class Print_format():
     def print_out_format(self,information,width=200):
         # Information = Efsta línan sem er upplysingar um hvað er hvað.
 
-
         splitt_info = information.split(",")
         print("{:>20}".format("|"),end = " ")
+        
         for info in splitt_info:
             print(info.center(int(width/len(splitt_info))), end="")
 
@@ -86,6 +86,7 @@ class Print_format():
         print("{:>{size}} ".format("",size = int(width/2-20)),end="")
         formatted = "{:>46}: ".format(question)
         return formatted
+
 
     def warning(self,text,width = 200):
         print(" {:>{size}}|  ".format("",size = int(width/2)),end="")
