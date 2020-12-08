@@ -45,6 +45,11 @@ class DataAPI(object):
 
         return Employee(info["id"],info["employee_name"],info["ssn"],info["address"],info["phone"],info["email"],info["location"],info["password"])
 
+    def make_bill(info):
+
+        return Employee(info["id"],info["fetch_date"],info["return_date"],info["gbp_used"],info["location_id"],info["price"])
+
+
 
 
     # get single-------------done
@@ -87,7 +92,7 @@ class DataAPI(object):
     def get_bill(self,ident):
         try:
             bill = self.get.get_certein(ident,"Data_files\Bills.csv")
-            return bill
+            return DataAPI.make_bill(bill)
         except:
             return None
 
@@ -138,7 +143,11 @@ class DataAPI(object):
 
     def get_bills(self):
         bills = self.get.get_csv("Data_files\Bills.csv")
-        return bills
+        bill_list = []
+        for obj in bills:
+            bill = DataAPI.make_employee(obj)
+            bill_list.append(employee)
+        return bill_list
 
 
 
@@ -224,3 +233,8 @@ class DataAPI(object):
 
     def delete_employee(self,ident):
         self.dell.dell("Data_files\Employees.csv",ident)
+
+
+
+
+    def create_destination(self,)
