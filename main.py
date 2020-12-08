@@ -1,7 +1,8 @@
-from UI_classes.MasterChuck_UI import Master_login
+from UI_classes.Master_login_UI import Master_login
 from UI_classes.RVK_UI import RVK_UI
 #from UI_classes.Non_RVK_UI import Non_Rvk
-from Logic_classes.logic_wrapper import LogicAPI 
+from UI_classes.Non_RVK_UI import Non_rvk
+from Logic_classes.logic_API import Logic_API 
 
 def login_menu():
         print('''
@@ -13,7 +14,7 @@ def login_menu():
         return id_in, password_in
 
 def check_your_privilege(username, pword):
-    lAPI = LogicAPI(username, pword)
+    lAPI = Logic_API(username, pword)
     return lAPI.check_privilege()
 
 if __name__ == "__main__":
@@ -23,10 +24,11 @@ if __name__ == "__main__":
         user = Master_login(username, pword)
         user.chuck_login()
     elif location == "2":
-        user = RVK_emp(username, pword)
+        user = RVK_UI(username, pword)
         user.main_menu()
-    #elif location == 3:
-        #user = Non_Rvk(username, pword)
+    elif location == 3:
+        user = Non_rvk(username, pword)
+        user.main_menu()
     else:
         print("Invalid username-password combination!")
 

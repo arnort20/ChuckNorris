@@ -9,7 +9,7 @@ from UI_classes.Print_formats import Print_format
 #def make_vehicle(ride):
 #    print(vehicle(ride["ID"],ride["Vehicle name"],ride["Type"],ride["Manufacturer"],ride["Model"],ride["Color"],ride["age"],ride["tax"],ride["available"]))
 
-class Non_rvk():
+class Non_rvk:
     def __init__(self, username, pword):
         self.logic = Logic_API(username, pword)
         self.employee_num = username
