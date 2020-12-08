@@ -151,28 +151,29 @@ Type here: ''').lower()
 
 
     def view_contract(self):
+        information = '( c ) Change,( p ) = Print,( r ) = Return'
         while True:
             self.print.print_title('Contract Search')
             conID = input('Contract ID: #')
-            #should be able to ask the logic wrapper for the whole contract
-            print('Great Success!')
-            #add three options ( c ) change, ( p ) print, ( r ) return
-            print('''\n( c ) Change
-( p ) = Print
-( r ) = Return
-----------------------------------------''')
-            while True:
-                option = input('Type here: ').lower()
-                if option == 'c':
-                    self.menu2_1()
-                elif option == 'p':
-                    self.menu2_2()
-                elif option == 'r':
-                    self.main_menu()
-                elif option == '':                        
-                    print('Please input an option')
-                else:
-                    print('Not a valid option')
+            contract = self.logic.get_contract(conID)
+            if contract:
+                print('Great Success!')
+                #add three options ( c ) change, ( p ) print, ( r ) return
+                self.print.print_out_format(information)
+                while True:
+                    option = input('Type here: ').lower()
+                    if option == 'c':
+                        self.menu2_1(contract)
+                    elif option == 'p':
+                        self.menu2_2(contract)
+                    elif option == 'r':
+                        self.main_menu(contract)
+                    elif option == '':                        
+                        print('Please input an option')
+                    else:
+                        print('Not a valid option')
+            else:
+                print('Invalid contract ID')
 
 
 
