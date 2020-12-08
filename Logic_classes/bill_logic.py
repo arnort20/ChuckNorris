@@ -1,9 +1,14 @@
 from Data_classes.DataAPI import DataAPI as dAPI
 import datetime
 class Bill_logic:
-    def __init__(self):
+    def __init__(self, bill_obj):
         self.dAPI = dAPI()
-
+        self.contract = self.dAPI.get_contract(bill_obj.contract_ID)
+        self.vehicle = self.dAPI.get_vehicle(self.contract.vehicle_id)
+        self.the_bill = self.dAPI.get_bill(bill_obj.contract_ID)
+        self.employee = self.dAPI.get_employee(self.contract.employee_id)
+        self.customer = self.dAPI.get_customer(self.contract.customer_id)
+        
     def new_bill(self, contract_ID, fetch_date, return_date, gbp_used):
         self.dAPI.add_bill(contract_ID, fetch_date, return_date, gbp_used)
 
