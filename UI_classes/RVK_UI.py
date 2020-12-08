@@ -77,8 +77,8 @@ class Rvk_ui:
             self.print.print_space()
             option = "( 1 ) Create new contract,( 2 ) View contract,( 3 ) Print report,( 4 ) Add new employee,( 5 ) Change employee,( 6 ) Delete employee,( q )  Quit "
             self.print.print_main_menu(option)
-            self.print.print_title(len(title)*"")
-            option = input('Type here: ')
+            self.print.print_line(len(title)*"")
+            option = input(self.print.question('Type here: '))
             if option == '1':
                 self.create_contract()
             elif option == '2':
@@ -107,6 +107,7 @@ class Rvk_ui:
     def create_contract(self):
         while True:
             self.print.print_title("Creating New Contract")
+            self.print.print_space()
             information = ("( 1 ) Returning Customer,( 2 ) New Customer, ( r ) Return")
             self.print.print_out_format(information)
 
