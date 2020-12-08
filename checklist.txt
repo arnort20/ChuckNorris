@@ -40,6 +40,7 @@ vehicle
 10
 As an employee of NaN Air I need to be able to register and list all rental 
 contracts
+(CHECK FYRIR CHUCK)
 
 11
 As an employee of NaN Air I need to be able to update a rental contract to 
