@@ -10,10 +10,12 @@ status and if it's in good enough shape to be rented out
 3
 As Chuck Norris and/or employee of NaN Air I need to be able to 
 register new employees, a list of their information, and their position
+(CHECK)
 
 4
 As an employee of NaN Air I need to be able to put together a rental 
 contract
+(CHECK)
 
 5
 As an employee of NaN Air I need to be able to find an employees 
