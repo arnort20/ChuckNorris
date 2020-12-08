@@ -1,10 +1,11 @@
 class Contract(object):
-    def __init__(self,ident,employee_id,customer_id,vehicle_id,start_date,end_date,paid) -> None:
+    def __init__(self,ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid) -> None:
         self.id = ident
         self.employee_id = employee_id
         self.customer_id = customer_id
         self.vehicle_id = vehicle_id
         self.start_date = start_date
+        self.destination_id = destination_id
         self.end_date = end_date
         self.paid = paid
 

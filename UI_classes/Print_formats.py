@@ -88,4 +88,5 @@ class Print_format():
         return formatted
 
     def warning(self,text,width = 200):
-        pass
+        print(" {:>{size}}|  ".format("",size = int(width/2)),end="")
+        print(text+ "  |")
