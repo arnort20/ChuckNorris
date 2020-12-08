@@ -1,14 +1,12 @@
 from Logic_classes.logic_API import Logic_API
 from UI_classes.Print_formats import Print_format
 
-import datetime
 
-
-class RVK_emp:
+class RVK_UI:
     def __init__(self, username, pword):
         self.employee_num = username
         self.pword = pword
-        self.logic = Logic_API(username, pword)
+        self.logic = LogicUI(username, pword)
 
     def main_menu(self):
         title = "(Welcome, Employee {})".format(self.employee_num)
@@ -163,28 +161,25 @@ Type here: ''').lower()
 ------------Contract search-------------
  ''')
             conID = input('Contract ID: #')
-            if len(conID) == 4 and conID.isdigit():
-                #should be able to ask the logic wrapper for the whole contract
-                print('Great Success!')
-                #add three options ( c ) change, ( p ) print, ( r ) return
-                print('''\n( c ) Change
+            #should be able to ask the logic wrapper for the whole contract
+            print('Great Success!')
+            #add three options ( c ) change, ( p ) print, ( r ) return
+            print('''\n( c ) Change
 ( p ) = Print
 ( r ) = Return
 ----------------------------------------''')
-                while True:
-                    option = input('Type here: ').lower()
-                    if option == 'c':
-                        self.menu2_1()
-                    elif option == 'p':
-                        self.menu2_2()
-                    elif option == 'r':
-                        self.main_menu()
-                    elif option == '':
-                        print('Please input an option')
-                    else:
-                        print('Not a valid option')
-            else:
-                print('Invalid contract ID!')
+            while True:
+                option = input('Type here: ').lower()
+                if option == 'c':
+                    self.menu2_1()
+                elif option == 'p':
+                    self.menu2_2()
+                elif option == 'r':
+                    self.main_menu()
+                elif option == '':                        
+                    print('Please input an option')
+                else:
+                    print('Not a valid option')
 
 
 
@@ -243,13 +238,6 @@ Type here: ''').lower()
                 print('Invalid contract ID!')
 
 
-
-
-    def print_report(self):
-        #I might do it fokking later
-        pass
-
-
     def print_report(self):
         while True:
             Print_format.print_title("Print bill report")
@@ -258,6 +246,7 @@ Type here: ''').lower()
 
             option = input('Input contract ID: ')
             if option == "r":
+                self.main_menu()
 
             bill_dict = self.logic.get_bill_info(option)
 
