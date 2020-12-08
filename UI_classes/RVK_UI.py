@@ -202,29 +202,36 @@ class Rvk_ui:
             gbp = 0
 
         self.liner()
-        self.print.print_title('New Contract')
+        self.print.print_title(title)
         self.print.print_space()
         self.print.print_out_format('good boy points: {}'.format(gbp))
         self.print.print_line(len(title)*"_")
 
+        
+        use_gbp = input(self.print.question('Use Good Boy Points ( y / n )'))
+
+        if use_gbp == 'y':
+            #þarf að implementa gbp notkun
+            pass
+
+        self.print.print_title(title)
+        self.print.print_space()
+
+        questions = {'start date (dd/mm/yy)':"empty",'end date (dd/mm/yy)':"empty",'location':"empty"}
+
+        for key,value in questions.items():
+            self.print.print_questions(questions)
+            option = input(self.format.question("Enter Choice here",self.width))
+            questions[key] = option
+            
+
+        # for spinning dates----------------------------------------------------------------------
+        # date_list =  end_date.split("/")
+        # date_list[1],date_list[3] = date_list[3],date_list[1]
+        # fixed_date = "/".join(date_list)          
         while True:
-            use_gbp = input(self.print.question('Use Good Boy Points ( y / n )'))
-            if use_gbp == 'y':
-                pass
-
-            
-            start_date = input('Rental start date (dd/mm/yy): ')
-            end_date = input('Rental end date (dd/mm/yy): ')
-
-            # for spinning dates----------------------------------------------------------------------
-            # date_list =  end_date.split("/")
-            # date_list[1],date_list[3] = date_list[3],date_list[1]
-            # fixed_date = "/".join(date_list)
-
-            location = input('Location: ')
-            
-            while True:
                 option = input('''\n( r ) = Return
+
 ( f ) = Finish
 ------------------------------------------
 Type here: ''').lower()
