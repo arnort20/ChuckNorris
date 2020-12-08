@@ -1,6 +1,6 @@
 from .vehicle_logic import Vehicle_logic as vehi_logic
 from .contract_logic import Contract_logic as cont_logic
-from .employee_logic import Employe_logic as emp_logic
+from .employee_logic import Employee_logic as emp_logic
 from .destination_logic import Destination_logic as dest_logic
 from .customer_logic import Customer_logic as cust_logic
 from .bill_logic import Bill_logic as bill_logic

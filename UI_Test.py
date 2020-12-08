@@ -2,5 +2,6 @@
 # jim = Non_rvk("1","1")
 # jim.main_menu()
 
-from UI_classes.MasterChuck_UI import Master_login
-Master_login().chuck_login()
+from UI_classes.Login_UI import Login_UI
+
+Login_UI().login_menu()
