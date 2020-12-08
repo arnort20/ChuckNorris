@@ -88,22 +88,42 @@ class Non_rvk:
         #         print("")
         #         self.format.print_main_menu("Invalid input Try again",self.width)
         #         print("")
+        wrong = 0
+        while True:
+            
 
 
-        questions = {"vehicle_name":"empty","type":"empty","manufacturer":"empty","model":"empty","color":"empty","age":"empty","tax":"empty","available":"empty","location_id":"empty","license_type":"empty"}
-        for key,value in questions.items():
-            self.liner()
-            title = ("Register new vehicle")
-            self.format.print_title(title,self.width)
-            self.format.print_questions(questions,self.width)
-            self.format.print_line(len(title)*"_",self.width)
-            option = input(self.format.question("Enter Choice here",self.width))
-            questions[key] = option
+            questions = {"vehicle_name":"empty","type":"empty","manufacturer":"empty","model":"empty","color":"empty","year_made":"empty","tax":"empty","available":"empty","location_id":"empty","license_type":"empty"}
+            for key,value in questions.items():
+                self.liner()
+                                #if person wrote a wrong input last time
+                if wrong == 1:
+                    print(self.format.warning("there is one or more wrong input!"))
+                    wrong = 0
 
+                #formattin reigster vehicle
+                title = ("Register new vehicle")
+                self.format.print_title(title,self.width)
+                self.format.print_space()
+                self.format.print_questions(questions,self.width)
+                self.format.print_space()
+                self.format.print_line(len(title)*"_",self.width)
+                option = input(self.format.question("Enter Choice here",self.width))
+                questions[key] = option
+                
 
-        if questions["license_type"] != "empty":
-            self.logic.make_new_vehicle(questions["vehicle_name"],questions["type"],questions["manufacturer"],questions["model"],questions["color"],questions["age"],questions["tax"],questions["available"],questions["location_id"],questions["license_type"])
+            questions["age"] = questions["year_made"]
 
+            try:
+                test = questions["vehicle_name"],questions["type"],questions["manufacturer"],questions["model"],questions["color"],int(questions["age"]),int(questions["tax"]),questions["available"],questions["location_id"],questions["license_type"]
+            except:
+                print()
+                wrong = 1
+                continue
+
+            if questions["license_type"] != "empty":
+                self.logic.make_new_vehicle(questions["vehicle_name"],questions["type"],questions["manufacturer"],questions["model"],questions["color"],questions["age"],questions["tax"],questions["available"],questions["location_id"],questions["license_type"])
+            break
         # register_more = input(self.format.question("Wish to register more vehicles? y/n",self.width))
         # if register_more == "y" :
         #     self.menu1()
