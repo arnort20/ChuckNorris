@@ -12,10 +12,10 @@ class RVK_emp:
 
     def main_menu(self):
         title = "(Welcome, Employee {})".format(self.employee_num)
-        print_format.print_title(self,title)
+        Print_format.print_title(self,title)
         option = "( 1 ) Create new contract,( 2 ) View contract,( 3 ) Print report,( 4 ) Add new employee,( 5 ) Change employee, ( 6 ) Delete employee,( q )  Quit "
-        print_format.print_main_menu(self,option)
-        print_format.print_title(self,len(title)*"-")
+        Print_format.print_main_menu(self,option)
+        Print_format.print_title(self,len(title)*"-")
 
         while True:
 
@@ -67,7 +67,7 @@ class RVK_emp:
 
 
     def returning_customer(self):
-        print_format.print_title(self,"Returning Customer")
+        Print_format.print_title(self,"Returning Customer")
         information = ("( c ) Cancel, ( f ) Finish")
         print('''
 -----Returning Customer-------------------''')
@@ -231,12 +231,21 @@ Type here: ''').lower()
 
     def menu2_2(self):
         'Prints contract'
-        pass
+        while True:
+            print('''
+------------Contract search-------------
+ ''')
+            conID = input('Contract ID: #')
+            if len(conID) == 4 and conID.isdigit():
+                #LogicAPI.get_contract(conID)
+                pass
+            else:
+                print('Invalid contract ID!')
 
 
 
 
-    def menu3(self):
+    def print_report(self):
         #I might do it fokking later
         pass
 
