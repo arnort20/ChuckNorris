@@ -219,3 +219,6 @@ class LogicAPI:
         self.bill_wrapper()
         return self.bill.get_bill_info(contractID)
 
+    def calculate_bill(self, bill_dict):
+        self.bill_wrapper()
+        return self.bill.calculate_price(bill_dict)

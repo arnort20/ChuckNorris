@@ -8,7 +8,16 @@ class Bill:
         self.dAPI.add_bill(contract_ID, return_date, gbp_used)
 
     def calculate_price(self, bill_dictionary):
-        pass
+        car_tax = int(bill_dictionary["tax"])
+        gbp = bill_dictionary["gbp_discount"]
+        if bill_dictionary["late_tax"]:
+            basecost = bill_dictionary["true_period"]*10000
+            tardy_tax = 20
+        else:
+            basecost = bill_dictionary["contract_period"]*10000
+            tardy_tax = 0
+        modified_cost = basecost*(1+(car_tax+tardy_tax)/100)-gbp
+        return modified_cost
         
 
     def get_bill_info(self, contract_ID):
@@ -34,9 +43,9 @@ class Bill:
         ret_date = self.convert_date(the_bill["return_date"])
         bill_dictionary["return_date"] = str(ret_date)
         contract_period = end_date - start_date
-        bill_dictionary["contract_period"] = str(contract_period)
+        bill_dictionary["contract_period"] = contract_period.days
         true_period = ret_date - start_date
-        bill_dictionary["true_period"] = str(true_period)
+        bill_dictionary["true_period"] = true_period.days
         if true_period > contract_period:
             fined = bool(True)
         bill_dictionary["late_tax"] = fined
