@@ -21,7 +21,7 @@ class RVK_emp:
 
             option = input('Type here: ')
             if option == '1':
-                RVK_emp(self.employee_num, self.pword).create_contract()
+                self.create_contract()
             elif option == '2':
                 RVK_emp(self.employee_num, self.pword).view_contract()
             elif option == '3':
@@ -33,7 +33,7 @@ class RVK_emp:
             elif option == '6':
                 RVK_emp(self.employee_num, self.pword).delete_employee()
             elif option.lower() == 'q':
-                return
+                break
                 #maybe go back to loginUI?
             elif option == '':
                     print('Please input an option')
