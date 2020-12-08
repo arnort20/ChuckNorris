@@ -40,7 +40,7 @@ class Print_format():
             print("{:>{size}} ".format("|",size = width-40-int(width/2.4)))
 
             #extra cash money bil
-            self.print_space()
+            Print_format().print_space()
 
 
 
