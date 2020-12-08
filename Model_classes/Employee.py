@@ -10,6 +10,8 @@ class Employee(object):
         self.email = Email
         self.location = Location
         self.password = password
+
+        
     def __str__(self) -> str:
         pass
 
