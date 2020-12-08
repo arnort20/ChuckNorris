@@ -239,10 +239,11 @@ Type here: ''').lower()
 
             option = input('Input contract ID: ')
             if option == "r":
-                self.main_menu()
+                break
 
             bill_dict = self.logic.get_bill_info(option)
             print(bill_dict)
+            
 
     def add_new_employee(self):
         print('''
