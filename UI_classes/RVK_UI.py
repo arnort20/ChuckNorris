@@ -13,9 +13,10 @@ class RVK_UI:
     def main_menu(self):
         title = "(Welcome, Employee {})".format(self.employee_num)
         self.print.print_title(title)
+        self.print.print_space()
         option = "( 1 ) Create new contract,( 2 ) View contract,( 3 ) Print report,( 4 ) Add new employee,( 5 ) Change employee,( 6 ) Delete employee,( q )  Quit "
         self.print.print_main_menu(option)
-        self.print.print_title(len(title)*"")
+        self.print.print_line(len(title)*"")
 
         while True:
 
