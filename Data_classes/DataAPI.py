@@ -35,7 +35,7 @@ class DataAPI(object):
 
     def make_destination(info):
         
-        return Destination(info["id"],info["destination_name"],info["phone"],info["opening_hours"],info["report_filename"])
+        return Destination(info["id"],info["destination_name"],info["phone"],info["country_name"],info["airport_code"],info["opening_hours"],info["report_filename"])
 
     def make_contract(info):
      
