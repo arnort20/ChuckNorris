@@ -33,7 +33,7 @@ class RVK_emp:
             elif option == '6':
                 self.delete_employee()
             elif option.lower() == 'q':
-                return
+                break
                 #maybe go back to loginUI?
             elif option == '':
                     print('Please input an option')
