@@ -65,14 +65,15 @@ class Print_format():
         # Information = Efsta línan sem er upplysingar um hvað er hvað.
 
         splitt_info = information.split(",")
-        print("{:>20}".format("|"),end = " ")
-        
+        print("{:>20}".format("|"),end = "")
+        basic =  int(width/len(splitt_info))
+        fixer = width -(basic*len(splitt_info))
         for info in splitt_info:
-            print(info.center(int(width/len(splitt_info))), end="")
 
-        fixer = (len(splitt_info)/width) - width 
-        print(((width-((int(width/len(splitt_info)))*len(splitt_info))))*" "+ "|", end="")
-        print("")
+            print(info.center(basic), end="")
+
+
+        print(fixer*" "+"|")
 
 
 
