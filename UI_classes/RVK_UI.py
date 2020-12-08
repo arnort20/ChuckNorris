@@ -208,16 +208,21 @@ class Rvk_ui:
         self.print.print_line(len(title)*"_")
 
         while True:
-            use_gbp = input(self.print.question('Use Good Boy Points ( y / n ): '))
+            use_gbp = input(self.print.question('Use Good Boy Points ( y / n )'))
             if use_gbp == 'y':
                 pass
-                #UseGBP is commented out in logic_API
-            #start_date = datetime.date(int(input('Rental start date (yyyy/mm/dd): ')))
-            #print(start_date)
-            #start_date_list = create_date_list(start_date) 
-            #the string inputted should be outputted as a list of ints [DD, MM, YY]
+
+            
+            start_date = input('Rental start date (dd/mm/yy): ')
             end_date = input('Rental end date (dd/mm/yy): ')
+
+            # for spinning dates----------------------------------------------------------------------
+            # date_list =  end_date.split("/")
+            # date_list[1],date_list[3] = date_list[3],date_list[1]
+            # fixed_date = "/".join(date_list)
+
             location = input('Location: ')
+            
             while True:
                 option = input('''\n( r ) = Return
 ( f ) = Finish
