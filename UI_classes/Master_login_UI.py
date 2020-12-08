@@ -5,6 +5,16 @@ from Model_classes.Contract import Contract # Display all contracts overview
 from UI_classes.Print_formats import Print_format
 import sys #Spurning að breyta yfir í orginal loggin skjá
 
+"""
+3
+As Chuck Norris and/or employee of NaN Air I need to be able to 
+register new employees, a list of their information, and their position
+
+10
+As an employee of NaN Air I need to be able to register and list all rental 
+contracts
+"""
+
 class Master_login():
     def __init__(self, username, pword):
         self.logic = Logic_API(username, pword)

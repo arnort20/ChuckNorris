@@ -52,7 +52,7 @@ class Print_format():
             print("{:>{size}} ".format("",size = int(width/2-30)),end="")
             print("\t{:<40}: ".format(key.replace("_"," ")),end="")
             print(value,end="")
-            print("{:>{size}} ".format("|",size = width-17-(len(str(value)))-int(width/2)))
+            print("{:>{size}} ".format("|",size = width-17-(len(value))-int(width/2)))
       
 
 
