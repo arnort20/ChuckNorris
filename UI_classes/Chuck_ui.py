@@ -3,19 +3,24 @@ from Model_classes.Contract import Contract # Display all contracts overview
 from Model_classes.Vehicle import Vehicle
 from Model_classes.Bill import Bill
 from UI_classes.Print_formats import Print_format
+from UI_classes.Rvk_ui import Rvk_ui
 import sys #Spurning að breyta yfir í orginal loggin skjá
 
 """
 3
 As Chuck Norris and/or employee of NaN Air I need to be able to 
 register new employees, a list of their information, and their position
-
+    check
 10
 As an employee of NaN Air I need to be able to register and list all rental 
 contracts
 """
 
 class Chuck_ui():
+
+    def liner(self):
+        print("\n"*12)
+
     def __init__(self, username, pword):
         self.logic = Logic_API(username, pword)
         self.printer = Print_format()
@@ -26,7 +31,7 @@ class Chuck_ui():
         menus = True
         title = "Welcome Master Chuck!"
         Print_format.print_title(self,title)
-        option = "( 1 ) Review Earnings Report,( 2 ) View Vehicle Reports,( 3 ) View Bill Overview,( 4 ) Round House Kick,( 5 ) View All Contracts,,( q ) Quit"
+        option = "( 1 ) Review Earnings Report,( 2 ) View Vehicle Reports,( 3 ) View Bill Overview,( 4 ) Round House Kick,( 5 ) View All Contracts,( 6 ) Register New Employee,( q ) Quit"
         self.printer.print_main_menu(option)
         Print_format.print_line(self,len(title)*"_")
 
@@ -57,12 +62,42 @@ class Chuck_ui():
             elif option == "5":
                 self.All_contracts()
                 menus = False
+            
+            elif option == "6":
+                self.add_new_employee()
+                menus = False
 
             else:
                 print("Not a valid input!" "\n")
                 self.chuck_login()
 
-    def Earnings_report(self):#<----- Þarf að klára
+    def add_new_employee(self):
+        #Info
+        title = 'New Employee'
+        questions = {"name":"empty","ssn":"empty","address":"empty","location_id":"empty","email":"empty","phone":"empty","password":"empty","confirm password":"empty"}
+        information = ("( c ) Cancel, ( f ) Finish")        
+
+        while True:
+            for key,value in questions.items():
+
+                #Format
+                self.liner()
+                self.printer.question_box(questions,information,title)
+                option = input(self.printer.question('Type here: '))
+
+                #change for next print
+                questions[key] = option
+
+                #Choices
+                if questions["password"] != questions["confirm password"]:
+                    self.printer.warning("passwords don't match")
+                if option == 'c':
+                    return
+                elif option == 'f' and questions["confirm password"] != "empty" :
+                    questions["emp_name"] = questions["name"]
+                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["password"],)
+
+    def Earnings_report(self):
         # Hérna þarf að sækja overall Reportið í logic wrapper, spendinding vs earnings
         # Mögulega eitthvað fleirra
         questions = {"Input Location ID":"empty","Input Date From":"empty","Input Date To":"empty"}
@@ -78,8 +113,6 @@ class Chuck_ui():
         Print_format.print_space(self)
         Print_format.print_title(self,len("Earning Report")*"_")
         
-        
-
     def Vehicle_reports(self):
         Print_format.print_title(self,"Vehicle Reports")
         information = ("ID,Vehicle Name,Type,Manufacturer,Model,Color,Age,Tax,Available,Location ID,Licence Type")
