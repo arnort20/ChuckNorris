@@ -75,7 +75,14 @@ class Rvk_ui:
             title = "Welcome, Employee {}".format(self.employee_num)
             self.print.print_title(title)
             self.print.print_space()
-            option = "( 1 ) Create new contract,( 2 ) View contract,( 3 ) Print report,( 4 ) Add new employee,( 5 ) Change employee,( 6 ) Delete employee,,( q )  Quit "
+            option = "( 1 ) Contract menu,( 2 ) Employee menu,( 3 ) Vehicle menu,( 4 ) branch review,,( q ) Quit"
+
+            #Contract menu has create contract,view contract,print report,bill stuff
+            #Employee menu has add employee,delete employee,change employee
+            #vehicle menu has vehicle management and to see taxes
+            # see branch review
+
+
             self.print.print_main_menu(option)
             self.print.print_line(len(title)*"")
             option = input(self.print.question('Type here'))
@@ -114,6 +121,8 @@ class Rvk_ui:
 
 
 
+
+
     def create_contract(self):
         while True:
             title = "Creating New Contract"
@@ -143,21 +152,39 @@ class Rvk_ui:
 
 
     def returning_customer(self): 
-        self.print.print_title("Returning Customer")
+        title = "returning customer"
+        questions = {"customer ID": "empty"}
         information = ("( c ) Cancel, ( f ) Finish")
-        cost_reg = input('Costumer ID: ')
+
+
         while True:
-            self.print.print_out_format(information)
-            option = input('Type here: ').lower()
-            if option == 'c':
-                self.create_contract()
-            elif option == 'f':
-                #finds the costumer and creates a new contract
-                self.menu1_3(1)
-            elif option == '':
-                print('Please input an option')
-            else:
-                print('Invalid option')
+            for key,value in questions.items():
+
+                self.liner()
+                self.print.print_title(title)
+                #efri gluggi
+                self.print.print_space()
+                self.print.print_out_format(information)
+                self.print.print_space()
+                self.print.print_line(len(title)*"_")
+
+                #nedri
+                self.print.print_space()
+                self.print.print_questions(questions)
+                self.print.print_space()
+                self.print.print_line(len(title)*"_")
+
+                option = input(self.print.question("Enter Choice here"))
+                questions[key] = option
+
+                if option == 'c':
+                    return
+                elif option == 'f' and info_list["license_type"] != "empty" :
+                    self.menu1_3(1)
+                    return
+                    
+                else:
+                    self.print.warning("please select option")
 
 
 
@@ -212,13 +239,15 @@ class Rvk_ui:
             gbp = 0
 
         self.liner()
+
+
         self.print.print_title(title)
         self.print.print_space()
         self.print.print_out_format('good boy points: {}'.format(gbp))
         self.print.print_line(len(title)*"_")
 
         
-        use_gbp = input(self.print.question('Use Good Boy Points ( y / n )'))
+        use_gbp = input(self.print.question('\t\tUse Good Boy Points ( y / n )'))
 
         if use_gbp == 'y':
             #þarf að implementa gbp notkun
@@ -226,17 +255,33 @@ class Rvk_ui:
 
 
 
-        questions = {'start date (dd/mm/yy)':"empty",'end date (dd/mm/yy)':"empty",'location':"empty"}
+        questions = {'start date (dd/mm/yy)':"empty",'end date (dd/mm/yy)':"empty",'vehicle_id':"empty",'destination_id':"empty",}
+        while True:
+            for key,value in questions.items():
+                self.liner()
+                information = ("( c ) Cancel, ( f ) Finish")
+                self.print.print_title(title)
+                #efri gluggi
+                self.print.print_space()
+                self.print.print_out_format(information)
+                self.print.print_space()
+                self.print.print_line(len(title)*"_")
 
-        for key,value in questions.items():
-            self.liner()
-            self.print.print_title(title)
-            self.print.print_space()    
-            self.print.print_questions(questions)
-            self.print.print_line(len(title)*"_")
-            option = input(self.print.question("Enter Choice here"))
-            questions[key] = option
-            
+
+                self.print.print_space()    
+                self.print.print_questions(questions)
+                self.print.print_line(len(title)*"_")
+                option = input(self.print.question("\tEnter Choice here"))
+                questions[key] = option
+                
+                if option == 'c':
+                    return
+
+                elif option == 'f' and questions["destination_id"] != "empty" :
+                    questions["start_date"],questions["end_date"] = questions['start date (dd/mm/yy)'],questions['end date (dd/mm/yy)']
+                    self.logic.make_new_contract()
+                    
+
 
         # for spinning dates----------------------------------------------------------------------
         # date_list =  end_date.split("/")
