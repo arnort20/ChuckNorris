@@ -58,20 +58,22 @@ class Logic_API:
         self.bill = bill_logic()
 
     # #bill things
-    # def make_bill(self,contract_ID,return_date):
-    #     default_cost=10000
-    #     contract=self.get_contract(contract_ID)
-    #     vehicle=self.get_vehicle(contract_ID)
-    #     date_1=contract.start_date
-    #     date_2=contract.end_date
-    #     date_3=self.return_date
-    #     vehicle_rate=vehicle.tax
+    #when the customer returns the vehicle, magic happens
+    def finish_contract(self, contract_ID, fetch_date, return_date, gbp_used):
+        self.bill_wrapper()
+        self.bill = bill_logic()
+        return self.bill.new_bill(contract_ID, fetch_date, return_date, gbp_used)
 
 
-    #     if date_3 > date_2:
-    #         pass
-    #     #make the contract:
     
+    
+        
+
+
+        
+
+
+    #contract stuff
     def make_new_contract(self, customer_ID, vehicle_ID, start_date, end_date):
 
         Vehicle = self.get_vehicle(vehicle_ID)
@@ -83,18 +85,7 @@ class Logic_API:
 
         self.new_contract(self.user, customer_ID, vehicle_ID, start_date, end_date)
         return "success"
-        
-    # def use_GBP(self, customer_ID):
-    #     Customer = self.get_customer(customer_ID)
-    #     gbp = Customer.gbp
-    #     discount = int(gbp)*1000
-    #     self.change_customer(customer_ID, {"gbp":"0"})
-    #     return discount
 
-        
-
-
-    #contract stuff
     def get_contract(self, contractID):
         self.contract_wrapper()
         return self.contract.get_contract(contractID)
@@ -130,14 +121,16 @@ class Logic_API:
         self.vehicle_wrapper()
         self.vehicle.create_new_vehicle(vehicle_name,Type,manufacturer,Model,Color,age,tax,available,location,license_type)
 
-    def check_reservations(self, vehicle_ID):
+    def check_reservations(self, vehicle_ID, start_date, end_date):
         """
         checks all contracts to see which dates the vehicle is reserved, if any
         returns a list of tuples as (start_date, end_date)
-        returns None if there are none
+        then checks if there are any dates that clash with the inputted dates
+        returns a bool
         """
         self.contract_wrapper()
-        return self.contract.check_vehicle_reservations(vehicle_ID)
+        reserved_dates = self.contract.check_vehicle_reservations(vehicle_ID)
+        
 
     def change_vehicle_info(self, vehicleID, change_dict):
         self.vehicle_wrapper()

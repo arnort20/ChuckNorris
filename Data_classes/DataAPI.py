@@ -45,6 +45,11 @@ class DataAPI(object):
 
         return Employee(info["id"],info["employee_name"],info["ssn"],info["address"],info["phone"],info["email"],info["location"],info["password"])
 
+    def make_bill(info):
+
+        return Employee(info["id"],info["fetch_date"],info["return_date"],info["gbp_used"],info["location_id"],info["price"])
+
+
 
 
     # get single-------------done
@@ -87,7 +92,7 @@ class DataAPI(object):
     def get_bill(self,ident):
         try:
             bill = self.get.get_certein(ident,"Data_files\Bills.csv")
-            return bill
+            return DataAPI.make_bill(bill)
         except:
             return None
 
@@ -138,7 +143,11 @@ class DataAPI(object):
 
     def get_bills(self):
         bills = self.get.get_csv("Data_files\Bills.csv")
-        return bills
+        bill_list = []
+        for obj in bills:
+            bill = DataAPI.make_employee(obj)
+            bill_list.append(bill)
+        return bill_list
 
 
 
@@ -164,6 +173,7 @@ class DataAPI(object):
         return self.get.get_id("Data_files\Bills.csv")
 
 
+
     #add single-------------done
     def add_vehicle(self,ident,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,license_type):
         vehicle_dict = {"id":ident,"vehicle_name":vehicle_name,"type":Type,"manufacturer":Manufacturer,"model":Model,"color":Color,"age":age,"tax":tax,"available":available,"location_id":location_id,"license_type":license_type}
@@ -185,8 +195,8 @@ class DataAPI(object):
         dicter = {"id":ident,"employee_name":employee_name,"ssn":ssn,"address":address,"phone":phone,"email":email,"location":location,"password":password}
         self.add.add(dicter,"Data_files\Employees.csv")
 
-    def add_bill(self,contract_id,fetch_date,return_date,gbp):
-        dicter = {"contract_id":contract_id,"fetch_date":fetch_date,"return_date":return_date,"gbp_used":gbp}
+    def add_bill(self,contract_id,fetch_date,return_date,gbp,location_id,price):
+        dicter = {"contract_id":contract_id,"fetch_date":fetch_date,"return_date":return_date,"gbp_used":gbp,"location_id":location_id,"price":price}
         self.add.add(dicter,"Data_files\Bills.csv")
 
 
@@ -207,6 +217,9 @@ class DataAPI(object):
     def change_Employee(self,ident,changes):
         self.chang.change("Data_files\Employees.csv",ident,changes)
 
+    def change_Employee(self,ident,changes):
+        self.chang.change("Data_files\Bills.csv",ident,changes)
+
 
 
     #delete single-------------done
@@ -224,3 +237,6 @@ class DataAPI(object):
 
     def delete_employee(self,ident):
         self.dell.dell("Data_files\Employees.csv",ident)
+
+    def delete_employee(self,ident):
+        self.dell.dell("Data_files\Bills.csv",ident)

@@ -1,2 +1,2 @@
-id,fetch_date,return_date,gbp_used
-2,"2021.1.10","2021.1.26",3
+id,fetch_date,return_date,gbp_used,location_id,price
+2,"2021.1.10","2021.1.26",3,2,1000
