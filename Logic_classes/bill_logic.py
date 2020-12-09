@@ -4,10 +4,33 @@ class Bill_logic:
     def __init__(self):
         self.dAPI = dAPI()
 
-    #Bætt við
     def get_bill(self, contract_ID):
         bill = self.dAPI.get_bill(contract_ID)
         return bill
+    
+    def get_all_bills(self):
+        return self.dAPI.get_bills()
+
+    def filter_earnings(self, location_id, min_date, max_date):
+        bills = self.dAPI.get_bills()
+        date_from = self.convert_date(min_date)
+        date_to = self.convert_date(max_date)
+        locations_bills = []
+        filtered_bills = []
+        for bill in bills:
+            if bill.location_id == location_id:
+                locations_bills.append(bill)
+        for bill in locations_bills:
+            money_day = self.convert_date(bill.return_date)
+            if money_day > date_from and date_to > money_day:
+                filtered_bills.append(bill)
+        laundered_money = 0
+        for bill in filtered_bills:
+            laundered_money += float(bill.price)
+        return int(laundered_money)
+
+
+
 
     def new_bill(self, contract_ID, fetch_date, return_date, gbp_used):
         contract = self.dAPI.get_contract(contract_ID)
@@ -63,9 +86,8 @@ class Bill_logic:
         date_format = datetime.date(int(year), int(month), int(day))
         return date_format
 
-    # Bætt við
-    def get_all_bills(self):
-        return self.dAPI.get_bills()
+
+    
 
 
 #RIP
