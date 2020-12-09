@@ -74,8 +74,25 @@ class Rvk_ui:
         self.logic = Logic_API(username, pword)
         self.print = Print_format()
 
+        
+                                                                                #needs:
+                                                                                #vehicle management stuff
+                                                                                #search vehicles
+                                                                                #view all contracts
+                                                                                #invalidate rental contract
+                                                                                #destination management
+                                                                                #destination information
+                                                                                #print invoice
+                                                                                #see taxes for vehicles by type
+                                                                                #make report of my branch performance
 
-    #-------------START MENU FOR RVK EMPLOYEE---------------
+
+                                                                                #Contract menu has create contract,view contract,print report,bill stuff
+                                                                                #Employee menu has add employee,delete employee,change employee
+                                                                                #vehicle menu has vehicle management and to see taxes
+                                                                                # see branch review
+
+#-------------START MENU FOR RVK EMPLOYEE---------------
     def main_menu(self):
         while True:
             self.liner()
@@ -84,10 +101,7 @@ class Rvk_ui:
             self.print.print_space()
             option = "( 1 ) Contract menu,( 2 ) Employee menu,( 3 ) Vehicle menu,( 4 ) Branch review,( q ) Quit"
 
-                                                                                #Contract menu has create contract,view contract,print report,bill stuff
-                                                                                #Employee menu has add employee,delete employee,change employee
-                                                                                #vehicle menu has vehicle management and to see taxes
-                                                                                # see branch review
+
             self.print.print_main_menu(option)
 
             self.print.print_line(len(title)*"")
@@ -100,16 +114,7 @@ class Rvk_ui:
                 self.vehicle_menu()
             elif option == '4':
                 self.branch_review()
-                                                                                #needs:
-                                                                                #vehicle management stuff
-                                                                                #search vehicles
-                                                                                #view all contracts
-                                                                                #invalidate rental contract
-                                                                                #destination management
-                                                                                #destination information
-                                                                                #print invoice
-                                                                                #see taxes for vehicles by type
-                                                                                #make report of my branch performance
+
             elif option.lower() == 'q':
                 break
                 #maybe go back to loginUI?
@@ -184,7 +189,6 @@ class Rvk_ui:
 
 
 
-
 #-----------------VEHICLE MENU FOR RVK EMPLOYEE-----------
     def vehicle_menu(self):
         while True:
@@ -224,7 +228,6 @@ class Rvk_ui:
 
             overview=self.Logic_API.get_destination(option)
             print(overview)
-
 
 
 
@@ -385,7 +388,6 @@ class Rvk_ui:
                   
 
 
-
 #-----------View contrarct-------------
     def view_contract(self):
 
@@ -426,7 +428,6 @@ class Rvk_ui:
 
 
 
-
 #--------------Changing contract---------
     def change_contract(self,contract):
         #Info
@@ -455,7 +456,7 @@ class Rvk_ui:
 
 
 
-    # Report----------------------
+# Report---------------------- NOT FINISHED
     def print_report(self):
         self.print.print_title("Print bill")
         information = "( # ) Input the contract ID,( r ) Return" 
@@ -515,7 +516,6 @@ class Rvk_ui:
 
 
 
-
 #----------------Changing employee information------------
     def change_employee(self):
 
@@ -532,7 +532,7 @@ class Rvk_ui:
             if employee_id == 'c':
                 return
 
-            #Format
+            #Info for next part
             employee = self.logic.get_employee(employee_id)
             information = ("( c ) Cancel, ( f ) Finish, ( s ) skip")
             questions = {"address":employee.address,"phone":employee.phone,"email":employee.email,"location":employee.location,"password":employee.password,"confirm password":employee.password} # address,phone,email,location,password
@@ -540,10 +540,14 @@ class Rvk_ui:
             while True:
                 for key,value in questions.items():
 
+
+                    #Format
                     self.liner()
                     self.print.question_box(questions,information,title)
-
                     option = input(self.print.question("\tEnter Choice here"))
+
+
+                    #Choices
                     if option == 'c':
                         return
                     if option == 's':
@@ -555,26 +559,30 @@ class Rvk_ui:
                         self.logic.change_employee(employee_id,questions)
                         return
 
+                    #rewrite for next print
                     questions[key] = option
 
 
 
+#---------------Deleting/firing employee---------
     def delete_employee(self):
-
+        #Info
         title = "employee search"
         information = ("( c ) Cancel,,Insert ID below")
+
+        #Format
         self.liner()
         self.print.short_box(information,title)
-
         employee_id = input(self.print.question("employee ID"))
 
         while True:
+            #info
             title = "Deleting employee"
             information = ("( c ) Cancel,( d ) Delete")
 
+            #Format
             self.liner()
             self.print.short_box(information,title)
-
             confirm = input(self.print.question("Confirm"))
 
             if confirm == "c":
@@ -582,6 +590,5 @@ class Rvk_ui:
             elif confirm == "d":
                 self.logic.fire_employee(employee_id)
                 return
-
             else:
                 self.print.warning("Wrong input")
