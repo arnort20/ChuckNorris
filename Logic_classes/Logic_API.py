@@ -46,27 +46,32 @@ class Logic_API:
 
     #contract stuff
     def get_contract(self, contractID):
+        #returns an object containing information about the contract
         self.contract_wrapper()
         return self.contract.get_contract(contractID)
 
     def delete_contract(self,contractID):
         self.contract_wrapper()
         self.contract.delete_current_contract(contractID)
-        #returns false if failed, remember to implement
 
     def new_contract(self,customerID,vehicleID,location,start_date,end_date):
+        #registers the user and the employee signed on the contract
+        #registers the contract to the database
         self.contract_wrapper()
         employeeID = self.user
         self.contract.make_contract(employeeID,customerID,vehicleID,location,start_date,end_date)
     
-    def change_contract(self,contractID,change_value):
+    def change_contract(self,contractID,change_dict):
+        #change the contract with a dictionary containing the keys 
+        #you want to change and what values to replace them with
         self.contract_wrapper()
-        self.contract.change_contract(contractID, change_value)
+        self.contract.change_contract(contractID, change_dict)
 
     def all_contracts(self):
+        # get a list of all contracts
         self.contract_wrapper()
         return self.contract.all_contracts()
-    #So chuck can get a list of all current contracts
+    
 
 
 
@@ -74,6 +79,7 @@ class Logic_API:
 
     #vehicle stuff
     def get_vehicle(self, vehicleID):
+        #returns an object containing information about the vehicle
         self.vehicle_wrapper()
         return self.vehicle.get_vehicle(vehicleID)
 
@@ -115,7 +121,8 @@ class Logic_API:
         self.vehicle_wrapper()
         return self.vehicle.get_vehicles()
 
-    def popular_vehicle_types(self)
+    def popular_vehicle_types(self):
+        pass
 
 
 
@@ -127,6 +134,7 @@ class Logic_API:
         self.customer.new_customer(customerID,name,ssn,email,phone,address,license_type)
 
     def get_customer(self,customerID):
+        #returns an object containing information about the customer
         self.customer_wrapper()
         return self.customer.get_customer(customerID)
 
@@ -156,6 +164,7 @@ class Logic_API:
         self.employee.change_employee(emp_ID, change_dict)
 
     def get_employee(self,emp_ID):
+        #returns an object containing information about the employee
         self.employee_wrapper()
         return self.employee.get_employee(emp_ID)
 
@@ -166,6 +175,7 @@ class Logic_API:
         self.destination.new_destination(destination_name, airport, phone, opening_hours)
 
     def get_destination(self, dest_ID):
+        #returns an object containing information about the destination
         self.destination_wrapper()
         return self.destination.get_destination(dest_ID)
 
@@ -179,28 +189,34 @@ class Logic_API:
 
 
     #billing stuff
-    #when the customer returns the vehicle, magic happens
+    
     def finish_contract(self, contractID, fetch_date, return_date, gbp_used):
+        #when the customer returns the vehicle, magic happens
+        #input the contract, date when car was picked up,
+        #date when car was returned, and whether the customer wants to use
+        #their loyalty points(Good Boy Points)
         self.bill_wrapper()
         self.bill.new_bill(contractID, fetch_date, return_date, gbp_used)
 
-    def get_bill_info(self, contractID):
+    def calculate_bill(self, tax, gbp_discount, days, late_tax):
+        #a handy dandy calculator, used automatically within the bill logic file
         self.bill_wrapper()
-        return self.bill.get_bill_info(contractID)
-
-    def calculate_bill(self, bill_dict):
-        self.bill_wrapper()
-        return self.bill.calculate_price(bill_dict)
+        return self.bill.calculate_price(tax, gbp_discount, days, late_tax)
 
     def get_bills(self):
+        #get all the bill objects in the database
         self.bill_wrapper()
         return self.bill.get_all_bills()
 
     def get_bill(self, contract_ID):
+        #get one bill object, bill IDs are always the same as 
+        #the bill they're associated with
         self.bill_wrapper()
         return self.bill.get_bill(contract_ID)
     
     def filter_earings(self, location_ID, date_from, date_to):
+        #how much money did this place make me last month?
+        #                      -Chuck Norris, probably
         self.bill_wrapper()
         return self.bill.filter_earnings(location_ID,date_from,date_to)
 
@@ -209,6 +225,7 @@ class Logic_API:
     #extra functions
 
     def convert_date(self, date_string):
+        #for datetime module calculations
         year, month, day = str(date_string).split('.')
         date_format = datetime.date(int(year), int(month), int(day))
         return date_format

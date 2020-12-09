@@ -5,13 +5,20 @@ class Bill_logic:
         self.dAPI = dAPI()
 
     def get_bill(self, contract_ID):
+        #calls on data to fetch a bill
         bill = self.dAPI.get_bill(contract_ID)
         return bill
     
     def get_all_bills(self):
+        #calls on data to fetch all the bills
         return self.dAPI.get_bills()
 
     def filter_earnings(self, location_id, min_date, max_date):
+        """
+        finds all bills that fit the input parameters
+        returns the total money earned by the location
+        in the
+        """
         bills = self.dAPI.get_bills()
         date_from = self.convert_date(min_date)
         date_to = self.convert_date(max_date)
