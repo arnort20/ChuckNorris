@@ -77,7 +77,7 @@ class Rvk_ui:
             title = "Welcome, Employee {}".format(self.employee_num)
             self.print.print_title(title)
             self.print.print_space()
-            option = "( 1 ) Contract menu,( 2 ) Employee menu,( 3 ) Vehicle menu,( 4 ) Branch review,,( q ) Quit"
+            option = "( 1 ) Contract menu,( 2 ) Employee menu,( 3 ) Vehicle menu,( 4 ) Branch review,( q ) Quit"
 
             #Contract menu has create contract,view contract,print report,bill stuff
             #Employee menu has add employee,delete employee,change employee
@@ -201,6 +201,21 @@ class Rvk_ui:
 
             else:
                 print('Invalid option')
+
+    def branch_review(self):
+        while True:
+            title = "Branch review"
+            self.print.print_title(title)
+            self.print.print_space()
+            information = ("Choose a branch id")
+            self.print.print_main_menu(information)
+            self.print.print_line(len(title)*"_")
+
+            option = input(self.print.question('Type here'))
+
+            self.Logic_API.get_destination(option)
+
+
 
 
     # Contract-----------------
