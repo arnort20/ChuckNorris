@@ -9,6 +9,7 @@ from Model_classes.Customer import Customer
 from Model_classes.Destination import Destination
 from Model_classes.Employee import Employee
 from Model_classes.Vehicle import Vehicle
+from Model_classes.Bill import Bill
 
 # skila objectum til logic
 # skila listum af objectum til logic
@@ -47,7 +48,7 @@ class DataAPI(object):
 
     def make_bill(info):
 
-        return Employee(info["id"],info["fetch_date"],info["return_date"],info["gbp_used"],info["location_id"],info["price"])
+        return Bill(info["id"],info["fetch_date"],info["return_date"],info["location_id"],info["price"])
 
 
 
@@ -146,7 +147,7 @@ class DataAPI(object):
         bills = self.get.get_csv("Data_files\Bills.csv")
         bill_list = []
         for obj in bills:
-            bill = DataAPI.make_employee(obj)
+            bill = DataAPI.make_bill(obj)
             bill_list.append(bill)
         return bill_list
 
@@ -218,7 +219,7 @@ class DataAPI(object):
     def change_Employee(self,ident,changes):
         self.chang.change("Data_files\Employees.csv",ident,changes)
 
-    def change_Employee(self,ident,changes):
+    def change_Bill(self,ident,changes):
         self.chang.change("Data_files\Bills.csv",ident,changes)
 
 
@@ -239,5 +240,5 @@ class DataAPI(object):
     def delete_employee(self,ident):
         self.dell.dell("Data_files\Employees.csv",ident)
 
-    def delete_employee(self,ident):
+    def delete_bill(self,ident):
         self.dell.dell("Data_files\Bills.csv",ident)

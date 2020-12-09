@@ -57,21 +57,6 @@ class Logic_API:
     def bill_wrapper(self):
         self.bill = bill_logic()
 
-    # #bill things
-    #when the customer returns the vehicle, magic happens
-    def finish_contract(self, contract_ID, fetch_date, return_date, gbp_used):
-        self.bill_wrapper()
-        self.bill = bill_logic()
-        return self.bill.new_bill(contract_ID, fetch_date, return_date, gbp_used)
-
-
-    
-    
-        
-
-
-        
-
 
     #contract stuff
     def make_new_contract(self, customer_ID, vehicle_ID, start_date, end_date):
@@ -211,7 +196,7 @@ class Logic_API:
 
 
     #billing stuff
-    def new_bill(self, contractID, fetch_date, return_date, gbp_used):
+    def finish_contract(self, contractID, fetch_date, return_date, gbp_used):
         self.bill_wrapper()
         self.bill.new_bill(contractID, fetch_date, return_date, gbp_used)
 
@@ -226,7 +211,15 @@ class Logic_API:
     def get_bills(self):
         self.bill_wrapper()
         return self.bill.get_all_bills()
+
+    def get_bill(self, contract_ID):
+        self.bill_wrapper()
+        return self.bill.get_bill(contract_ID)
     
-    #Þarf að bæta við Earnings functioni
+    #when the customer returns the vehicle, magic happens
+    
+    def filter_earings(self, location_ID, date_from, date_to):
+        self.bill_wrapper()
+        return self.bill.filter_earnings(location_ID,date_from,date_to)
     
         

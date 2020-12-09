@@ -1,5 +1,5 @@
 from Model_classes.Employee import Employee
-from Logic_classes.Logic_API import Logic_API 
+from Logic_classes.logic_API import Logic_API
 from Model_classes.Vehicle import Vehicle
 from Model_classes.Contract import Contract
 from Model_classes.Customer import Customer
@@ -48,7 +48,7 @@ class Non_rvk_ui:
 
             title = 'welcome Employee {}'.format(self.login_id)
             self.format.print_title(title,self.width)
-            menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,,( q ) Quit."
+            menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,( q ) Quit."
 
     
             self.format.print_space()
@@ -74,14 +74,6 @@ class Non_rvk_ui:
                 break
             else:
                 choice = 0
-
-
-
-
-
-
-
-
 
     #Register vehicle menu
     def menu1(self):

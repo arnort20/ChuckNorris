@@ -4,7 +4,7 @@ class Customer(object):
         self.customer_name = customer_name
         self.License_type = License_type
         self.gbp = gbp
-        self.gbp = bbp
+        self.bbp = bbp
         self.email = email
         self.phone = phone
         self.address = address
