@@ -58,7 +58,7 @@ class Bill_logic:
         date_format = datetime.date(int(year), int(month), int(day))
         return date_format
 
-    #Bætt við
+    # Bætt við
     def get_all_bills(self):
         return self.dAPI.get_bills()
 
