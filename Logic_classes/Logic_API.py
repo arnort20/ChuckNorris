@@ -25,20 +25,6 @@ class Logic_API:
         else:
             return None
 
-    def check_privilege(self):
-        """
-        0: no privileges, access denied
-        1: master access of Chuck Norris
-        2: A Reykjavík employee, has contract making privileges
-        3: Destination employee, has car management privileges
-        """
-        if not self.priv_location:
-            return 0
-        elif self.priv_location >= "3":
-            return 3
-        else:
-            return self.priv_location
-
     def contract_wrapper(self):
         self.contract = cont_logic()
 
@@ -59,18 +45,6 @@ class Logic_API:
 
 
     #contract stuff
-    def make_new_contract(self, customer_ID, vehicle_ID, start_date, end_date):
-
-        Vehicle = self.get_vehicle(vehicle_ID)
-        #check if the customer has the appropriate licensing
-        if not self.check_license(customer_ID, Vehicle.id):
-            return "license_error"
-        #customer has the appropriate license for the vehicle, check reservations
-        reservations = self.check_reservations(vehicle_ID)
-
-        self.new_contract(self.user, customer_ID, vehicle_ID, start_date, end_date)
-        return "success"
-
     def get_contract(self, contractID):
         self.contract_wrapper()
         return self.contract.get_contract(contractID)
@@ -111,7 +85,8 @@ class Logic_API:
         """
         checks all contracts to see which dates the vehicle is reserved, if any
         then checks if there are any dates that clash with the inputted dates
-        returns a bool or none
+        returns True if the vehicle is not reserved for that particular span
+        of dates, returns false is it's reserved
         """
         self.contract_wrapper()
         min_date = self.convert_date(start_date)
@@ -123,10 +98,6 @@ class Logic_API:
             if ((min_date > starts_at and min_date < ends_at)or(max_date > ends_at and min_date < ends_at)):
                 return False
         return True
-
-                
-
-            
 
     def change_vehicle_info(self, vehicleID, change_dict):
         self.vehicle_wrapper()
@@ -143,7 +114,9 @@ class Logic_API:
     def get_vehicle_reports(self):
         self.vehicle_wrapper()
         return self.vehicle.get_vehicles()
-        
+
+    def popular_vehicle_types(self)
+
 
 
 
@@ -206,6 +179,7 @@ class Logic_API:
 
 
     #billing stuff
+    #when the customer returns the vehicle, magic happens
     def finish_contract(self, contractID, fetch_date, return_date, gbp_used):
         self.bill_wrapper()
         self.bill.new_bill(contractID, fetch_date, return_date, gbp_used)
@@ -226,11 +200,11 @@ class Logic_API:
         self.bill_wrapper()
         return self.bill.get_bill(contract_ID)
     
-    #when the customer returns the vehicle, magic happens
-    
     def filter_earings(self, location_ID, date_from, date_to):
         self.bill_wrapper()
         return self.bill.filter_earnings(location_ID,date_from,date_to)
+
+
 
     #extra functions
 
@@ -239,4 +213,16 @@ class Logic_API:
         date_format = datetime.date(int(year), int(month), int(day))
         return date_format
     
-        
+    def check_privilege(self):
+        """
+        0: no privileges, access denied
+        1: master access of Chuck Norris
+        2: A Reykjavík employee, has contract making privileges
+        3: Destination employee, has car management privileges
+        """
+        if not self.priv_location:
+            return 0
+        elif self.priv_location >= "3":
+            return 3
+        else:
+            return self.priv_location
