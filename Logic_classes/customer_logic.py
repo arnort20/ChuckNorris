@@ -5,9 +5,12 @@ class Customer_logic:
         self.dAPI = dAPI()
         
     def get_customer(self,customerID):
+        #returns a customer object containing all info 
         return self.dAPI.get_customer(customerID)
 
     def new_customer(self,customerID,name,email,phone,address,license_type):
+        #registers a new customer, their ID will be their driver's license number
+        #
         self.dAPI.add_customer(customerID,name,email,phone,address,license_type,0,0)
 
     def add_GBP(self,customerID,added_points):

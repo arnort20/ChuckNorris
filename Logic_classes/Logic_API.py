@@ -101,7 +101,7 @@ class Logic_API:
         for dates in reserved_dates:
             starts_at = self.convert_date(dates[0])
             ends_at = self.convert_date(dates[1])
-            if ((min_date > starts_at and min_date < ends_at)or(max_date > ends_at and min_date < ends_at)):
+            if self.check_date_clash(min_date, max_date, starts_at, ends_at):
                 return False
         return True
 
@@ -214,7 +214,7 @@ class Logic_API:
         self.bill_wrapper()
         return self.bill.get_bill(contract_ID)
     
-    def filter_earings(self, location_ID, date_from, date_to):
+    def filter_earnings(self, location_ID, date_from, date_to):
         #how much money did this place make me last month?
         #                      -Chuck Norris, probably
         self.bill_wrapper()
@@ -229,6 +229,19 @@ class Logic_API:
         year, month, day = str(date_string).split('.')
         date_format = datetime.date(int(year), int(month), int(day))
         return date_format
+
+    def check_date_clash(self, date1_start, date1_end, date2_start, date2_end):
+        """
+        takes four datetime objects and checks if there's any overlap
+        to check if one day is in a span of time, insert date1_start = date1_end
+        returns true if there is a clash
+        """
+        if ((date2_start > date1_start and date2_start < date1_end)or(date2_end > date1_start and date2_end < date1_end)):
+            return True
+        elif ((date1_start > date2_start and date1_start < date2_end)or(date1_end > date2_start and date1_end < date2_end)):
+            return True
+        else:
+            return False
     
     def check_privilege(self):
         """

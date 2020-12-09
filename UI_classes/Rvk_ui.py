@@ -331,6 +331,9 @@ class Rvk_ui:
         #previous says from what menu you came from
         title = 'New Contract'
         customer = self.logic.get_customer(customer_id)
+        #remember to rework this function, adding the fancy new functions
+        #Logic_API.check_license(customer_id, vehicle_id)
+        #Logic_API.check_reservations(vehicle_ID, start_date, end_date)
         print(customer)
 
         gbp = customer.gbp
