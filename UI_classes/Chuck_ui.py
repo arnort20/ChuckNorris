@@ -25,8 +25,6 @@ class Chuck_ui():
         self.logic = Logic_API(username, pword)
         self.printer = Print_format()
         
-
-
     def chuck_login(self):
         menus = True
         title = "Welcome Master Chuck!"
@@ -72,7 +70,6 @@ class Chuck_ui():
                 self.chuck_login()
 
     def add_new_employee(self):
-        #Info
         title = 'New Employee'
         questions = {"name":"empty","ssn":"empty","address":"empty","location_id":"empty","email":"empty","phone":"empty","password":"empty","confirm password":"empty"}
         information = ("( c ) Cancel, ( f ) Finish")        
@@ -102,7 +99,7 @@ class Chuck_ui():
         # Mögulega eitthvað fleirra
         questions = {"Input Location ID":"empty","Input Date From":"empty","Input Date To":"empty"}
         title = "Earnings Report"
-        information = ("( c ) Cancel")
+        information = ("Date Format = (yy.mm.dd),( c ) Cancel")
         for key,value in questions.items():
             self.printer.question_box(questions,information,title)
             option = input(self.printer.question("Enter Input here"))
@@ -130,6 +127,7 @@ class Chuck_ui():
         Print_format.print_title(self, "Bill Overview")
         information = ("Contract ID,Start Date,Return Date,Location ID,Price")
         Print_format.print_out_format(self, information)
+        Print_format.print_space(self)
         bills = self.logic.get_bills()
         for item in bills:
             Print_format.print_out_format(self,str(item))
@@ -172,6 +170,7 @@ class Chuck_ui():
         self.printer.print_title("Contract Overview")
         information = ("ID,Employee ID,Customer ID,Vehicle ID,Destination ID,Start Date,End Date,Paid")
         self.printer.print_out_format(information)
+        Print_format.print_space(self)
         contracts = self.logic.all_contracts()
         for item in contracts:
             self.printer.print_out_format(str(item))
