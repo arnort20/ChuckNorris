@@ -38,7 +38,7 @@ class Bill_logic:
 
         #KA-CHING!
         price = self.calculate_price(tax, gbp, days, late_tax)
-        self.dAPI.add_bill(contract_ID, fetch_date, return_date, gbp_used, location_id, price)
+        self.dAPI.add_bill(contract_ID, fetch_date, return_date, location_id, price)
 
         #mark the car as returned
         dAPI.change_vehicle(contract.vehicle_id,{"available":"yes"})   
@@ -58,7 +58,7 @@ class Bill_logic:
         date_format = datetime.date(int(year), int(month), int(day))
         return date_format
 
-    #Bætt við
+    # Bætt við
     def get_all_bills(self):
         return self.dAPI.get_bills()
 
