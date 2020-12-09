@@ -15,7 +15,7 @@ As an employee of NaN Air I need to be able to register and list all rental
 contracts
 """
 
-class Master_login():
+class Chuck_ui():
     def __init__(self, username, pword):
         self.logic = Logic_API(username, pword)
         self.printer = Print_format()
@@ -61,14 +61,15 @@ class Master_login():
                 print("Not a valid input!" "\n")
                 self.chuck_login()
 
-    def Earnings_report(self):
+    def Earnings_report(self):#<----- Þarf að klára
         Print_format.print_title(self, "Earning Report")
         information = ("Something fun")
         Print_format.print_out_format(self,information)
-        earnings = self.logic_wrapper.HER COMES EARNINGS REPORT
+        earnings = self.logic.earnings_report
+        Print_format.print_space(self)
         for item in earnings:
             Print_format.print_out_format(self,str(item))
-            Print_format.print_title(self,len("Earning Report")*"-")
+            Print_format.print_title(self,len("Earning Report")*"_")
         # Hérna þarf að sækja overall Reportið í logic wrapper, spendinding vs earnings
         # Mögulega eitthvað fleirra
         
@@ -77,7 +78,6 @@ class Master_login():
     def Vehicle_reports(self):
         Print_format.print_title(self,"Vehicle Reports")
         information = ("ID,Vehicle Name,Type,Manufacturer,Model,Color,Age,Tax,Available,Location ID,Licence Type")
-        
         Print_format.print_out_format(self,information)
         vehicle_report = self.logic.get_vehicle_reports()
         Print_format.print_space(self)
@@ -97,7 +97,6 @@ class Master_login():
             Print_format.print_out_format(self,str(item))
         Print_format.print_title(self,len("Bill Overview")*"_")
 
-        pass
     def Round_house(self):
         rhk = "Round House Kick"
         self.printer.print_title(rhk)
@@ -141,7 +140,6 @@ class Master_login():
         self.printer.print_line(len("Contract Overview")*"_")
         
         return
-
 
     def kickdownstairs(self, name):
         output = ("""
