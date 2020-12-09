@@ -41,7 +41,7 @@ class Bill_logic:
         self.dAPI.add_bill(contract_ID, fetch_date, return_date, location_id, price)
 
         #mark the car as returned
-        dAPI.change_vehicle(contract.vehicle_id,{"available":"yes"})   
+        self.dAPI.change_vehicle(contract.vehicle_id,{"available":"yes"})   
         
 
 

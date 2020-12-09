@@ -213,7 +213,7 @@ class Logic_API:
     #billing stuff
     def new_bill(self, contractID, fetch_date, return_date, gbp_used):
         self.bill_wrapper()
-        self.bill.new_bill(contractID, return_date, gbp_used)
+        self.bill.new_bill(contractID, fetch_date, return_date, gbp_used)
 
     def get_bill_info(self, contractID):
         self.bill_wrapper()

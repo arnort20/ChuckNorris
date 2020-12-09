@@ -1,5 +1,4 @@
 id,vehicle_name,type,manufacturer,model,color,age,tax,available,location_id,license_type
-
 1,GR15869,Medium road,TAILG,Free Fly II,white,2018,80,yes,4,B
 2,GR15868,Medium road,TAILG,Free Fly II,white,2018,80,yes,4,B
 3,Kayak,Light water,Kayman Kayaks,Crazy,yellow,2020,8,yes,3,OK
