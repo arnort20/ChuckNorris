@@ -9,7 +9,6 @@ from Model_classes.Customer import Customer
 from Model_classes.Destination import Destination
 from Model_classes.Employee import Employee
 from Model_classes.Vehicle import Vehicle
-from Model_classes.Bill import Bill
 
 # skila objectum til logic
 # skila listum af objectum til logic
@@ -22,7 +21,7 @@ class DataAPI(object):
         self.add = Adder
         self.dell = Dell
         self.chang = Changer
-# laga i utf
+# laga i utf encoding
 
 
     #make stuff-------------done
@@ -35,8 +34,8 @@ class DataAPI(object):
         return Customer(info["id"],info["customer_name"],info["ssn"],info["email"],info["phone"],info["address"],info["license_type"],info["gbp"],info["bbp"])
 
     def make_destination(info):
-        
-        return Destination(info["id"],info["destination_name"],info["phone"],info["country_name"],info["airport"],info["opening_hours"],info["report_filename"])
+        print(info)
+        return Destination(info["id"],info["destination_name"],info["airport"],info["phone"],info["country_name"],info["opening_hours"])
 
     def make_contract(info):
      
@@ -48,7 +47,7 @@ class DataAPI(object):
 
     def make_bill(info):
 
-        return Bill(info["id"],info["fetch_date"],info["return_date"],info["location_id"],info["price"])
+        return Employee(info["id"],info["fetch_date"],info["return_date"],info["gbp_used"],info["location_id"],info["price"])
 
 
 
@@ -67,12 +66,11 @@ class DataAPI(object):
             return DataAPI.make_customer(customer)
         except:
             return None
-        
 
     def get_destination(self,ident):
         try:
             destination = self.get.get_certein(ident,"Data_files\Destinations.csv")
-            return DataAPI.make_Destination(destination)
+            return DataAPI.make_destination(destination)
         except:
             return None
 
@@ -147,7 +145,7 @@ class DataAPI(object):
         bills = self.get.get_csv("Data_files\Bills.csv")
         bill_list = []
         for obj in bills:
-            bill = DataAPI.make_bill(obj)
+            bill = DataAPI.make_employee(obj)
             bill_list.append(bill)
         return bill_list
 
@@ -219,7 +217,7 @@ class DataAPI(object):
     def change_Employee(self,ident,changes):
         self.chang.change("Data_files\Employees.csv",ident,changes)
 
-    def change_Bill(self,ident,changes):
+    def change_Employee(self,ident,changes):
         self.chang.change("Data_files\Bills.csv",ident,changes)
 
 
@@ -240,5 +238,5 @@ class DataAPI(object):
     def delete_employee(self,ident):
         self.dell.dell("Data_files\Employees.csv",ident)
 
-    def delete_bill(self,ident):
+    def delete_employee(self,ident):
         self.dell.dell("Data_files\Bills.csv",ident)
