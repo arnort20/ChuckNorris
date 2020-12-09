@@ -30,8 +30,6 @@ class Bill_logic:
         return int(laundered_money)
 
 
-
-
     def new_bill(self, contract_ID, fetch_date, return_date, gbp_used):
         contract = self.dAPI.get_contract(contract_ID)
         vehicle = self.dAPI.get_vehicle(contract.vehicle_id)

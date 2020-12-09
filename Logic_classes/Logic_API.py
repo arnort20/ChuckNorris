@@ -110,13 +110,23 @@ class Logic_API:
     def check_reservations(self, vehicle_ID, start_date, end_date):
         """
         checks all contracts to see which dates the vehicle is reserved, if any
-        returns a list of tuples as (start_date, end_date)
         then checks if there are any dates that clash with the inputted dates
-        returns a bool
+        returns a bool or none
         """
         self.contract_wrapper()
+        min_date = self.convert_date(start_date)
+        max_date = self.convert_date(end_date)
         reserved_dates = self.contract.check_vehicle_reservations(vehicle_ID)
-        
+        for dates in reserved_dates:
+            starts_at = self.convert_date(dates[0])
+            ends_at = self.convert_date(dates[1])
+            if ((min_date > starts_at and min_date < ends_at)or(max_date > ends_at and min_date < ends_at)):
+                return False
+        return True
+
+                
+
+            
 
     def change_vehicle_info(self, vehicleID, change_dict):
         self.vehicle_wrapper()
@@ -221,5 +231,12 @@ class Logic_API:
     def filter_earings(self, location_ID, date_from, date_to):
         self.bill_wrapper()
         return self.bill.filter_earnings(location_ID,date_from,date_to)
+
+    #extra functions
+
+    def convert_date(self, date_string):
+        year, month, day = str(date_string).split('.')
+        date_format = datetime.date(int(year), int(month), int(day))
+        return date_format
     
         
