@@ -12,5 +12,3 @@ class Destination_logic:
         return self.dAPI.get_destinations()
     def change_destination(self, dest_ID, change_dict):
         self.dAPI.change_Destination(dest_ID, change_dict)
-
-
