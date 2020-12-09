@@ -124,7 +124,7 @@ class Rvk_ui:
             title = "Contract Menu"
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Change contract,( 4 ) Print report ,( r ) Return")
+            information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Print report ,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
 
@@ -136,9 +136,6 @@ class Rvk_ui:
                 self.view_contract()
 
             elif option == '3':
-                self.change_contract()
-
-            elif option == '4':
                 self.print_report()
 
             elif option.lower() == 'r':
@@ -179,7 +176,30 @@ class Rvk_ui:
             else:
                 print('Invalid option')
 
-    def 
+    def vehicle_menu(self):
+        while True:
+            title = "Vehicle menu"
+            self.print.print_title(title)
+            self.print.print_space()
+            information = ("( 1 ) Search vehicle,( 2 ) Vehicle tax,( r ) Return")
+            self.print.print_main_menu(information)
+            self.print.print_line(len(title)*"_")
+
+            option = input(self.print.question('Type here'))
+            if option == '1':
+                self.search_vehicle()
+
+            elif option == '2':
+                self.vehicle_tax()
+
+            elif option.lower() == 'r':
+                return
+
+            elif option == '':
+                print('Please input an option')
+
+            else:
+                print('Invalid option')
 
 
 
