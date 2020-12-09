@@ -179,8 +179,6 @@ class Rvk_ui:
             else:
                 print('Invalid option')
 
-    def 
-
 
 
     #eftir ad breyta
@@ -319,10 +317,10 @@ class Rvk_ui:
 
 
         questions = {'start date (dd/mm/yy)':"empty",'end date (dd/mm/yy)':"empty",'vehicle_id':"empty",'destination_id':"empty",}
+        information = ("( c ) Cancel, ( f ) Finish")
         while True:
             for key,value in questions.items():
                 self.liner()
-                information = ("( c ) Cancel, ( f ) Finish")
                 self.print.print_title(title)
                 #efri gluggi
                 self.print.print_space()
@@ -354,10 +352,22 @@ class Rvk_ui:
 
 
     def view_contract(self):
-        information = '( c ) Change,( p ) = Print,( r ) = Return'
+        title = "Contract Search"
+        information = ("( c ) Cancel, ( f ) Finish")
+        options = '( c ) Change,( p ) = Print,( r ) = Return'
+
+        self.liner()
+        self.print.print_title(title)
+        #efri gluggi
+        self.print.print_space()
+        self.print.print_out_format(information)
+        self.print.print_space()
+        self.print.print_line(len(title)*"_")
+        conID = input(self.print.question("Contract ID"))  
+
+
         while True:
-            self.print.print_title('Contract Search')
-            conID = input('Contract ID: #')
+
             contract = self.logic.get_contract(conID)
             if contract:
                 print('Great Success!')
