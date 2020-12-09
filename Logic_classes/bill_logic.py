@@ -41,7 +41,12 @@ class Bill_logic:
         self.dAPI.add_bill(contract_ID, fetch_date, return_date, location_id, price)
 
         #mark the car as returned
-        self.dAPI.change_vehicle(contract.vehicle_id,{"available":"yes"})   
+        self.dAPI.change_vehicle(contract.vehicle_id,{"available":"yes"}) 
+
+        #add BBP to the customer if they returned late
+        if late_tax > 0:
+            new_BBP = customer.bbp + 1
+            self.dAPI.change_Customer(customer.id,{"bbp":str(new_BBP)})
         
 
 
