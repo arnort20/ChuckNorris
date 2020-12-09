@@ -44,6 +44,7 @@ class Logic_API:
         self.bill = bill_logic()
 
 
+
     #contract stuff
     def get_contract(self, contractID):
         #returns an object containing information about the contract
@@ -106,30 +107,55 @@ class Logic_API:
         return True
 
     def change_vehicle_info(self, vehicleID, change_dict):
+        #change the vehicle with a dictionary containing the keys 
+        #you want to change and what values to replace them with
         self.vehicle_wrapper()
         self.vehicle.change_details(vehicleID, change_dict)
 
     def kill_vehicle(self, vehicle_ID):
+        #roundhouses the vehicle out of the database
         self.vehicle_wrapper()
         self.vehicle.kill_vehicle(vehicle_ID)
 
     def check_license(self, customerID, vehicleID):
+        #check if the customer has the necessary licensing for the vehicle
+        #returns a bool
         self.vehicle_wrapper()
         return self.vehicle.check_license(customerID,vehicleID)
 
     def get_vehicle_reports(self):
+        #returns a list of all vehicles in the database as objects
         self.vehicle_wrapper()
         return self.vehicle.get_vehicles()
 
-    def popular_vehicle_types(self):
-        pass
-
-
-
+    def popular_vehicle_types(self, location_ID):
+        """
+        returns a dictionary of all vehicle types that have been rented 
+        and how popular each type is
+        """
+        self.contract_wrapper()
+        self.vehicle_wrapper()
+        contracts = self.contract.all_contracts()
+        area_vehicles = []
+        vehicle_popularities = {}
+        for deal in contracts:
+            if deal.destination_id == location_ID:
+                area_vehicles.append(deal)
+        for deal in area_vehicles:
+            vehicle = self.vehicle.get_vehicle(deal.vehicle_id)
+            vehi_type = vehicle.type
+            if vehi_type in vehicle_popularities:
+                vehicle_popularities[vehi_type] += 1
+            else:
+                vehicle_popularities[vehi_type] = 1
+        return vehicle_popularities
 
 
     #customer stuff
     def new_customer(self,customerID,name,ssn,email,phone,address,license_type):
+        #registers a new customer, their ID will be their driver's license number
+        #if the customer is a company, the employee is expected to have checked what the highest ID for a company is
+        #might add a function to automate this
         self.customer_wrapper()
         self.customer.new_customer(customerID,name,ssn,email,phone,address,license_type)
 
@@ -139,10 +165,12 @@ class Logic_API:
         return self.customer.get_customer(customerID)
 
     def change_customer(self, customer_ID, changes_dict):
+        #change the customer based on what keys to change and the new values for each key
         self.customer_wrapper()
         self.customer.change_customer(customer_ID, changes_dict)
 
     def kill_customer(self,customerID):
+        #removes the customer from the database
         self.customer_wrapper()
         self.customer.kill_customer(customerID)
 
@@ -152,14 +180,18 @@ class Logic_API:
 
     #employee stuff
     def hire_employee(self,emp_name,ssn,address,phone,email,location, password):
+        #hires a new employee, the employee ID is automatically generated
         self.employee_wrapper()
         self.employee.hire(emp_name,ssn,address,phone,email,location, password)
 
     def fire_employee(self,emp_ID):
+        #removes the employee from the database
         self.employee_wrapper()
         self.employee.fire(emp_ID)
 
     def change_employee(self, emp_ID, change_dict):
+        #change the employee based on what keys to change and the new values for each key
+        #please don't change their name or SSN
         self.employee_wrapper()
         self.employee.change_employee(emp_ID, change_dict)
 
@@ -171,19 +203,22 @@ class Logic_API:
 
     #destination stuff
     def new_destination(self, destination_name, airport, phone, opening_hours):
+        #make the new destination, the ID is automatically generated
         self.destination_wrapper()
         self.destination.new_destination(destination_name, airport, phone, opening_hours)
 
     def get_destination(self, dest_ID):
-        #returns an object containing information about the destination
+        #returns a destination object containing all information about the destination
         self.destination_wrapper()
         return self.destination.get_destination(dest_ID)
 
     def get_all_destinations(self):
+        #get a list of all destination objects in the database
         self.destination_wrapper()
         return self.destination.get_all_destinations
 
     def change_destination(self, dest_ID, change_dict):
+        #change the destination based on what keys to change and the new values for each key
         self.destination_wrapper()
         self.destination.change_destination(dest_ID, change_dict)
 
