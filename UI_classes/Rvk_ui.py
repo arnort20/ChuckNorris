@@ -76,7 +76,6 @@ class Rvk_ui:
 
 
                                                                                 #needs:
-                                                                                #view all contracts
                                                                                 #invalidate rental contract
                                                                                 #destination management
                                                                                 #destination information
@@ -130,7 +129,7 @@ class Rvk_ui:
             title = "Contract Menu"
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Print report ,( 4 ) Print report ,( r ) Return")
+            information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Delete contract ,( 4 ) Print all contracts ,( 5 ) Print report ,,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
             print()
@@ -142,9 +141,12 @@ class Rvk_ui:
                 self.view_contract()
 
             elif option == '3':
+                self.delete_contract()
+
+            elif option == '4':
                 self.all_contracts()
 
-            elif option == "4":
+            elif option == "5":
                 self.print_report()
 
             elif option.lower() == 'r':
@@ -373,6 +375,7 @@ class Rvk_ui:
                 #repeats til user is happy and chooses either choice
                 if option == 'c':
                     return
+                    
                 elif option == 'f' and questions["destination_id"] != "empty" and  questions["vehicle_id"] != "empty" :
                     questions["start_date"],questions["end_date"] = questions['start date (dd/mm/yy)'],questions['end date (dd/mm/yy)']
                     self.logic.make_new_contract()
@@ -461,14 +464,48 @@ class Rvk_ui:
     def all_contracts(self):
         title = "Search vehicles"
         options = "( r ) return"
-        info = "ID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,license_type"
+        info = "ID,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid?"
 
         contracts = self.logic.all_contracts()
         title = "Contract list"
+
+        #Format
         self.liner()
         self.print.large_list_box(options,title,info,contracts)
         go_back = input(self.print.question("\tReturn"))
         return
+
+
+#------------Delete employee--------------
+    def delete_employee():
+        #Info
+        title = "contract search"
+        information = ("( c ) Cancel,,Insert ID below")
+
+        #Format
+        self.liner()
+        self.print.short_box(information,title)
+        contract_id = input(self.print.question("Contract ID"))
+
+        while True:
+            #info
+            title = "Deleting contract"
+            information = ("( c ) Cancel,( d ) Delete")
+
+            #Format
+            self.liner()
+            self.print.short_box(information,title)
+            confirm = input(self.print.question("Confirm"))
+
+            if confirm == "c":
+                return
+            elif confirm == "d":
+                self.logic.delet(employee_id)
+                return
+            else:
+                self.print.warning("Wrong input")
+ 
+
 
 
 # Report---------------------- NOT FINISHED
