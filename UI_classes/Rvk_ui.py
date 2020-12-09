@@ -1,4 +1,4 @@
-from Logic_classes.Logic_API import Logic_API
+from Logic_classes.logic_API import Logic_API
 from UI_classes.Print_formats import Print_format
 
 """
@@ -76,7 +76,7 @@ class Rvk_ui:
             title = "Welcome, Employee {}".format(self.employee_num)
             self.print.print_title(title)
             self.print.print_space()
-            option = "( 1 ) Contract menu,( 2 ) Employee menu,( 3 ) Vehicle menu,( 4 ) branch review,,( q ) Quit"
+            option = "( 1 ) Contract menu,( 2 ) Employee menu,( 3 ) Vehicle menu,( 4 ) Branch review,,( q ) Quit"
 
             #Contract menu has create contract,view contract,print report,bill stuff
             #Employee menu has add employee,delete employee,change employee
@@ -94,7 +94,7 @@ class Rvk_ui:
             elif option == '3':
                 self.vehicle_menu()
             elif option == '4':
-                self.branch_reveiw()
+                self.branch_review()
             #needs:
             #vehicle management stuff
             #search vehicles
@@ -124,7 +124,7 @@ class Rvk_ui:
             title = "Contract Menu"
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Change contract,( 4 ) Print report ,( r ) Return")
+            information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Print report ,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
 
@@ -136,9 +136,6 @@ class Rvk_ui:
                 self.view_contract()
 
             elif option == '3':
-                self.change_contract()
-
-            elif option == '4':
                 self.print_report()
 
             elif option.lower() == 'r':
@@ -179,7 +176,30 @@ class Rvk_ui:
             else:
                 print('Invalid option')
 
-    def 
+    def vehicle_menu(self):
+        while True:
+            title = "Vehicle menu"
+            self.print.print_title(title)
+            self.print.print_space()
+            information = ("( 1 ) Search vehicle,( 2 ) Vehicle tax,( r ) Return")
+            self.print.print_main_menu(information)
+            self.print.print_line(len(title)*"_")
+
+            option = input(self.print.question('Type here'))
+            if option == '1':
+                self.search_vehicle()
+
+            elif option == '2':
+                self.vehicle_tax()
+
+            elif option.lower() == 'r':
+                return
+
+            elif option == '':
+                print('Please input an option')
+
+            else:
+                print('Invalid option')
 
 
 
@@ -350,6 +370,27 @@ class Rvk_ui:
         # date_list =  end_date.split("/")
         # date_list[1],date_list[3] = date_list[3],date_list[1]
         # fixed_date = "/".join(date_list)
+                  
+        while True:
+            option = input('''\n( r ) = Return
+
+( f ) = Finish
+------------------------------------------
+Type here: ''').lower()
+            if option == 'r':
+                if previous == 1:
+                    self.returning_customer()
+                elif previous == 2:
+                    self.new_customer()
+            elif option == 'f':
+                pass
+                #register new contract
+                self.main_menu()
+            elif option == '':
+                print('Please input an option')
+            else:
+                print('Not a valid option')
+
 
 
 
