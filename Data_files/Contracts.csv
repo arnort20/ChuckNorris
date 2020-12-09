@@ -1,4 +1,4 @@
-contract_id,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid?,address,phone,email,location,password,confirm password
+contract_id,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid?
 1,1,1,1,6,f,1,no,f,f,f,f,f,f
 2,1,1,13,6,2020.11.11,2020.11.13,no,,,,,,
 3,1,1,13,6,2020.11.18,2020.11.20,no,,,,,,

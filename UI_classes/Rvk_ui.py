@@ -76,7 +76,6 @@ class Rvk_ui:
 
 
                                                                                 #needs:
-                                                                                #search vehicles
                                                                                 #view all contracts
                                                                                 #invalidate rental contract
                                                                                 #destination management
@@ -131,7 +130,7 @@ class Rvk_ui:
             title = "Contract Menu"
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Print report ,( r ) Return")
+            information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Print report ,( 4 ) Print report ,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
             print()
@@ -143,6 +142,9 @@ class Rvk_ui:
                 self.view_contract()
 
             elif option == '3':
+                self.all_contracts()
+
+            elif option == "4":
                 self.print_report()
 
             elif option.lower() == 'r':
@@ -218,8 +220,10 @@ class Rvk_ui:
             #choices
             if option == '1':
                 self.returning_customer()
+
             elif option == '2':
                 self.new_customer()
+
             elif option.lower() == 'r':
                 return
             elif option == '':
@@ -451,6 +455,20 @@ class Rvk_ui:
                 #changing for next print
                 questions[key] = option
 
+
+
+#------------------View all contracts----------------
+    def all_contracts(self):
+        title = "Search vehicles"
+        options = "( r ) return"
+        info = "ID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,license_type"
+
+        contracts = self.logic.all_contracts()
+        title = "Contract list"
+        self.liner()
+        self.print.large_list_box(options,title,info,contracts)
+        go_back = input(self.print.question("\tReturn"))
+        return
 
 
 # Report---------------------- NOT FINISHED
