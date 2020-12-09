@@ -308,7 +308,6 @@ class Rvk_ui:
                     return
                 else:
                     self.print.warning("please select option")
-        return
 
 
     # Contract-----------------
@@ -363,7 +362,7 @@ class Rvk_ui:
                 elif option == 'f' and questions["destination_id"] != "empty" :
                     questions["start_date"],questions["end_date"] = questions['start date (dd/mm/yy)'],questions['end date (dd/mm/yy)']
                     self.logic.make_new_contract()
-                    
+
 
 
         # for spinning dates----------------------------------------------------------------------
@@ -371,25 +370,7 @@ class Rvk_ui:
         # date_list[1],date_list[3] = date_list[3],date_list[1]
         # fixed_date = "/".join(date_list)
                   
-        while True:
-            option = input('''\n( r ) = Return
 
-( f ) = Finish
-------------------------------------------
-Type here: ''').lower()
-            if option == 'r':
-                if previous == 1:
-                    self.returning_customer()
-                elif previous == 2:
-                    self.new_customer()
-            elif option == 'f':
-                pass
-                #register new contract
-                self.main_menu()
-            elif option == '':
-                print('Please input an option')
-            else:
-                print('Not a valid option')
 
 
     # Contract-----------------
@@ -468,8 +449,9 @@ Type here: ''').lower()
                     
                 if option == 'c':
                     return
+
                 if option == "f":
-                    pass
+                    self.logic.change_contract(contract.id,questions)
 
 
 
