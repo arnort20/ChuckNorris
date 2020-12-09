@@ -95,10 +95,10 @@ class Logic_API:
         self.contract.delete_current_contract(contractID)
         #returns false if failed, remember to implement
 
-    def new_contract(self,customerID,vehicleID,start_date,end_date):
+    def new_contract(self,customerID,vehicleID,location,start_date,end_date):
         self.contract_wrapper()
         employeeID = self.user
-        self.contract.make_contract(employeeID,customerID,vehicleID,start_date,end_date)
+        self.contract.make_contract(employeeID,customerID,vehicleID,location,start_date,end_date)
     
     def change_contract(self,contractID,change_value):
         self.contract_wrapper()
@@ -154,9 +154,9 @@ class Logic_API:
 
 
     #customer stuff
-    def new_customer(self,customerID,name,email,phone,address,license_type):
+    def new_customer(self,customerID,name,ssn,email,phone,address,license_type):
         self.customer_wrapper()
-        self.customer.new_customer(customerID,name,email,phone,address,license_type)
+        self.customer.new_customer(customerID,name,ssn,email,phone,address,license_type)
 
     def get_customer(self,customerID):
         self.customer_wrapper()
@@ -211,7 +211,7 @@ class Logic_API:
 
 
     #billing stuff
-    def new_bill(self, contractID, return_date, gbp_used):
+    def new_bill(self, contractID, fetch_date, return_date, gbp_used):
         self.bill_wrapper()
         self.bill.new_bill(contractID, return_date, gbp_used)
 

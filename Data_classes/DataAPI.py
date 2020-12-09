@@ -187,8 +187,8 @@ class DataAPI(object):
         dicter = {"id":ident,"destination_name":destination_name,"country_name":country_name,"airport":airport,"phone":phone,"opening_hours":opening_hours,"report_filename":report_filename}
         self.add.add(dicter,"Data_files\Destinations.csv")
 
-    def add_contract(self,ident,employee_id,costumer_id,vehicle_id,destination_id,start_date,end_date,paid):
-        dicter = {"id":ident,"employee_id":employee_id,"costumer_id":costumer_id,"vehicle_id":vehicle_id,"destination_id":destination_id,"start_date":start_date,"end_date":end_date,"paid":paid}
+    def add_contract(self,ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid):
+        dicter = {"id":ident,"employee_id":employee_id,"customer_id":customer_id,"vehicle_id":vehicle_id,"destination_id":destination_id,"start_date":start_date,"end_date":end_date,"paid":paid}
         self.add.add(dicter,"Data_files\Contracts.csv")
 
     def add_employee(self,ident,employee_name,ssn,address,phone,email,location,password):

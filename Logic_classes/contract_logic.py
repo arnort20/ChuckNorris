@@ -23,7 +23,8 @@ class Contract_logic:
 
     def make_contract(self, employeeID,customerID,vehicleID,location,start_date,end_date):
         contractID = self.dAPI.contract_makeID()
-        self.dAPI.add_contract(contractID, employeeID, vehicleID, location, start_date, end_date,"no")
+        paid = "no"
+        self.dAPI.add_contract(contractID, employeeID, customerID, vehicleID, location, start_date, end_date,paid)
 
     def all_contracts(self):
         return self.dAPI.get_contracts()

@@ -24,7 +24,7 @@ register the return time of a vehicle
 
 
 """
-class Non_rvk:
+class Non_rvk_ui:
     def __init__(self, username, pword):
         self.logic = Logic_API(username, pword)
         self.employee_num = username
