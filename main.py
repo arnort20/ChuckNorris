@@ -20,13 +20,13 @@ if __name__ == "__main__":
     username, pword = login_menu()
     location = check_your_privilege(username, pword)
     if location == "1":
-        user = Master_login(username, pword)
+        user = Chuck_ui(username, pword)
         user.chuck_login()
     elif location == "2":
         user = Rvk_ui(username,pword)
         user.main_menu()
     elif location == 3:
-        user = Non_rvk(username, pword)
+        user = Non_rvk_ui(username, pword)
         user.main_menu()
     else:
         print("Invalid username-password combination!")
