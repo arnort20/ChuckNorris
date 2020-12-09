@@ -31,7 +31,7 @@ class DataAPI(object):
 
     def make_customer(info):
         
-        return Customer(info["id"],info["customer_name"],info["email"],info["phone"],info["address"],info["license_type"],info["gbp"],info["bbp"])
+        return Customer(info["id"],info["customer_name"],info["ssn"],info["email"],info["phone"],info["address"],info["license_type"],info["gbp"],info["bbp"])
 
     def make_destination(info):
         
@@ -179,8 +179,8 @@ class DataAPI(object):
         vehicle_dict = {"id":ident,"vehicle_name":vehicle_name,"type":Type,"manufacturer":Manufacturer,"model":Model,"color":Color,"age":age,"tax":tax,"available":available,"location_id":location_id,"license_type":license_type}
         self.add.add(vehicle_dict,"Data_files\Vehicles.csv")
 
-    def add_customer(self,ident,customer_name,email,phone,address,license_type,gbp,bbp):
-        dicter = {"id":ident,"customer_name":customer_name,"email":email,"phone":phone,"address":address,"license_type":license_type,"gbp":gbp,"bbp":bbp}
+    def add_customer(self,ident,customer_name,ssn,email,phone,address,license_type,gbp,bbp):
+        dicter = {"id":ident,"customer_name":customer_name,"ssn":ssn,"email":email,"phone":phone,"address":address,"license_type":license_type,"gbp":gbp,"bbp":bbp}
         self.add.add(dicter,"Data_files\Customers.csv")
 
     def add_destination(self,ident,destination_name,phone,opening_hours,report_filename,country_name,airport):
