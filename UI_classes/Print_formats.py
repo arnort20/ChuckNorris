@@ -66,8 +66,10 @@ class Print_format():
     # Þessi þarf að geta prentað út textan sem er sóttur úr skjölum á þokkalegan hátt
     def print_out_format(self,information,width=200):
         # Information = Efsta línan sem er upplysingar um hvað er hvað.
+        splitt_info = information
+        if type(information) == str: 
+            splitt_info = information.split(",")
 
-        splitt_info = information.split(",")
         print("{:>20}".format("|"),end = "")
         basic =  int(width/len(splitt_info))
         fixer = width -(basic*len(splitt_info))
@@ -129,5 +131,15 @@ class Print_format():
         self.print_out_format(info)
         self.print_space()
         self.print_out_format(second_str)
+        self.print_space()
+        self.print_line(len(title)*"_")
+
+    def large_list_box(self,options,title,list1,list2):
+        self.short_box(options,title)
+        self.print_space()
+        self.print_out_format(list1)
+        self.print_space()
+        for item in list2:
+            self.print_out_format(str(item))
         self.print_space()
         self.print_line(len(title)*"_")

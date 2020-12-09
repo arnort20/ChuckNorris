@@ -17,7 +17,7 @@ class Bill_logic:
         """
         finds all bills that fit the input parameters
         returns the total money earned by the location
-        in the
+        in the timeframe given, returns an int
         """
         bills = self.dAPI.get_bills()
         date_from = self.convert_date(min_date)
@@ -29,7 +29,7 @@ class Bill_logic:
                 locations_bills.append(bill)
         for bill in locations_bills:
             money_day = self.convert_date(bill.return_date)
-            if money_day > date_from and date_to > money_day:
+            if self.check_date_clash(money_day, money_day, date_from, date_to):
                 filtered_bills.append(bill)
         laundered_money = 0
         for bill in filtered_bills:
@@ -38,6 +38,9 @@ class Bill_logic:
 
 
     def new_bill(self, contract_ID, fetch_date, return_date, gbp_used):
+        """
+        the whole proccess from when the vehicle gets returned
+        """
         contract = self.dAPI.get_contract(contract_ID)
         vehicle = self.dAPI.get_vehicle(contract.vehicle_id)
         customer = self.dAPI.get_customer(contract.customer_id)
@@ -58,6 +61,8 @@ class Bill_logic:
         contract_period = end_date - start_date
         true_period = date_retuned - start_date
         if true_period > contract_period:
+            #20% increase to price and the amount of days rented becomes the 
+            #time the customer had the vehicle
             late_tax = 20
             days = true_period
         else:
@@ -79,10 +84,13 @@ class Bill_logic:
 
 
     def calculate_price(self, tax, gbp_discount, days, late_tax):
+        #takes the amount of days as a timedelta object
         car_tax = int(tax)
         gbp = int(gbp_discount)*1000
         basecost = days.days*10000
+        #car tax is a percentage increase in the base price
         modified_cost = basecost*(1+(car_tax+late_tax)/100)-gbp
+        #returns a float
         return modified_cost
         
     
@@ -91,73 +99,20 @@ class Bill_logic:
         date_format = datetime.date(int(year), int(month), int(day))
         return date_format
 
-
-    
-
-
-#RIP
-    # def get_bill_info(self, contract_ID):
-    #     fined = bool(False)
-    #     #decompresses all the information contained within the contract
-    #     #returns a dictionary containing ALL information regarding a contract
-    #     contract = self.dAPI.get_contract(contract_ID)
-    #     vehicle = self.dAPI.get_vehicle(contract.vehicle_id)
-    #     the_bill = self.dAPI.get_bill(contract_ID)
-    #     employee = self.dAPI.get_employee(contract.employee_id)
-    #     customer = self.dAPI.get_customer(contract.customer_id)
-    #     bill_dictionary = {}
-
-    #     #contract information
-    #     start_date = self.convert_date(contract.start_date)
-    #     bill_dictionary["start_date"] = str(start_date)
-    #     end_date = self.convert_date(contract.end_date)
-    #     bill_dictionary["end_date"] = str(end_date)
-
-    #     #bill information
-    #     bill_dictionary["gbp_used"] = the_bill["gbp_used"]
-    #     bill_dictionary["gbp_discount"] = int(the_bill["gbp_used"])*1000
-    #     fetch_date = self.convert_date(the_bill["fetch_date"])
-    #     bill_dictionary["fetch_date"] = str(fetch_date)
-    #     ret_date = self.convert_date(the_bill["return_date"])
-    #     bill_dictionary["return_date"] = str(ret_date)
-    #     contract_period = end_date - start_date
-    #     bill_dictionary["contract_period"] = contract_period.days
-    #     true_period = ret_date - start_date
-    #     bill_dictionary["true_period"] = true_period.days
-    #     if true_period > contract_period:
-    #         fined = bool(True)
-    #     bill_dictionary["late_tax"] = fined
+    def check_date_clash(self, date1_start, date1_end, date2_start, date2_end):
+        """
+        takes four datetime objects and checks if there's any overlap
+        to check if one day is in a span of time, insert date1_start = date1_end
+        returns true if there is a clash
+        """
+        if ((date2_start > date1_start and date2_start < date1_end)or(date2_end > date1_start and date2_end < date1_end)):
+            return True
+        elif ((date1_start > date2_start and date1_start < date2_end)or(date1_end > date2_start and date1_end < date2_end)):
+            return True
+        else:
+            return False
 
 
-    #     #vehicle information
-    #     bill_dictionary["vehicle_id"] = vehicle.id
-    #     bill_dictionary["vehicle_name"] = vehicle.vehicle_name
-    #     bill_dictionary["vehicle_type"] = vehicle.type
-    #     bill_dictionary["vehicle_manufacturer"] = vehicle.manufacturer
-    #     bill_dictionary["vehicle_model"] = vehicle.model
-    #     bill_dictionary["vehicle_color"] = vehicle.color
-    #     bill_dictionary["vehicle_age"] = vehicle.age
-    #     bill_dictionary["tax"] = vehicle.tax
-
-
-    #     #employee information
-    #     bill_dictionary["employee_id"] = employee.id
-    #     bill_dictionary["employee_name"] = employee.employee_name
-    #     bill_dictionary["employee_ssn"] = employee.ssn
-    #     bill_dictionary["employee_address"] = employee.address
-    #     bill_dictionary["employee_phone"] = employee.phone
-    #     bill_dictionary["employee_email"] = employee.email
-
-
-    #     #customer information
-    #     bill_dictionary["customer_id"] = customer.id
-    #     bill_dictionary["customer_name"] = customer.customer_name
-    #     bill_dictionary["customer_license"] = customer.License_type
-    #     bill_dictionary["customer_email"] = customer.email
-    #     bill_dictionary["customer_phone"] = customer.phone
-    #     bill_dictionary["customer_address"] = customer.address
-
-    #     return bill_dictionary
 
 
 
