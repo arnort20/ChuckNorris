@@ -95,10 +95,11 @@ class Logic_API:
         self.contract.delete_current_contract(contractID)
         #returns false if failed, remember to implement
 
-    def new_contract(self,employeeID,customerID,vehicleID,start_date,end_date):
+    def new_contract(self,customerID,vehicleID,start_date,end_date):
         self.contract_wrapper()
+        employeeID = self.user
         self.contract.make_contract(employeeID,customerID,vehicleID,start_date,end_date)
-    #remember to add a function for calculating penalties and price
+    
     def change_contract(self,contractID,change_value):
         self.contract_wrapper()
         self.contract.change_contract(contractID, change_value)
