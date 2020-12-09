@@ -1,4 +1,9 @@
 from Logic_classes.logic_API import Logic_API as lAPI
 
 api = lAPI("1","1")
-api.new_bill("1","2020.11.4","2020.11.6",False)
+
+contracts = api.all_contracts()
+for i in range(20,25):
+    for j in contracts:
+        if j.id == str(i):  
+            api.new_bill(j.id,j.start_date,j.end_date,False)

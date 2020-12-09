@@ -1,3 +1,8 @@
 id,customer_name,ssn,email,phone,address,license_type,gbp,bbp
 1,Reykjavik University,510105-4190,travel@ru.is,Menntavegi 1 102,"+354 599 6200",B,100,0
-2,Geimferðastofnun Islands,710707-2200,space@gsi.is,"+354 999 3000",Svarthofda 2 110,B,50,0
+2,Geimferdastofnun Islands,710707-2200,space@gsi.is,"+354 999 3000",Svarthofda 2 110,B,50,0
+546938571,Adam Alfredsson,320866-9910,adam.alfreds@heimsnet.is,"+354 741 4552",Langamyri 101 210,B,0,0
+268534197,Joseph Torvalds,0,jo@fresco.no,"+47 7902191",Haraldsveij 7 9170,B,2,0
+026904244,Henke Gronvold,0,henke@norice.dk,"+45 1873499087",Jespegade 92 8270,B,0,1
+037188556,Johann Loftsson,301078-0509,jonnicool@aol.com,6969420,Dufnaholar 10 101,B,24,5
+094166234,Bjarni Benediktsson,230267-1109,icehot1@hotmasil.com,7234141,adalstraeti 2 105,B,0,0
