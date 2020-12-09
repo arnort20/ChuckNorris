@@ -19,6 +19,7 @@ class Chuck_ui():
     def __init__(self, username, pword):
         self.logic = Logic_API(username, pword)
         self.printer = Print_format()
+        
 
 
     def chuck_login(self):
@@ -64,13 +65,17 @@ class Chuck_ui():
     def Earnings_report(self):#<----- Þarf að klára
         # Hérna þarf að sækja overall Reportið í logic wrapper, spendinding vs earnings
         # Mögulega eitthvað fleirra
-        Print_format.print_title(self, "Earning Report")
-        information = ("Contract ID,Start Date,Return Date,Location ID,Price ")
-        Print_format.print_out_format(self,information)
-        earnings = self.logic.get_bills()
+        questions = {"Input Location ID":"empty","Input Date From":"empty","Input Date To":"empty"}
+        title = "Earnings Report"
+        information = ("( c ) Cancel")
+        for key,value in questions.items():
+            self.printer.question_box(questions,information,title)
+            option = input(self.printer.question("Enter Input here"))
+            print("")
+            questions[key] = option
+        money = self.logic.filter_earnings(questions["Input Location ID"],questions["Input Date From"],questions["Input Date To"])
+        self.printer.print_out_format("Money Made " + str(money) + " I Like money")
         Print_format.print_space(self)
-        for item in earnings:
-            Print_format.print_out_format(self,str(item))
         Print_format.print_title(self,len("Earning Report")*"_")
         
         

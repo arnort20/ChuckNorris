@@ -214,7 +214,7 @@ class Logic_API:
         self.bill_wrapper()
         return self.bill.get_bill(contract_ID)
     
-    def filter_earings(self, location_ID, date_from, date_to):
+    def filter_earnings(self, location_ID, date_from, date_to):
         #how much money did this place make me last month?
         #                      -Chuck Norris, probably
         self.bill_wrapper()
