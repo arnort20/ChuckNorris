@@ -48,7 +48,7 @@ class Non_rvk_ui:
 
             title = 'welcome Employee {}'.format(self.login_id)
             self.format.print_title(title,self.width)
-            menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,( q ) Quit."
+            menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,( 5 ) Change Vehicle,( 6 ) delete Vehicle,( q ) Quit."
 
     
             self.format.print_space()
