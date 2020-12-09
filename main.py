@@ -1,7 +1,7 @@
-from UI_classes.Master_login_UI import Master_login
+from UI_classes.Chuck_ui import Chuck_ui
 from UI_classes.Rvk_ui import Rvk_ui
-from UI_classes.Non_rvk_ui import Non_rvk
-from Logic_classes.logic_API import Logic_API 
+from UI_classes.Non_rvk_ui import Non_rvk_ui
+from Logic_classes.logic_API import Logic_API
 
 def login_menu():
         print('''
@@ -20,13 +20,13 @@ if __name__ == "__main__":
     username, pword = login_menu()
     location = check_your_privilege(username, pword)
     if location == "1":
-        user = Master_login(username, pword)
+        user = Chuck_ui(username, pword)
         user.chuck_login()
     elif location == "2":
         user = Rvk_ui(username,pword)
         user.main_menu()
     elif location == 3:
-        user = Non_rvk(username, pword)
+        user = Non_rvk_ui(username, pword)
         user.main_menu()
     else:
         print("Invalid username-password combination!")

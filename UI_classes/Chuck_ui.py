@@ -65,7 +65,7 @@ class Chuck_ui():
         Print_format.print_title(self, "Earning Report")
         information = ("Something fun")
         Print_format.print_out_format(self,information)
-        earnings = self.logic.earnings_report
+        earnings = self.logic.get_bills()
         Print_format.print_space(self)
         for item in earnings:
             Print_format.print_out_format(self,str(item))
