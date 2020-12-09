@@ -90,13 +90,13 @@ class Print_format():
 
 
     def question(self,question,width = 200):
-        print("{:>{size}} ".format("",size = int(width/2)+20-(len(question)/2)),end="")
+        print("{:{size}}".format("",size = int(width/2)+20-(len(question)/2)),end="")
         print(question,end="")
         return": "
 
 
     def warning(self,text,width = 200):
-        print(" {:>{size}}|  ".format("",size = int(width/2)+20-len(text)),end="")
+        print(" {0:{size}}|  ".format("",size = int(width/2)+16-(len(text)/2)),end="")
         print(text+ "  |")
 
 

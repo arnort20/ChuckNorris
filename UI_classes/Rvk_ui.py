@@ -1,3 +1,4 @@
+from os import read
 from Model_classes.Customer import Customer
 from Logic_classes.Logic_API import Logic_API
 from UI_classes.Print_formats import Print_format
@@ -74,6 +75,7 @@ class Rvk_ui:
         self.pword = pword
         self.logic = Logic_API(username, pword)
         self.print = Print_format()
+        self.employee_id = username
 
 
                                                                                 #needs:
@@ -242,6 +244,7 @@ class Rvk_ui:
         title = "returning customer"
         questions = {"customer ID": "empty"}
         information = ("( c ) Cancel, ( f ) Finish")
+        ready =0
 
         while True:
             for key,value in questions.items():
@@ -259,17 +262,26 @@ class Rvk_ui:
                 test = self.logic.get_customer(questions["customer ID"])
                 #change answer
                 try:
-                    if option == 'f':
-                        jim = test.id
-                        self.new_contract(questions["customer ID"])
-                        return
+                    ready = test.id
+                    ready =1
                 except:
-                    wrong = 1
-                    continue
+                    ready = 0
+                    pass
+
+                if option == 'f' and ready == 1:
+
+                    self.new_contract(questions["customer ID"])
+                    return
+                elif option == 'c':
+                    return
+                elif option =="f" and ready == 0:
+                    wrong =1
+
+                questions[key] = option
+
 
                 #Choices
-                if option == 'c':
-                    return
+
 
 
                 questions[key] = option
@@ -334,7 +346,7 @@ class Rvk_ui:
         self.liner()
         self.print.short_box(amount,title)
 
-        use_gbp = input(self.print.question('\t\tUse Good Boy Points ( y / n )'))
+        use_gbp = input(self.print.question('Use Good Boy Points ( y / n )'))
 
 
         if use_gbp == 'y':
@@ -358,10 +370,10 @@ class Rvk_ui:
 
                 #Format
                 self.print.question_box(questions,information,title)
-                option = input(self.print.question("\tEnter Choice here"))
+                option = input(self.print.question("Enter Choice here"))
 
                 #Chaning info for next print
-                questions[key] = option
+
 
 
                 #check if customer can rent car
@@ -372,8 +384,7 @@ class Rvk_ui:
                     else:
                         vehicle_fail = 1
                         questions["vehicle_id"] = "empty"
-
-
+                        continue
 
                 #repeats til user is happy and chooses either choice
                 if option == 'c':
@@ -381,8 +392,9 @@ class Rvk_ui:
 
                 elif option == 'f' and questions["destination_id"] != "empty" and  questions["vehicle_id"] != "empty" :
                     questions["start_date"],questions["end_date"] = questions['start date (dd/mm/yy)'],questions['end date (dd/mm/yy)']
-                    self.logic.make_new_contract()
-
+                    self.logic.new_contract(customer.id,questions["vehicle_id"],questions["destination_id"],questions["start_date"],questions["end_date"])
+                    return
+                questions[key] = option
 
 
 
