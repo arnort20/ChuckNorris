@@ -4,8 +4,10 @@ class Bill_logic:
     def __init__(self):
         self.dAPI = dAPI()
 
-    def get_bill(self, bill_obj):
-        pass
+    #Bætt við
+    def get_bill(self, contract_ID):
+        bill = self.dAPI.get_bill(contract_ID)
+        return bill
 
     def new_bill(self, contract_ID, fetch_date, return_date, gbp_used):
         contract = self.dAPI.get_contract(contract_ID)
@@ -55,6 +57,12 @@ class Bill_logic:
         year, month, day = str(date_string).split('.')
         date_format = datetime.date(int(year), int(month), int(day))
         return date_format
+
+    #Bætt við
+    def get_all_bills(self):
+        return self.dAPI.get_bills()
+
+
 #RIP
     # def get_bill_info(self, contract_ID):
     #     fined = bool(False)

@@ -95,10 +95,11 @@ class Logic_API:
         self.contract.delete_current_contract(contractID)
         #returns false if failed, remember to implement
 
-    def new_contract(self,employeeID,customerID,vehicleID,start_date,end_date):
+    def new_contract(self,customerID,vehicleID,start_date,end_date):
         self.contract_wrapper()
+        employeeID = self.user
         self.contract.make_contract(employeeID,customerID,vehicleID,start_date,end_date)
-    #remember to add a function for calculating penalties and price
+    
     def change_contract(self,contractID,change_value):
         self.contract_wrapper()
         self.contract.change_contract(contractID, change_value)
@@ -143,6 +144,10 @@ class Logic_API:
     def check_license(self, customerID, vehicleID):
         self.vehicle_wrapper()
         return self.vehicle.check_license(customerID,vehicleID)
+
+    def get_vehicle_reports(self):
+        self.vehicle_wrapper()
+        return self.vehicle.get_vehicles()
         
 
 
@@ -215,3 +220,7 @@ class Logic_API:
     def calculate_bill(self, bill_dict):
         self.bill_wrapper()
         return self.bill.calculate_price(bill_dict)
+
+    def get_bills(self):
+        self.bill_wrapper()
+        return self.bill.get_all_bills()
