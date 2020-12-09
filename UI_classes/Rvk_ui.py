@@ -76,7 +76,7 @@ class Rvk_ui:
             title = "Welcome, Employee {}".format(self.employee_num)
             self.print.print_title(title)
             self.print.print_space()
-            option = "( 1 ) Contract menu,( 2 ) Employee menu,( 3 ) Vehicle menu,( 4 ) branch review,,( q ) Quit"
+            option = "( 1 ) Contract menu,( 2 ) Employee menu,( 3 ) Vehicle menu,( 4 ) Branch review,,( q ) Quit"
 
             #Contract menu has create contract,view contract,print report,bill stuff
             #Employee menu has add employee,delete employee,change employee
