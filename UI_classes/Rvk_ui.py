@@ -1,4 +1,4 @@
-from Logic_classes.logic_API import Logic_API
+from Logic_classes.Logic_API import Logic_API
 from UI_classes.Print_formats import Print_format
 
 """
@@ -382,7 +382,6 @@ class Rvk_ui:
 
             self.liner()
             self.print.print_title(title)
-            #efri gluggi
             self.print.print_space()
             self.print.print_out_format(information)
             self.print.print_space()
@@ -413,8 +412,6 @@ class Rvk_ui:
                 option = input(self.print.question('Type here: ')).lower()
                 if option == 'c':
                     self.change_contract(contract)
-                elif option == 'p':
-                    self.print_contract(contract)
                 elif option == 'r':
                     return
                 else:
@@ -445,14 +442,18 @@ class Rvk_ui:
                 self.print.print_questions(questions)
                 self.print.print_line(len(title)*"_")
                 option = input(self.print.question("\tEnter Choice here"))
-                questions[key] = option
+
+                if option == 's':
+                    continue
+                else:
+                    questions[key] = option
                     
                 if option == 'c':
                     return
 
                 if option == "f":
                     self.logic.change_contract(contract.id,questions)
-
+                    return
 
 
 
@@ -486,93 +487,103 @@ class Rvk_ui:
         self.print.print_questions(relevant_dict)
         self.print.print_line()
 
-
-    # def print_report(self):
-    #     while True:
-    #         self.print.print_title("Print bill report")
-    #         information = "( # ) Input the contract ID associated with the bill, ( r ) Return" 
-    #         self.print.print_main_menu(information)
-
-    #         option = input('Input contract ID: ')
-    #         if option == "r":
-    #             break
-
-    #         bill_dict = self.logic.get_bill_info(option)
-            
-    #         self.print.print_questions(bill_dict)
-    #         self.print.print_line()
             
     def liner(self):
         print("\n"*12)
 
     def add_new_employee(self):
-        self.print.print_title('New Employee')
-        empID = input('Employee ID: #') #should check whether a number is taken or not
-        emp_name = input('\nName: ')
-        emp_ssn = input('Social Security Number: ')
-        emp_address = input('\nAddress: ')
-        emp_location = input('Location: ')
-        emp_email = input('\nEmail: ')
-        emp_homephone = input('Home Telephone: ')
-        emp_mobilephone = input('Mobile Phone: ')
-        while True:
-            emp_password = input('\nPassword: ')
-            confirm_password = input('Confirm Password: ')
-            if emp_password == confirm_password:
-                break
-            print('Passwords are not the same')
-        while True:
-            print('''
+        title = 'New Employee'
+        questions = {"name":"empty","ssn":"empty","address":"empty","location_id":"empty","email":"empty","phone":"empty","password":"empty","confirm password":"empty"}
+        information = ("( c ) Cancel, ( f ) Finish")        
 
-( y ) = Add employee
-( r ) = Return
---------------------------------------------------------------------
-''')
-            option = input('Type here: ').lower()
-            if option == 'y':
-                emp_info = [emp_name, emp_ssn, emp_address, emp_location, emp_email, emp_homephone, emp_mobilephone, emp_password]
-                emp_dict = {}
-                emp_dict[empID] = emp_info #Here's is where the employee is added
-            elif option == 'r':
-                self.main_menu()
-            elif option == '':
-                print('Please input an option')
-            else:
-                print('Not a valid option')
+        while True:
+            for key,value in questions.items():
+                self.liner()
+                self.print.print_title(title)
+                self.print.print_space()
+                self.print.print_out_format(information)
+                self.print.print_space()
+                self.print.print_line(len(title)*"_")
+                #efri
+                self.print.print_space()
+                self.print.print_space()
+                self.print.print_questions(questions)
+                self.print.print_space()
+                self.print.print_line(len(title)*"_")
+                option = input(self.print.question('Type here: '))
 
+                questions[key] = option
+
+                if questions["password"] != questions["confirm password"]:
+                    self.print.warning("passwords don't match")
+
+                if option == 'c':
+                    return
+                elif option == 'f' and questions["confirm password"] != "empty" :
+                    questions["emp_name"] = questions["name"]
+                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["password"],)
+
+                else:
+                    print('Not a valid option')
 
 
 
 
     def change_employee(self):
-        print('''
-------------------------Change Employee------------------
-''')
-        info_list = ['Name: ', 'Address: ', 'Location: ', 'Email: ', 'Home telephone: ', 'Mobile phone: ', 'Password: ']
-        search = input('Employee ID: ') #the output should be able to extract a list of information from the employee id
-        #here should emp_info come from the data bank
-        for i in range(len(emp_info)):
-            if info_list[i] == 'Password:':
-                hidden_password = ''
-                for i in range(len(emp_info[i])):       #for each letter in the password
-                    hidden_password += '*'              #an asterisk (*) is added
-                print(info_list[i],hidden_password)     #and displayed
-                option = input('Change? ( y / n ): ')
-                if option == 'y':
-                    new = input('New {}: '.format(info_list2[i]))
-                    emp_info[i] = new
-            else:
-                print(info_list[i],emp_info[i])
-                option = input('Change? ( y / n ): ')
-                if option == 'y':
-                    new = input('New {}: '.format(info_list2[i]))
-                    emp_info[i] = new
-            #return emp_info to data bank
-        self.main_menu()
+
+        title = 'New Employee'
+
+        questions = ()
+
+        while True:
+            title = "employee search"
+            information = ("( c ) Cancel,,")
+
+            self.liner()
+            self.print.print_title(title)
+            self.print.print_space()
+            self.print.print_out_format(information)
+            self.print.print_space()
+            self.print.print_line(len(title)*"_")
+            employee_id = input(self.print.question("employee ID"))  
+
+            if employee_id == 'c':
+                return
+
+            employee = self.logic.get_employee(employee_id)
+            information = ("( c ) Cancel, ( f ) Finish, ( s ) skip")
+            questions = {"address":employee.address,"phone":employee.phone,"email":employee.email,"location":employee.location,"password":employee.password,"confirm password":employee.password} # address,phone,email,location,password
+
+            while True:
+                for key,value in questions.items():
+                    self.liner()
+                    self.print.print_title(title)
+                    self.print.print_space()
+
+                    self.print.print_out_format(information)
+                    self.print.print_space()
+                    self.print.print_line(len(title)*"_")
 
 
+                    self.print.print_space()    
+                    self.print.print_questions(questions)
+                    self.print.print_line(len(title)*"_")
+                    option = input(self.print.question("\tEnter Choice here"))
 
+                    if option == 'c':
+                        return
 
+                    if option == 's':
+                        continue
+
+                    questions[key] = option
+
+                    if questions["password"] != questions["confirm password"]:
+                        self.print.warning("passwords don't match")
+                    elif option == "f":
+                        del questions["confirm password"]
+                        self.logic.change_employee(employee_id,questions)
+                        return
 
     def delete_employee(self):
         print('''
