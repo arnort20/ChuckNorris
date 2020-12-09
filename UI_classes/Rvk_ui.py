@@ -71,8 +71,9 @@ class Rvk_ui:
         self.print = Print_format()
 
     def main_menu(self):
-        self.liner()
+
         while True:
+            self.liner()
             title = "Welcome, Employee {}".format(self.employee_num)
             self.print.print_title(title)
             self.print.print_space()
@@ -119,8 +120,8 @@ class Rvk_ui:
 
 
     def contract_menu(self):
-        self.liner()
         while True:
+            self.liner()
             title = "Contract Menu"
             self.print.print_title(title)
             self.print.print_space()
@@ -180,8 +181,8 @@ class Rvk_ui:
                 print('Invalid option')
 
 
-
-    #eftir ad breyta
+    # Contract-----------------
+    #eftir ad breyta nafni
     def create_contract(self):
         while True:
             title = "Creating New Contract"
@@ -193,18 +194,17 @@ class Rvk_ui:
             self.print.print_line(len(title)*"_")
 
             option = input(self.print.question('Type here'))
+
+
+            
             if option == '1':
                 self.returning_customer()
-
             elif option == '2':
                 self.new_customer()
-
             elif option.lower() == 'r':
                 return
-
             elif option == '':
                 print('Please input an option')
-
             else:
                 print('Invalid option')
 
@@ -289,7 +289,7 @@ class Rvk_ui:
         return
 
 
-
+    # Contract-----------------
     def new_contract(self, customer_id):
         #previous says from what menu you came from
         title = 'New Contract'
@@ -351,99 +351,90 @@ class Rvk_ui:
 
 
 
+    # Contract-----------------
     def view_contract(self):
-        title = "Contract Search"
-        information = ("( c ) Cancel, ( f ) Finish")
-        options = '( c ) Change,( p ) = Print,( r ) = Return'
-
-        self.liner()
-        self.print.print_title(title)
-        #efri gluggi
-        self.print.print_space()
-        self.print.print_out_format(information)
-        self.print.print_space()
-        self.print.print_line(len(title)*"_")
-        conID = input(self.print.question("Contract ID"))  
-
-
         while True:
+            title = "Contract Search"
+            information = ("( c ) Cancel,,")
+            options = '( c ) Change,( r ) Return'
+
+            self.liner()
+            self.print.print_title(title)
+            #efri gluggi
+            self.print.print_space()
+            self.print.print_out_format(information)
+            self.print.print_space()
+            self.print.print_line(len(title)*"_")
+            conID = input(self.print.question("Contract ID"))  
+
+            if conID == 'c':
+                return
 
             contract = self.logic.get_contract(conID)
-            if contract:
-                print('Great Success!')
-                #add three options ( c ) change, ( p ) print, ( r ) return
-                self.print.print_out_format(information)
-                while True:
-                    option = input('Type here: ').lower()
-                    if option == 'c':
-                        self.menu2_1(contract)
-                    elif option == 'p':
-                        self.menu2_2(contract)
-                    elif option == 'r':
-                        self.main_menu()
-                    elif option == '':                        
-                        print('Please input an option')
-                    else:
-                        print('Not a valid option')
-            else:
-                print('Invalid contract ID')
 
-
-
-
-
-    def menu2_1(self):
-        'Changes contract info'
-        info_list = ['Vehicle plate: ', 'Start date: ', 'End date: ']
-        contract_info = [plate_num, start, end]
-        print('''
-------------Changing contract---------------
-''')
-        for i in range(len(info_list)):
             while True:
-                option = input('{}{}\nchange? ( y / n ): '.format(info_list[i],contract_info[i])).lower()
-                if option == 'y':
-                    contract_info = input('New {}'.format(info_list[i].lower()))
-                elif option == 'n':
-                    pass
-                elif option == '':
-                    print('Please input an option')
+                title = "Contract: " + contract.id
+                self.liner()
+                self.print.print_title(title)
+                self.print.print_space()
+                self.print.print_out_format(options)
+                self.print.print_space()
+                self.print.print_line(len(title)*"_")
+                #efri
+                self.print.print_space()
+                self.print.print_out_format("ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid")
+                self.print.print_space()
+                self.print.print_out_format(str(contract))
+                self.print.print_space()
+                self.print.print_line(len(title)*"_")
+
+                option = input(self.print.question('Type here: ')).lower()
+                if option == 'c':
+                    self.change_contract(contract)
+                elif option == 'p':
+                    self.print_contract(contract)
+                elif option == 'r':
+                    return
                 else:
-                    print('Invalid option')   
+                    print('Not a valid option')
+
+
+
+
+    # Contract-----------------
+    def change_contract(self,contract):
+        title = "Changing contract"
+        information = ("( c ) Cancel, ( f ) Finish")
+
+
+        questions = {"start_date":contract.start_date,"end_date":contract.end_date,"vehicle_id":contract.vehicle_id}
         while True:
-            print('''
- 
-( f ) = Finish
-( c ) = Cancel
-----------------------------------------''')
-            option = input('Type Here: ')
-            if option == 'c':
-                self.view_contract()
-            elif option == 'f':
-                #saves the contracts
-                pass
-            elif option == '':
-                print('Please input an option')
-            else:
-                print('Invalid option')
+            for key,value in questions.items():
+                self.liner()
+                self.print.print_title(title)
+                self.print.print_space()
+
+                self.print.print_out_format(information)
+                self.print.print_space()
+                self.print.print_line(len(title)*"_")
+
+
+                self.print.print_space()    
+                self.print.print_questions(questions)
+                self.print.print_line(len(title)*"_")
+                option = input(self.print.question("\tEnter Choice here"))
+                questions[key] = option
+                    
+                if option == 'c':
+                    return
+                if option == "f":
+                    pass
 
 
 
 
 
-    def menu2_2(self):
-        'Prints contract'
-        while True:
-            print('''
-------------Contract search-------------
- ''')
-            conID = input('Contract ID: #')
-            if len(conID) == 4 and conID.isdigit():
-                contract = Logic_API.get_contract(conID)
-                print(contract)
-            else:
-                print('Invalid contract ID!')
-
+    # Report----------------------
     def print_report(self):
         self.print.print_title("Print bill")
         information = "( # ) Input the contract ID,( r ) Return" 
