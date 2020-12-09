@@ -62,16 +62,16 @@ class Chuck_ui():
                 self.chuck_login()
 
     def Earnings_report(self):#<----- Þarf að klára
+        # Hérna þarf að sækja overall Reportið í logic wrapper, spendinding vs earnings
+        # Mögulega eitthvað fleirra
         Print_format.print_title(self, "Earning Report")
-        information = ("Something fun")
+        information = ("Contract ID,Start Date,Return Date,Location ID,Price ")
         Print_format.print_out_format(self,information)
         earnings = self.logic.get_bills()
         Print_format.print_space(self)
         for item in earnings:
             Print_format.print_out_format(self,str(item))
-            Print_format.print_title(self,len("Earning Report")*"_")
-        # Hérna þarf að sækja overall Reportið í logic wrapper, spendinding vs earnings
-        # Mögulega eitthvað fleirra
+        Print_format.print_title(self,len("Earning Report")*"_")
         
         
 
@@ -90,7 +90,7 @@ class Chuck_ui():
     def Bill_overview(self):
         #Hérna þarf að sækja skýrslu frá samningum og skoða lista af öllum reikningum
         Print_format.print_title(self, "Bill Overview")
-        information = ("info")
+        information = ("Contract ID,Start Date,Return Date,Location ID,Price")
         Print_format.print_out_format(self, information)
         bills = self.logic.get_bills()
         for item in bills:
@@ -110,7 +110,7 @@ class Chuck_ui():
             customer = self.logic.get_customer(cust_ID)
             if customer:
                 cust_name = customer.customer_name
-                self.kickdownstairs(cust_name)
+                print(self.kickdownstairs(cust_name))
                 self.logic.kill_customer(cust_ID)
             else:
                 print("Customer not found")
@@ -145,7 +145,7 @@ class Chuck_ui():
         output = ("""
             THIS IS NAN AIR!
 
-        ○   < Chuck Norris
+         ○   < Chuck Norris
         く|)へ
           〉
         ￣￣┗┓_         V {} V
