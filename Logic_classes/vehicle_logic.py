@@ -28,11 +28,14 @@ class Vehicle_logic:
 
     def check_license(self, customerID, vehicleID):
         #check if the customer has the necessary licensing for the vehicle
+        #OK = no license required
         vehicle = self.dAPI.get_vehicle(vehicleID)
         customer = self.dAPI.get_customer(customerID)
         requirements = vehicle.license_type
         cust_license = customer.License_type.split('.')
         if requirements in cust_license:
+            return True
+        elif requirements == "OK":
             return True
         else:
             return False

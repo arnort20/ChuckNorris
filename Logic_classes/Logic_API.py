@@ -25,6 +25,10 @@ class Logic_API:
         else:
             return None
 
+    #in order to prevent each instance of LogicAPI from creating five
+    #instances of logic classes, which each create their own DataAPI.
+    #each function summons a wrapper which initializes an instance 
+    #of the logic class it needs
     def contract_wrapper(self):
         self.contract = cont_logic()
 
@@ -52,6 +56,7 @@ class Logic_API:
         return self.contract.get_contract(contractID)
 
     def delete_contract(self,contractID):
+        #invalidates the contract, removing it form the database
         self.contract_wrapper()
         self.contract.delete_current_contract(contractID)
 
@@ -145,7 +150,7 @@ class Logic_API:
             vehicle = self.vehicle.get_vehicle(deal.vehicle_id)
             vehi_type = vehicle.type
             if vehi_type in vehicle_popularities:
-                vehicle_popularities[vehi_type] += 1
+                vehicle_popularities[vehi_type] = vehicle_popularities[vehi_type]+1
             else:
                 vehicle_popularities[vehi_type] = 1
         return vehicle_popularities
