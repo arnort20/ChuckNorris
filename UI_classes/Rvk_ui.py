@@ -1,3 +1,4 @@
+from Model_classes.Customer import Customer
 from Logic_classes.Logic_API import Logic_API
 from UI_classes.Print_formats import Print_format
 
@@ -248,30 +249,31 @@ class Rvk_ui:
 
 
                 # printing warning
-                if wrong == "1":
+                if wrong != 0:
                     self.print.warning("wrong id")
                     wrong = 0
 
                 #Format
                 self.print.question_box(questions,information,title)
                 option = input(self.print.question("Enter Choice here"))
-
+                test = self.logic.get_customer(questions["customer ID"])
                 #change answer
-                questions[key] = option
+                try:
+                    if option == 'f':
+                        jim = test.id
+                        self.new_contract(questions["customer ID"])
+                        return
+                except:
+                    wrong = 1
+                    continue
 
                 #Choices
-                if self.logic.get_customer(questions) == None:
-                    continue
                 if option == 'c':
                     return
-                elif self.logic.get_customer(questions) == None:
-                    wrong == 1
-                    continue
-                if option == 'f' and questions["customer ID"] != "empty" :
-                    self.new_contract(questions["customer ID"])
-                    return
-                else:
-                    continue
+
+
+                questions[key] = option
+
 
 
 
@@ -330,7 +332,7 @@ class Rvk_ui:
 
         #Format
         self.liner()
-        self.print.short_box(amount,)
+        self.print.short_box(amount,title)
 
         use_gbp = input(self.print.question('\t\tUse Good Boy Points ( y / n )'))
 
@@ -347,8 +349,9 @@ class Rvk_ui:
         vehicle_fail = 0
         #Contract making part
         while True:
-            for key,value in questions.items():
 
+            for key,value in questions.items():
+                self.liner()
                 if vehicle_fail == 1:
                     self.print.warning("customer not qualified for vehicle!")
                     vehicle_fail = 0
@@ -375,7 +378,7 @@ class Rvk_ui:
                 #repeats til user is happy and chooses either choice
                 if option == 'c':
                     return
-                    
+
                 elif option == 'f' and questions["destination_id"] != "empty" and  questions["vehicle_id"] != "empty" :
                     questions["start_date"],questions["end_date"] = questions['start date (dd/mm/yy)'],questions['end date (dd/mm/yy)']
                     self.logic.make_new_contract()
