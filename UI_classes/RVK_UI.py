@@ -71,6 +71,7 @@ class Rvk_ui:
         self.print = Print_format()
 
     def main_menu(self):
+        self.liner()
         while True:
             title = "Welcome, Employee {}".format(self.employee_num)
             self.print.print_title(title)
@@ -118,12 +119,13 @@ class Rvk_ui:
 
 
     def contract_menu(self):
+        self.liner()
         while True:
             title = "Contract Menu"
             self.print.print_title(title)
             self.print.print_space()
             information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Change contract,( 4 ) Print report ,( r ) Return")
-            self.print.print_out_format(information)
+            self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
 
             option = input(self.print.question('Type here'))
