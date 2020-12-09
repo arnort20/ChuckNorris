@@ -120,16 +120,51 @@ class Rvk_ui:
             title = "Contract Menu"
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Create contract,( 2 ) View contract, ( 3 ) Change contract, ( 4 ) Print report ,( r ) Return")
+            information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Change contract,( 4 ) Print report ,( r ) Return")
             self.print.print_out_format(information)
             self.print.print_line(len(title)*"_")
 
             option = input(self.print.question('Type here'))
             if option == '1':
-                self.returning_customer()
+                self.create_contract()
 
             elif option == '2':
-                self.new_customer()
+                self.view_contract()
+
+            elif option == '3':
+                self.change_contract()
+
+            elif option == '4'
+                self.print_report()
+
+            elif option.lower() == 'r':
+                return
+
+            elif option == '':
+                print('Please input an option')
+
+            else:
+                print('Invalid option')
+
+        
+    def employee_menu(self):
+        while True:
+            title = "Employee Menu"
+            self.print.print_title(title)
+            self.print.print_space()
+            information = ("( 1 ) Add employee,( 2 ) Change employee,( 3 ) Delete employee,( r ) Return")
+            self.print.print_out_format(information)
+            self.print.print_line(len(title)*"_")
+
+            option = input(self.print.question('Type here'))
+            if option == '1':
+                self.add_new_employee()
+
+            elif option == '2':
+                self.change_employee()
+
+            elif option == '3':
+                self.delete_employee()
 
             elif option.lower() == 'r':
                 return
