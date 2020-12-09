@@ -121,7 +121,7 @@ class Rvk_ui:
             self.print.print_title(title)
             self.print.print_space()
             information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Change contract,( 4 ) Print report ,( r ) Return")
-            self.print.print_out_format(information)
+            self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
 
             option = input(self.print.question('Type here'))
@@ -134,7 +134,7 @@ class Rvk_ui:
             elif option == '3':
                 self.change_contract()
 
-            elif option == '4'
+            elif option == '4':
                 self.print_report()
 
             elif option.lower() == 'r':
@@ -184,7 +184,7 @@ class Rvk_ui:
             self.print.print_title(title)
             self.print.print_space()
             information = ("( 1 ) Returning Customer,( 2 ) New Customer, ( r ) Return")
-            self.print.print_out_format(information)
+            self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
 
             option = input(self.print.question('Type here'))
