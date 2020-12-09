@@ -179,6 +179,8 @@ class Rvk_ui:
             else:
                 print('Invalid option')
 
+    def 
+
 
 
     #eftir ad breyta
