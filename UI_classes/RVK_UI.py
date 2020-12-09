@@ -157,7 +157,7 @@ class Rvk_ui:
             self.print.print_title(title)
             self.print.print_space()
             information = ("( 1 ) Add employee,( 2 ) Change employee,( 3 ) Delete employee,( r ) Return")
-            self.print.print_out_format(information)
+            self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
 
             option = input(self.print.question('Type here'))
