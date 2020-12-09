@@ -15,7 +15,7 @@ As an employee of NaN Air I need to be able to register and list all rental
 contracts
 """
 
-class Master_login():
+class Chuck_ui():
     def __init__(self, username, pword):
         self.logic = Logic_API(username, pword)
         self.printer = Print_format()
