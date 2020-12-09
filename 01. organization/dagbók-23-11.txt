@@ -57,5 +57,8 @@ klára að implementa bill og report fall, klára líka að ganga frá date time
 dagur 13:
 Plan:
 klára UI klasana og tengja allt þannig allar A kröfur séu uppfylltar
+-náðum næstum að klára a kröfur og ui klasa
 
+dagur 14:
+klára að ganga frá ui klösum laga skýrslu, laga klasarit, fínpússa kóða
 
