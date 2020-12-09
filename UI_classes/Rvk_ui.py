@@ -94,7 +94,7 @@ class Rvk_ui:
             elif option == '3':
                 self.vehicle_menu()
             elif option == '4':
-                self.branch_reveiw()
+                self.branch_review()
             #needs:
             #vehicle management stuff
             #search vehicles
