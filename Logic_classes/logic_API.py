@@ -191,6 +191,7 @@ class Logic_API:
         self.employee_wrapper()
         return self.employee.get_employee(emp_ID)
 
+
     #destination stuff
     def new_destination(self, destination_name, airport, phone, opening_hours):
         self.destination_wrapper()
@@ -208,6 +209,7 @@ class Logic_API:
         self.destination_wrapper()
         self.destination.change_destination(dest_ID, change_dict)
 
+
     #billing stuff
     def new_bill(self, contractID, return_date, gbp_used):
         self.bill_wrapper()
@@ -224,3 +226,7 @@ class Logic_API:
     def get_bills(self):
         self.bill_wrapper()
         return self.bill.get_all_bills()
+    
+    #Þarf að bæta við Earnings functioni
+    
+        
