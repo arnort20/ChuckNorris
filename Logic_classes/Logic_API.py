@@ -150,7 +150,7 @@ class Logic_API:
             vehicle = self.vehicle.get_vehicle(deal.vehicle_id)
             vehi_type = vehicle.type
             if vehi_type in vehicle_popularities:
-                vehicle_popularities[vehi_type] += 1
+                vehicle_popularities[vehi_type] = vehicle_popularities[vehi_type]+1
             else:
                 vehicle_popularities[vehi_type] = 1
         return vehicle_popularities
