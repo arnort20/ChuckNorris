@@ -1,4 +1,4 @@
-from Logic_classes.logic_API import Logic_API
+from Logic_classes.Logic_API import Logic_API
 from UI_classes.Print_formats import Print_format
 
 """
@@ -350,27 +350,6 @@ class Rvk_ui:
         # date_list =  end_date.split("/")
         # date_list[1],date_list[3] = date_list[3],date_list[1]
         # fixed_date = "/".join(date_list)
-                  
-        while True:
-            option = input('''\n( r ) = Return
-
-( f ) = Finish
-------------------------------------------
-Type here: ''').lower()
-            if option == 'r':
-                if previous == 1:
-                    self.returning_customer()
-                elif previous == 2:
-                    self.new_customer()
-            elif option == 'f':
-                pass
-                #register new contract
-                self.main_menu()
-            elif option == '':
-                print('Please input an option')
-            else:
-                print('Not a valid option')
-
 
 
 
