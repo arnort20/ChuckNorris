@@ -1,4 +1,4 @@
-from Logic_classes.Logic_API import Logic_API
+from Logic_classes.logic_API import Logic_API
 from Model_classes.Contract import Contract # Display all contracts overview
 from Model_classes.Vehicle import Vehicle
 from Model_classes.Bill import Bill

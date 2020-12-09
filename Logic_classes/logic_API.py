@@ -226,6 +226,10 @@ class Logic_API:
     def get_bills(self):
         self.bill_wrapper()
         return self.bill.get_all_bills()
+
+    def get_bill(self, contract_ID):
+        self.bill_wrapper()
+        return self.bill.get_bill(contract_ID)
     
     #Þarf að bæta við Earnings functioni
     
