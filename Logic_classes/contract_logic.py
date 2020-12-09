@@ -21,14 +21,9 @@ class Contract_logic:
             return False
             #skilar False þegar contractID er ekki til í data
 
-    def make_contract(self, employeeID,customerID,vehicleID,start_date,end_date):
-        customer=self.dAPI.get_customer(customerID)
-        contract_name = customer.name
-        contract_phone = customer.phone
-        contract_address = customer.address
-        contract_email = customer.email
+    def make_contract(self, employeeID,customerID,vehicleID,location,start_date,end_date):
         contractID = self.dAPI.contract_makeID()
-        self.dAPI.add_contract(contractID, contract_name, contract_phone, contract_address, contract_email, vehicleID, start_date, end_date)
+        self.dAPI.add_contract(contractID, employeeID, vehicleID, location, start_date, end_date,"no")
 
     def all_contracts(self):
         return self.dAPI.get_contracts()
