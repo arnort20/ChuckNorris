@@ -1,7 +1,7 @@
 from Logic_classes.logic_API import Logic_API
 from Model_classes.Contract import Contract # Display all contracts overview
 #from Model_classes.Vehicle import Vehicle_reports Á eftir að búa til
-#from Model_classes.Bill overview bæta inn.
+from Model_classes.Bill import Bill
 from UI_classes.Print_formats import Print_format
 import sys #Spurning að breyta yfir í orginal loggin skjá
 
@@ -86,15 +86,15 @@ class Master_login():
         #Add a Returner
         pass
 
-    # def Bill_overview(self):
-    #     #Hérna þarf að sækja skýrslu frá samningum og skoða lista af öllum reikningum
-    #     Print_format.print_title(self, "Bill Overview")
-    #     information = ("info")
-    #     Print_format.print_out_format(self, information)
-    #     bills
-    #     for item in bills:
-    #         Print_format.print_out_format(self,str(item))
-    #     Print_format.print_title(self,len("Bill Overview")*"-")
+    def Bill_overview(self):
+        #Hérna þarf að sækja skýrslu frá samningum og skoða lista af öllum reikningum
+        Print_format.print_title(self, "Bill Overview")
+        information = ("info")
+        Print_format.print_out_format(self, information)
+        bills = self.logic.get_all_bills()
+        for item in bills:
+            Print_format.print_out_format(self,str(item))
+        Print_format.print_title(self,len("Bill Overview")*"-")
 
         pass
     def Round_house(self):

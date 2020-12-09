@@ -142,7 +142,7 @@ class Rvk_ui:
 
 
 
-    def returning_customer(self):
+    def returning_customer(self): 
         self.print.print_title("Returning Customer")
         information = ("( c ) Cancel, ( f ) Finish")
         cost_reg = input('Costumer ID: ')
@@ -224,23 +224,27 @@ class Rvk_ui:
             #þarf að implementa gbp notkun
             pass
 
-        self.print.print_title(title)
-        self.print.print_space()
+
 
         questions = {'start date (dd/mm/yy)':"empty",'end date (dd/mm/yy)':"empty",'location':"empty"}
 
         for key,value in questions.items():
+            self.liner()
+            self.print.print_title(title)
+            self.print.print_space()    
             self.print.print_questions(questions)
-            option = input(self.format.question("Enter Choice here",self.width))
+            self.print.print_line(len(title)*"_")
+            option = input(self.print.question("Enter Choice here"))
             questions[key] = option
             
 
         # for spinning dates----------------------------------------------------------------------
         # date_list =  end_date.split("/")
         # date_list[1],date_list[3] = date_list[3],date_list[1]
-        # fixed_date = "/".join(date_list)          
+        # fixed_date = "/".join(date_list)
+                  
         while True:
-                option = input('''\n( r ) = Return
+            option = input('''\n( r ) = Return
 
 ( f ) = Finish
 ------------------------------------------

@@ -55,8 +55,9 @@ class Non_rvk:
             self.format.print_main_menu(menu,self.width)
             self.format.print_line(len(title)*"_",self.width)
 
-
             option = input(self.format.question("Enter Choice here",self.width))
+
+
             if option == "1":
                 self.menu1()
                 choice =1
