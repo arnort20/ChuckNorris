@@ -82,8 +82,8 @@ class Rvk_ui:
             #vehicle menu has vehicle management and to see taxes
             # see branch review
 
-
             self.print.print_main_menu(option)
+
             self.print.print_line(len(title)*"")
             option = input(self.print.question('Type here'))
             if option == '1':
@@ -104,6 +104,8 @@ class Rvk_ui:
             #print invoice
             #see taxes for vehicles by type
             #make report of my branch performance
+
+
             elif option.lower() == 'q':
                 break
                 #maybe go back to loginUI?
@@ -134,7 +136,7 @@ class Rvk_ui:
             elif option == '3':
                 self.change_contract()
 
-            elif option == '4'
+            elif option == '4':
                 self.print_report()
 
             elif option.lower() == 'r':
@@ -177,10 +179,11 @@ class Rvk_ui:
 
 
 
-
+    #eftir ad breyta
     def create_contract(self):
         while True:
             title = "Creating New Contract"
+            self.liner()
             self.print.print_title(title)
             self.print.print_space()
             information = ("( 1 ) Returning Customer,( 2 ) New Customer, ( r ) Return")
@@ -211,7 +214,6 @@ class Rvk_ui:
         questions = {"customer ID": "empty"}
         information = ("( c ) Cancel, ( f ) Finish")
 
-
         while True:
             for key,value in questions.items():
 
@@ -234,8 +236,9 @@ class Rvk_ui:
 
                 if option == 'c':
                     return
-                elif option == 'f' and info_list["license_type"] != "empty" :
-                    self.menu1_3(1)
+                elif option == 'f' and questions["customer ID"] != "empty" :
+                    self.new_contract(questions["customer ID"])
+
                     return
                     
                 else:
@@ -248,7 +251,7 @@ class Rvk_ui:
 
 
         cust_info = []
-        info_list = {'ID':"empty","customer_name":"empty",'email':"empty",'phone':"empty",'address':"empty", "license_type":"empty"}
+        info_list = {'ID':"empty","customer_name":"empty","ssn":"empty",'email':"empty",'phone':"empty",'address':"empty", "license_type":"empty"}
         title = 'New Customer'
         option = 0
 
@@ -276,8 +279,8 @@ class Rvk_ui:
                     return
                 elif option == 'f' and info_list["license_type"] != "empty" :
                         
-                    self.logic.new_customer(info_list['ID'],info_list['customer_name'],info_list['email'],info_list['phone'],info_list['address'],info_list['license_type'])
-                    self.menu1_3(2)
+                    self.logic.new_customer(info_list['ID'],info_list['customer_name'],info_list['ssn'],info_list['email'],info_list['phone'],info_list['address'],info_list['license_type'])
+                    self.new_contract(info_list['ID'])
                     return
                 else:
                     self.print.warning("please select option")
@@ -285,13 +288,14 @@ class Rvk_ui:
 
 
 
-    def menu1_3(self, previous):
+    def new_contract(self, customer_id):
         #previous says from what menu you came from
         title = 'New Contract'
-        if previous == 1:
-            pass #get gbp
-        else:
-            gbp = 0
+        customer = self.logic.get_customer(customer_id)
+        print(customer)
+
+        gbp = customer.gbp
+
 
         self.liner()
 
