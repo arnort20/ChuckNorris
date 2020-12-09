@@ -204,14 +204,13 @@ class Chuck_ui():
         title = "Most Popular Vehicle"
         question = {"Pick Location ID To See":"empty"}
         information = ("( c ) Cancel")
-        #self.logic.popular_vehicle_types()
         for key,value in question.items():
             self.printer.question_box(question,information,title)
             option = input(self.printer.question("Enter Location ID"))
             print("")
             question[key] = option
         cars = self.logic.popular_vehicle_types(question["Pick Location ID To See"])
-        self.printer.print_out_format(str(cars))
+        self.printer.print_out_format(cars)
         Print_format.print_space(self)
         Print_format.print_title(self,len("Most Popular Vehicle")*"_")
 
