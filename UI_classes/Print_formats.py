@@ -3,6 +3,9 @@
 
 class Print_format():
 
+    def liner(self):
+        print("\n"*12)
+
 # Þessi þarf að geta prentað út Title á flottan hátt.
     def print_title(self,title="_",width=200):# Langar að breyta þannig að Title centerist við info úr main menu!
     # Title = Nafn á Völdum kosti
@@ -93,3 +96,38 @@ class Print_format():
     def warning(self,text,width = 200):
         print(" {:>{size}}|  ".format("",size = int(width/2)),end="")
         print(text+ "  |")
+
+
+    def short_box(self,information,title):
+        self.print_title(title)
+        self.print_space()
+        self.print_out_format(information)
+        self.print_space()
+        self.print_line(len(title)*"_")
+
+    def question_box(self,questions,information,title):
+        self.print_title(title)
+        self.print_space()
+
+        self.print_out_format(information)
+        self.print_space()
+        self.print_line(len(title)*"_")
+
+
+        self.print_space()    
+        self.print_questions(questions)
+        self.print_line(len(title)*"_")
+
+    def list_box(self,title,options,info,second_str):
+        self.print_title(title)
+        self.print_space()
+        self.print_out_format(options)
+        self.print_space()
+        self.print_line(len(title)*"_")
+        #efri
+        self.print_space()
+        self.print_out_format(info)
+        self.print_space()
+        self.print_out_format(second_str)
+        self.print_space()
+        self.print_line(len(title)*"_")
