@@ -33,7 +33,7 @@ contracts
 
 12
 As an employee of NaN Air I need to be able to change the loan time and 
-vehicle of the rental contract
+vehicle of the rental contract (CHECK)
 
 13
 As an employee of NaN Air I need to be able to invalidate a rental contract
@@ -52,11 +52,11 @@ are for each type of vehicle and add taxes to new types of vehicles
 
 17
 As an employee of NaN Air I need to be able to see if the customer has the 
-credentials to use certain types of vehicles
+credentials to use certain types of vehicles (CHECK)
 
 18
 As an employee of NaN Air I need to make sure that the customer's charges are 
-collected so that he will not get charged multiple times
+collected so that he will not get charged multiple times (CHECK)
 
 19
 As an employee of NaN Air I need to be able to make a report of my branch's 
@@ -91,6 +91,16 @@ class Rvk_ui:
                 self.change_employee()
             elif option == '6':
                 self.delete_employee()
+            #needs:
+            #vehicle management stuff
+            #search vehicles
+            #view all contracts
+            #invalidate rental contract
+            #destination management
+            #destination information
+            #print invoice
+            #see taxes for vehicles by type
+            #make report of my branch performance
             elif option.lower() == 'q':
                 break
                 #maybe go back to loginUI?

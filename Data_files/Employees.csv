@@ -1,8 +1,9 @@
 id,employee_name,ssn,address,phone,email,location,password
-1,Chuck Norris,1004402509,D�fnah�lar 10,6969420,chuck@chucknorris.is,1,1
-2,Sigmundur David,2459731587,gata 5,6498726,simmicool@chucknorris.is,2,2
+1,Chuck Norris,1004402509,Svarthöfða 1 110,6969420,chuck@chucknorris.is,1,1
+2,Sigmundur David,2459731587,stúfgata 5 105,6498726,simmicool@chucknorris.is,2,2
+3,Guðrún Aradóttir,Bröttubrekku 2a 104,3104843348,gurra@nan.is,3
 4,Spoi Eskimoi,2156161,igloo 144,615845,spoi@chucknorris.is,3,4
 5,Riti Inuiti,2146565,igloo 512,5255855,riti@chucknorris.is,4,5
-6,Duddi Jorgensen,adalgata 21,5547858,duddi@chucknorris.is,5,6,
-7,Sean Connerey,cabin 5,412566,sean@chucknorris.is,6,7,
-8,Jorgen florgen,main road 5,556825,jorgen@chucknorris.is,7,8,
+6,Duddi Jorgensen,adalgata 21,5547858,duddi@chucknorris.is,5,6
+7,Sean Connerey,cabin 5,412566,sean@chucknorris.is,6,7
+8,Jorgen florgen,main road 5,556825,jorgen@chucknorris.is,7,8
