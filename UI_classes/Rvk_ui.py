@@ -213,7 +213,8 @@ class Rvk_ui:
 
             option = input(self.print.question('Type here'))
 
-            self.Logic_API.get_destination(option)
+            overview=self.Logic_API.get_destination(option)
+            print(overview)
 
 
 
