@@ -74,9 +74,8 @@ class Rvk_ui:
         self.logic = Logic_API(username, pword)
         self.print = Print_format()
 
-        
+
                                                                                 #needs:
-                                                                                #vehicle management stuff
                                                                                 #search vehicles
                                                                                 #view all contracts
                                                                                 #invalidate rental contract
@@ -99,21 +98,21 @@ class Rvk_ui:
             title = "Welcome, Employee {}".format(self.employee_num)
             self.print.print_title(title)
             self.print.print_space()
-            option = "( 1 ) Contract menu,( 2 ) Employee menu,( 3 ) Vehicle menu,( 4 ) Branch review,( q ) Quit"
 
-
+            option = "( 1 ) Contract menu,( 2 ) Employee menu,( 3 ) Branch review,( 4 ) search vehicles,,( q ) Quit"
             self.print.print_main_menu(option)
-
             self.print.print_line(len(title)*"")
+            print()
             option = input(self.print.question('Type here'))
+
             if option == '1':
                 self.contract_menu()
             elif option == '2':
                 self.employee_menu()
             elif option == '3':
-                self.vehicle_menu()
-            elif option == '4':
                 self.branch_review()
+            elif option == "4":
+                self.search_vehicles()
 
             elif option.lower() == 'q':
                 break
@@ -135,7 +134,7 @@ class Rvk_ui:
             information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Print report ,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
-
+            print()
             option = input(self.print.question('Type here'))
             if option == '1':
                 self.customer_select()
@@ -167,7 +166,7 @@ class Rvk_ui:
             information = ("( 1 ) Add employee,( 2 ) Change employee,( 3 ) Delete employee,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
-
+            print()
             option = input(self.print.question('Type here'))
             if option == '1':
                 self.add_new_employee()
@@ -187,33 +186,6 @@ class Rvk_ui:
             else:
                 print('Invalid option')
 
-
-
-#-----------------VEHICLE MENU FOR RVK EMPLOYEE-----------
-    def vehicle_menu(self):
-        while True:
-            title = "Vehicle menu"
-            self.print.print_title(title)
-            self.print.print_space()
-            information = ("( 1 ) Search vehicle,( 2 ) Vehicle tax,( r ) Return")
-            self.print.print_main_menu(information)
-            self.print.print_line(len(title)*"_")
-
-            option = input(self.print.question('Type here'))
-            if option == '1':
-                self.search_vehicle()
-
-            elif option == '2':
-                self.vehicle_tax()
-
-            elif option.lower() == 'r':
-                return
-
-            elif option == '':
-                print('Please input an option')
-
-            else:
-                print('Invalid option')
 
     def branch_review(self):
         while True:
@@ -366,10 +338,15 @@ class Rvk_ui:
         #info for next part
         information = ("( c ) Cancel, ( f ) Finish")
         questions = {'start date (dd/mm/yy)':"empty",'end date (dd/mm/yy)':"empty",'vehicle_id':"empty",'destination_id':"empty",}
-
+        vehicle_fail = 0
         #Contract making part
         while True:
             for key,value in questions.items():
+
+                if vehicle_fail == 1:
+                    self.print.warning("customer not qualified for vehicle!")
+                    vehicle_fail = 0
+
                 #Format
                 self.print.question_box(questions,information,title)
                 option = input(self.print.question("\tEnter Choice here"))
@@ -377,12 +354,26 @@ class Rvk_ui:
                 #Chaning info for next print
                 questions[key] = option
 
+
+                #check if customer can rent car
+                if questions["vehicle_id"] != "empty":
+                    can_rent = self.logic.check_license(customer_id,questions["vehicle_id"])
+                    if can_rent == True:
+                        pass
+                    else:
+                        vehicle_fail = 1
+                        questions["vehicle_id"] = "empty"
+
+
+
                 #repeats til user is happy and chooses either choice
                 if option == 'c':
                     return
-                elif option == 'f' and questions["destination_id"] != "empty" :
+                elif option == 'f' and questions["destination_id"] != "empty" and  questions["vehicle_id"] != "empty" :
                     questions["start_date"],questions["end_date"] = questions['start date (dd/mm/yy)'],questions['end date (dd/mm/yy)']
                     self.logic.make_new_contract()
+
+
 
 
 
@@ -404,6 +395,7 @@ class Rvk_ui:
 
             #Format
             self.liner()
+            self.print.short_box(information,title)
             conID = input(self.print.question("Contract ID"))  
 
             if conID == 'c':
@@ -597,3 +589,26 @@ class Rvk_ui:
                 return
             else:
                 self.print.warning("Wrong input")
+
+
+
+#------------search vehicles in certein location--------
+    def search_vehicles(self):
+        title = "Search vehicles"
+        information = "( c ) Cancel,,write ID below!"
+        options = "( r ) return"
+        info = "ID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,license_type"
+
+        self.liner()
+        self.print.short_box(information,title)
+        location_id = input(self.print.question("location ID"))
+
+        if location_id == "c":
+            return
+
+        vehicles = self.logic.locate_vehicles(location_id)
+        title = "vehicle list"
+        self.liner()
+        self.print.large_list_box(options,title,info,vehicles)
+        go_back = input(self.print.question("\tReturn"))
+        return
