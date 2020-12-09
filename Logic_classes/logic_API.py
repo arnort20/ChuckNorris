@@ -143,6 +143,10 @@ class Logic_API:
     def check_license(self, customerID, vehicleID):
         self.vehicle_wrapper()
         return self.vehicle.check_license(customerID,vehicleID)
+
+    def get_vehicle_reports(self):
+        self.vehicle_wrapper()
+        return self.vehicle.get_vehicles()
         
 
 
@@ -215,3 +219,7 @@ class Logic_API:
     def calculate_bill(self, bill_dict):
         self.bill_wrapper()
         return self.bill.calculate_price(bill_dict)
+
+    def get_bills(self):
+        self.bill_wrapper()
+        return self.bill.get_all_bills()

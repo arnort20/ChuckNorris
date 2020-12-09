@@ -5,8 +5,8 @@ class Bill_logic:
         self.dAPI = dAPI()
 
     #Bætt við
-    def get_bill(self, bill_obj):
-        bill = self.dAPI.get_bill(bill_obj)
+    def get_bill(self, contract_ID):
+        bill = self.dAPI.get_bill(contract_ID)
         return bill
 
     def new_bill(self, contract_ID, fetch_date, return_date, gbp_used):
@@ -60,7 +60,7 @@ class Bill_logic:
 
     #Bætt við
     def get_all_bills(self):
-        return self.dAPI.get_bill
+        return self.dAPI.get_bills()
 
 
 #RIP
