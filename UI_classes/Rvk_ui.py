@@ -112,7 +112,6 @@ class Rvk_ui:
                 self.branch_review()
             elif option == "5":
                 self.search_vehicles()
-
             elif option.lower() == 'q':
                 break
                 #maybe go back to loginUI?
@@ -130,7 +129,7 @@ class Rvk_ui:
             title = "Contract Menu"
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Delete contract ,( 4 ) Print all contracts ,( 5 ) Print report ,,( r ) Return")
+            information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Delete contract ,( 4 ) Print all contracts ,( 5 ) Print report,( 6 ) Print contract report,,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
             print()
@@ -148,6 +147,9 @@ class Rvk_ui:
                 self.all_contracts()
 
             elif option == "5":
+                self.print_report()
+
+            elif option == "6":
                 self.print_report()
 
             elif option.lower() == 'r':
@@ -190,7 +192,6 @@ class Rvk_ui:
 
             else:
                 print('Invalid option')
-
 
 
 
@@ -664,7 +665,6 @@ class Rvk_ui:
 
 #------------------View all contracts----------------
     def all_contracts(self):
-        title = "Search vehicles"
         options = "( r ) return"
         info = "ID,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid?"
 
@@ -708,38 +708,92 @@ class Rvk_ui:
                 self.print.warning("Wrong input")
  
 
-# Report---------------------- NOT FINISHED
+#----------------View extensive contract report-------------
     def print_report(self):
         self.print.print_title("Print bill")
-        
 
+        #Info
+        title = "Contract Search"
+        information = ("( c ) Cancel,,Insert ID below")
+        options = "( r ) Return"
+        wrong = 0
+        while True:
+            #Format
+            self.liner()
 
-        
-        # information = "( # ) Input the contract ID,( r ) Return" 
-        # self.print.print_main_menu(information)
-        # self.print.print_line()
-        # option = input(self.print.question('Input contract ID: '))
-        # if option == "r":
-        #     return
-        # bill_dict = self.logic.get_bill_info(option)
-        # relevant_dict = {}
-        # relevant_dict["start"] = bill_dict["start_date"]
-        # relevant_dict["end"] = bill_dict["end_date"]
-        # relevant_dict["Pickup date"] = bill_dict["fetch_date"]
-        # relevant_dict["Return date"] = bill_dict["return_date"]
-        # relevant_dict["Vehicle tax"] = bill_dict["tax"]
-        # relevant_dict["Returned late?"] = bill_dict["late_tax"]
-        # true_period = bill_dict["true_period"]
-        # contract_period = bill_dict["contract_period"]
-        # if relevant_dict["Returned late?"]:
-        #     relevant_dict["days"] = true_period
-        # else:
-        #     relevant_dict["days"] = contract_period
-        # relevant_dict["gbp_used"] = bill_dict["gbp_discount"]
-        # relevant_dict["Total price"] = self.logic.calculate_bill(bill_dict)
-        # self.print.print_title("Bill for contract #{}".format(option))
-        # self.print.print_questions(relevant_dict)
-        # self.print.print_line()
+            if wrong != 0:
+                self.print.warning("Wrong ID")
+                wrong = 0
+
+            self.print.short_box(information,title)
+            conID = input(self.print.question("Contract ID"))  
+
+            if conID == 'c':
+                return
+
+            contract = self.logic.get_contract(conID)
+            if contract != None:
+                employee = self.logic.get_employee(contract.employee_id)
+                customer = self.logic.get_customer(contract.customer_id)
+                vehicle = self.logic.get_vehicle(contract.vehicle_id)
+                
+                while True:
+                    
+
+                    #Info
+                    title = "Contract: " + conID
+                    info = "ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid"
+                    contract_str = str(contract)
+                    vehicle_str = str(vehicle)
+                    customer_str = str(customer)
+                    employee_str = str(employee)
+
+                    #Format
+                    self.liner()
+
+                    self.print.print_title(title)
+                    self.print.print_space()
+                    self.print.print_out_format(options)
+                    self.print.print_space()
+                    self.print.print_line(len(title)*"_")
+                    #efri
+                    self.print.print_space()
+                    self.print.print_out_format("contract")
+                    self.print.print_space()
+                    self.print.print_out_format(info)
+                    self.print.print_space()
+                    self.print.print_out_format(contract_str)
+                    self.print.print_space()
+                    self.print.print_line(len(title)*"_")
+                    self.print.print_space()
+                    self.print.print_out_format("employee")
+                    self.print.print_space()
+                    self.print.print_out_format("ID,Employee_name,ssn,Address,Phone,Email,Location")
+                    self.print.print_space()
+                    self.print.print_out_format(employee_str)
+                    self.print.print_space()
+                    self.print.print_line(len(title)*"_")
+                    self.print.print_space()
+                    self.print.print_out_format("customer")
+                    self.print.print_space()
+                    self.print.print_out_format("ID,customer_name,License_type,gbp,bbp,email,phone,address,Social_security_number")
+                    self.print.print_space()
+                    self.print.print_out_format(customer_str)
+                    self.print.print_space()
+                    self.print.print_line(len(title)*"_")
+                    self.print.print_space()
+                    self.print.print_out_format("vehicle")
+                    self.print.print_space()
+                    self.print.print_out_format("ID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,license_type")
+                    self.print.print_space()
+                    self.print.print_out_format(vehicle_str)
+                    self.print.print_space()
+                    self.print.print_line(len(title)*"_")
+                    option = input(self.print.question('return: '))
+                    return
+            else:
+                wrong = 1
+                continue
 
             
 

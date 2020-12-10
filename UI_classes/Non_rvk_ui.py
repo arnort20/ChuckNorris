@@ -59,16 +59,16 @@ class Non_rvk_ui:
 
 
             if option == "1":
-                self.menu1()
+                self.Register_Vehicle()
                 choice =1
             elif option == "2":
-                self.menu2()
+                self.Vehicle_lending()
                 choice =1
             elif option == "3":
-                self.menu3()
+                self.Recieve_vehicle_()
                 choice =1
             elif option == "4":
-                self.menu4()
+                self.Check_Vehicle()
                 choice =1
             elif option == "q":
                 break
@@ -76,7 +76,7 @@ class Non_rvk_ui:
                 choice = 0
 
     #Register vehicle menu
-    def menu1(self):
+    def Register_Vehicle(self):
         wrong = 0
         while True:
             
@@ -123,7 +123,7 @@ class Non_rvk_ui:
 
 
     # Afhenda bilinn til utleigu
-    def menu2(self):
+    def Vehicle_lending(self):
         wrong = 0
 
         while True:
@@ -160,7 +160,7 @@ class Non_rvk_ui:
 
 
     # Taka a moti bilnum ur utleigu
-    def menu3(self):
+    def Recieve_vehicle_(self):
         wrong =0 
         while True:
             self.liner()
@@ -218,7 +218,7 @@ class Non_rvk_ui:
 
 
 
-    def menu4(self):
+    def Check_Vehicle(self):
         #Here it needs to get the list of vehicles from Vehicles.csv and look up the Key word[ID] and print out everything about the car.
         self.liner()
         while True:
