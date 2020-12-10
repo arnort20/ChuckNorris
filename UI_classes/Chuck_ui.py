@@ -33,7 +33,7 @@ class Chuck_ui():
             self.liner()
             Print_format.print_title(self,title)
             self.printer.print_space()
-            option = "( 1 ) Review Earnings Report,( 2 ) View Vehicle Reports,( 3 ) View Bill Overview,( 4 ) Round House Kick,( 5 ) View All Contracts,( 6 ) Register New Employee,( 7 ) Most Popular Vehicles,( q ) Quit"
+            option = "( 1 ) Review Earnings Report,( 2 ) View Vehicle Reports,( 3 ) View Bill Overview,( 4 ) Round House Kick,( 5 ) View All Contracts,( 6 ) Register New Employee,( 7 ) Most Popular Vehicles,,( q ) Quit"
             self.printer.print_main_menu(option)
             Print_format.print_line(self,len(title)*"_")
 
@@ -93,8 +93,8 @@ class Chuck_ui():
                     return
                 elif option == 'f' and questions["confirm password"] != "empty" :
                     questions["emp_name"] = questions["name"]
-                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["password"],)
-
+                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["location_id"],questions["password"],)
+                    return
     def Earnings_report(self):
         # Hérna þarf að sækja overall Reportið í logic wrapper, spendinding vs earnings
         # Mögulega eitthvað fleirra
@@ -111,11 +111,18 @@ class Chuck_ui():
             print("")
             questions[key] = option
 
+            if option == "c":
+                return
         money = self.logic.filter_earnings(questions["Input Location ID"],questions["Input Date From"],questions["Input Date To"])
-
+        self.liner()
+        self.printer.question_box(questions,information,title)
+        self.printer.print_space()
         self.printer.print_out_format("Money Made " + str(money) + " I Like money")
         Print_format.print_space(self)
         Print_format.print_title(self,len("Earning Report")*"_")
+        go_back = input(self.printer.question("return: "))
+        return
+
         
     def Vehicle_reports(self):
 
@@ -125,12 +132,14 @@ class Chuck_ui():
 
         information = ("ID,Vehicle Name,Type,Manufacturer,Model,Color,Age,Tax,Available,Location ID,Licence Type")
         Print_format.print_out_format(self,information)
-        vehicle_report = self.logic.get_vehicle_reports()
+        vehicle_report = self.logic.get_vehicles()
         Print_format.print_space(self)
 
         for item in vehicle_report:
             Print_format.print_out_format(self,str(item))
-        Print_format.print_title(self,len("Vehicle Reports")*"_")
+        Print_format.print_line(self,len("Vehicle Reports")*"_")
+        go_back = input(self.printer.question("return: "))
+        return
         # Hérna þarf að sækja alla bílana frá logic wrappernum, og sýna hvaða bílar eru eftirsóttastir
         # og hvaða rapport yfir alla bílana sem valið er.
 
@@ -141,6 +150,7 @@ class Chuck_ui():
         #Format
         self.liner()
         Print_format.print_title(self, "Bill Overview")
+        self.printer.print_space()
         Print_format.print_out_format(self, information)
         Print_format.print_space(self)
         bills = self.logic.get_bills()
@@ -149,6 +159,8 @@ class Chuck_ui():
         for item in bills:
             Print_format.print_out_format(self,str(item))
         Print_format.print_title(self,len("Bill Overview")*"_")
+        go_back = input(self.printer.question("return: "))
+        return
 
     def Round_house(self):
         rhk = "Round House Kick"
@@ -169,7 +181,7 @@ class Chuck_ui():
                 cust_name = customer.customer_name
                 print(self.kickdownstairs(cust_name))
                 self.logic.kill_customer(cust_ID)
-                
+
             else:
                 print("Customer not found")
         elif who_to_kill == "2":
@@ -224,19 +236,26 @@ class Chuck_ui():
         title = "Most Popular Vehicle"
         question = {"Pick Location ID To See":"empty"}
         information = ("( c ) Cancel")
+
+
         for key,value in question.items():
             self.liner()
             self.printer.question_box(question,information,title)
             option = input(self.printer.question("Enter Location ID"))
             print("")
             question[key] = option
+
+
         cars = self.logic.popular_vehicle_types(question["Pick Location ID To See"])
         destination = self.logic.get_destination(option)
+
         for key,value in cars.items():
             car = key
             amount = value
-        self.printer.print_out_format(f"In {destination.name} " + car +" is the most rented car")
+            self.printer.print_out_format(f"In {destination.name} " + car +" is the most rented car")
 
         Print_format.print_space(self)
         Print_format.print_title(self,len("Most Popular Vehicle")*"_")
+        go_back = input(self.printer.question("\tReturn"))
+        return
 
