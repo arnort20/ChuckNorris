@@ -195,7 +195,6 @@ class Rvk_ui:
 
 
 
-
 #--------------Destination Menu----------
     def destination_menu(self):
         while True:
@@ -666,7 +665,6 @@ class Rvk_ui:
 
 #------------------View all contracts----------------
     def all_contracts(self):
-        title = "Search vehicles"
         options = "( r ) return"
         info = "ID,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid?"
 

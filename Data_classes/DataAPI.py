@@ -145,7 +145,7 @@ class DataAPI(object):
         bills = self.get.get_csv("Data_files\Bills.csv")
         bill_list = []
         for obj in bills:
-            bill = DataAPI.make_employee(obj)
+            bill = DataAPI.make_bill(obj)
             bill_list.append(bill)
         return bill_list
 
