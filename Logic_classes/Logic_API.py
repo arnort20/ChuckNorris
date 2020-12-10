@@ -271,7 +271,7 @@ class Logic_API:
         #their loyalty points(Good Boy Points)
         """
         self.bill_wrapper()
-        self.bill.recieve_vehicle(contractID, return_date, gbp_used)
+        return self.bill.recieve_vehicle(contractID, return_date, gbp_used)
 
     def calculate_bill(self, tax, gbp_discount, days, late_tax):
         #a handy dandy calculator, used automatically within the bill logic file
