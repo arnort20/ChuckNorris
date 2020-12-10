@@ -297,10 +297,10 @@ class Logic_API:
         self.bill_wrapper()
         return self.bill.filter_earnings(location_ID,date_from,date_to)
 
-    def get_vehicle_tax(self, type_name, country_name):
+    def get_vehicle_tax(self, type_name, location_id):
         #returns the tax rate of a type of vehicle
         self.bill_wrapper()
-        return self.bill.get_vehicle_tax
+        return self.bill.get_vehicle_tax(type_name, location_id)
 
 
 
