@@ -90,7 +90,7 @@ class Bill_logic:
         if late_tax > 0:
             new_BBP = customer.bbp + 1
             self.dAPI.change_Customer(customer.id,{"bbp":str(new_BBP)})
-        
+            return True
 
 
     def calculate_price(self, tax, gbp_discount, days, late_tax):

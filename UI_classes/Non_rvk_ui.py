@@ -6,18 +6,6 @@ from Model_classes.Customer import Customer
 from UI_classes.Print_formats import Print_format
 """
 
-1
-As an employee of NaN Air, I need to be able to deliver and receive
-back rental cars
-
-2
-As an employee of NaN Air, I need to be able to check on a vehicle's 
-status and if it's in good enough shape to be rented out
-
-9
-As an employee of NaN Air I need to be able to update the damage status of a 
-vehicle
-
 11
 As an employee of NaN Air I need to be able to update a rental contract to 
 register the return time of a vehicle
@@ -164,6 +152,7 @@ class Non_rvk_ui:
 
     # Taka a moti bilnum ur utleigu
     def Recieve_vehicle_(self):
+
         wrong =0 
         while True:
             self.liner()
@@ -179,9 +168,12 @@ class Non_rvk_ui:
             self.format.print_title(title)
             self.format.print_space()
             returning_contract_ID =         input(self.format.question("Input contract ID: "))
+            return_date =                   input(self.format.question("Input return date: "))
+            gbp_used =                   input(self.format.question("how much gbp does the customer want to use: "))
             returning_vehicle_condition =   input(self.format.question("Input vehicle condition(ok/bad): "))
-            #is a function
-            #returning_vehicle_late =        input(self.format.question("Is the vehicle late(y/n): "))
+
+            late_return = self.logic.recieve_vehicle(returning_contract_ID,return_date,gbp_used)
+
 
             self.format.print_line(len(title)*"_")
 
@@ -202,14 +194,15 @@ class Non_rvk_ui:
                 self.logic.change_vehicle_info(vehicle_id,vehicle_condition)
 
 
-            if returning_vehicle_late == "n":
+            if late_return != True:
                 print('')
-                customer.gbp = int(customer.gbp) + 2
+                customer.gbp = int(customer.gbp) + 3
+                self.logic.change_customer(customer.id,{"gbp":str(customer.gbp)})
                 self.format.warning(f"You have {customer.gbp}, GBP to your exposal")
 
             else:
                 print("Chuck is not happy!")
-                customer.bbp += 2
+                
 
 
             break
