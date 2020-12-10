@@ -229,14 +229,19 @@ class Logic_API:
 
 
     #billing stuff
-    
-    def finish_contract(self, contractID, fetch_date, return_date, gbp_used):
+    def handover_vehicle(self, contract_ID, fetch_date):
+        self.bill_wrapper()
+        self.bill.handoff_vehicle(contract_ID, fetch_date)
+
+    def recieve_vehicle(self, contractID, return_date, gbp_used):
+        """
         #when the customer returns the vehicle, magic happens
         #input the contract, date when car was picked up,
         #date when car was returned, and whether the customer wants to use
         #their loyalty points(Good Boy Points)
+        """
         self.bill_wrapper()
-        self.bill.new_bill(contractID, fetch_date, return_date, gbp_used)
+        self.bill.recieve_vehicle(contractID, return_date, gbp_used)
 
     def calculate_bill(self, tax, gbp_discount, days, late_tax):
         #a handy dandy calculator, used automatically within the bill logic file
