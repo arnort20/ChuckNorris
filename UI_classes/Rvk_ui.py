@@ -79,7 +79,6 @@ class Rvk_ui:
 
 
                                                                                 #needs:
-                                                                                #destination management
                                                                                 #destination information
                                                                                 #print invoice
                                                                                 #see taxes for vehicles by type
@@ -336,9 +335,37 @@ class Rvk_ui:
                 #changing for next print
                 questions[key] = option
 
+
+
 #---------------------Delete Destination-----------------
     def delete_destination(self):
-        pass
+        #Info
+        title = "Destination search"
+        information = ("( c ) Cancel,,Insert ID below")
+
+        #Format
+        self.liner()
+        self.print.short_box(information,title)
+        employee_id = input(self.print.question("Employee ID"))
+
+        while True:
+            #info
+            title = "Deleting Destination"
+            information = ("( c ) Cancel,( d ) Delete")
+
+            #Format
+            self.liner()
+            self.print.short_box(information,title)
+            confirm = input(self.print.question("Confirm")) 
+
+            if confirm == "c":
+                return
+            elif confirm == "d":
+                #self.logic.delete_destination(employee_id) need to add
+                return
+            else:
+                self.print.warning("Wrong input")
+ 
 
 
 #---------choosing which kind of customer were dealing with
@@ -591,7 +618,6 @@ class Rvk_ui:
                     return
                 #changing for next print
                 questions[key] = option
-
 
 
 
