@@ -329,7 +329,7 @@ class Rvk_ui:
         #Format
         self.liner()
         self.print.short_box(information,title)
-        employee_id = input(self.print.question("Employee ID"))
+        employee_id = input(self.print.question("Destination ID"))
 
         while True:
             #info
@@ -363,7 +363,7 @@ class Rvk_ui:
             #Format
             self.liner()
             self.print.short_box(information,title)
-            dest_ID = input(self.print.question("Location ID"))  
+            dest_ID = input(self.print.question("Destination ID"))  
 
             if dest_ID == 'c':
                 return
@@ -633,7 +633,7 @@ class Rvk_ui:
                 #Format
                 self.liner()
                 self.print.question_box(questions,information,title)
-                option = input(self.print.question("\tEnter Choice here"))
+                option = input(self.print.question("Enter Choice here"))
 
                 #Choices
                 if option == 's':
@@ -659,7 +659,7 @@ class Rvk_ui:
         #Format
         self.liner()
         self.print.large_list_box(options,title,info,contracts)
-        go_back = input(self.print.question("\tReturn"))
+        go_back = input(self.print.question("Return"))
         return
 
 
@@ -669,35 +669,46 @@ class Rvk_ui:
         #Info
         title = "contract search"
         information = ("( c ) Cancel,,Insert ID below")
-
-        #Format
-        self.liner()
-        self.print.short_box(information,title)
-        employee_id = input(self.print.question("Employee ID"))
-
+        wrong =0 
         while True:
-            #info
-            title = "Deleting contract"
-            information = ("( c ) Cancel,( d ) Delete")
-
             #Format
             self.liner()
-            self.print.short_box(information,title)
-            confirm = input(self.print.question("Confirm")) 
 
-            if confirm == "c":
-                return
-            elif confirm == "d":
-                self.logic.delete_contract(employee_id)
+            if wrong != 0:
+                self.print.warning("wrong contract ID!")
+                wrong =0
+
+            self.print.short_box(information,title)
+            contract_id = input(self.print.question("Contract ID"))
+            contract = self.logic.get_contract(contract_id)
+            
+            if contract != None:
+                while True:
+                    #info
+                    title = "Deleting contract " + contract_id
+                    information = ("( c ) Cancel,( d ) Delete")
+
+                    #Format
+                    self.liner()
+                    self.print.short_box(information,title)
+                    confirm = input(self.print.question("Confirm")) 
+
+                    if confirm == "c":
+                        return
+                    elif confirm == "d":
+                        self.logic.delete_contract(employee_id)
+                        return
+                    else:
+                        self.print.warning("Wrong input")
+            elif contract_id == "c":
                 return
             else:
-                self.print.warning("Wrong input")
- 
+                wrong =1
+                continue
 
 
 #----------------View extensive contract report-------------
     def print_report(self):
-        self.print.print_title("Print bill")
 
         #Info
         title = "Contract Search"
@@ -728,7 +739,7 @@ class Rvk_ui:
                     
 
                     #Info
-                    title = "Contract: " + conID
+                    title = "Contract: " + conID 
                     info = "ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid,day_made"
                     contract_str = str(contract)
                     vehicle_str = str(vehicle)
@@ -776,7 +787,7 @@ class Rvk_ui:
                     self.print.print_out_format(vehicle_str)
                     self.print.print_space()
                     self.print.print_line(len(title)*"_")
-                    option = input(self.print.question('return: '))
+                    option = input(self.print.question('return '))
                     return
             else:
                 wrong = 1
@@ -799,35 +810,36 @@ class Rvk_ui:
 
             self.print.short_box(information,title)
             conID = input(self.print.question("Contract ID"))  
+            contract = self.logic.get_contract(conID)
+
 
             if conID == 'c':
                 return
+            if contract != None:
+                bill = self.logic.get_bill(conID)
+                vehi = self.logic.get_vehicle(contract.vehicle_id)
+                dest = self.logic.get_destination(contract.destination_id)
+                cust = self.logic.get_customer(contract.customer_id)
+                cust_name = cust.customer_name
+                dest_name = dest.name
+                vehicle_type = vehi.type
+                if bill != None and contract != None:
+                    while True:
+                        #Info
+                        title = "Bill of contract #" + conID
+                        #info = "ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid"
+                        info = "Contract ID,Start date,End date,Pickup date,Return date,Destination,Customer,Vehicle type,Paid,Final price"
+                        second_str = (str(contract.id)+','+str(contract.start_date)+','+str(contract.end_date)+','+
+                        str(bill.fetch_date)+','+str(bill.return_date)+','+str(dest_name)+','+str(cust_name)+','+
+                        str(vehicle_type)+','+str(contract.paid)+','+str(bill.price))
 
-            bill = self.logic.get_bill(conID)
-            contract = self.logic.get_contract(conID)
-            vehi = self.logic.get_vehicle(contract.vehicle_id)
-            dest = self.logic.get_destination(contract.destination_id)
-            cust = self.logic.get_customer(contract.customer_id)
-            cust_name = cust.customer_name
-            dest_name = dest.name
-            vehicle_type = vehi.type
-            if bill != None:
-                while True:
-                    #Info
-                    title = "Bill of contract #" + conID
-                    #info = "ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid"
-                    info = "Contract ID,Start date,End date,Pickup date,Return date,Destination,Customer,Vehicle type,Paid,Final price"
-                    second_str = (str(contract.id)+','+str(contract.start_date)+','+str(contract.end_date)+','+
-                    str(bill.fetch_date)+','+str(bill.return_date)+','+str(dest_name)+','+str(cust_name)+','+
-                    str(vehicle_type)+','+str(contract.paid)+','+str(bill.price))
 
+                        #Format
+                        self.liner()
+                        self.print.list_box(title,options,info,second_str)
+                        option = input(self.print.question('Type here: ')).lower()
 
-                    #Format
-                    self.liner()
-                    self.print.list_box(title,options,info,second_str)
-                    option = input(self.print.question('Type here: ')).lower()
-
-                    return
+                        return
             else:
                 wrong = 1
                 continue
@@ -857,7 +869,8 @@ class Rvk_ui:
                     return
                 elif option == 'f' and questions["confirm password"] != "empty" :
                     questions["emp_name"] = questions["name"]
-                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["password"],)
+                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["location_id"],questions["password"],)
+                    return
                 else:
                     questions[key] = option
 
