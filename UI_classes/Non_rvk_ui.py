@@ -36,7 +36,7 @@ class Non_rvk_ui:
 
             title = 'welcome Employee {}'.format(self.login_id)
             self.format.print_title(title,self.width)
-            menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,( 5 ) Change Vehicle,( q ) Quit."
+            menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,( 5 ) Change Vehicle,,( q ) Quit."
 
     
             self.format.print_space()
@@ -161,28 +161,40 @@ class Non_rvk_ui:
     # Taka a moti bilnum ur utleigu
     def Recieve_vehicle_(self):
         wrong =0 
-        questions = {"Input Contract ID":"empty","Input return date":"empty","How much gpb does the customer want to use":"empty","Input vehicle condition(ok/bad)":"empty"}
+        questions = {"Input Contract ID":"empty","Input return date":"empty","does customer want to use gbp( y / n )":"empty","Input vehicle condition(ok/bad)":"empty"}
+        info = "( c ) Cancel,,Insert Info below"
+        title ="Recieve vehicle"
         while True:
             self.liner()
-            if wrong == 1:
-                self.format.warning("there is one or more wrong input!")
-                print("")
-                wrong = 0
-            #self.logic.recieve_vehicle(contractID, return_date, gbp_used)
-            #nota bene GBP_used is a bool (True/False)
-            
-            for key,value in questions:
+
+            for key,value in questions.items():
 
                 #Format
                 self.liner()
-                self.format.question_box()
+                if wrong == 1:
+                    self.format.warning("there is one or more wrong input!")
+                    print("")
+                    wrong = 0
+                self.format.question_box(questions,info,title)
+                option = input(self.format.question('Insert input here'))
                 # change for next print
                 print("")
-                question[key] = option
+                questions[key] = option
                 #choices
                 if option == "c":
                     return
 
+            returning_contract_ID = questions["Input Contract ID"]
+            return_date =questions["Input return date"]
+            returning_vehicle_condition = questions["Input vehicle condition(ok/bad)"]
+
+
+            if questions["does customer want to use gbp( y / n )"] == 'y':
+                gbp_used = True
+            else:
+                gbp_used = False
+
+            self.logic.recieve_vehicle(returning_contract_ID,return_date, gbp_used)
             late_return = self.logic.recieve_vehicle(returning_contract_ID,return_date,gbp_used)
 
 
@@ -209,6 +221,8 @@ class Non_rvk_ui:
 
             else:
                 print("Chuck is not happy!")
+                
+
                 
 
 
