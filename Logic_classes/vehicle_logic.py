@@ -56,4 +56,4 @@ class Vehicle_logic:
 
 
     def change_type(self,vehicle_type,destination_id,changes):
-        self.dAPI.add_type(vehicle_type,destination_id,changes)
+        self.dAPI.change_type(vehicle_type,destination_id,changes)
