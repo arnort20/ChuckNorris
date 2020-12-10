@@ -118,7 +118,8 @@ class Non_rvk_ui:
     # Afhenda bilinn til utleigu
     def Vehicle_lending(self):
         wrong = 0
-
+        questions = {"Input contract ID":"empty","Date when vehicle is picked up":"empty"}
+        information = ("Date Format (yy.mm.dd),( c ) Cancel")
         while True:
             self.liner()
 
@@ -127,19 +128,25 @@ class Non_rvk_ui:
                 print("")
                 wrong = 0
 
+            title = ("Loan Vehicle")
+            for key,value in questions.items():
 
-            title =("Loan Vehicle")
-            self.format.print_title(title)
-            self.format.print_space()
+                self.liner()
+                self.format.question_box(questions,information,title)
+                
+                option = input(self.format.question("Enter Input here "))
+                #Change for next print
+                questions[key] = option        
 
-            contract_id = input(self.format.question("input contract ID "))
-            
-            self.format.print_line(len(title)*"_")
-
+                #Choices
+                if option == "c":
+                    return
+            self.liner()
+            self.format.question_box(questions,information,title)
+            option = input(self.format.question("Return"))
+            return
 
             # cheeck if contract and customer
-
-
             try:
                 fetch_date = input(self.format.question("date when vehicle is picked up (YYYY.MM.DD): "))
                 self.logic.handover_vehicle(contract_id, fetch_date)
