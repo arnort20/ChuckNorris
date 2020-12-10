@@ -7,10 +7,11 @@ class Vehicle(object):
         self.model = Model
         self.color = Color
         self.age = age
-        self.tax = tax
+        #self.tax = tax
         self.available = available
         self.location = location_id
         self.license_type = license_type
 
     def __str__(self) -> str:
-        return(self.id +","+ self.vehicle_name+","+self.type+","+self.manufacturer+","+self.model+","+self.color+","+self.age+","+self.tax+","+self.available+","+self.location+","+self.license_type)
+        #return(self.id +","+ self.vehicle_name+","+self.type+","+self.manufacturer+","+self.model+","+self.color+","+self.age+","+self.tax+","+self.available+","+self.location+","+self.license_type)
+        return(self.id +","+ self.vehicle_name+","+self.type+","+self.manufacturer+","+self.model+","+self.color+","+self.age+","+self.available+","+self.location+","+self.license_type)

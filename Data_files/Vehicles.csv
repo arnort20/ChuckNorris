@@ -1,19 +1,19 @@
-id,vehicle_name,type,manufacturer,model,color,age,tax,available,location_id,license_type
-1,GR15869,Medium road,TAILG,Free Fly II,white,2018,80,yes,4,B
-2,GR15868,Medium road,TAILG,Free Fly II,white,2018,80,yes,4,B
-3,Kayak,Light water,Kayman Kayaks,Crazy,yellow,2020,8,yes,3,OK
-4,Kayak,Light water,Kayman Kayaks,Crazy,yellow,2020,8,yes,5,OK
-5,Kayak,Light water,Kayman Kayaks,Crazy HV,yellow,2020,8,yes,4,OK
-6,cani435,Light off-road,Cani-Fit,Fat Max,black,2019,90,yes,3,OK
-7,cani435,Light off-road,Cani-Fit,Fat Max,black,2019,90,yes,5,OK
-8,cani435,Light off-road,Cani-Fit,Fat Max,black,2019,90,yes,5,OK
-9,cani435,Light off-road,Cani-Fit,Fat Max,black,2019,90,yes,6,OK
-10,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,4,B
-11,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,4,B
-12,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,5,B
-13,Jimny,Light road,Toyota,Jimny,green,2017,20,no,6,B
-14,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,7,B
-15,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,3,B
-16,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,3,B
-17,FWD 1,Medium road,Forward,FWD-ZK125H,blue,2019,30,yes,7,B
-18,seaglide,Light water,Torpedo,3500,white,2019,100,yes,5,scuba
+id,vehicle_name,type,manufacturer,model,color,age,available,location_id,license_type
+1,GR15869,Medium road,TAILG,Free Fly II,white,2018,yes,4,B
+2,GR15868,Medium road,TAILG,Free Fly II,white,2018,yes,4,B
+3,Kayak,Light water,Kayman Kayaks,Crazy,yellow,2020,yes,3,OK
+4,Kayak,Light water,Kayman Kayaks,Crazy,yellow,2020,yes,5,OK
+5,Kayak,Light water,Kayman Kayaks,Crazy HV,yellow,2020,yes,4,OK
+6,cani435,Light off-road,Cani-Fit,Fat Max,black,2019,yes,3,OK
+7,cani435,Light off-road,Cani-Fit,Fat Max,black,2019,yes,5,OK
+8,cani435,Light off-road,Cani-Fit,Fat Max,black,2019,yes,5,OK
+9,cani435,Light off-road,Cani-Fit,Fat Max,black,2019,yes,6,OK
+10,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,B
+11,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,B
+12,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,B
+13,Jimny,Light road,Toyota,Jimny,green,2017,20,no,B
+14,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,B
+15,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,B
+16,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,B
+17,FWD 1,Medium road,Forward,FWD-ZK125H,blue,2019,30,yes,B
+18,seaglide,Light water,Torpedo,3500,white,2019,100,yes,scuba

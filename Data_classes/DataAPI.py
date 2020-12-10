@@ -176,8 +176,11 @@ class DataAPI(object):
 
 
     #add single-------------done
-    def add_vehicle(self,ident,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,license_type):
-        vehicle_dict = {"id":ident,"vehicle_name":vehicle_name,"type":Type,"manufacturer":Manufacturer,"model":Model,"color":Color,"age":age,"tax":tax,"available":available,"location_id":location_id,"license_type":license_type}
+    # def add_vehicle(self,ident,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,license_type):
+    #     vehicle_dict = {"id":ident,"vehicle_name":vehicle_name,"type":Type,"manufacturer":Manufacturer,"model":Model,"color":Color,"age":age,"tax":tax,"available":available,"location_id":location_id,"license_type":license_type}
+    #     self.add.add(vehicle_dict,"Data_files\Vehicles.csv")
+    def add_vehicle(self,ident,vehicle_name,Type,Manufacturer,Model,Color,age,available,location_id,license_type):
+        vehicle_dict = {"id":ident,"vehicle_name":vehicle_name,"type":Type,"manufacturer":Manufacturer,"model":Model,"color":Color,"age":age,"available":available,"location_id":location_id,"license_type":license_type}
         self.add.add(vehicle_dict,"Data_files\Vehicles.csv")
 
     def add_customer(self,ident,customer_name,ssn,email,phone,address,license_type,gbp,bbp):

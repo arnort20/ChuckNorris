@@ -90,9 +90,12 @@ class Logic_API:
         self.vehicle_wrapper()
         return self.vehicle.get_vehicle(vehicleID)
 
-    def make_new_vehicle(self,vehicle_name,Type,manufacturer,Model,Color,age,tax,available,location,license_type):
+    # def make_new_vehicle(self,vehicle_name,Type,manufacturer,Model,Color,age,tax,available,location,license_type):
+    #     self.vehicle_wrapper()
+    #     self.vehicle.create_new_vehicle(vehicle_name,Type,manufacturer,Model,Color,age,tax,available,location,license_type)
+    def make_new_vehicle(self,vehicle_name,Type,manufacturer,Model,Color,age,available,location,license_type):
         self.vehicle_wrapper()
-        self.vehicle.create_new_vehicle(vehicle_name,Type,manufacturer,Model,Color,age,tax,available,location,license_type)
+        self.vehicle.create_new_vehicle(vehicle_name,Type,manufacturer,Model,Color,age,available,location,license_type)
 
     def check_reservations(self, vehicle_ID, start_date, end_date):
         """
