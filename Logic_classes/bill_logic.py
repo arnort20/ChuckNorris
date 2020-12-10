@@ -123,7 +123,8 @@ class Bill_logic:
             return False
 
     def get_vehicle_tax(self, vehicle_id):
-        pass
+        taxes = self.dAPI.get_vehicle_types()
+        
 
 
 
