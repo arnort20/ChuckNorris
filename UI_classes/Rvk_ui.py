@@ -108,6 +108,10 @@ class Rvk_ui:
                 self.search_vehicles()
 
             elif option == '2':
+                self.add_type()
+            elif option == '3':
+                self.change_type()
+            elif option == '4':
                 self.vehicle_taxes()
 
             elif option.lower() == 'r':
@@ -961,7 +965,7 @@ class Rvk_ui:
                     if option == 'c':
                         return
                     elif option == 'f' :
-                        self.logic.make_new_type(questions['name'],questions['destination_id'],questions['airport'],questions['rate'])
+                        self.logic.make_new_type(questions['name'],questions['destination_id'],questions['rate'])
                         return
                     else:
                         questions[key] = option
@@ -984,7 +988,7 @@ class Rvk_ui:
                 wrong =0         
             questions = {"type_name":"empty","destination_id":"empty"}
             for key,value in questions.items():
-                self.print.question_box(information,title)
+                self.print.question_box(questions,information,title)
                 option = input(self.print.question("Enter input here"))
                 questions[key] = option
             
@@ -996,11 +1000,9 @@ class Rvk_ui:
                 return
 
             try:
-                destination = self.logic.get_destination(destination_id)
-                destination.id
-
-                rate = self.logic.get_type(name,destination_id)
-
+                
+                rate = self.logic.get_vehicle_tax(name,destination_id)
+                print(rate)
                 break
 
             except:
@@ -1008,7 +1010,7 @@ class Rvk_ui:
                 continue
 
         #Info
-        title = "Changing type " + name +"in "+ destination.name
+        title = "Changing type " + name +"in "+ destination_id
         information = ("( c ) Cancel, ( f ) Finish,( s ) skip")
         questions = {"rate":rate}
 
@@ -1026,7 +1028,7 @@ class Rvk_ui:
                 if option == 'c':
                     return
                 if option == "f":
-                    self.logic.change_type(name,destination.id,questions)
+                    self.logic.change_type(name,destination_id,questions)
                     return
                 #changing for next print
                 questions[key] = option
