@@ -11,7 +11,7 @@ id,vehicle_name,type,manufacturer,model,color,age,tax,available,location_id,lice
 10,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,4,B
 11,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,4,B
 12,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,5,B
-13,Jimny,Light road,Toyota,Jimny,green,2017,20,y,6,B
+13,Jimny,Light road,Toyota,Jimny,green,2017,20,no,6,B
 14,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,7,B
 15,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,3,B
 16,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,3,B

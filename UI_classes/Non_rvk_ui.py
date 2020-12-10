@@ -140,6 +140,7 @@ class Non_rvk_ui:
             self.format.print_space()
 
             contract_id =       input(self.format.question("input contract ID "))
+            #>Bætta við að hann geymir fetch date.
             
             self.format.print_line(len(title)*"_")
 
