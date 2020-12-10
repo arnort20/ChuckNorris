@@ -61,7 +61,7 @@ class Rvk_ui:
             title = "Contract Menu"
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Delete contract ,( 4 ) Print all contracts ,( 5 ) Print contract report,,( r ) Return")
+            information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Delete contract ,( 4 ) Print all contracts ,( 5 ) Print contract report,( 6 ) Print bill,,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
             print()
@@ -80,6 +80,9 @@ class Rvk_ui:
 
             elif option == "5":
                 self.print_report()
+
+            elif option == "6":
+                self.print_bill()
 
             elif option.lower() == 'r':
                 return
@@ -779,7 +782,55 @@ class Rvk_ui:
                 wrong = 1
                 continue
 
-            
+    def print_bill(self):
+        
+        #Info
+        title = "Bill Search"
+        information = ("( c ) Cancel,,Insert contract ID below")
+        options = '( r ) Return'
+        wrong = 0
+        while True:
+            #Format
+            self.liner()
+
+            if wrong != 0:
+                self.print.warning("Wrong ID")
+                wrong = 0
+
+            self.print.short_box(information,title)
+            conID = input(self.print.question("Contract ID"))  
+
+            if conID == 'c':
+                return
+
+            bill = self.logic.get_bill(conID)
+            contract = self.logic.get_contract(conID)
+            vehi = self.logic.get_vehicle(contract.vehicle_id)
+            dest = self.logic.get_destination(contract.destination_id)
+            cust = self.logic.get_customer(contract.customer_id)
+            cust_name = cust.customer_name
+            dest_name = dest.name
+            vehicle_type = vehi.type
+            if bill != None:
+                while True:
+                    #Info
+                    title = "Bill of contract #" + conID
+                    #info = "ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid"
+                    info = "Contract ID,Start date,End date,Pickup date,Return date,Destination,Customer,Vehicle type,Paid,Final price"
+                    second_str = (str(contract.id)+','+str(contract.start_date)+','+str(contract.end_date)+','+
+                    str(bill.fetch_date)+','+str(bill.return_date)+','+str(dest_name)+','+str(cust_name)+','+
+                    str(vehicle_type)+','+str(contract.paid)+','+str(bill.price))
+
+
+                    #Format
+                    self.liner()
+                    self.print.list_box(title,options,info,second_str)
+                    option = input(self.print.question('Type here: ')).lower()
+
+                    return
+            else:
+                wrong = 1
+                continue
 
 #----------------Adding new employee---------------
     def add_new_employee(self):

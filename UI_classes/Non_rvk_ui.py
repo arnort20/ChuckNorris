@@ -210,8 +210,10 @@ class Non_rvk_ui:
                 continue
        
             if returning_vehicle_condition == "ok":
-                vehicle_condition = {"available":"y"}
-                self.logic.change_vehicle_info(vehicle_id,vehicle_condition)
+                vehicle_condition = {"available":"yes"}
+            else:
+                vehicle_condition = {"available":"damaged"}
+            self.logic.change_vehicle_info(vehicle_id,vehicle_condition)
 
             if late_return != True:
                 print('')
