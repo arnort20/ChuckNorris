@@ -163,7 +163,7 @@ class Rvk_ui:
             print()
             option = input(self.print.question('Type here'))
             if option == '1':
-                self.add_new_destination()
+                self.new_destination()
 
             elif option == '2':
                 self.change_destination()
@@ -243,6 +243,7 @@ class Rvk_ui:
                     #change answer for next print
 
 
+
                     #Choices
                     if option == 'c':
                         return
@@ -250,6 +251,7 @@ class Rvk_ui:
                         self.logic.new_destination(info_list['destination_name'],info_list['country_name'],info_list['airport'],info_list['phone'],info_list['phone'],info_list['opening_hours'])
                         return
                     else:
+                        info_list[key] = option
                         continue
 
 
@@ -475,7 +477,7 @@ class Rvk_ui:
                 option = input(self.print.question("Enter Choice here"))
 
                 #change answer for next print
-                info_list[key] = option
+                
 
                 #Choices
                 if option == 'c':
@@ -485,6 +487,8 @@ class Rvk_ui:
                     self.logic.new_customer(info_list['ID'],info_list['customer_name'],info_list['ssn'],info_list['email'],info_list['phone'],info_list['address'],info_list['license_type'])
                     self.new_contract(info_list['ID'])
                     return
+                else:
+                    info_list[key] = option
 
 
 
@@ -554,7 +558,8 @@ class Rvk_ui:
                     questions["start_date"],questions["end_date"] = questions['start date (dd/mm/yy)'],questions['end date (dd/mm/yy)']
                     self.logic.new_contract(customer.id,questions["vehicle_id"],questions["destination_id"],questions["start_date"],questions["end_date"])
                     return
-                questions[key] = option
+                else:
+                    questions[key] = option
 
 
 
@@ -787,7 +792,7 @@ class Rvk_ui:
                 option = input(self.print.question('Type here: '))
 
                 #change for next print
-                questions[key] = option
+                
 
                 #Choices
                 if questions["password"] != questions["confirm password"]:
@@ -797,7 +802,8 @@ class Rvk_ui:
                 elif option == 'f' and questions["confirm password"] != "empty" :
                     questions["emp_name"] = questions["name"]
                     self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["password"],)
-
+                else:
+                    questions[key] = option
 
 
 #----------------Changing employee information------------
@@ -885,7 +891,7 @@ class Rvk_ui:
         title = "Search vehicles"
         information = "( c ) Cancel,,write ID below!"
         options = "( r ) return"
-        info = "ID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,license_type"
+        info = "ID,vehicle_name,Type,Manufacturer,Model,Color,age,available,location_id,license_type"
         wrong = 0
         while True:
             self.liner()
@@ -926,3 +932,41 @@ class Rvk_ui:
         self.print.question_box(vehicle_types,information,title)
         go_back = input(self.print.question("return"))
 
+
+
+#----------------Add vehicle type-----------------------
+    def add_type(self):
+        
+            questions = {"name":"empty","destination_id":"empty","rate":"empty"}
+            title = 'New Type'
+            information = ("( c ) Cancel, ( f ) Finish")
+            option = 0
+            wrong = 0
+
+            while True:
+                for key,value in questions.items():
+                    self.liner()
+
+                    # printing warning
+
+                    #Format
+                    self.print.question_box(questions,information,title)
+                    option = input(self.print.question("Enter input here"))
+
+                    #change answer for next print
+
+
+                    #Choices
+                    if option == 'c':
+                        return
+                    elif option == 'f' :
+                        self.logic.new_destination(questions['name'],questions['destination_id'],questions['airport'],questions['rate'])
+                        return
+                    else:
+                        questions[key] = option
+                        continue
+
+
+#------------------Change vehicle type-------------------
+    def change_type(self):
+        pass
