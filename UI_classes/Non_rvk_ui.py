@@ -220,7 +220,7 @@ class Non_rvk_ui:
             self.format.print_space()
             checking_vehicle_ID = input(self.format.question("Enter vehicle ID",self.width))
             self.format.print_space()
-            info = ("ID,Plate,Type,Manufacturer,Model,Color,Year made,Tax,Available,Location id,License type")
+            info = ("ID,Plate,Type,Manufacturer,Model,Color,Year made,Available,Location id,License type")
             vehicle = self.logic.get_vehicle(checking_vehicle_ID)
 
 

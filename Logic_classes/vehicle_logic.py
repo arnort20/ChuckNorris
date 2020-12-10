@@ -52,4 +52,8 @@ class Vehicle_logic:
         return type_dict
 
     def new_type(self,vehicle_type,destination_id,rate):
-        self.dAPI.add_vehicle(vehicle_type,destination_id,rate)
+        self.dAPI.add_type(vehicle_type,destination_id,rate)
+
+
+    def change_type(self,vehicle_type,destination_id,changes):
+        self.dAPI.change_type(vehicle_type,destination_id,changes)

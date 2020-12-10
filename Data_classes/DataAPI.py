@@ -228,7 +228,7 @@ class DataAPI(object):
         self.chang.change("Data_files\Bills.csv",ident,changes)
 
     def change_type(self,ident,country,changes):
-        self.chang.change_2(ident,country,changes)
+        self.chang.change_2("Data_files\Vehicle_types.csv",ident,country,changes)
 
 
 

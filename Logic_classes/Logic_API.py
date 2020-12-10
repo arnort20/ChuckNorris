@@ -297,6 +297,11 @@ class Logic_API:
         self.bill_wrapper()
         return self.bill.filter_earnings(location_ID,date_from,date_to)
 
+    def get_vehicle_tax(self, type_name, location_id):
+        #returns the tax rate of a type of vehicle
+        self.bill_wrapper()
+        return self.bill.get_vehicle_tax(type_name, location_id)
+
 
 
 
@@ -339,10 +344,12 @@ class Logic_API:
 
 #--------------make and change types--------------
 
-    def make_new_type(self,type,destination_id,rate):
+    def make_new_type(self,name,destination_id,rate):
         self.vehicle_wrapper()
-        self.vehicle.new_type()
+        self.vehicle.new_type(name,destination_id,rate)
 
-    def change_type(self,type,destination,changes):
+    def change_type(self,name,destination,changes):
         self.vehicle_wrapper()
-        self.vehicle.new_type()
+        self.vehicle.change_type(name,destination,changes)
+
+    

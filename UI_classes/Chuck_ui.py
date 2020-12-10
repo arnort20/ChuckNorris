@@ -128,7 +128,7 @@ class Chuck_ui():
         Print_format.print_title(self,"Vehicle Reports")
         self.printer.print_space()
 
-        information = ("ID,Vehicle Name,Type,Manufacturer,Model,Color,Age,Tax,Available,Location ID,Licence Type")
+        information = ("ID,Vehicle Name,Type,Manufacturer,Model,Color,Age,Available,Location ID,Licence Type")
         Print_format.print_out_format(self,information)
         vehicle_report = self.logic.get_vehicles()
         Print_format.print_space(self)
