@@ -12,10 +12,14 @@ class Vehicle_logic:
         #returns a list of all vehicles in the database as objects
         return self.dAPI.get_vehicles()
 
-    def create_new_vehicle(self,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location,license_type):
+    # def create_new_vehicle(self,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location,license_type):
+    #     #adds a new car to the database, the ID is automatically generated
+    #     vehicleID = self.dAPI.vehicles_makeID()
+    #     self.dAPI.add_vehicle(vehicleID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location,license_type)
+    def create_new_vehicle(self,vehicle_name,Type,Manufacturer,Model,Color,age,available,location,license_type):
         #adds a new car to the database, the ID is automatically generated
         vehicleID = self.dAPI.vehicles_makeID()
-        self.dAPI.add_vehicle(vehicleID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location,license_type)
+        self.dAPI.add_vehicle(vehicleID,vehicle_name,Type,Manufacturer,Model,Color,age,available,location,license_type)
 
     def change_details(self, vehicleID, change_dict):
         #change the vehicle with a dictionary containing the keys 
@@ -46,3 +50,4 @@ class Vehicle_logic:
         for vehicle in vehicles:
             type_dict[vehicle.type] = str(vehicle.tax)+"%"
         return type_dict
+
