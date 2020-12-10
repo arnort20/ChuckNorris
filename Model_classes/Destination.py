@@ -8,4 +8,4 @@ class Destination(object):
         self.country = country
 
     def __str__(self) -> str:
-        return ("fda")
+        return (self.id+","+self.name+","+self.airport_code+","+self.phone+","+self.opening_hours+","+self.country)
