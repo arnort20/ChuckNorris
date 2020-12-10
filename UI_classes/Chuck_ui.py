@@ -206,7 +206,7 @@ class Chuck_ui():
         # Hérna kallar hann í að sjá lista yfir alla contracts sem hafa gengið í geggnum fyrirtækið.(Finished)
         # Option,info input into a format for sexy print. 
         options = "( r ) return"
-        info = "ID,employee ID,customer ID,vehicle ID,destination ID,start date,end date,paid?"
+        info = "ID,employee ID,customer ID,vehicle ID,destination ID,start date,end date,paid,Day made ?"
 
         contracts = self.logic.all_contracts()
         title = "Contract list"

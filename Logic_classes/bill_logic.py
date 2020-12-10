@@ -48,6 +48,8 @@ class Bill_logic:
         #and an unfilled bill gets made
         self.dAPI.add_bill(contract_ID, fetch_date, "not returned", contract.destination_id, 0)
 
+
+
     def recieve_vehicle(self, contract_ID, return_date, gbp_used):
         """
         the whole proccess from when the vehicle gets returned
