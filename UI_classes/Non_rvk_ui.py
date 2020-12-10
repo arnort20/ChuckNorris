@@ -177,7 +177,8 @@ class Non_rvk_ui:
             self.format.print_space()
             returning_contract_ID =         input(self.format.question("Input contract ID: "))
             returning_vehicle_condition =   input(self.format.question("Input vehicle condition(ok/bad): "))
-            returning_vehicle_late =        input(self.format.question("Is the vehicle late(y/n): "))
+            #is a function
+            #returning_vehicle_late =        input(self.format.question("Is the vehicle late(y/n): "))
 
             self.format.print_line(len(title)*"_")
 
