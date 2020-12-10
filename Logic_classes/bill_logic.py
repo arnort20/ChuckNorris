@@ -90,7 +90,7 @@ class Bill_logic:
 
         #add BBP to the customer if they returned late
         if late_tax > 0:
-            new_BBP = customer.bbp + 1
+            new_BBP = int(customer.bbp) + 1
             self.dAPI.change_Customer(customer.id,{"bbp":str(new_BBP)})
             return True
 
