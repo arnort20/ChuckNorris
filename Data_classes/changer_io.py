@@ -39,9 +39,9 @@ class Changer(object):
             if thing == item:
 
                 for key,value in changes.items():
-                    new_item[key] = value
+                    item[key] = value
                 
-                list_dict[counter] = new_item
+                list_dict[counter] = item
 
             else:
                 counter += 1

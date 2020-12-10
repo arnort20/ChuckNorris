@@ -98,15 +98,18 @@ class Chuck_ui():
         information = ("Date Format = (yy.mm.dd),( c ) Cancel")
 
         for key,value in questions.items():
+            
             # Format
             self.liner()
             self.printer.question_box(questions,information,title)
             option = input(self.printer.question("Enter Input here"))
+            
             # Change for next print.
             print("")
             questions[key] = option
             # Choices
             if option == "c":
+                
                 return
         # Gets the over all reports and prints them
         money = self.logic.filter_earnings(questions["Input Location ID"],questions["Input Date From"],questions["Input Date To"])
