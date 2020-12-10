@@ -128,6 +128,6 @@ class Bill_logic:
         taxes = self.dAPI.get_vehicle_types()
         for line in taxes:
             if line["name"] == vehi_type and (line["destination_id"] == "0" or line["destination_id"] == vehi_country):
-                tax = line["tax"]
+                tax = line["rate"]
         return tax
 

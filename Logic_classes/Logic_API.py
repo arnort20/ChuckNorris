@@ -108,11 +108,12 @@ class Logic_API:
         min_date = self.convert_date(start_date)
         max_date = self.convert_date(end_date)
         reserved_dates = self.contract.check_vehicle_reservations(vehicle_ID)
-        for dates in reserved_dates:
-            starts_at = self.convert_date(dates[0])
-            ends_at = self.convert_date(dates[1])
-            if self.check_date_clash(min_date, max_date, starts_at, ends_at):
-                return False
+        if reserved_dates:
+            for dates in reserved_dates:
+                starts_at = self.convert_date(dates[0])
+                ends_at = self.convert_date(dates[1])
+                if self.check_date_clash(min_date, max_date, starts_at, ends_at):
+                    return False
         return True
 
     def change_vehicle_info(self, vehicleID, change_dict):
