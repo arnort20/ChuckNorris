@@ -244,7 +244,8 @@ class Non_rvk_ui:
         return
 
 
-    def change_Vehicle(self):
+
+    def change_vehicle(self):
         #Info
         title = "Vehicle Search"
         information = ("( r ) Return,,| Insert ID below |")
@@ -255,18 +256,18 @@ class Non_rvk_ui:
             self.liner()
 
             if wrong != 0:
-                self.print.warning("Wrong vehicle ID")
+                self.format.warning("Wrong vehicle ID")
                 wrong =0         
 
-            self.print.short_box(information,title)
-            destination_id = input(self.print.question("Contract ID")) 
+            self.format.short_box(information,title)
+            vehicle_id = input(self.format.question("Vehicle ID")) 
 
-            if destination_id == 'r':
+            if vehicle_id == 'r':
                 return
 
             try:
-                destination = self.logic.get_vehicle(destination_id)
-                destination.ido
+                vehicle = self.logic.get_vehicle(vehicle_id)
+                vehicle.id
                 break
 
             except:
@@ -274,17 +275,17 @@ class Non_rvk_ui:
                 continue
 
         #Info
-        title = "Changing Destination"
-        information = ("( c ) Cancel,( f ) Finish,( d ) Finish,( s ) skip")
-        questions = {"color":destination.Phone,"available":destination.opening_hours}
+        title = "Changing vehicle"
+        information = ("( c ) Cancel,( f ) Finish,( d ) Delete,( s ) skip")
+        questions = {"color":vehicle.color,"available":vehicle.available}
 
         while True:
             for key,value in questions.items():
 
                 #Format
                 self.liner()
-                self.print.question_box(questions,information,title)
-                option = input(self.print.question("\tEnter Choice here"))
+                self.format.question_box(questions,information,title)
+                option = input(self.format.question("Enter input here"))
 
                 #Choices
                 if option == 's':
@@ -292,40 +293,36 @@ class Non_rvk_ui:
                 if option == 'c':
                     return
                 if option == "f":
-                    self.logic.change_contract(destination.id,questions)
+                    self.logic.change_vehicle_info(vehicle.id,questions)
+                    return
+
+                if option == "d":
+                    self.delete_Vehicle(vehicle_id)
                     return
                 #changing for next print
                 questions[key] = option
 
 
 
-    def delete_Vehicle(self):
-        #Info
-        title = "Destination search"
-        information = ("( c ) Cancel,,Insert ID below")
-
-        #Format
-        self.liner()
-        self.print.short_box(information,title)
-        employee_id = input(self.print.question("Employee ID"))
+    def delete_Vehicle(self,vehicle_id):
 
         while True:
             #info
-            title = "Deleting Destination"
+            title = "Deleting vehicle"
             information = ("( c ) Cancel,( d ) Delete")
 
             #Format
             self.liner()
-            self.print.short_box(information,title)
-            confirm = input(self.print.question("Confirm")) 
+            self.format.short_box(information,title)
+            confirm = input(self.format.question("Confirm")) 
 
             if confirm == "c":
                 return
             elif confirm == "d":
-                #self.logic.delete_destination(employee_id) need to add
+                self.logic.kill_vehicle(vehicle_id)
                 return
             else:
-                self.print.warning("Wrong input")
+                self.format.warning("Wrong input")
 
 
 
