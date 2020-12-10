@@ -348,8 +348,8 @@ class Logic_API:
         self.vehicle_wrapper()
         self.vehicle.new_type(name,destination_id,rate)
 
-    def change_type(self,type,destination,changes):
+    def change_type(self,name,destination,changes):
         self.vehicle_wrapper()
-        self.vehicle.change_type()
+        self.vehicle.change_type(name,destination,changes)
 
     
