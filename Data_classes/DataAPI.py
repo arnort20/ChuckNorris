@@ -28,7 +28,7 @@ class DataAPI(object):
     #make stuff-------------done
     def make_vehicle(ride):
 
-        return Vehicle(ride["id"],ride["vehicle_name"],ride["type"],ride["manufacturer"],ride["model"],ride["color"],ride["age"],ride["tax"],ride["available"],ride["location_id"],ride["license_type"])
+        return Vehicle(ride["id"],ride["vehicle_name"],ride["type"],ride["manufacturer"],ride["model"],ride["color"],ride["age"],ride["available"],ride["location_id"],ride["license_type"])
 
     def make_customer(info):
         

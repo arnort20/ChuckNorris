@@ -17,3 +17,4 @@ id,vehicle_name,type,manufacturer,model,color,age,available,location_id,license_
 16,Jimny,Light road,Toyota,Jimny,green,2017,20,yes,B
 17,FWD 1,Medium road,Forward,FWD-ZK125H,blue,2019,30,yes,B
 18,seaglide,Light water,Torpedo,3500,white,2019,100,yes,scuba
+19,GR 5234,Light road,Tesla,Buggy,Pink,2020,no,3,OK

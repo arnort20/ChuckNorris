@@ -497,25 +497,25 @@ class Rvk_ui:
         #Logic_API.check_reservations(vehicle_ID, start_date, end_date)
         print(customer)
 
-        gbp = customer.gbp
-        amount = 'good boy points: {}'.format(gbp)
+        # gbp = customer.gbp
+        # amount = 'good boy points: {}'.format(gbp)
 
-        #Format
-        self.liner()
-        self.print.short_box(amount,title)
+        # #Format
+        # self.liner()
+        # self.print.short_box(amount,title)
 
-        use_gbp = input(self.print.question('Use Good Boy Points ( y / n )'))
+        # use_gbp = input(self.print.question('Use Good Boy Points ( y / n )'))
 
 
-        if use_gbp == 'y':
-            #þarf að implementa gbp notkun
-            pass
+        # if use_gbp == 'y':
+        #     #þarf að implementa gbp notkun
+        #     pass
 
 
         #info for next part
 
         information = ("( c ) Cancel, ( f ) Finish")
-        questions = {'start date (dd/mm/yy)':"empty",'end date (dd/mm/yy)':"empty",'vehicle_id':"empty",'destination_id':"empty",}
+        questions = {'start date (YYYY.MM.DD)':"empty",'end date (YYYY.MM.DD)':"empty",'vehicle_id':"empty",'destination_id':"empty",}
         vehicle_fail = 0
 
         #Contract making part
@@ -536,7 +536,7 @@ class Rvk_ui:
                 #check if customer can rent car
                 if questions["vehicle_id"] != "empty":
                     can_rent = self.logic.check_license(customer_id,questions["vehicle_id"])
-                    not_taken = self.logic.check_reservations(questions["vehicle_id"],questions['start date (dd/mm/yy)'],questions['end date (dd/mm/yy)'])
+                    not_taken = self.logic.check_reservations(questions["vehicle_id"],questions['start date (YYYY.MM.DD)'],questions['end date (YYYY.MM.DD)'])
 
                     if can_rent == True and not_taken == True:
                         pass
@@ -550,7 +550,7 @@ class Rvk_ui:
                     return
 
                 elif option == 'f' and questions["destination_id"] != "empty" and  questions["vehicle_id"] != "empty" :
-                    questions["start_date"],questions["end_date"] = questions['start date (dd/mm/yy)'],questions['end date (dd/mm/yy)']
+                    questions["start_date"],questions["end_date"] = questions['start date (YYYY.MM.DD)'],questions['end date (YYYY.MM.DD)']
                     self.logic.new_contract(customer.id,questions["vehicle_id"],questions["destination_id"],questions["start_date"],questions["end_date"])
                     return
                 questions[key] = option
