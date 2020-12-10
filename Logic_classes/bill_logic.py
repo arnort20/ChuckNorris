@@ -36,15 +36,25 @@ class Bill_logic:
             laundered_money += float(bill.price)
         return int(laundered_money)
 
+    def handoff_vehicle(self, contract_ID, fetch_date):
+        """
+        the whole proccess from when the vehicle is handed over
+        """
+        contract = self.dAPI.get_contract(contract_ID)
+        vehicle = self.dAPI.get_vehicle(contract.vehicle_id)
+        #the car becomes unavailable
+        self.dAPI.change_vehicle(vehicle.id,{"available":"no"})
+        #the date picked up gets registered in the database
+        #and an unfilled bill gets made
+        self.dAPI.add_bill(contract_ID, fetch_date, "not returned", contract.destination_id, 0)
 
-    def new_bill(self, contract_ID, fetch_date, return_date, gbp_used):
+    def recieve_vehicle(self, contract_ID, return_date, gbp_used):
         """
         the whole proccess from when the vehicle gets returned
         """
         contract = self.dAPI.get_contract(contract_ID)
         vehicle = self.dAPI.get_vehicle(contract.vehicle_id)
         customer = self.dAPI.get_customer(contract.customer_id)
-        location_id = contract.destination_id
         tax = vehicle.tax
 
         #would you like to use your loyalty points?
@@ -71,7 +81,7 @@ class Bill_logic:
 
         #KA-CHING!
         price = self.calculate_price(tax, gbp, days, late_tax)
-        self.dAPI.add_bill(contract_ID, fetch_date, return_date, location_id, price)
+        self.dAPI.change_Bill(contract_ID, {"return_date":return_date,"price":price})
 
         #mark the car as returned
         self.dAPI.change_vehicle(contract.vehicle_id,{"available":"yes"}) 
