@@ -244,7 +244,88 @@ class Non_rvk_ui:
         return
 
 
+    def change_Vehicle(self):
+        #Info
+        title = "Vehicle Search"
+        information = ("( r ) Return,,| Insert ID below |")
+        wrong = 0
+        while True:
 
+            #Format
+            self.liner()
+
+            if wrong != 0:
+                self.print.warning("Wrong vehicle ID")
+                wrong =0         
+
+            self.print.short_box(information,title)
+            destination_id = input(self.print.question("Contract ID")) 
+
+            if destination_id == 'r':
+                return
+
+            try:
+                destination = self.logic.get_vehicle(destination_id)
+                destination.ido
+                break
+
+            except:
+                wrong = 1
+                continue
+
+        #Info
+        title = "Changing Destination"
+        information = ("( c ) Cancel,( f ) Finish,( d ) Finish,( s ) skip")
+        questions = {"color":destination.Phone,"available":destination.opening_hours}
+
+        while True:
+            for key,value in questions.items():
+
+                #Format
+                self.liner()
+                self.print.question_box(questions,information,title)
+                option = input(self.print.question("\tEnter Choice here"))
+
+                #Choices
+                if option == 's':
+                    continue
+                if option == 'c':
+                    return
+                if option == "f":
+                    self.logic.change_contract(destination.id,questions)
+                    return
+                #changing for next print
+                questions[key] = option
+
+
+
+    def delete_Vehicle(self):
+        #Info
+        title = "Destination search"
+        information = ("( c ) Cancel,,Insert ID below")
+
+        #Format
+        self.liner()
+        self.print.short_box(information,title)
+        employee_id = input(self.print.question("Employee ID"))
+
+        while True:
+            #info
+            title = "Deleting Destination"
+            information = ("( c ) Cancel,( d ) Delete")
+
+            #Format
+            self.liner()
+            self.print.short_box(information,title)
+            confirm = input(self.print.question("Confirm")) 
+
+            if confirm == "c":
+                return
+            elif confirm == "d":
+                #self.logic.delete_destination(employee_id) need to add
+                return
+            else:
+                self.print.warning("Wrong input")
 
 
 
