@@ -1,9 +1,13 @@
 #from Data_classes.DataAPI import DataAPI
 from Data_classes.DataAPI import DataAPI as dAPI
+from datetime import datetime
+
 
 class Contract_logic:
     def __init__(self):
         self.dAPI = dAPI()
+        now = datetime.now()
+        self.current_date = now.strftime("%Y.%m.%d")
 
     def get_contract(self, contractID):
         #get a contract object, containing all information regarding a contract
@@ -23,7 +27,7 @@ class Contract_logic:
         #all contract IDs are automatically generated to make sure there's no contracts that share the same ID
         contractID = self.dAPI.contract_makeID()
         paid = "no"
-        self.dAPI.add_contract(contractID, employeeID, customerID, vehicleID, location, start_date, end_date,paid)
+        self.dAPI.add_contract(contractID, employeeID, customerID, vehicleID, location, start_date, end_date,paid,self.current_date)
 
     def all_contracts(self):
         #get all the contracts as objects
