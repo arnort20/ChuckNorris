@@ -61,4 +61,8 @@ klára UI klasana og tengja allt þannig allar A kröfur séu uppfylltar
 
 dagur 14:
 klára að ganga frá ui klösum laga skýrslu, laga klasarit, fínpússa kóða
+- kláruðum allt uið vantar bara smá fix,löguðum klasaritið kláruðum næstumþví skýrslu byrjuðum að fínpússa
+
+dagur 15:
+gera myndband, klára laga bugs, snmá fínpússun og klára skýrlsu
 

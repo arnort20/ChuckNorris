@@ -45,12 +45,8 @@ class Vehicle_logic:
             return False
 
     def vehicle_taxes(self):
-        type_dict = {}
-        vehicles = self.dAPI.get_vehicles()
-        for vehicle in vehicles:
-            type_dict[vehicle.type] = str(vehicle.tax)+"%"
-        return type_dict
-
+        
+        
     def new_type(self,vehicle_type,destination_id,rate):
         self.dAPI.add_type(vehicle_type,destination_id,rate)
 
