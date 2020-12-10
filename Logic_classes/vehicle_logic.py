@@ -28,7 +28,7 @@ class Vehicle_logic:
 
     def kill_vehicle(self,vehicleID):
         #roundhouses the vehicle out of the database
-        dAPI.delete_vehicle(vehicleID)
+        self.dAPI.delete_vehicle(vehicleID)
 
     def check_license(self, customerID, vehicleID):
         #check if the customer has the necessary licensing for the vehicle
