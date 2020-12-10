@@ -202,6 +202,10 @@ class DataAPI(object):
         dicter = {"contract_id":contract_id,"fetch_date":fetch_date,"return_date":return_date,"location_id":location_id,"price":price}
         self.add.add(dicter,"Data_files\Bills.csv")
 
+    def add_type(self,vehicle_type,destination_id,rate):
+        dicter = {"name":vehicle_type,"destination_id":destination_id,"rate":rate}
+        self.add.add(dicter,"Data_files\Vehicle_types.csv")
+
 
 
     # change single
@@ -222,6 +226,9 @@ class DataAPI(object):
 
     def change_Bill(self,ident,changes):
         self.chang.change("Data_files\Bills.csv",ident,changes)
+
+    def change_type(self,ident,country,changes):
+        self.chang.change_2(ident,country,changes)
 
 
 

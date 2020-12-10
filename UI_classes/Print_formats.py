@@ -75,7 +75,7 @@ class Print_format():
         fixer = width -(basic*len(splitt_info))
         for info in splitt_info:
 
-            print(info.center(basic), end="")
+            print(info.replace("_"," ").center(basic), end="")
 
 
         print(fixer*" "+"|")

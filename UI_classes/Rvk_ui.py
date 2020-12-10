@@ -210,6 +210,7 @@ class Rvk_ui:
                 if option == "c":
                     return
             money = self.logic.filter_earnings(questions["Input Location ID"],questions["Input Date From"],questions["Input Date To"])
+            
             self.liner()
             self.print.question_box(questions,information,title)
             self.print.print_space()
@@ -960,7 +961,7 @@ class Rvk_ui:
                     if option == 'c':
                         return
                     elif option == 'f' :
-                        self.logic.new_destination(questions['name'],questions['destination_id'],questions['airport'],questions['rate'])
+                        self.logic.make_new_type(questions['name'],questions['destination_id'],questions['airport'],questions['rate'])
                         return
                     else:
                         questions[key] = option

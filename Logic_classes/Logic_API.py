@@ -332,3 +332,16 @@ class Logic_API:
             return 3
         else:
             return self.priv_location
+
+
+
+
+#--------------make and change types--------------
+
+    def make_new_type(self,type,destination_id,rate):
+        self.vehicle_wrapper()
+        self.vehicle.new_type()
+
+    def change_type(self,type,destination,changes):
+        self.vehicle_wrapper()
+        self.vehicle.new_type()

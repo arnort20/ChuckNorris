@@ -51,3 +51,5 @@ class Vehicle_logic:
             type_dict[vehicle.type] = str(vehicle.tax)+"%"
         return type_dict
 
+    def new_type(self,vehicle_type,destination_id,rate):
+        self.dAPI.add_vehicle(vehicle_type,destination_id,rate)
