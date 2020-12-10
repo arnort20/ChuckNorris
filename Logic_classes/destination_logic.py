@@ -4,10 +4,10 @@ class Destination_logic:
     def __init__(self):
         self.dAPI = dAPI()
 
-    def new_destination(self,name, airport, phone, report_filename):
+    def new_destination(self,name,country, airport, phone, opening_hours):
         #make the new destination, the ID is automatically generated
         new_dest_ID = self.dAPI.destination_makeID()
-        self.dAPI.add_destination(new_dest_ID, name, airport, phone, report_filename)
+        self.dAPI.add_destination(new_dest_ID,name,country, phone,opening_hours, airport)
 
     def get_destination(self, destID):
         #returns a destination object containing all information about the destination
