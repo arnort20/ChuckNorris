@@ -345,7 +345,6 @@ class Logic_API:
 
     def change_type(self,type,destination,changes):
         self.vehicle_wrapper()
-        self.vehicle.new_type()
+        self.vehicle.change_type()
 
-    def get_types(self):
-        pass
+    

@@ -998,6 +998,9 @@ class Rvk_ui:
             try:
                 destination = self.logic.get_destination(destination_id)
                 destination.id
+
+                rate = self.logic.get_type(name,destination_id)
+
                 break
 
             except:
@@ -1005,7 +1008,7 @@ class Rvk_ui:
                 continue
 
         #Info
-        title = "Changing type"
+        title = "Changing type " + name +"in "+ destination.name
         information = ("( c ) Cancel, ( f ) Finish,( s ) skip")
         questions = {"rate":rate}
 
