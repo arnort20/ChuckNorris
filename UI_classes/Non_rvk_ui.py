@@ -36,7 +36,7 @@ class Non_rvk_ui:
 
             title = 'welcome Employee {}'.format(self.login_id)
             self.format.print_title(title,self.width)
-            menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,( 5 ) Change Vehicle,( 6 ) delete Vehicle,( q ) Quit."
+            menu = "( 1 ) Register New Vehicle,( 2 ) Loan Vehicle,( 3 ) Recieve Vehicle,( 4 ) Check Vehicle,( 5 ) Change Vehicle,( q ) Quit."
 
     
             self.format.print_space()
@@ -48,16 +48,20 @@ class Non_rvk_ui:
 
             if option == "1":
                 self.Register_Vehicle()
-                choice =1
+                choice = 1
             elif option == "2":
                 self.Vehicle_lending()
-                choice =1
+                choice = 1
             elif option == "3":
                 self.Recieve_vehicle_()
-                choice =1
+                choice = 1
             elif option == "4":
                 self.Check_Vehicle()
-                choice =1
+                choice = 1
+            elif option == "5":
+                self.change_vehicle()
+                choice = 1 
+        
             elif option == "q":
                 break
             else:
@@ -111,8 +115,6 @@ class Non_rvk_ui:
 
         return
 
-
-
     # Afhenda bilinn til utleigu
     def Vehicle_lending(self):
         wrong = 0
@@ -148,7 +150,6 @@ class Non_rvk_ui:
                 continue
 
         return
-
 
     # Taka a moti bilnum ur utleigu
     def Recieve_vehicle_(self):
@@ -208,11 +209,6 @@ class Non_rvk_ui:
             break
         return
         # Adda gbp 
-
-
-
-
-
 
     def Check_Vehicle(self):
         #Here it needs to get the list of vehicles from Vehicles.csv and look up the Key word[ID] and print out everything about the car.
