@@ -168,14 +168,17 @@ class Non_rvk_ui:
                 self.format.warning("there is one or more wrong input!")
                 print("")
                 wrong = 0
-
+            #self.logic.recieve_vehicle(contractID, return_date, gbp_used)
+            #nota bene GBP_used is a bool (True/False)
+            
 
             title = ("Recive Vehicle")
             self.format.print_title(title)
             self.format.print_space()
             returning_contract_ID =         input(self.format.question("Input contract ID: "))
             returning_vehicle_condition =   input(self.format.question("Input vehicle condition(ok/bad): "))
-            returning_vehicle_late =        input(self.format.question("Is the vehicle late(y/n): "))
+            #is a function
+            #returning_vehicle_late =        input(self.format.question("Is the vehicle late(y/n): "))
 
             self.format.print_line(len(title)*"_")
 

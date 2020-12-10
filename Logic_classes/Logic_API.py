@@ -128,10 +128,26 @@ class Logic_API:
         self.vehicle_wrapper()
         return self.vehicle.check_license(customerID,vehicleID)
 
-    def get_vehicle_reports(self):
+    def get_vehicles(self):
         #returns a list of all vehicles in the database as objects
         self.vehicle_wrapper()
         return self.vehicle.get_vehicles()
+
+    def locate_vehicles(self, location_ID):
+        vehicles = self.get_vehicles()
+        located = []
+        for vehicle in vehicles:
+            if vehicle.location == location_ID:
+                located.append(vehicle)
+        return located
+
+    def get_available_vehicles(self, location_ID):
+        vehicles = self.locate_vehicles(location_ID)
+        available_vehicles = []
+        for vehicle in vehicles:
+            if vehicle.available == "yes":
+                available_vehicles.append(vehicle)
+        return available_vehicles
 
     def popular_vehicle_types(self, location_ID):
         """
