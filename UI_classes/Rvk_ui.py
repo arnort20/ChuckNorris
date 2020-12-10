@@ -3,67 +3,6 @@ from Model_classes.Customer import Customer
 from Logic_classes.Logic_API import Logic_API
 from UI_classes.Print_formats import Print_format
 
-"""
-3
-As Chuck Norris and/or employee of NaN Air I need to be able to 
-register new employees, a list of their information, and their position
-(check)
-
-4
-As an employee of NaN Air I need to be able to put together a rental 
-contract (check)
-
-5
-As an employee of NaN Air I need to be able to find an employees 
-information and edit it (check)
-
-6
-As an employee of NaN Air I need to be able to register new vehicles 
-into a list of all vehicles
-
-7
-As an employee of NaN Air I need to be able to list all vehicles according 
-to location and availability
-
-8
-As an employee of NaN Air I need to be able to list all vehicles according to 
-location and damage status
-
-10
-As an employee of NaN Air I need to be able to register and list all rental 
-contracts
-
-12
-As an employee of NaN Air I need to be able to change the loan time and 
-vehicle of the rental contract (CHECK)
-
-13
-As an employee of NaN Air I need to be able to invalidate a rental contract
-
-14
-As an employee of NaN Air I need to be able to register new destinations and 
-list all of them
-
-15
-As an employee of NaN Air I need to be able to print an invoice based on the 
-information on the rental contract
-
-16
-As an employee of NaN Air I need to be able to see and edit how high the taxes 
-are for each type of vehicle and add taxes to new types of vehicles
-
-17
-As an employee of NaN Air I need to be able to see if the customer has the 
-credentials to use certain types of vehicles (CHECK)
-
-18
-As an employee of NaN Air I need to make sure that the customer's charges are 
-collected so that he will not get charged multiple times (CHECK)
-
-19
-As an employee of NaN Air I need to be able to make a report of my branch's 
-performance
-"""
 
 class Rvk_ui:
 
@@ -78,25 +17,20 @@ class Rvk_ui:
         self.employee_id = username
 
 
-                                                                                #needs:
-                                                                                #see taxes for vehicles by type
-                                                                                #make report of my branch performance
-
-
-                                                                                #Contract menu has create contract,view contract,print report,bill stuff
-                                                                                #Employee menu has add employee,delete employee,change employee
-                                                                                #vehicle menu has vehicle management and to see taxes
-                                                                                # see branch review
-
 #-------------START MENU FOR RVK EMPLOYEE---------------
     def main_menu(self):
+        wrong =0
         while True:
             self.liner()
+
+            if wrong != 0:
+                self.print.warning('Not a valid option')
+                wrong =0
             title = "Welcome, Employee {}".format(self.employee_num)
             self.print.print_title(title)
             self.print.print_space()
 
-            option = "( 1 ) Contract menu,( 2 ) Employee menu,( 3 ) destination menu,( 4 ) Branch review,( 5 ) search vehicles,,( q ) Quit"
+            option = "( 1 ) Contract menu,( 2 ) Employee menu,( 3 ) destination menu,( 4 ) vehicle menu,,( q ) Quit"
             self.print.print_main_menu(option)
             self.print.print_line(len(title)*"")
             print()
@@ -108,18 +42,16 @@ class Rvk_ui:
                 self.employee_menu()
             elif option == '3':
                 self.destination_menu()
-            elif option == '4':
+            elif option == "4":
+                self.vehicle_menu()
+            elif option == '5':
                 self.branch_review()
-            elif option == "5":
-                self.search_vehicles()
             elif option.lower() == 'q':
                 break
-                #maybe go back to loginUI?
-            elif option == '':
-                    print('Please input an option')
             else:
-                print('Not a valid option')
-                self.main_menu()
+                wrong = 1
+                continue
+                
     
 
 #---------------CONTRACT MENU FOR RVK EMPLOYEE-------------
@@ -129,7 +61,7 @@ class Rvk_ui:
             title = "Contract Menu"
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Delete contract ,( 4 ) Print all contracts ,( 5 ) Print report,( 6 ) Print contract report,,( r ) Return")
+            information = ("( 1 ) Create contract,( 2 ) View contract,( 3 ) Delete contract ,( 4 ) Print all contracts ,( 5 ) Print contract report,,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
             print()
@@ -149,21 +81,44 @@ class Rvk_ui:
             elif option == "5":
                 self.print_report()
 
-            elif option == "6":
-                self.print_report()
-
             elif option.lower() == 'r':
                 return
-
-            elif option == '':
-                print('Please input an option')
 
             else:
                 print('Invalid option')
 
 
 
-#------------EMPLOYEE MENU FOR RVK EMPLOYEE-----------
+#-----------Vehicle menu------------------------
+    def vehicle_menu(self):
+        while True:
+
+            self.liner()
+            title = "Vehicle Menu"
+
+            self.print.print_title(title)
+            self.print.print_space()
+            information = ("( 1 ) Search vehicle,( 2 ) See vehicle type taxes,,( r ) Return")
+            self.print.print_main_menu(information)
+            self.print.print_line(len(title)*"_")
+
+            print()
+            option = input(self.print.question('Type here'))
+            if option == '1':
+                self.search_vehicles()
+
+            elif option == '2':
+                self.vehicle_taxes()
+
+            elif option.lower() == 'r':
+                return
+
+            else:
+                print('Invalid option')
+
+
+
+#------------Employee menu----------------------
     def employee_menu(self):
         while True:
             self.liner()
@@ -202,7 +157,7 @@ class Rvk_ui:
             title = "Employee Menu"
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Add destination,( 2 ) Change destination,( 3 ) Delete destination,( 4 ) look up destination,,( r ) Return")
+            information = ("( 1 ) Add destination,( 2 ) Change destination,( 3 ) Delete destination,( 4 ) look up destination,( 5 ) Destination earning reviews,,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
             print()
@@ -219,6 +174,9 @@ class Rvk_ui:
             elif option == '4':
                 self.find_destination()
 
+            elif option == "5":
+                self.branch_review()
+
             elif option.lower() == 'r':
                 return
 
@@ -229,20 +187,38 @@ class Rvk_ui:
                 print('Invalid option')
 
 
+
 #----------------------Branch review---------------------
     def branch_review(self):
         while True:
-            title = "Branch review"
-            self.print.print_title(title)
+            questions = {"Input Location ID":"empty","Input Date From":"empty","Input Date To":"empty"}
+            title = "Earnings Report"
+            information = ("Date Format = (yy.mm.dd),( c ) Cancel")
+            employee = self.logic.get_employee(self.employee_num)
+
+
+            for key,value in questions.items():
+
+                self.liner()
+                self.print.question_box(questions,information,title)
+                option = input(self.print.question("Enter Input here"))
+
+                print("")
+                questions[key] = option
+
+
+                if option == "c":
+                    return
+            money = self.logic.filter_earnings(questions["Input Location ID"],questions["Input Date From"],questions["Input Date To"])
+            self.liner()
+            self.print.question_box(questions,information,title)
             self.print.print_space()
-            information = ("Choose a branch id")
-            self.print.print_main_menu(information)
-            self.print.print_line(len(title)*"_")
+            self.print.print_out_format("Money Made: " + str(money))
+            self.print.print_space()
+            self.print.print_line(len("Earning Report")*"_")
+            go_back = input(self.print.question("return: "))
+            return
 
-            option = input(self.print.question('Type here'))
-
-            overview=self.Logic_API.get_destination(option)
-            print(overview)
 
 
 #---------------------New destination--------------------
@@ -362,7 +338,6 @@ class Rvk_ui:
                 return
             else:
                 self.print.warning("Wrong input")
- 
 
 
 
@@ -398,7 +373,6 @@ class Rvk_ui:
                     go_back = input(self.print.question('return: ')).lower()
 
                     return
-
 
 
 
@@ -540,9 +514,11 @@ class Rvk_ui:
 
 
         #info for next part
+
         information = ("( c ) Cancel, ( f ) Finish")
         questions = {'start date (dd/mm/yy)':"empty",'end date (dd/mm/yy)':"empty",'vehicle_id':"empty",'destination_id':"empty",}
         vehicle_fail = 0
+
         #Contract making part
         while True:
 
@@ -556,10 +532,14 @@ class Rvk_ui:
                 self.print.question_box(questions,information,title)
                 option = input(self.print.question("Enter Choice here"))
 
+                
+
                 #check if customer can rent car
                 if questions["vehicle_id"] != "empty":
                     can_rent = self.logic.check_license(customer_id,questions["vehicle_id"])
-                    if can_rent == True:
+                    not_taken = self.logic.check_reservations(questions["vehicle_id"],questions['start date (dd/mm/yy)'],questions['end date (dd/mm/yy)'])
+
+                    if can_rent == True and not_taken == True:
                         pass
                     else:
                         vehicle_fail = 1
@@ -576,14 +556,6 @@ class Rvk_ui:
                     return
                 questions[key] = option
 
-
-
-
-        # for spinning dates----------------------------------------------------------------------
-        # date_list =  end_date.split("/")
-        # date_list[1],date_list[3] = date_list[3],date_list[1]
-        # fixed_date = "/".join(date_list)
-                  
 
 
 #-----------View contrarct-------------
@@ -678,6 +650,7 @@ class Rvk_ui:
         return
 
 
+
 #------------Delete contract--------------
     def delete_contract(self):
         #Info
@@ -707,6 +680,7 @@ class Rvk_ui:
             else:
                 self.print.warning("Wrong input")
  
+
 
 #----------------View extensive contract report-------------
     def print_report(self):
@@ -906,22 +880,49 @@ class Rvk_ui:
 
 
 #------------search vehicles in certein location--------
+
     def search_vehicles(self):
         title = "Search vehicles"
         information = "( c ) Cancel,,write ID below!"
         options = "( r ) return"
         info = "ID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,license_type"
+        wrong = 0
+        while True:
+            self.liner()
 
+            #for errors
+            if wrong != 0:
+                self.print.warning("No vehicles at location " + location_id)
+                wrong = 0
+
+            self.print.short_box(information,title)
+            location_id = input(self.print.question("location ID"))
+            vehicles = self.logic.locate_vehicles(location_id)
+
+
+            if location_id == "c":
+                return
+            #check if any vehicles are returned for location
+            if vehicles != []:
+                title = "vehicle list"
+                self.liner()
+                self.print.large_list_box(options,title,info,vehicles)
+                go_back = input(self.print.question("\tReturn"))
+                return
+
+            else:
+                wrong =1
+                continue
+
+
+
+#-----------See all vehicle type taxes-----------------
+
+    def vehicle_taxes(self):
         self.liner()
-        self.print.short_box(information,title)
-        location_id = input(self.print.question("location ID"))
+        title = "Vehicle type taxes"
+        vehicle_types = self.logic.get_vehicle_types()
+        information = "( r ) Return"
+        self.print.question_box(vehicle_types,information,title)
+        go_back = input(self.print.question("return"))
 
-        if location_id == "c":
-            return
-
-        vehicles = self.logic.locate_vehicles(location_id)
-        title = "vehicle list"
-        self.liner()
-        self.print.large_list_box(options,title,info,vehicles)
-        go_back = input(self.print.question("\tReturn"))
-        return

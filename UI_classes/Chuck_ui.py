@@ -113,7 +113,7 @@ class Chuck_ui():
         self.liner()
         self.printer.question_box(questions,information,title)
         self.printer.print_space()
-        self.printer.print_out_format("Money Made " + str(money) + " I Like money")
+        self.printer.print_out_format("Money Made: " + str(money))
         Print_format.print_space(self)
         Print_format.print_title(self,len("Earning Report")*"_")
         go_back = input(self.printer.question("return: "))

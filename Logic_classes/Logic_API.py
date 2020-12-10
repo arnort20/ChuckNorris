@@ -90,9 +90,12 @@ class Logic_API:
         self.vehicle_wrapper()
         return self.vehicle.get_vehicle(vehicleID)
 
-    def make_new_vehicle(self,vehicle_name,Type,manufacturer,Model,Color,age,tax,available,location,license_type):
+    # def make_new_vehicle(self,vehicle_name,Type,manufacturer,Model,Color,age,tax,available,location,license_type):
+    #     self.vehicle_wrapper()
+    #     self.vehicle.create_new_vehicle(vehicle_name,Type,manufacturer,Model,Color,age,tax,available,location,license_type)
+    def make_new_vehicle(self,vehicle_name,Type,manufacturer,Model,Color,age,available,location,license_type):
         self.vehicle_wrapper()
-        self.vehicle.create_new_vehicle(vehicle_name,Type,manufacturer,Model,Color,age,tax,available,location,license_type)
+        self.vehicle.create_new_vehicle(vehicle_name,Type,manufacturer,Model,Color,age,available,location,license_type)
 
     def check_reservations(self, vehicle_ID, start_date, end_date):
         """
@@ -172,6 +175,9 @@ class Logic_API:
                 vehicle_popularities[vehi_type] = 1
         return vehicle_popularities
 
+    def get_vehicle_types(self):
+        self.vehicle_wrapper()
+        return self.vehicle.vehicle_taxes()
 
 
 
@@ -268,7 +274,7 @@ class Logic_API:
         #their loyalty points(Good Boy Points)
         """
         self.bill_wrapper()
-        self.bill.recieve_vehicle(contractID, return_date, gbp_used)
+        return self.bill.recieve_vehicle(contractID, return_date, gbp_used)
 
     def calculate_bill(self, tax, gbp_discount, days, late_tax):
         #a handy dandy calculator, used automatically within the bill logic file

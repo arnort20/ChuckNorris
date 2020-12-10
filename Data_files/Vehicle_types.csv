@@ -1,0 +1,7 @@
+name,destination_id,rate
+Light road,0,700
+Light off-road,0,900
+Light water,0,850
+Medium off-road,4,1800
+Medium off-road,7,1400
+Medium water,5,2200

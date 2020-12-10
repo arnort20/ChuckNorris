@@ -55,7 +55,7 @@ class Bill_logic:
         contract = self.dAPI.get_contract(contract_ID)
         vehicle = self.dAPI.get_vehicle(contract.vehicle_id)
         customer = self.dAPI.get_customer(contract.customer_id)
-        tax = vehicle.tax
+        tax = self.get_vehicle_tax(vehicle)
 
         #would you like to use your loyalty points?
         gbp_available = customer.gbp
@@ -90,7 +90,7 @@ class Bill_logic:
         if late_tax > 0:
             new_BBP = customer.bbp + 1
             self.dAPI.change_Customer(customer.id,{"bbp":str(new_BBP)})
-        
+            return True
 
 
     def calculate_price(self, tax, gbp_discount, days, late_tax):
@@ -122,7 +122,12 @@ class Bill_logic:
         else:
             return False
 
-
-
-
+    def get_vehicle_tax(self, vehicle_object):
+        vehi_type = vehicle_object.type
+        vehi_country = vehicle_object.location
+        taxes = self.dAPI.get_vehicle_types()
+        for line in taxes:
+            if line["name"] == vehi_type and (line["destination_id"] == "0" or line["destination_id"] == vehi_country):
+                tax = line["tax"]
+        return tax
 
