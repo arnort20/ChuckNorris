@@ -49,6 +49,7 @@ class Logic_API:
 
 
 
+
     #contract stuff
     def get_contract(self, contractID):
         #returns an object containing information about the contract
@@ -172,6 +173,8 @@ class Logic_API:
         return vehicle_popularities
 
 
+
+
     #customer stuff
     def new_customer(self,customerID,name,ssn,email,phone,address,license_type):
         #registers a new customer, their ID will be their driver's license number
@@ -222,6 +225,8 @@ class Logic_API:
         return self.employee.get_employee(emp_ID)
 
 
+
+
     #destination stuff
     def new_destination(self, destination_name, airport, phone, opening_hours):
         #make the new destination, the ID is automatically generated
@@ -242,6 +247,8 @@ class Logic_API:
         #change the destination based on what keys to change and the new values for each key
         self.destination_wrapper()
         self.destination.change_destination(dest_ID, change_dict)
+
+
 
 
     #billing stuff
@@ -287,8 +294,8 @@ class Logic_API:
 
 
 
-    #extra functions
 
+    #extra functions
     def convert_date(self, date_string):
         #for datetime module calculations
         year, month, day = str(date_string).split('.')

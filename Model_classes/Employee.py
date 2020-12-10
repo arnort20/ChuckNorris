@@ -13,5 +13,6 @@ class Employee(object):
 
         
     def __str__(self) -> str:
-        pass
+        return(self.id +","+ self.employee_name+","+self.ssn+","+self.address+","+self.phone+","+self.email+","+self.location)
+
 

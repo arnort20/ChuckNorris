@@ -11,4 +11,5 @@ class Customer(object):
         self.Social_security_number = Social_security_number
 
     def __str__(self) -> str:
-        return("hi my name is " + self.customer_name)
+        return(self.id +","+ self.customer_name+","+self.License_type+","+self.gbp+","+self.bbp+","+self.email+","+self.phone+","+self.address+","+self.Social_security_number)
+
