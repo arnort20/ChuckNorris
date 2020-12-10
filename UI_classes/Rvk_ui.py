@@ -763,7 +763,7 @@ class Rvk_ui:
                     self.print.print_space()
                     self.print.print_out_format("vehicle")
                     self.print.print_space()
-                    self.print.print_out_format("ID,vehicle_name,Type,Manufacturer,Model,Color,age,tax,available,location_id,license_type")
+                    self.print.print_out_format("ID,vehicle_name,Type,Manufacturer,Model,Color,age,available,location_id,license_type")
                     self.print.print_space()
                     self.print.print_out_format(vehicle_str)
                     self.print.print_space()
@@ -965,6 +965,7 @@ class Rvk_ui:
                     else:
                         questions[key] = option
                         continue
+
 
 
 #------------------Change vehicle type-------------------
