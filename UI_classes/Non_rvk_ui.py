@@ -168,7 +168,9 @@ class Non_rvk_ui:
                 self.format.warning("there is one or more wrong input!")
                 print("")
                 wrong = 0
-
+            #self.logic.recieve_vehicle(contractID, return_date, gbp_used)
+            #nota bene GBP_used is a bool (True/False)
+            
 
             title = ("Recive Vehicle")
             self.format.print_title(title)
