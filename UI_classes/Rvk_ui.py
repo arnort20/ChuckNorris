@@ -598,7 +598,7 @@ class Rvk_ui:
                 while True:
                     #Info
                     title = "Contract: " + conID
-                    info = "ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid"
+                    info = "ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid,day_made"
                     second_str = str(contract)
 
 
@@ -651,7 +651,7 @@ class Rvk_ui:
 #------------------View all contracts----------------
     def all_contracts(self):
         options = "( r ) return"
-        info = "ID,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid?"
+        info = "ID,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid,day_made"
 
         contracts = self.logic.all_contracts()
         title = "Contract list"
@@ -729,7 +729,7 @@ class Rvk_ui:
 
                     #Info
                     title = "Contract: " + conID
-                    info = "ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid"
+                    info = "ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid,day_made"
                     contract_str = str(contract)
                     vehicle_str = str(vehicle)
                     customer_str = str(customer)
@@ -860,6 +860,7 @@ class Rvk_ui:
                     self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["password"],)
                 else:
                     questions[key] = option
+
 
 
 #----------------Changing employee information------------
