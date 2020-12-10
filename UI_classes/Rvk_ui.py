@@ -79,8 +79,6 @@ class Rvk_ui:
 
 
                                                                                 #needs:
-                                                                                #destination information
-                                                                                #print invoice
                                                                                 #see taxes for vehicles by type
                                                                                 #make report of my branch performance
 
@@ -203,7 +201,7 @@ class Rvk_ui:
             title = "Employee Menu"
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Add destination,( 2 ) Change destination,( 3 ) Delete destination,( r ) Return")
+            information = ("( 1 ) Add destination,( 2 ) Change destination,( 3 ) Delete destination,( 4 ) look up destination,,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
             print()
@@ -216,6 +214,9 @@ class Rvk_ui:
 
             elif option == '3':
                 self.delete_destination()
+
+            elif option == '4':
+                self.find_destination()
 
             elif option.lower() == 'r':
                 return
@@ -306,11 +307,6 @@ class Rvk_ui:
                 wrong = 1
                 continue
 
-
-
-
-
-
         #Info
         title = "Changing Destination"
         information = ("( c ) Cancel, ( f ) Finish,( s ) skip")
@@ -366,6 +362,43 @@ class Rvk_ui:
             else:
                 self.print.warning("Wrong input")
  
+
+
+
+#---------------------find Destination-----------------
+    def find_destination(self):
+   
+        #Info
+        title = "Destination Search"
+        information = ("( c ) Cancel,Insert ID below,")
+        options = '( r ) Return'
+        while True:
+
+            #Format
+            self.liner()
+            self.print.short_box(information,title)
+            dest_ID = input(self.print.question("Contract ID"))  
+
+            if dest_ID == 'c':
+                return
+
+            destination = self.logic.get_destination(dest_ID)
+            if destination != None:
+                while True:
+                    #Info
+                    title = "Destination: " + destination.name
+                    info = "ID,Destination_name,airport_code,Phone,country,opening_hours"
+                    second_str = str(destination)
+
+
+                    #Format
+                    self.liner()
+                    self.print.list_box(title,options,info,second_str)
+                    go_back = input(self.print.question('return: ')).lower()
+
+                    return
+
+
 
 
 #---------choosing which kind of customer were dealing with
@@ -559,10 +592,15 @@ class Rvk_ui:
         title = "Contract Search"
         information = ("( c ) Cancel,,Insert ID below")
         options = '( c ) Change,( r ) Return'
+        wrong = 0
         while True:
-
             #Format
             self.liner()
+
+            if wrong != 0:
+                self.print.warning("Wrong ID")
+                wrong = 0
+
             self.print.short_box(information,title)
             conID = input(self.print.question("Contract ID"))  
 
@@ -570,27 +608,30 @@ class Rvk_ui:
                 return
 
             contract = self.logic.get_contract(conID)
+            if contract != None:
+                while True:
+                    #Info
+                    title = "Contract: " + conID
+                    info = "ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid"
+                    second_str = str(contract)
 
-            while True:
-                #Info
-                title = "Contract: " + contract.id
-                info = "ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid"
-                second_str = str(contract)
 
+                    #Format
+                    self.liner()
+                    self.print.list_box(title,options,info,second_str)
+                    option = input(self.print.question('Type here: ')).lower()
 
-                #Format
-                self.liner()
-                self.print.list_box(title,options,info,second_str)
-                option = input(self.print.question('Type here: ')).lower()
-
-                #Choices
-                if option == 'c':
-                    self.change_contract(contract)
-                elif option == 'r':
-                    return
-                else:
-                    print('Not a valid option')
-
+                    #Choices
+                    if option == 'c':
+                        self.change_contract(contract)
+                    elif option == 'r':
+                        return
+                    else:
+                        print('Not a valid option')
+            else:
+                wrong = 1
+                continue
+                
 
 
 #--------------Changing contract---------
@@ -670,31 +711,35 @@ class Rvk_ui:
 # Report---------------------- NOT FINISHED
     def print_report(self):
         self.print.print_title("Print bill")
-        information = "( # ) Input the contract ID,( r ) Return" 
-        self.print.print_main_menu(information)
-        self.print.print_line()
-        option = input(self.print.question('Input contract ID: '))
-        if option == "r":
-            return
-        bill_dict = self.logic.get_bill_info(option)
-        relevant_dict = {}
-        relevant_dict["start"] = bill_dict["start_date"]
-        relevant_dict["end"] = bill_dict["end_date"]
-        relevant_dict["Pickup date"] = bill_dict["fetch_date"]
-        relevant_dict["Return date"] = bill_dict["return_date"]
-        relevant_dict["Vehicle tax"] = bill_dict["tax"]
-        relevant_dict["Returned late?"] = bill_dict["late_tax"]
-        true_period = bill_dict["true_period"]
-        contract_period = bill_dict["contract_period"]
-        if relevant_dict["Returned late?"]:
-            relevant_dict["days"] = true_period
-        else:
-            relevant_dict["days"] = contract_period
-        relevant_dict["gbp_used"] = bill_dict["gbp_discount"]
-        relevant_dict["Total price"] = self.logic.calculate_bill(bill_dict)
-        self.print.print_title("Bill for contract #{}".format(option))
-        self.print.print_questions(relevant_dict)
-        self.print.print_line()
+        
+
+
+        
+        # information = "( # ) Input the contract ID,( r ) Return" 
+        # self.print.print_main_menu(information)
+        # self.print.print_line()
+        # option = input(self.print.question('Input contract ID: '))
+        # if option == "r":
+        #     return
+        # bill_dict = self.logic.get_bill_info(option)
+        # relevant_dict = {}
+        # relevant_dict["start"] = bill_dict["start_date"]
+        # relevant_dict["end"] = bill_dict["end_date"]
+        # relevant_dict["Pickup date"] = bill_dict["fetch_date"]
+        # relevant_dict["Return date"] = bill_dict["return_date"]
+        # relevant_dict["Vehicle tax"] = bill_dict["tax"]
+        # relevant_dict["Returned late?"] = bill_dict["late_tax"]
+        # true_period = bill_dict["true_period"]
+        # contract_period = bill_dict["contract_period"]
+        # if relevant_dict["Returned late?"]:
+        #     relevant_dict["days"] = true_period
+        # else:
+        #     relevant_dict["days"] = contract_period
+        # relevant_dict["gbp_used"] = bill_dict["gbp_discount"]
+        # relevant_dict["Total price"] = self.logic.calculate_bill(bill_dict)
+        # self.print.print_title("Bill for contract #{}".format(option))
+        # self.print.print_questions(relevant_dict)
+        # self.print.print_line()
 
             
 
