@@ -154,7 +154,7 @@ class Non_rvk_ui:
     # Taka a moti bilnum ur utleigu
     def Recieve_vehicle_(self):
         wrong =0 
-        questions = ("Input Contract ID":"empty","Input return date":"empty","How much gpb does the customer want to use":"empty","Input vehicle condition(ok/bad)":"empty")
+        questions = {"Input Contract ID":"empty","Input return date":"empty","How much gpb does the customer want to use":"empty","Input vehicle condition(ok/bad)":"empty"}
         while True:
             self.liner()
             if wrong == 1:
@@ -213,7 +213,7 @@ class Non_rvk_ui:
             # return_date =                   input(self.format.question("Input return date: "))
             # gbp_used =                   input(self.format.question("how much gbp does the customer want to use: "))
             # returning_vehicle_condition =   input(self.format.question("Input vehicle condition(ok/bad): "))
-            
+
         # Adda gbp 
 
     def Check_Vehicle(self):
