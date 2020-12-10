@@ -211,7 +211,11 @@ class Chuck_ui():
             question[key] = option
         cars = self.logic.popular_vehicle_types(question["Pick Location ID To See"])
         destination = self.logic.get_destination(option)
-        self.printer.print_out_format(f"In {destination.name}" + cars +" is the most rented car")
+        for key,value in cars.items():
+            car = key
+            amount = value
+        self.printer.print_out_format(f"In {destination.name} " + car +" is the most rented car")
+
         Print_format.print_space(self)
         Print_format.print_title(self,len("Most Popular Vehicle")*"_")
 
