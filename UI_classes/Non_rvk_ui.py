@@ -239,6 +239,84 @@ class Non_rvk_ui:
 
 
 
+    def change_vehicle(self):
+        #Info
+        title = "Vehicle Search"
+        information = ("( r ) Return,,| Insert ID below |")
+        wrong = 0
+        while True:
+
+            #Format
+            self.liner()
+
+            if wrong != 0:
+                self.format.warning("Wrong vehicle ID")
+                wrong =0         
+
+            self.format.short_box(information,title)
+            vehicle_id = input(self.format.question("Vehicle ID")) 
+
+            if vehicle_id == 'r':
+                return
+
+            try:
+                vehicle = self.logic.get_vehicle(vehicle_id)
+                vehicle.id
+                break
+
+            except:
+                wrong = 1
+                continue
+
+        #Info
+        title = "Changing vehicle"
+        information = ("( c ) Cancel,( f ) Finish,( d ) Delete,( s ) skip")
+        questions = {"color":vehicle.color,"available":vehicle.available}
+
+        while True:
+            for key,value in questions.items():
+
+                #Format
+                self.liner()
+                self.format.question_box(questions,information,title)
+                option = input(self.format.question("Enter input here"))
+
+                #Choices
+                if option == 's':
+                    continue
+                if option == 'c':
+                    return
+                if option == "f":
+                    self.logic.change_vehicle_info(vehicle.id,questions)
+                    return
+
+                if option == "d":
+                    self.delete_Vehicle(vehicle_id)
+                    return
+                #changing for next print
+                questions[key] = option
+
+
+
+    def delete_Vehicle(self,vehicle_id):
+
+        while True:
+            #info
+            title = "Deleting vehicle"
+            information = ("( c ) Cancel,( d ) Delete")
+
+            #Format
+            self.liner()
+            self.format.short_box(information,title)
+            confirm = input(self.format.question("Confirm")) 
+
+            if confirm == "c":
+                return
+            elif confirm == "d":
+                self.logic.kill_vehicle(vehicle_id)
+                return
+            else:
+                self.format.warning("Wrong input")
 
 
 

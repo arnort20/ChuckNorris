@@ -360,7 +360,7 @@ class Rvk_ui:
             #Format
             self.liner()
             self.print.short_box(information,title)
-            dest_ID = input(self.print.question("Contract ID"))  
+            dest_ID = input(self.print.question("Location ID"))  
 
             if dest_ID == 'c':
                 return
@@ -370,7 +370,7 @@ class Rvk_ui:
                 while True:
                     #Info
                     title = "Destination: " + destination.name
-                    info = "ID,Destination_name,airport_code,Phone,country,opening_hours"
+                    info = "ID,Destination_name,airport_code,Phone,opening_hours,country"
                     second_str = str(destination)
 
 
