@@ -248,7 +248,7 @@ class Rvk_ui:
                     if option == 'c':
                         return
                     elif option == 'f' :
-                        self.logic.new_destination(info_list['destination_name'],info_list['country_name'],info_list['airport'],info_list['phone'],info_list['phone'],info_list['opening_hours'])
+                        self.logic.new_destination(info_list['destination_name'],info_list['country_name'],info_list['airport'],info_list['phone'],info_list['opening_hours'])
                         return
                     else:
                         info_list[key] = option

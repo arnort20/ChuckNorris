@@ -234,10 +234,10 @@ class Logic_API:
 
 
     #destination stuff
-    def new_destination(self, destination_name, airport, phone, opening_hours):
+    def new_destination(self, destination_name,country_name, airport, phone, opening_hours):
         #make the new destination, the ID is automatically generated
         self.destination_wrapper()
-        self.destination.new_destination(destination_name, airport, phone, opening_hours)
+        self.destination.new_destination(destination_name,country_name, airport, phone, opening_hours)
 
     def get_destination(self, dest_ID):
         #returns a destination object containing all information about the destination
@@ -253,8 +253,6 @@ class Logic_API:
         #change the destination based on what keys to change and the new values for each key
         self.destination_wrapper()
         self.destination.change_destination(dest_ID, change_dict)
-
-
 
 
     #billing stuff
