@@ -344,13 +344,12 @@ class Logic_API:
 
 #--------------make and change types--------------
 
-    def make_new_type(self,type,destination_id,rate):
+    def make_new_type(self,name,destination_id,rate):
         self.vehicle_wrapper()
-        self.vehicle.new_type()
+        self.vehicle.new_type(name,destination_id,rate)
 
     def change_type(self,type,destination,changes):
         self.vehicle_wrapper()
-        self.vehicle.new_type()
+        self.vehicle.change_type()
 
-    def get_types(self):
-        pass
+    
