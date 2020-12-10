@@ -179,7 +179,6 @@ class Chuck_ui():
         for item in contracts:
             self.printer.print_out_format(str(item))
         self.printer.print_line(len("Contract Overview")*"_")
-        
         return
 
     def kickdownstairs(self, name):
