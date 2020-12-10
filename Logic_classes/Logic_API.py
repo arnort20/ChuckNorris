@@ -172,6 +172,9 @@ class Logic_API:
                 vehicle_popularities[vehi_type] = 1
         return vehicle_popularities
 
+    def get_vehicle_types(self):
+        self.vehicle_wrapper()
+        return self.vehicle.vehicle_taxes()
 
 
 

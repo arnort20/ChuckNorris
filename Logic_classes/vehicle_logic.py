@@ -40,3 +40,9 @@ class Vehicle_logic:
         else:
             return False
 
+    def vehicle_taxes(self):
+        type_dict = {}
+        vehicles = self.dAPI.get_vehicles()
+        for vehicle in vehicles:
+            type_dict[vehicle.type] = str(vehicle.tax)+"%"
+        return type_dict
