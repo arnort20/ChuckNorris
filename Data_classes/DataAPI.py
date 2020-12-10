@@ -150,6 +150,8 @@ class DataAPI(object):
             bill_list.append(bill)
         return bill_list
 
+    def get_vehicle_types(self):
+        return self.get.get_csv("Data_files\Vehicle_types.csv")
 
 
     #make,ident-------------done
