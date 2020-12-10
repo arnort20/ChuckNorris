@@ -139,7 +139,7 @@ class Non_rvk_ui:
             self.format.print_title(title)
             self.format.print_space()
 
-            contract_id =       input(self.format.question("input contract ID "))
+            contract_id = input(self.format.question("input contract ID "))
             
             self.format.print_line(len(title)*"_")
 
@@ -148,10 +148,8 @@ class Non_rvk_ui:
 
 
             try:
-                contract = self.logic.get_contract(contract_id)
-                vehicle_ID = contract.vehicle_id
-                vehicle_condition = {"available":"no"}
-                self.logic.change_vehicle_info(vehicle_ID,vehicle_condition )
+                fetch_date = input(self.format.question("date when vehicle is picked up (YYYY.MM.DD): "))
+                self.logic.handover_vehicle(contract_id, fetch_date)
                 break
 
             except:

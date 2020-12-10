@@ -217,7 +217,7 @@ class DataAPI(object):
     def change_Employee(self,ident,changes):
         self.chang.change("Data_files\Employees.csv",ident,changes)
 
-    def change_Employee(self,ident,changes):
+    def change_Bill(self,ident,changes):
         self.chang.change("Data_files\Bills.csv",ident,changes)
 
 
@@ -238,5 +238,5 @@ class DataAPI(object):
     def delete_employee(self,ident):
         self.dell.dell("Data_files\Employees.csv",ident)
 
-    def delete_employee(self,ident):
+    def delete_bill(self,ident):
         self.dell.dell("Data_files\Bills.csv",ident)
