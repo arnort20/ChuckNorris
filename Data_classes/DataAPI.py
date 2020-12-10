@@ -34,11 +34,7 @@ class DataAPI(object):
         return Customer(info["id"],info["customer_name"],info["ssn"],info["email"],info["phone"],info["address"],info["license_type"],info["gbp"],info["bbp"])
 
     def make_destination(info):
-<<<<<<< HEAD
-    
-=======
         
->>>>>>> c8eb2d3cf28e1e65da6dd4ba26bd244234d340ae
         return Destination(info["id"],info["destination_name"],info["airport"],info["phone"],info["country_name"],info["opening_hours"])
 
     def make_contract(info):
