@@ -220,6 +220,7 @@ class Rvk_ui:
             return
 
 
+
 #---------------------New destination--------------------
     def new_destination(self):
 
@@ -554,7 +555,6 @@ class Rvk_ui:
                     self.logic.new_contract(customer.id,questions["vehicle_id"],questions["destination_id"],questions["start_date"],questions["end_date"])
                     return
                 questions[key] = option
-
 
 
 
@@ -917,6 +917,7 @@ class Rvk_ui:
 
 
 #-----------See all vehicle type taxes-----------------
+
     def vehicle_taxes(self):
         self.liner()
         title = "Vehicle type taxes"
@@ -924,3 +925,4 @@ class Rvk_ui:
         information = "( r ) Return"
         self.print.question_box(vehicle_types,information,title)
         go_back = input(self.print.question("return"))
+
