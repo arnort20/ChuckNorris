@@ -230,6 +230,10 @@ class Logic_API:
 
     #billing stuff
     def handover_vehicle(self, contract_ID, fetch_date):
+        """
+        creates an unfinished bill, saving the date when it was fetched
+        marks the car as unavailable
+        """
         self.bill_wrapper()
         self.bill.handoff_vehicle(contract_ID, fetch_date)
 

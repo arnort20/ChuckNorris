@@ -139,7 +139,7 @@ class Non_rvk_ui:
             self.format.print_title(title)
             self.format.print_space()
 
-            contract_id =       input(self.format.question("input contract ID "))
+            contract_id = input(self.format.question("input contract ID "))
             
             self.format.print_line(len(title)*"_")
 
