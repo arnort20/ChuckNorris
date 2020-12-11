@@ -133,7 +133,7 @@ class Rvk_ui:
             title = "Employee Menu"
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Add employee,( 2 ) Change employee,( 3 ) Delete employee,,( r ) Return")
+            information = ("( 1 ) Add employee,( 2 ) View employee,( 3 ) Delete employee,,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
             print()
