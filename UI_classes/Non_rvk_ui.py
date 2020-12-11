@@ -147,6 +147,10 @@ class Non_rvk_ui:
             option = input(self.format.question("Return"))
             return
 
+
+
+
+
     # Taka a moti bilnum ur utleigu
     def Recieve_vehicle_(self):
         wrong =0 
