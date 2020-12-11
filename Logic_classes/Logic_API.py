@@ -262,6 +262,11 @@ class Logic_API:
         self.destination_wrapper()
         self.destination.change_destination(dest_ID, change_dict)
 
+    def delete_destination(self,destination_id):
+        self.destination_wrapper()
+        self.destination.remove_destination(destination_id)
+
+
 
     #billing stuff
     def handover_vehicle(self, contract_ID, fetch_date):
