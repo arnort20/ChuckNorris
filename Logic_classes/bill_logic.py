@@ -63,7 +63,7 @@ class Bill_logic:
 
         #would you like to use your loyalty points?
         gbp_available = customer.gbp
-        if gbp_used == True:
+        if gbp_used != True:
             gbp = gbp_available
         else:
             gbp = 0
@@ -72,6 +72,7 @@ class Bill_logic:
         start_date = self.convert_date(contract.start_date)      
         end_date = self.convert_date(contract.end_date)
         date_retuned = self.convert_date(return_date)
+        self.dAPI.change_Customer(contract.customer_id,{"gbp":gbp})
         contract_period = end_date - start_date
         true_period = date_retuned - start_date
         if true_period > contract_period:

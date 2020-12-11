@@ -102,7 +102,7 @@ class Non_rvk_ui:
                         questions["age"] = questions["year_made"]
                         test = questions["vehicle_name"],questions["type"],questions["manufacturer"],questions["model"],questions["color"],int(questions["age"]),questions["available"],questions["location_id"],questions["license_type"]
                     
-                        self.logic.make_new_vehicle(questions["vehicle_name"],questions["type"],questions["manufacturer"],questions["model"],questions["color"],questions["age"],questions["available"],questions["location_id"],questions["license_type"])
+                        self.logic.make_new_vehicle(questions["vehicle_name"],questions["type"],questions["manufacturer"],questions["model"],questions["color"],questions["age"],questions["available ( yes / no )"],questions["location_id"],questions["license_type"])
                         return
                     elif option == 'f' and questions["license_type"] == "empty" :
                         wrong =1
@@ -113,8 +113,8 @@ class Non_rvk_ui:
     # Afhenda bilinn til utleigu
     def Vehicle_lending(self):
         wrong = 0
-        questions = {"Input contract ID":"empty","Date when vehicle is picked up":"empty"}
-        information = ("Date Format (yy.mm.dd),( f ) Finish,( c ) Cancel)")
+        questions = {"Input contract ID":"empty","vehcile lending date":"empty"}
+        information = ("Date Format (yy.mm.dd),( f ) Finish,( c ) Cancel")
         while True:
             self.liner()
 
@@ -137,8 +137,9 @@ class Non_rvk_ui:
                 contract = self.logic.get_contract(questions["Input contract ID"])
                 vehicle = self.logic.get_vehicle(contract.vehicle_id)
 
-                if vehicle != None:
-                    self.logic.change_vehicle(contract.vehicle_id,{"available":"no"})
+                if vehicle != None and contract != None:
+                    self.logic.change_vehicle_info(contract.vehicle_id,{"available":"no"})
+                    self.logic.handover_vehicle(questions["Input contract ID"],questions["vehcile lending date"])
 
                 if option == "c":
                     return
@@ -147,78 +148,120 @@ class Non_rvk_ui:
             option = input(self.format.question("Return"))
             return
 
+
+
+
+
     # Taka a moti bilnum ur utleigu
     def Recieve_vehicle_(self):
         wrong =0 
-        questions = {"Input Contract ID":"empty","Input return date":"empty","does customer want to use gbp( y / n )":"empty","Input vehicle condition(ok/bad)":"empty"}
-        info = "( c ) Cancel,,Insert Info below"
+        info = "( c ) Cancel,( F ) Finish"
         title ="Recieve vehicle"
+        questions = {"Input Contract ID":"empty","Input return date":"empty","does customer want to use gbp( y / n )":"empty","Input vehicle condition(ok/bad)":"empty"}
+
+        # printing error statements
         while True:
+            if wrong != 0:
+                questions = {"Input Contract ID":"empty","Input return date":"empty","does customer want to use gbp( y / n )":"empty","Input vehicle condition(ok/bad)":"empty"}
             self.liner()
+            if wrong == 1:
+                self.format.warning("there is one or more wrong input!")
+                print("")
+            if wrong == 2:
+                self.format.warning("Date input was wrong")
+                print("")
 
+
+        # print out the format
             for key,value in questions.items():
-
                 #Format
-                self.liner()
-                if wrong == 1:
-                    self.format.warning("there is one or more wrong input!")
-                    print("")
+                if wrong == 0:
+                    self.liner()
+                else:
                     wrong = 0
+
                 self.format.question_box(questions,info,title)
                 option = input(self.format.question('Insert input here'))
+
+
+
                 # change for next print
                 print("")
-                questions[key] = option
+                
                 #choices
                 if option == "c":
                     return
+                if option == "f" and questions["Input vehicle condition(ok/bad)"] != "empty":
 
-            returning_contract_ID = questions["Input Contract ID"]
-            return_date =questions["Input return date"]
-            returning_vehicle_condition = questions["Input vehicle condition(ok/bad)"]
+                    returning_contract_ID = questions["Input Contract ID"]
+                    return_date =questions["Input return date"]
+                    returning_vehicle_condition = questions["Input vehicle condition(ok/bad)"]
+                    use_gbp = questions["does customer want to use gbp( y / n )"]
 
 
-            if questions["does customer want to use gbp( y / n )"] == 'y':
-                gbp_used = True
-            else:
-                gbp_used = False
 
+                    # check if gbp is used
+                    if use_gbp == "y":
+                        gbp_used = True
+                    else:
+                        gbp_used = False
+
+
+
+                    #check if date format is correcty
+                    try:
+                        late_return = self.logic.recieve_vehicle(returning_contract_ID,return_date,gbp_used)
+                    except:
+                        wrong = 2
+                        break
+
+                    self.format.print_line(len(title)*"_")
+
+
+
+                    #test if contracts and customer exist
+                    try:
+                        contract = self.logic.get_contract(returning_contract_ID)
+                        customer_id = contract.customer_id
+                        customer = self.logic.get_customer(customer_id)
+                        vehicle_id = contract.vehicle_id
+                    except:
+                        wrong = 1
+                        continue
             
-            late_return = self.logic.recieve_vehicle(returning_contract_ID,return_date,gbp_used)
+                    # sign into csv condition of vehicle
+                    if returning_vehicle_condition == "ok":
+                        vehicle_condition = {"available":"yes"}
+                    else:
+                        vehicle_condition = {"available":"damaged"}
+                    self.logic.change_vehicle_info(vehicle_id,vehicle_condition)
 
 
-            self.format.print_line(len(title)*"_")
+                    # adds gbp if vehicle is not late
+                    if late_return != True:
+                        print('')
+                        customer.gbp = int(customer.gbp) + 3
+                        self.logic.change_customer(customer.id,{"gbp":str(customer.gbp)})
+                        self.liner()
+                        self.format.short_box(f"You have {customer.gbp} GBP at your exposal","gbp amount")
+                        go_back = input(self.format.question("Return"))
+                    return
 
-            try:
-                contract = self.logic.get_contract(returning_contract_ID)
-                customer_id = contract.customer_id
-                customer = self.logic.get_customer(customer_id)
-                vehicle_id = contract.vehicle_id
-            except:
-                wrong = 1
-                continue
-       
-            if returning_vehicle_condition == "ok":
-                vehicle_condition = {"available":"yes"}
-            else:
-                vehicle_condition = {"available":"damaged"}
-            self.logic.change_vehicle_info(vehicle_id,vehicle_condition)
+                    #sends user to error if a field is left empty
+                elif option == "f" and questions["Input vehicle condition(ok/bad)"] == "empty":
+                    wrong =1 
+                    break
+                else:
+                    questions[key] = option
+                    continue
 
-            if late_return != True:
-                print('')
-                customer.gbp = int(customer.gbp) + 3
-                self.logic.change_customer(customer.id,{"gbp":str(customer.gbp)})
-                self.format.warning(f"You have {customer.gbp}, GBP to your exposal")
+                        
 
-            else:
-                print("Chuck is not happy!")
-                
-
-                
+                        
 
 
-            break
-        return
+                    
+                    return
 
     def Check_Vehicle(self):
         #Here it needs to get the list of vehicles from Vehicles.csv and look up the Key word[ID] and print out everything about the car.
@@ -245,7 +288,7 @@ class Non_rvk_ui:
             checking_more = input(self.format.question("Wish to check on more vehicles? y/n",self.width))
 
 
-            if checking_more != "y" :
+            if checking_more != "y":
                 break
  
         return
@@ -284,7 +327,7 @@ class Non_rvk_ui:
         #Info
         title = "Changing vehicle"
         information = ("( c ) Cancel,( f ) Finish,( d ) Delete,( s ) skip")
-        questions = {"color":vehicle.color,"available":vehicle.available}
+        questions = {"color":vehicle.color,"available( yes / no / damaged)":vehicle.available}
 
         while True:
             for key,value in questions.items():
@@ -300,7 +343,8 @@ class Non_rvk_ui:
                 if option == 'c':
                     return
                 if option == "f":
-                    self.logic.change_vehicle_info(vehicle.id,questions)
+                    dicter = {"color":questions["color"],"available":questions["available( yes / no / damaged)"]}
+                    self.logic.change_vehicle_info(vehicle.id,dicter)
                     return
 
                 if option == "d":
