@@ -21,7 +21,7 @@ class Dell(object):
 
 
     def rewrite_file(old_list,new_list,filename):
-        filed = open(filename,"w", newline="")
+        filed = open(filename,"w", newline="",encoding="utf-8")
         fields = old_list[0].keys()
 
         writing = csv.DictWriter(filed,fieldnames=fields)
