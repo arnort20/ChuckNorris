@@ -986,10 +986,23 @@ class Rvk_ui:
 
     def vehicle_taxes(self):
         self.liner()
+        options = "( r ) Return"
         title = "Vehicle type taxes"
         vehicle_types = self.logic.get_vehicle_types()
-        information = "( r ) Return"
-        self.print.question_box(vehicle_types,information,title)
+        information = "Type_name,Destination,Rate"
+        type_list = []
+        
+        for vtype in vehicle_types:
+            if vtype["destination_id"] == '0':
+                destination_name = 'All'
+            else:
+                destination = self.logic.get_destination(vtype["destination_id"])
+                destination_name = destination.name
+
+            the_type = [str(vtype["name"]),str(destination_name),str(vtype["rate"])]
+            str_the_type = ','.join(the_type)
+            type_list.append(str_the_type)
+        self.print.large_list_box(options,title,information,type_list)
         go_back = input(self.print.question("return"))
 
 
