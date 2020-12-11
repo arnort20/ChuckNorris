@@ -305,7 +305,7 @@ class Rvk_ui:
                 #Format
                 self.liner()
                 self.print.question_box(questions,information,title)
-                option = input(self.print.question("\tEnter Choice here"))
+                option = input(self.print.question("Enter input here"))
 
                 #Choices
                 if option == 's':
@@ -434,7 +434,7 @@ class Rvk_ui:
 
                 #Format
                 self.print.question_box(questions,information,title)
-                option = input(self.print.question("Enter Choice here"))
+                option = input(self.print.question("Enter input here"))
                 test = self.logic.get_customer(questions["customer ID"])
                 #change answer
 
@@ -482,7 +482,7 @@ class Rvk_ui:
 
                 #Format
                 self.print.question_box(info_list,information,title)
-                option = input(self.print.question("Enter Choice here"))
+                option = input(self.print.question("Enter input here"))
 
                 #change answer for next print
                 
@@ -633,7 +633,7 @@ class Rvk_ui:
                 #Format
                 self.liner()
                 self.print.question_box(questions,information,title)
-                option = input(self.print.question("Enter Choice here"))
+                option = input(self.print.question("Enter input here"))
 
                 #Choices
                 if option == 's':
@@ -825,6 +825,7 @@ class Rvk_ui:
                 vehicle_type = vehi.type
                 if bill != None and contract != None:
                     while True:
+
                         #Info
                         title = "Bill of contract #" + conID
                         #info = "ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid"
@@ -904,7 +905,7 @@ class Rvk_ui:
                     #Format
                     self.liner()
                     self.print.question_box(questions,information,title)
-                    option = input(self.print.question("\tEnter Choice here"))
+                    option = input(self.print.question("Enter input here"))
 
 
                     #Choices
@@ -972,7 +973,7 @@ class Rvk_ui:
                 wrong = 0
 
             self.print.short_box(information,title)
-            location_id = input(self.print.question("location ID"))
+            location_id = input(self.print.question("Vehicle ID"))
             vehicles = self.logic.locate_vehicles(location_id)
 
 

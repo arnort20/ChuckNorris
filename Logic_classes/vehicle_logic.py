@@ -45,7 +45,7 @@ class Vehicle_logic:
             return False
 
     def vehicle_taxes(self):
-        
+        pass
         
     def new_type(self,vehicle_type,destination_id,rate):
         self.dAPI.add_type(vehicle_type,destination_id,rate)

@@ -31,7 +31,7 @@ class Non_rvk_ui:
             self.liner()
             if choice == 0:
                 print("")
-                self.format.print_main_menu("Invalid Choice",self.width)
+                self.format.warning("Invalid Choice",self.width)
 
 
             title = 'welcome Employee {}'.format(self.login_id)
@@ -72,48 +72,41 @@ class Non_rvk_ui:
         wrong = 0
         while True:
             
-
             #dictionary of questions and current answers
             #questions = {"vehicle_name":"empty","type":"empty","manufacturer":"empty","model":"empty","color":"empty","year_made":"empty","tax":"empty","available":"empty","location_id":"empty","license_type":"empty"}
-            questions = {"vehicle_name":"empty","type":"empty","manufacturer":"empty","model":"empty","color":"empty","year_made":"empty","available":"empty","location_id":"empty","license_type":"empty"}
-
+            
+            title = ("Register new vehicle")
+            information = ("( c ) Cancel,( f ) Finish")
             # loop to answer each question
-            for key,value in questions.items():
-                self.liner()
-                                #if person wrote a wrong input last time
-                if wrong == 1:
-                    self.format.warning("there is one or more wrong input!")
-                    print("")
-                    wrong = 0
+            while True:
+                questions = {"vehicle_name":"empty","type":"empty","manufacturer":"empty","model":"empty","color":"empty","year_made":"empty","available":"empty","location_id":"empty","license_type":"empty"}
+                for key,value in questions.items():
+                    self.liner()
+                                    #if person wrote a wrong input last time
+                    if wrong == 1:
+                        self.format.warning("vehicle info not filled in yet")
+                        print("")
+                        wrong = 0
 
-                #formattin reigster vehicle
-                title = ("Register new vehicle")
-                self.format.print_title(title,self.width)
-                self.format.print_space()
-                self.format.print_questions(questions,self.width)
-                self.format.print_space()
-                self.format.print_line(len(title)*"_",self.width)
-                option = input(self.format.question("Enter Choice here",self.width))
-                questions[key] = option
-                
+                    #formattin reigster vehicle
 
-            questions["age"] = questions["year_made"]
+                    self.format.question_box(questions,information,title)
+                    option = input(self.format.question("Enter Input here",self.width))
 
-            # check if inputs are of the correct type
-            try:
-                #test = questions["vehicle_name"],questions["type"],questions["manufacturer"],questions["model"],questions["color"],int(questions["age"]),int(questions["tax"]),questions["available"],questions["location_id"],questions["license_type"]
-                test = questions["vehicle_name"],questions["type"],questions["manufacturer"],questions["model"],questions["color"],int(questions["age"]),questions["available"],questions["location_id"],questions["license_type"]
-                #self.logic.make_new_vehicle(questions["vehicle_name"],questions["type"],questions["manufacturer"],questions["model"],questions["color"],questions["age"],questions["tax"],questions["available"],questions["location_id"],questions["license_type"])
-                self.logic.make_new_vehicle(questions["vehicle_name"],questions["type"],questions["manufacturer"],questions["model"],questions["color"],questions["age"],questions["available"],questions["location_id"],questions["license_type"])
-            except:
-                print()
-                wrong = 1
-                continue
-
-
-            break
-
-        return
+                    if option == 'c':
+                        return
+                    elif option == 'f' and questions["license_type"] != "empty" :
+        
+                        questions["age"] = questions["year_made"]
+                        test = questions["vehicle_name"],questions["type"],questions["manufacturer"],questions["model"],questions["color"],int(questions["age"]),questions["available"],questions["location_id"],questions["license_type"]
+                    
+                        self.logic.make_new_vehicle(questions["vehicle_name"],questions["type"],questions["manufacturer"],questions["model"],questions["color"],questions["age"],questions["available"],questions["location_id"],questions["license_type"])
+                        return
+                    elif option == 'f' and questions["license_type"] == "empty" :
+                        wrong =1
+                        break
+                    else:
+                        questions[key] = option
 
     # Afhenda bilinn til utleigu
     def Vehicle_lending(self):
@@ -241,19 +234,28 @@ class Non_rvk_ui:
 
     def Check_Vehicle(self):
         #Here it needs to get the list of vehicles from Vehicles.csv and look up the Key word[ID] and print out everything about the car.
-        self.liner()
+        wrong =0
         while True:
             title = ("Check Vehicle")
             self.format.liner()
+            if wrong == 1:
+                self.format.warning("Incorrect Vehicle ID")
+
             self.format.short_box("Enter Vehicle ID below",title)
             checking_vehicle_ID = input(self.format.question("Enter vehicle ID",self.width))
             info = ("ID,Plate,Type,Manufacturer,Model,Color,Year made,Available,Location id,License type")
             vehicle = self.logic.get_vehicle(checking_vehicle_ID)
+
+            if vehicle == None:
+                wrong = 1 
+                continue
+
             options = ("( r ) return")
             self.format.liner()
             self.format.list_box(title,options,info,str(vehicle))
             
             checking_more = input(self.format.question("Wish to check on more vehicles? y/n",self.width))
+
 
             if checking_more != "y" :
                 break
