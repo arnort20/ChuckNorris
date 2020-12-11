@@ -496,6 +496,15 @@ class Rvk_ui:
                 elif option == 'f' and info_list["license_type"] != "empty" :
                     self.logic.new_customer(info_list['ID'],info_list['customer_name'],info_list['ssn'],info_list['email'],info_list['phone'],info_list['address'],info_list['license_type'])
                     self.new_contract(info_list['ID'])
+
+                    self.liner()
+                    item = self.logic.get_customers()
+                    popped = item.pop()
+                    information = popped.id + " is the new customer ID"
+                    title = "new customer id"
+                    self.print.short_box(information,title)
+                    go_back = input(self.print.question("return"))
+
                     return
                 elif option == 'f' and info_list["license_type"] == "empty" :
                     wrong =1
@@ -564,12 +573,15 @@ class Rvk_ui:
                     questions["start_date"],questions["end_date"] = questions['start date (YYYY.MM.DD)'],questions['end date (YYYY.MM.DD)']
                     self.logic.new_contract(customer.id,questions["vehicle_id"],questions["destination_id"],questions["start_date"],questions["end_date"])
 
+
+                    self.liner()
                     item = self.logic.all_contracts()
                     popped = item.pop()
                     information = popped.id + " is the new contracts ID"
                     title = "new contract id"
                     self.print.short_box(information,title)
                     go_back = input(self.print.question("return"))
+
 
                     return
                 elif option == 'f' and questions["destination_id"] == "empty" :
@@ -882,6 +894,7 @@ class Rvk_ui:
         title = 'New Employee'
         information = ("( c ) Cancel, ( f ) Finish")        
         wrong =0
+        questions = {"name":"empty","ssn":"empty","address":"empty","location_id":"empty","email":"empty","phone":"empty","password":"empty","confirm password":"empty"}
         while True:
             if wrong != 0:
                 questions = {"name":"empty","ssn":"empty","address":"empty","location_id":"empty","email":"empty","phone":"empty","password":"empty","confirm password":"empty"}
@@ -910,11 +923,17 @@ class Rvk_ui:
                     return
                 elif option == 'f' and questions["confirm password"] != "empty" :
                     questions["emp_name"] = questions["name"]
-                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["location_id"],questions["password"],)
+                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["location_id"],questions["password"])
+
+                    self.liner()
+                    item = self.logic.get_employees()
+                    popped = item.pop()
+                    information = popped.id + " is the new customer ID"
+                    title = "new customer id"
+                    self.print.short_box(information,title)
+                    go_back = input(self.print.question("return"))
                     break
                 elif option == 'f' and questions["confirm password"] == "empty" :
-                    questions["emp_name"] = questions["name"]
-                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["location_id"],questions["password"],)
                     wrong =2
                     break
                 else:
