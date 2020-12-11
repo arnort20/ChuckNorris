@@ -114,7 +114,7 @@ class Non_rvk_ui:
     def Vehicle_lending(self):
         wrong = 0
         questions = {"Input contract ID":"empty","Date when vehicle is picked up":"empty"}
-        information = ("Date Format (yy.mm.dd),( f ) Finish",( c ) Cancel")
+        information = ("Date Format (yy.mm.dd),( f ) Finish,( c ) Cancel)")
         while True:
             self.liner()
 
@@ -224,14 +224,6 @@ class Non_rvk_ui:
 
             break
         return
-        # title = ("Recive Vehicle")
-            # self.format.short_box("Input contract ID",title)
-            # returning_contract_ID =         input(self.format.question("Input contract ID: "))
-            # return_date =                   input(self.format.question("Input return date: "))
-            # gbp_used =                   input(self.format.question("how much gbp does the customer want to use: "))
-            # returning_vehicle_condition =   input(self.format.question("Input vehicle condition(ok/bad): "))
-
-        # Adda gbp 
 
     def Check_Vehicle(self):
         #Here it needs to get the list of vehicles from Vehicles.csv and look up the Key word[ID] and print out everything about the car.
