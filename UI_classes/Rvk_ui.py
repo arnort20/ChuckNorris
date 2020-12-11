@@ -468,17 +468,21 @@ class Rvk_ui:
     def new_customer(self):
 
         #start info
-        info_list = {'ID':"empty","customer_name":"empty","ssn":"empty",'email':"empty",'phone':"empty",'address':"empty", "license_type":"empty"}
+
         title = 'New Customer'
         information = ("( c ) Cancel, ( f ) Finish")
         option = 0
         wrong = 0
 
         while True:
+            info_list = {'ID':"empty","customer_name":"empty","ssn":"empty",'email':"empty",'phone':"empty",'address':"empty", "license_type":"empty"}
             for key,value in info_list.items():
                 self.liner()
 
-
+                if wrong == 1:
+                    self.print.warning("customer info not filled in yet")
+                    print("")
+                    wrong = 0
 
                 #Format
                 self.print.question_box(info_list,information,title)
@@ -495,6 +499,9 @@ class Rvk_ui:
                     self.logic.new_customer(info_list['ID'],info_list['customer_name'],info_list['ssn'],info_list['email'],info_list['phone'],info_list['address'],info_list['license_type'])
                     self.new_contract(info_list['ID'])
                     return
+                elif option == 'f' and info_list["license_type"] == "empty" :
+                    wrong =1
+                    break                  
                 else:
                     info_list[key] = option
 
@@ -505,34 +512,13 @@ class Rvk_ui:
         #info
         title = 'New Contract'
         customer = self.logic.get_customer(customer_id)
-        #remember to rework this function, adding the fancy new functions
-        #Logic_API.check_license(customer_id, vehicle_id)
-        #Logic_API.check_reservations(vehicle_ID, start_date, end_date)
-        print(customer)
-
-        # gbp = customer.gbp
-        # amount = 'good boy points: {}'.format(gbp)
-
-        # #Format
-        # self.liner()
-        # self.print.short_box(amount,title)
-
-        # use_gbp = input(self.print.question('Use Good Boy Points ( y / n )'))
-
-
-        # if use_gbp == 'y':
-        #     #þarf að implementa gbp notkun
-        #     pass
-
-
-        #info for next part
-
         information = ("( c ) Cancel, ( f ) Finish")
-        questions = {'start date (YYYY.MM.DD)':"empty",'end date (YYYY.MM.DD)':"empty",'vehicle_id':"empty",'destination_id':"empty",}
+        
         vehicle_fail = 0
 
         #Contract making part
         while True:
+            questions = {'start date (YYYY.MM.DD)':"empty",'end date (YYYY.MM.DD)':"empty",'vehicle_id':"empty",'destination_id':"empty",}
 
             for key,value in questions.items():
                 self.liner()
@@ -566,6 +552,9 @@ class Rvk_ui:
                     questions["start_date"],questions["end_date"] = questions['start date (YYYY.MM.DD)'],questions['end date (YYYY.MM.DD)']
                     self.logic.new_contract(customer.id,questions["vehicle_id"],questions["destination_id"],questions["start_date"],questions["end_date"])
                     return
+                elif option == 'f' and questions["destination_id"] == "empty" :
+                    wrong =1
+                    break     
                 else:
                     questions[key] = option
 
