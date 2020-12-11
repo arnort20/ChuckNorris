@@ -460,13 +460,10 @@ class Rvk_ui:
                 self.print.question_box(questions,information,title)
                 option = input(self.print.question("Enter input here"))
 
-
-                test = self.logic.get_customer(option)
-                if test != None:
-                    customer_name = test.customer_name
-                else:
-                    wrong = 1
-                    continue
+                customer = self.logic.get_customer(option)
+                test = self.logic.get_customer(questions["customer ID"])
+                if customer != None:
+                    customer_name = customer.customer_name
 
                 #change answer
 
