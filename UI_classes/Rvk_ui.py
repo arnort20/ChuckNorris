@@ -505,7 +505,7 @@ class Rvk_ui:
                     self.print.short_box(information,title)
                     go_back = input(self.print.question("return"))
 
-                    return
+                    self.new_contract(questions["ID"])
                 elif option == 'f' and info_list["license_type"] == "empty" :
                     wrong =1
                     break                  
@@ -518,7 +518,7 @@ class Rvk_ui:
         #info
         title = 'New Contract'
         customer = self.logic.get_customer(customer_id)
-        information = ("( c ) Cancel,( s ) search for vehicles, ( f ) Finish")
+        information = ("( c ) Cancel, ( f ) Finish")
         questions = {'start date (YYYY.MM.DD)':"empty",'end date (YYYY.MM.DD)':"empty",'destination_id':"empty",'vehicle_id':"empty"}
         wrong = 0
         done = 0
@@ -932,7 +932,7 @@ class Rvk_ui:
                     title = "new customer id"
                     self.print.short_box(information,title)
                     go_back = input(self.print.question("return"))
-                    break
+                    return
                 elif option == 'f' and questions["confirm password"] == "empty" :
                     wrong =2
                     break
@@ -1037,7 +1037,7 @@ class Rvk_ui:
                 wrong = 0
 
             self.print.short_box(information,title)
-            location_id = input(self.print.question("Vehicle ID"))
+            location_id = input(self.print.question("Destination ID"))
             vehicles = self.logic.locate_vehicles(location_id)
 
 
