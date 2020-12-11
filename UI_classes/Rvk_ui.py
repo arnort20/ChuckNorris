@@ -198,16 +198,22 @@ class Rvk_ui:
 
 #----------------------Branch review---------------------
     def branch_review(self):
+        title = "Earnings Report"
+        information = ("Date Format = (yy.mm.dd),( c ) Cancel")
+        wrong = 0
+
         while True:
             questions = {"Input Location ID":"empty","Input Date From":"empty","Input Date To":"empty"}
-            title = "Earnings Report"
-            information = ("Date Format = (yy.mm.dd),( c ) Cancel")
+
             employee = self.logic.get_employee(self.employee_num)
 
 
             for key,value in questions.items():
 
                 self.liner()
+                if wrong != 0:
+                    self.print.warning("invalid date input")
+                    wrong = 0
                 self.print.question_box(questions,information,title)
                 option = input(self.print.question("Enter Input here"))
 
@@ -217,8 +223,12 @@ class Rvk_ui:
 
                 if option == "c":
                     return
-            money = self.logic.filter_earnings(questions["Input Location ID"],questions["Input Date From"],questions["Input Date To"])
-            
+            try:
+                money = self.logic.filter_earnings(questions["Input Location ID"],questions["Input Date From"],questions["Input Date To"])
+            except:
+                wrong = 1
+                continue
+
             self.liner()
             self.print.question_box(questions,information,title)
             self.print.print_space()
@@ -233,9 +243,9 @@ class Rvk_ui:
 #---------------------New destination--------------------
     def new_destination(self):
 
-            info_list = {"destination_name":"empty","country_name":"empty",'airport':"empty",'phone':"empty",'opening_hours':"empty"}
+            info_list = {"destination_name":"empty","country_name":"empty",'airport code':"empty",'phone':"empty",'opening_hours':"empty"}
             title = 'New Destination'
-            information = ("( c ) Cancel, ( f ) Finish")
+            information = ("( c ) Cancel,time format: hh:mm - hh:mm, ( f ) Finish")
             option = 0
             wrong = 0
 
@@ -281,7 +291,7 @@ class Rvk_ui:
                 wrong =0         
 
             self.print.short_box(information,title)
-            destination_id = input(self.print.question("Contract ID")) 
+            destination_id = input(self.print.question("Destination ID")) 
 
             if destination_id == 'r':
                 return
@@ -430,11 +440,14 @@ class Rvk_ui:
         wrong = 0
         title = "returning customer"
         questions = {"customer ID": "empty"}
-        information = ("( c ) Cancel, ( f ) Finish")
+        customer_name = "customer has not been entered"
+        
         ready =0
 
         while True:
+            information = ("( c ) Cancel,"+customer_name+", ( f ) Finish")
             for key,value in questions.items():
+                
                 self.liner()
 
 
@@ -448,7 +461,13 @@ class Rvk_ui:
                 option = input(self.print.question("Enter input here"))
 
 
-                test = self.logic.get_customer(questions["customer ID"])
+                test = self.logic.get_customer(option)
+                if test != None:
+                    customer_name = test.customer_name
+                else:
+                    wrong = 1
+                    continue
+
                 #change answer
 
                 if option == 'f' and test != None:
@@ -862,8 +881,11 @@ class Rvk_ui:
             #Format
             self.liner()
 
-            if wrong != 0:
+            if wrong == 1:
                 self.print.warning("Wrong ID")
+                wrong = 0
+            if wrong == 2:
+                self.print.warning("Bill does not exist")
                 wrong = 0
 
             self.print.short_box(information,title)
@@ -899,6 +921,9 @@ class Rvk_ui:
                         option = input(self.print.question('Type here: ')).lower()
 
                         return
+                else:
+                    wrong = 2
+                    continue
             else:
                 wrong = 1
                 continue
