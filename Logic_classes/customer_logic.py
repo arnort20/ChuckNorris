@@ -22,4 +22,6 @@ class Customer_logic:
         #removes the customer from the database
         self.dAPI.delete_customer(customerID)
         
+    def get_all_customers(self):
+        return self.dAPI.get_customers()
         

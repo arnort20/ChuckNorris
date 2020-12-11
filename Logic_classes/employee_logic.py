@@ -22,3 +22,7 @@ class Employee_logic:
     def get_employee(self,emp_ID):
         #returns an employee object containing all information about them
         return self.dAPI.get_employee(emp_ID)
+
+    def get_all_employees(self):
+        return self.dAPI.get_employees()
+        

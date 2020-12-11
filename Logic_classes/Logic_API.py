@@ -206,6 +206,9 @@ class Logic_API:
         self.customer_wrapper()
         self.customer.kill_customer(customerID)
 
+    def get_customers(self):
+        self.customer_wrapper()
+        self.customer.get_all_customers()
 
 
 
@@ -232,7 +235,10 @@ class Logic_API:
         self.employee_wrapper()
         return self.employee.get_employee(emp_ID)
 
-
+    def get_employees(self):
+        self.employee_wrapper()
+        return self.employee.get_all_employees()
+        
 
 
     #destination stuff
