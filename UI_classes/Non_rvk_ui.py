@@ -77,9 +77,11 @@ class Non_rvk_ui:
             
             title = ("Register new vehicle")
             information = ("( c ) Cancel,( f ) Finish")
+            questions = {"vehicle_name":"empty","type":"empty","manufacturer":"empty","model":"empty","color":"empty","year_made":"empty","available":"empty","location_id":"empty","license_type":"empty"}
             # loop to answer each question
             while True:
-                questions = {"vehicle_name":"empty","type":"empty","manufacturer":"empty","model":"empty","color":"empty","year_made":"empty","available":"empty","location_id":"empty","license_type":"empty"}
+                if wrong != 0:
+                    questions = {"vehicle_name":"empty","type":"empty","manufacturer":"empty","model":"empty","color":"empty","year_made":"empty","available":"empty","location_id":"empty","license_type":"empty"}
                 for key,value in questions.items():
                     self.liner()
                                     #if person wrote a wrong input last time

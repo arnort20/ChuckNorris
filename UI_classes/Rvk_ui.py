@@ -435,17 +435,13 @@ class Rvk_ui:
                 #Format
                 self.print.question_box(questions,information,title)
                 option = input(self.print.question("Enter input here"))
+
+
                 test = self.logic.get_customer(questions["customer ID"])
+                print(test)
                 #change answer
 
-                try:
-                    ready = test.id
-                    ready =1
-                except:
-                    ready = 0
-                    pass
-
-                if option == 'f' and ready == 1:
+                if option == 'f' and test != None:
                     self.new_contract(questions["customer ID"])
                     return
                 elif option == 'c':
@@ -475,7 +471,8 @@ class Rvk_ui:
         wrong = 0
 
         while True:
-            info_list = {'ID':"empty","customer_name":"empty","ssn":"empty",'email':"empty",'phone':"empty",'address':"empty", "license_type":"empty"}
+            if wrong != 0:
+                info_list = {'ID':"empty","customer_name":"empty","ssn":"empty",'email':"empty",'phone':"empty",'address':"empty", "license_type":"empty"}
             for key,value in info_list.items():
                 self.liner()
 
@@ -513,24 +510,26 @@ class Rvk_ui:
         title = 'New Contract'
         customer = self.logic.get_customer(customer_id)
         information = ("( c ) Cancel, ( f ) Finish")
-        
+
+        wrong = 0
         vehicle_fail = 0
 
         #Contract making part
         while True:
-            questions = {'start date (YYYY.MM.DD)':"empty",'end date (YYYY.MM.DD)':"empty",'vehicle_id':"empty",'destination_id':"empty",}
+            if wrong != 0:
+                questions = {'start date (YYYY.MM.DD)':"empty",'end date (YYYY.MM.DD)':"empty",'vehicle_id':"empty",'destination_id':"empty",}
 
             for key,value in questions.items():
                 self.liner()
                 if vehicle_fail == 1:
                     self.print.warning("customer not qualified for vehicle!")
                     vehicle_fail = 0
+                if wrong == 1:
+                    self.print.warning("not all info has been filled in")
 
                 #Format
                 self.print.question_box(questions,information,title)
                 option = input(self.print.question("Enter Choice here"))
-
-                
 
                 #check if customer can rent car
                 if questions["vehicle_id"] != "empty":
@@ -542,9 +541,8 @@ class Rvk_ui:
                     else:
                         vehicle_fail = 1
                         questions["vehicle_id"] = "empty"
-                        continue
+                        break
 
-                #repeats til user is happy and chooses either choice
                 if option == 'c':
                     return
 
@@ -838,29 +836,43 @@ class Rvk_ui:
     def add_new_employee(self):
         #Info
         title = 'New Employee'
-        questions = {"name":"empty","ssn":"empty","address":"empty","location_id":"empty","email":"empty","phone":"empty","password":"empty","confirm password":"empty"}
         information = ("( c ) Cancel, ( f ) Finish")        
-
+        wrong =0
         while True:
+            if wrong != 0:
+                questions = {"name":"empty","ssn":"empty","address":"empty","location_id":"empty","email":"empty","phone":"empty","password":"empty","confirm password":"empty"}
             for key,value in questions.items():
 
                 #Format
                 self.liner()
+                if wrong == 1:
+                    self.print.warning("passwords don't match")
+                    wrong = 0
+                elif wrong == 2:
+                    self.print.warning("not all info filled in yet")
+                    wrong = 0          
+
+
                 self.print.question_box(questions,information,title)
                 option = input(self.print.question('Type here: '))
 
                 #change for next print
-                
-
+            
                 #Choices
-                if questions["password"] != questions["confirm password"]:
-                    self.print.warning("passwords don't match")
-                if option == 'c':
+                if option == "f" and questions["password"] != questions["confirm password"]:
+                    wrong = 1
+                    break
+                elif option == 'c':
                     return
                 elif option == 'f' and questions["confirm password"] != "empty" :
                     questions["emp_name"] = questions["name"]
                     self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["location_id"],questions["password"],)
-                    return
+                    break
+                elif option == 'f' and questions["confirm password"] == "empty" :
+                    questions["emp_name"] = questions["name"]
+                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["location_id"],questions["password"],)
+                    wrong =2
+                    break
                 else:
                     questions[key] = option
 
