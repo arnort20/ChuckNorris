@@ -102,7 +102,7 @@ class Non_rvk_ui:
                         questions["age"] = questions["year_made"]
                         test = questions["vehicle_name"],questions["type"],questions["manufacturer"],questions["model"],questions["color"],int(questions["age"]),questions["available"],questions["location_id"],questions["license_type"]
                     
-                        self.logic.make_new_vehicle(questions["vehicle_name"],questions["type"],questions["manufacturer"],questions["model"],questions["color"],questions["age"],questions["available"],questions["location_id"],questions["license_type"])
+                        self.logic.make_new_vehicle(questions["vehicle_name"],questions["type"],questions["manufacturer"],questions["model"],questions["color"],questions["age"],questions["available ( yes / no )"],questions["location_id"],questions["license_type"])
                         return
                     elif option == 'f' and questions["license_type"] == "empty" :
                         wrong =1
@@ -113,7 +113,7 @@ class Non_rvk_ui:
     # Afhenda bilinn til utleigu
     def Vehicle_lending(self):
         wrong = 0
-        questions = {"Input contract ID":"empty","Date when vehicle is picked up":"empty"}
+        questions = {"Input contract ID":"empty"}
         information = ("Date Format (yy.mm.dd),( f ) Finish,( c ) Cancel)")
         while True:
             self.liner()
@@ -138,7 +138,7 @@ class Non_rvk_ui:
                 vehicle = self.logic.get_vehicle(contract.vehicle_id)
 
                 if vehicle != None:
-                    self.logic.change_vehicle(contract.vehicle_id,{"available":"no"})
+                    self.logic.change_vehicle_info(contract.vehicle_id,{"available":"no"})
 
                 if option == "c":
                     return
