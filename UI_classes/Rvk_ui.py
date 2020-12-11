@@ -438,7 +438,6 @@ class Rvk_ui:
 
 
                 test = self.logic.get_customer(questions["customer ID"])
-                print(test)
                 #change answer
 
                 if option == 'f' and test != None:
@@ -467,6 +466,7 @@ class Rvk_ui:
 
         title = 'New Customer'
         information = ("( c ) Cancel, ( f ) Finish")
+        info_list = {'ID':"empty","customer_name":"empty","ssn":"empty",'email':"empty",'phone':"empty",'address':"empty", "license_type":"empty"}
         option = 0
         wrong = 0
 
@@ -481,6 +481,7 @@ class Rvk_ui:
                     print("")
                     wrong = 0
 
+
                 #Format
                 self.print.question_box(info_list,information,title)
                 option = input(self.print.question("Enter input here"))
@@ -489,10 +490,10 @@ class Rvk_ui:
                 
 
                 #Choices
+
                 if option == 'c':
                     return
                 elif option == 'f' and info_list["license_type"] != "empty" :
-                        
                     self.logic.new_customer(info_list['ID'],info_list['customer_name'],info_list['ssn'],info_list['email'],info_list['phone'],info_list['address'],info_list['license_type'])
                     self.new_contract(info_list['ID'])
                     return
@@ -501,23 +502,23 @@ class Rvk_ui:
                     break                  
                 else:
                     info_list[key] = option
-
-
+                    continue
 
 #------------Creating a new contract------------
     def new_contract(self, customer_id):
         #info
         title = 'New Contract'
         customer = self.logic.get_customer(customer_id)
-        information = ("( c ) Cancel, ( f ) Finish")
-
+        information = ("( c ) Cancel,( s ) search for vehicles, ( f ) Finish")
+        questions = {'start date (YYYY.MM.DD)':"empty",'end date (YYYY.MM.DD)':"empty",'destination_id':"empty",'vehicle_id':"empty"}
         wrong = 0
+        done = 0
         vehicle_fail = 0
 
         #Contract making part
         while True:
             if wrong != 0:
-                questions = {'start date (YYYY.MM.DD)':"empty",'end date (YYYY.MM.DD)':"empty",'vehicle_id':"empty",'destination_id':"empty",}
+                questions = {'start date (YYYY.MM.DD)':"empty",'end date (YYYY.MM.DD)':"empty",'destination_id':"empty",'vehicle_id':"empty"}
 
             for key,value in questions.items():
                 self.liner()
@@ -527,12 +528,17 @@ class Rvk_ui:
                 if wrong == 1:
                     self.print.warning("not all info has been filled in")
 
+                if wrong == 2:
+                    self.print.warning("Date entered wrong")
+                    print("")
+                    wrong = 0
+
                 #Format
                 self.print.question_box(questions,information,title)
                 option = input(self.print.question("Enter Choice here"))
 
                 #check if customer can rent car
-                if questions["vehicle_id"] != "empty":
+                if questions["vehicle_id"] != "empty" and len(questions["start date (YYYY.MM.DD)"].split(".")) == 3 and questions['end date (YYYY.MM.DD)'] != "empty" :
                     can_rent = self.logic.check_license(customer_id,questions["vehicle_id"])
                     not_taken = self.logic.check_reservations(questions["vehicle_id"],questions['start date (YYYY.MM.DD)'],questions['end date (YYYY.MM.DD)'])
 
@@ -542,11 +548,19 @@ class Rvk_ui:
                         vehicle_fail = 1
                         questions["vehicle_id"] = "empty"
                         break
-
+                elif questions["vehicle_id"] != "empty" and len(questions["start date (YYYY.MM.DD)"].split(".")) != 3:
+                    wrong = 2
+                    break
+                    
+                if key == "destination_id":
+                    questions[key] = option
                 if option == 'c':
                     return
-
-                elif option == 'f' and questions["destination_id"] != "empty" and  questions["vehicle_id"] != "empty" :
+                elif questions["destination_id"] != "empty" and done != 1:
+                    self.search_vehicles()
+                    done =1
+                    continue
+                elif option == 'f' and questions["destination_id"] != "empty":
                     questions["start_date"],questions["end_date"] = questions['start date (YYYY.MM.DD)'],questions['end date (YYYY.MM.DD)']
                     self.logic.new_contract(customer.id,questions["vehicle_id"],questions["destination_id"],questions["start_date"],questions["end_date"])
                     return
@@ -985,7 +999,7 @@ class Rvk_ui:
                 title = "vehicle list"
                 self.liner()
                 self.print.large_list_box(options,title,info,vehicles)
-                go_back = input(self.print.question("\tReturn"))
+                go_back = input(self.print.question("Return"))
                 return
 
             else:
