@@ -199,7 +199,7 @@ class Rvk_ui:
 #----------------------Branch review---------------------
     def branch_review(self):
         title = "Earnings Report"
-        information = ("Date Format = (YYYY.MM.DD),( c ) Cancel")
+        information = ("Date Format = (yy.mm.dd),( c ) Cancel")
         wrong = 0
 
         while True:
@@ -546,7 +546,7 @@ class Rvk_ui:
         title = 'New Contract'
         customer = self.logic.get_customer(customer_id)
         information = ("( c ) Cancel, ( f ) Finish")
-        questions = {'start date (YYYYYY.MM.DD)':"empty",'end date (YYYYYY.MM.DD)':"empty",'destination_id':"empty",'vehicle_id':"empty"}
+        questions = {'start date (YYYY.MM.DD)':"empty",'end date (YYYY.MM.DD)':"empty",'destination_id':"empty",'vehicle_id':"empty"}
         wrong = 0
         done = 0
         vehicle_fail = 0
@@ -554,7 +554,7 @@ class Rvk_ui:
         #Contract making part
         while True:
             if wrong != 0:
-                questions = {'start date (YYYYYY.MM.DD)':"empty",'end date (YYYYYY.MM.DD)':"empty",'destination_id':"empty",'vehicle_id':"empty"}
+                questions = {'start date (YYYY.MM.DD)':"empty",'end date (YYYY.MM.DD)':"empty",'destination_id':"empty",'vehicle_id':"empty"}
 
             for key,value in questions.items():
                 self.liner()
@@ -575,10 +575,10 @@ class Rvk_ui:
 
                 #check if customer can rent car
 
-                if questions["vehicle_id"] != "empty" and len(questions["start date (YYYYYY.MM.DD)"].split(".")) == 3 and questions['end date (YYYYYY.MM.DD)'] != "empty" :
+                if questions["vehicle_id"] != "empty" and len(questions["start date (YYYY.MM.DD)"].split(".")) == 3 and questions['end date (YYYY.MM.DD)'] != "empty" :
                     try:
                         can_rent = self.logic.check_license(customer_id,questions["vehicle_id"])
-                        not_taken = self.logic.check_reservations(questions["vehicle_id"],questions['start date (YYYYYY.MM.DD)'],questions['end date (YYYYYY.MM.DD)'])
+                        not_taken = self.logic.check_reservations(questions["vehicle_id"],questions['start date (YYYY.MM.DD)'],questions['end date (YYYY.MM.DD)'])
                     except:
                         wrong = 2
                         break
@@ -588,7 +588,7 @@ class Rvk_ui:
                         vehicle_fail = 1
                         questions["vehicle_id"] = "empty"
                         break
-                elif questions["vehicle_id"] != "empty" and len(questions["start date (YYYYYY.MM.DD)"].split(".")) != 3:
+                elif questions["vehicle_id"] != "empty" and len(questions["start date (YYYY.MM.DD)"].split(".")) != 3:
                     wrong = 2
                     break
                     
@@ -601,7 +601,7 @@ class Rvk_ui:
                     done =1
                     continue
                 elif option == 'f' and questions["destination_id"] != "empty":
-                    questions["start_date"],questions["end_date"] = questions['start date (YYYYYY.MM.DD)'],questions['end date (YYYYYY.MM.DD)']
+                    questions["start_date"],questions["end_date"] = questions['start date (YYYY.MM.DD)'],questions['end date (YYYY.MM.DD)']
                     self.logic.new_contract(customer.id,questions["vehicle_id"],questions["destination_id"],questions["start_date"],questions["end_date"])
 
 
