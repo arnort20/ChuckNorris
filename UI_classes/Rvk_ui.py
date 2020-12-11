@@ -496,7 +496,16 @@ class Rvk_ui:
                 elif option == 'f' and info_list["license_type"] != "empty" :
                     self.logic.new_customer(info_list['ID'],info_list['customer_name'],info_list['ssn'],info_list['email'],info_list['phone'],info_list['address'],info_list['license_type'])
                     self.new_contract(info_list['ID'])
-                    return
+
+                    self.liner()
+                    item = self.logic.get_customers()
+                    popped = item.pop()
+                    information = popped.id + " is the new customer ID"
+                    title = "new customer id"
+                    self.print.short_box(information,title)
+                    go_back = input(self.print.question("return"))
+
+                    self.new_contract(questions["ID"])
                 elif option == 'f' and info_list["license_type"] == "empty" :
                     wrong =1
                     break                  
@@ -509,7 +518,7 @@ class Rvk_ui:
         #info
         title = 'New Contract'
         customer = self.logic.get_customer(customer_id)
-        information = ("( c ) Cancel,( s ) search for vehicles, ( f ) Finish")
+        information = ("( c ) Cancel, ( f ) Finish")
         questions = {'start date (YYYY.MM.DD)':"empty",'end date (YYYY.MM.DD)':"empty",'destination_id':"empty",'vehicle_id':"empty"}
         wrong = 0
         done = 0
@@ -563,6 +572,17 @@ class Rvk_ui:
                 elif option == 'f' and questions["destination_id"] != "empty":
                     questions["start_date"],questions["end_date"] = questions['start date (YYYY.MM.DD)'],questions['end date (YYYY.MM.DD)']
                     self.logic.new_contract(customer.id,questions["vehicle_id"],questions["destination_id"],questions["start_date"],questions["end_date"])
+
+
+                    self.liner()
+                    item = self.logic.all_contracts()
+                    popped = item.pop()
+                    information = popped.id + " is the new contracts ID"
+                    title = "new contract id"
+                    self.print.short_box(information,title)
+                    go_back = input(self.print.question("return"))
+
+
                     return
                 elif option == 'f' and questions["destination_id"] == "empty" :
                     wrong =1
@@ -635,7 +655,7 @@ class Rvk_ui:
         #Info
         title = "Changing contract"
         information = ("( c ) Cancel, ( f ) Finish,( s ) skip")
-        questions = {"start_date":contract.start_date,"end_date":contract.end_date,"vehicle_id":contract.vehicle_id}
+        questions = {"start_date":contract.start_date,"end_date":contract.end_date,"vehicle_id":contract.vehicle_id,"paid":contract.paid}
 
         while True:
             for key,value in questions.items():
@@ -874,6 +894,7 @@ class Rvk_ui:
         title = 'New Employee'
         information = ("( c ) Cancel, ( f ) Finish")        
         wrong =0
+        questions = {"name":"empty","ssn":"empty","address":"empty","location_id":"empty","email":"empty","phone":"empty","password":"empty","confirm password":"empty"}
         while True:
             if wrong != 0:
                 questions = {"name":"empty","ssn":"empty","address":"empty","location_id":"empty","email":"empty","phone":"empty","password":"empty","confirm password":"empty"}
@@ -902,11 +923,17 @@ class Rvk_ui:
                     return
                 elif option == 'f' and questions["confirm password"] != "empty" :
                     questions["emp_name"] = questions["name"]
-                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["location_id"],questions["password"],)
-                    break
+                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["location_id"],questions["password"])
+
+                    self.liner()
+                    item = self.logic.get_employees()
+                    popped = item.pop()
+                    information = popped.id + " is the new customer ID"
+                    title = "new customer id"
+                    self.print.short_box(information,title)
+                    go_back = input(self.print.question("return"))
+                    return
                 elif option == 'f' and questions["confirm password"] == "empty" :
-                    questions["emp_name"] = questions["name"]
-                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["location_id"],questions["password"],)
                     wrong =2
                     break
                 else:
@@ -1010,7 +1037,7 @@ class Rvk_ui:
                 wrong = 0
 
             self.print.short_box(information,title)
-            location_id = input(self.print.question("Vehicle ID"))
+            location_id = input(self.print.question("Destination ID"))
             vehicles = self.logic.locate_vehicles(location_id)
 
 

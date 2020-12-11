@@ -168,19 +168,19 @@ class Chuck_ui():
         
         # Format
         self.liner()
-        self.printer.print_title(rhk)
-        self.printer.print_out_format(information)
+        self.printer.short_box(information,rhk)
 
         # Hérna kallar hann kill customer og fire employee. Og Round Housar þau. Þarf að fá til baka númer frá föllunum til að setja í print skipunina.(Finished)
         # Here we will input and call the kickdownstairs function.
         who_to_kill = input(self.printer.question("Enter Choice here: "))
         if who_to_kill == "1":
-            cust_ID = input("Enter victim's customer ID ")
+            cust_ID = input(self.printer.question("Enter victim's customer ID "))
             customer = self.logic.get_customer(cust_ID)
             if customer:
                 cust_name = customer.customer_name
-                print(self.kickdownstairs(cust_name))
+                print(self.kickdownstairs(cust_name).center(240))
                 self.logic.kill_customer(cust_ID)
+                go_back = input(self.printer.question("Return"))
             # Error check if customer does not exist.
             else:
                 print("Customer not found")
@@ -194,8 +194,9 @@ class Chuck_ui():
             
             if employee:
                 emp_name = employee.employee_name
-                print(self.kickdownstairs(emp_name))
+                print(self.kickdownstairs(emp_name).center(240))
                 self.logic.fire_employee(emp_ID)
+                go_back = input(self.printer.question("Return"))
             # Error check if employee does not exist.
             else:
                 print("Employee not found")
@@ -234,13 +235,13 @@ class Chuck_ui():
             THIS IS NAN AIR!
 
          ○   < Chuck Norris
-        く|)へ
-          〉
-        ￣￣┗┓_         V {} V
-    　 　      ┗┓_       ヾ○ｼ
-    　　          ┗┓_   ヘ/ 　 　
-    　               ┗┓_ノ
-    　 　 　 　 　      ┗┓
+        <|/
+         /
+          ┗┓_         V {} V
+             ┗┓_         \○/
+                ┗┓_    \ / 
+                   ┗┓_  /
+                      ┗┓
             """).format(name)
         return output
 #--------------Error message only used in Round_house--------------#
