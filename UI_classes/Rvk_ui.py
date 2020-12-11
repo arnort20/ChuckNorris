@@ -495,8 +495,6 @@ class Rvk_ui:
                     return
                 elif option == 'f' and info_list["license_type"] != "empty" :
                     self.logic.new_customer(info_list['ID'],info_list['customer_name'],info_list['ssn'],info_list['email'],info_list['phone'],info_list['address'],info_list['license_type'])
-                    self.new_contract(info_list['ID'])
-
                     self.liner()
                     item = self.logic.get_customers()
                     popped = item.pop()
@@ -504,8 +502,10 @@ class Rvk_ui:
                     title = "new customer id"
                     self.print.short_box(information,title)
                     go_back = input(self.print.question("return"))
+                    self.new_contract(info_list['ID'])
+                    return
 
-                    self.new_contract(questions["ID"])
+
                 elif option == 'f' and info_list["license_type"] == "empty" :
                     wrong =1
                     break                  
@@ -547,10 +547,14 @@ class Rvk_ui:
                 option = input(self.print.question("Enter Choice here"))
 
                 #check if customer can rent car
-                if questions["vehicle_id"] != "empty" and len(questions["start date (YYYY.MM.DD)"].split(".")) == 3 and questions['end date (YYYY.MM.DD)'] != "empty" :
-                    can_rent = self.logic.check_license(customer_id,questions["vehicle_id"])
-                    not_taken = self.logic.check_reservations(questions["vehicle_id"],questions['start date (YYYY.MM.DD)'],questions['end date (YYYY.MM.DD)'])
 
+                if questions["vehicle_id"] != "empty" and len(questions["start date (YYYY.MM.DD)"].split(".")) == 3 and questions['end date (YYYY.MM.DD)'] != "empty" :
+                    try:
+                        can_rent = self.logic.check_license(customer_id,questions["vehicle_id"])
+                        not_taken = self.logic.check_reservations(questions["vehicle_id"],questions['start date (YYYY.MM.DD)'],questions['end date (YYYY.MM.DD)'])
+                    except:
+                        wrong = 2
+                        continue
                     if can_rent == True and not_taken == True:
                         pass
                     else:
