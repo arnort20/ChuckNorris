@@ -563,6 +563,14 @@ class Rvk_ui:
                 elif option == 'f' and questions["destination_id"] != "empty":
                     questions["start_date"],questions["end_date"] = questions['start date (YYYY.MM.DD)'],questions['end date (YYYY.MM.DD)']
                     self.logic.new_contract(customer.id,questions["vehicle_id"],questions["destination_id"],questions["start_date"],questions["end_date"])
+
+                    item = self.logic.all_contracts()
+                    popped = item.pop()
+                    information = popped.id + " is the new contracts ID"
+                    title = "new contract id"
+                    self.print.short_box(information,title)
+                    go_back = input(self.print.question("return"))
+
                     return
                 elif option == 'f' and questions["destination_id"] == "empty" :
                     wrong =1
@@ -626,7 +634,7 @@ class Rvk_ui:
         #Info
         title = "Changing contract"
         information = ("( c ) Cancel, ( f ) Finish,( s ) skip")
-        questions = {"start_date":contract.start_date,"end_date":contract.end_date,"vehicle_id":contract.vehicle_id}
+        questions = {"start_date":contract.start_date,"end_date":contract.end_date,"vehicle_id":contract.vehicle_id,"paid":contract.paid}
 
         while True:
             for key,value in questions.items():
