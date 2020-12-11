@@ -4,7 +4,8 @@ class Bill:
         self.fetch_date = fetch_date
         self.return_date = return_date
         self.location_id = location_id
-        self.price = price
+        price_float = float(price)
+        self.price = round(price_float)
 
     def __str__(self) -> str:
-        return (self.contract_ID+','+self.fetch_date+','+self.return_date+','+self.location_id+','+self.price)
+        return (self.contract_ID+','+self.fetch_date+','+self.return_date+','+self.location_id+','+str(self.price))
