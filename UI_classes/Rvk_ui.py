@@ -928,8 +928,8 @@ class Rvk_ui:
                     self.liner()
                     item = self.logic.get_employees()
                     popped = item.pop()
-                    information = popped.id + " is the new customer ID"
-                    title = "new customer id"
+                    information = popped.id + " is the new Employee ID"
+                    title = "new Employee id"
                     self.print.short_box(information,title)
                     go_back = input(self.print.question("return"))
                     return
