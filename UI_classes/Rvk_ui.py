@@ -30,7 +30,7 @@ class Rvk_ui:
             self.print.print_title(title)
             self.print.print_space()
 
-            option = "( 1 ) Contract menu,( 2 ) Employee menu,( 3 ) destination menu,( 4 ) vehicle menu,,( q ) Quit"
+            option = "( 1 ) Contract menu,( 2 ) Employee menu,( 3 ) Destination menu,( 4 ) Vehicle menu,,( q ) Quit"
             self.print.print_main_menu(option)
             self.print.print_line(len(title)*"")
             print()
