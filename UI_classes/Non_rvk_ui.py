@@ -113,7 +113,7 @@ class Non_rvk_ui:
     # Afhenda bilinn til utleigu
     def Vehicle_lending(self):
         wrong = 0
-        questions = {"Input contract ID":"empty"}
+        questions = {"Input contract ID":"empty","vehcile lending date":"empty"}
         information = ("Date Format (yy.mm.dd),( f ) Finish,( c ) Cancel")
         while True:
             self.liner()
@@ -137,8 +137,9 @@ class Non_rvk_ui:
                 contract = self.logic.get_contract(questions["Input contract ID"])
                 vehicle = self.logic.get_vehicle(contract.vehicle_id)
 
-                if vehicle != None:
+                if vehicle != None and contract != None:
                     self.logic.change_vehicle_info(contract.vehicle_id,{"available":"no"})
+                    self.logic.handover_vehicle(questions["Input contract ID"],questions["vehcile lending date"])
 
                 if option == "c":
                     return
@@ -146,6 +147,10 @@ class Non_rvk_ui:
             self.format.question_box(questions,information,title)
             option = input(self.format.question("Return"))
             return
+
+
+
+
 
     # Taka a moti bilnum ur utleigu
     def Recieve_vehicle_(self):
