@@ -114,7 +114,7 @@ class Non_rvk_ui:
     def Vehicle_lending(self):
         wrong = 0
         questions = {"Input contract ID":"empty","Date when vehicle is picked up":"empty"}
-        information = ("Date Format (yy.mm.dd),( c ) Cancel")
+        information = ("Date Format (yy.mm.dd),( f ) Finish",( c ) Cancel")
         while True:
             self.liner()
 
@@ -189,7 +189,6 @@ class Non_rvk_ui:
             else:
                 gbp_used = False
 
-            self.logic.recieve_vehicle(returning_contract_ID,return_date, gbp_used)
             late_return = self.logic.recieve_vehicle(returning_contract_ID,return_date,gbp_used)
 
 
