@@ -189,7 +189,7 @@ class Non_rvk_ui:
             else:
                 gbp_used = False
 
-            self.logic.recieve_vehicle(returning_contract_ID,return_date, gbp_used)
+            
             late_return = self.logic.recieve_vehicle(returning_contract_ID,return_date,gbp_used)
 
 
