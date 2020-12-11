@@ -95,6 +95,8 @@ class Bill_logic:
             new_BBP = int(customer.bbp) + 1
             self.dAPI.change_Customer(customer.id,{"bbp":str(new_BBP)})
             return True
+        else: 
+            return False
 
 
     def calculate_price(self, tax, gbp_discount, days, late_tax):
