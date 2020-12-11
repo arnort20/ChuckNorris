@@ -102,7 +102,7 @@ class Chuck_ui():
                     self.liner()
                     item = self.logic.get_employees()
                     popped = item.pop()
-                    information = popped.id + " is the new Employee ID"
+                    information = popped.id + "Is the new Employee's ID"
                     title = "Employee ID"
                     self.printer.short_box(information,title)
                     go_back = input(self.printer.question("return"))
