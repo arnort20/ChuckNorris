@@ -6,7 +6,7 @@ class Adder(object):
 
     def add(dicter,filename):
 
-        filed = open(filename,"at", newline='')
+        filed = open(filename,"at", newline='',encoding="utf-8")
         fields = dicter.keys()
 
         writing = csv.DictWriter(filed,fieldnames=fields)

@@ -30,7 +30,7 @@ class Rvk_ui:
             self.print.print_title(title)
             self.print.print_space()
 
-            option = "( 1 ) Contract menu,( 2 ) Employee menu,( 3 ) destination menu,( 4 ) vehicle menu,,( q ) Quit"
+            option = "( 1 ) Contract menu,( 2 ) Employee menu,( 3 ) Destination menu,( 4 ) Vehicle menu,,( q ) Quit"
             self.print.print_main_menu(option)
             self.print.print_line(len(title)*"")
             print()
@@ -101,7 +101,7 @@ class Rvk_ui:
 
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Search vehicle,( 2 ) add type,( 3 ) change type,( 4 ) See vehicle type taxes,,( r ) Return")
+            information = ("( 1 ) Search vehicle,( 2 ) Add type,( 3 ) Change type,( 4 ) See vehicle type taxes ,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
 
@@ -164,7 +164,7 @@ class Rvk_ui:
             title = "Employee Menu"
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Add destination,( 2 ) Change destination,( 3 ) Delete destination,( 4 ) look up destination,( 5 ) Destination earning reviews,,( r ) Return")
+            information = ("( 1 ) Add destination,( 2 ) Change destination,( 3 ) Delete destination,( 4 ) Look up destination,( 5 ) Destination earning reviews,,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
             print()
@@ -438,7 +438,6 @@ class Rvk_ui:
 
 
                 test = self.logic.get_customer(questions["customer ID"])
-                print(test)
                 #change answer
 
                 if option == 'f' and test != None:
@@ -467,6 +466,7 @@ class Rvk_ui:
 
         title = 'New Customer'
         information = ("( c ) Cancel, ( f ) Finish")
+        info_list = {'ID':"empty","customer_name":"empty","ssn":"empty",'email':"empty",'phone':"empty",'address':"empty", "license_type":"empty"}
         option = 0
         wrong = 0
 
@@ -481,6 +481,7 @@ class Rvk_ui:
                     print("")
                     wrong = 0
 
+
                 #Format
                 self.print.question_box(info_list,information,title)
                 option = input(self.print.question("Enter input here"))
@@ -489,10 +490,10 @@ class Rvk_ui:
                 
 
                 #Choices
+
                 if option == 'c':
                     return
                 elif option == 'f' and info_list["license_type"] != "empty" :
-                        
                     self.logic.new_customer(info_list['ID'],info_list['customer_name'],info_list['ssn'],info_list['email'],info_list['phone'],info_list['address'],info_list['license_type'])
                     self.new_contract(info_list['ID'])
                     return
@@ -501,23 +502,23 @@ class Rvk_ui:
                     break                  
                 else:
                     info_list[key] = option
-
-
+                    continue
 
 #------------Creating a new contract------------
     def new_contract(self, customer_id):
         #info
         title = 'New Contract'
         customer = self.logic.get_customer(customer_id)
-        information = ("( c ) Cancel, ( f ) Finish")
-
+        information = ("( c ) Cancel,( s ) search for vehicles, ( f ) Finish")
+        questions = {'start date (YYYY.MM.DD)':"empty",'end date (YYYY.MM.DD)':"empty",'destination_id':"empty",'vehicle_id':"empty"}
         wrong = 0
+        done = 0
         vehicle_fail = 0
 
         #Contract making part
         while True:
             if wrong != 0:
-                questions = {'start date (YYYY.MM.DD)':"empty",'end date (YYYY.MM.DD)':"empty",'vehicle_id':"empty",'destination_id':"empty",}
+                questions = {'start date (YYYY.MM.DD)':"empty",'end date (YYYY.MM.DD)':"empty",'destination_id':"empty",'vehicle_id':"empty"}
 
             for key,value in questions.items():
                 self.liner()
@@ -527,12 +528,17 @@ class Rvk_ui:
                 if wrong == 1:
                     self.print.warning("not all info has been filled in")
 
+                if wrong == 2:
+                    self.print.warning("Date entered wrong")
+                    print("")
+                    wrong = 0
+
                 #Format
                 self.print.question_box(questions,information,title)
                 option = input(self.print.question("Enter Choice here"))
 
                 #check if customer can rent car
-                if questions["vehicle_id"] != "empty":
+                if questions["vehicle_id"] != "empty" and len(questions["start date (YYYY.MM.DD)"].split(".")) == 3 and questions['end date (YYYY.MM.DD)'] != "empty" :
                     can_rent = self.logic.check_license(customer_id,questions["vehicle_id"])
                     not_taken = self.logic.check_reservations(questions["vehicle_id"],questions['start date (YYYY.MM.DD)'],questions['end date (YYYY.MM.DD)'])
 
@@ -542,11 +548,19 @@ class Rvk_ui:
                         vehicle_fail = 1
                         questions["vehicle_id"] = "empty"
                         break
-
+                elif questions["vehicle_id"] != "empty" and len(questions["start date (YYYY.MM.DD)"].split(".")) != 3:
+                    wrong = 2
+                    break
+                    
+                if key == "destination_id":
+                    questions[key] = option
                 if option == 'c':
                     return
-
-                elif option == 'f' and questions["destination_id"] != "empty" and  questions["vehicle_id"] != "empty" :
+                elif questions["destination_id"] != "empty" and done != 1:
+                    self.search_vehicles()
+                    done =1
+                    continue
+                elif option == 'f' and questions["destination_id"] != "empty":
                     questions["start_date"],questions["end_date"] = questions['start date (YYYY.MM.DD)'],questions['end date (YYYY.MM.DD)']
                     self.logic.new_contract(customer.id,questions["vehicle_id"],questions["destination_id"],questions["start_date"],questions["end_date"])
                     return
@@ -586,7 +600,16 @@ class Rvk_ui:
                     #Info
                     title = "Contract: " + conID
                     info = "ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid,day_made"
-                    second_str = str(contract)
+                    customer = self.logic.get_customer(contract.customer_id)
+                    cust_name = customer.customer_name
+                    employee = self.logic.get_employee(contract.employee_id)
+                    emp_name = employee.employee_name
+                    vehicle = self.logic.get_vehicle(contract.vehicle_id)
+                    vehi_name = vehicle.vehicle_name
+                    destination = self.logic.get_destination(contract.destination_id)
+                    dest_name = destination.name
+                    second_str = str(contract.id)+','+cust_name+','+emp_name+','+vehi_name+','+dest_name+','+str(contract.start_date)+','+str(contract.end_date)+','+str(contract.paid)+','+str(contract.day_made)
+                    
 
 
                     #Format
@@ -637,16 +660,29 @@ class Rvk_ui:
 
 #------------------View all contracts----------------
     def all_contracts(self):
+        # Hérna kallar hann í að sjá lista yfir alla contracts sem hafa gengið í geggnum fyrirtækið.(Finished)
+        # Option,info input into a format for sexy print. 
         options = "( r ) return"
-        info = "ID,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid,day_made"
+        info = "ID,Signed employee,Customer,Vehicle,Destination,Start date,End date,Paid,Day made"
 
         contracts = self.logic.all_contracts()
         title = "Contract list"
-
+        contract_str_list = []
+        for contract in contracts:
+            customer = self.logic.get_customer(contract.customer_id)
+            cust_name = customer.customer_name
+            employee = self.logic.get_employee(contract.employee_id)
+            emp_name = employee.employee_name
+            vehicle = self.logic.get_vehicle(contract.vehicle_id)
+            vehi_name = vehicle.vehicle_name
+            destination = self.logic.get_destination(contract.destination_id)
+            dest_name = destination.name
+            modified_str = str(contract.id)+','+cust_name+','+emp_name+','+vehi_name+','+dest_name+','+str(contract.start_date)+','+str(contract.end_date)+','+str(contract.paid)+','+str(contract.day_made)
+            contract_str_list.append(modified_str)
         #Format
         self.liner()
-        self.print.large_list_box(options,title,info,contracts)
-        go_back = input(self.print.question("Return"))
+        self.print.large_list_box(options,title,info,contract_str_list)
+        go_back = input(self.print.question("\tReturn"))
         return
 
 
@@ -985,7 +1021,7 @@ class Rvk_ui:
                 title = "vehicle list"
                 self.liner()
                 self.print.large_list_box(options,title,info,vehicles)
-                go_back = input(self.print.question("\tReturn"))
+                go_back = input(self.print.question("Return"))
                 return
 
             else:
@@ -998,10 +1034,23 @@ class Rvk_ui:
 
     def vehicle_taxes(self):
         self.liner()
+        options = "( r ) Return"
         title = "Vehicle type taxes"
         vehicle_types = self.logic.get_vehicle_types()
-        information = "( r ) Return"
-        self.print.question_box(vehicle_types,information,title)
+        information = "Type_name,Destination,Rate"
+        type_list = []
+        
+        for vtype in vehicle_types:
+            if vtype["destination_id"] == '0':
+                destination_name = 'All'
+            else:
+                destination = self.logic.get_destination(vtype["destination_id"])
+                destination_name = destination.name
+
+            the_type = [str(vtype["name"]),str(destination_name),str(vtype["rate"])]
+            str_the_type = ','.join(the_type)
+            type_list.append(str_the_type)
+        self.print.large_list_box(options,title,information,type_list)
         go_back = input(self.print.question("return"))
 
 

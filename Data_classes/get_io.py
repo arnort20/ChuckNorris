@@ -6,7 +6,7 @@ class Getter(object):
 
 
     def get_id(filename):
-        obj = open(filename)
+        obj = open(filename,encoding="utf-8")
         opener = csv.DictReader(obj)
         item_id = Getter.get_type(filename)
         last_id = 0
@@ -18,7 +18,7 @@ class Getter(object):
 
 
     def get_csv(filename):
-        obj = open(filename)
+        obj = open(filename,encoding="utf-8")
         opener = csv.DictReader(obj)
         obj_list = []
 
@@ -31,7 +31,7 @@ class Getter(object):
 
 
     def get_type(filename):
-        obj = open(filename)
+        obj = open(filename,encoding="utf-8")
         opener = csv.reader(obj)
 
         for line in opener:
