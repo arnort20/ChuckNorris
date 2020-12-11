@@ -18,7 +18,6 @@ class Chuck_ui():
         self.logic = Logic_API(username, pword)
         self.printer = Print_format()
 #--------------Chuck Norris's personal login menu--------------#
-
     def chuck_login(self):
         menus = True
         # While Loop for the menu, so it can go back to the main menu after each step has been finished.
@@ -27,7 +26,7 @@ class Chuck_ui():
             self.liner()
             Print_format.print_title(self,title)
             self.printer.print_space()
-            option = "( 1 ) Review Earnings Report,( 2 ) View Vehicle Reports,( 3 ) View Bill Overview,( 4 ) Roundhouse Kick,( 5 ) View All Contracts,( 6 ) Register New Employee,( 7 ) Most Popular Vehicles,,( q ) Quit"
+            option = "( 1 ) Review Earnings Report,( 2 ) View Vehicle Reports,( 3 ) View Bill Overview,( 4 ) Roundhouse Kick,( 5 ) View All Contracts,( 6 ) Register New Employee,( 7 ) Most Popular Vehicles,( 8 ) View Employee,,( q ) Quit"
             self.printer.print_main_menu(option)
             Print_format.print_line(self,len(title)*"_")
 
@@ -58,6 +57,9 @@ class Chuck_ui():
 
             elif option == "7":
                 self.popular_vehicle()
+            
+            elif option == "8":
+                self.view_employee()
 
             else:
                 print("Not a valid input!" "\n")
@@ -92,7 +94,6 @@ class Chuck_ui():
                 else:
                     # Change for next print
                     questions[key] = option
-
 #--------------Lets Chuck Norris see earnings reports between given dates--------------#
     def Earnings_report(self):
         # Her we need to get the over all earnings report from Logic,(Finished)
@@ -282,4 +283,21 @@ class Chuck_ui():
         Print_format.print_title(self,len("Most Popular Vehicle")*"_")
         go_back = input(self.printer.question("\tReturn"))
         return
+#--------------View Employee menu for Chuck--------------#
+    def view_employee(self):
+        options = "( r ) Return"
+        info = "id,employee_name,ssn,address,phone,email,location"
 
+        employees = self.logic.get_employees()
+        title = "View Employee"
+        emp_list = []
+        for item in employees:
+            emp_list.append(str(item))
+            
+        
+        
+        #Format
+        self.liner()
+        self.printer.large_list_box(options,title,info,emp_list)
+        go_back = input(self.printer.question("\tReturn"))
+        return 

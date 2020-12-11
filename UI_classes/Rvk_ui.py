@@ -133,7 +133,7 @@ class Rvk_ui:
             title = "Employee Menu"
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Add employee,( 2 ) Change employee,( 3 ) Delete employee,,( r ) Return")
+            information = ("( 1 ) Add employee,( 2 ) Change employee,( 3 ) Delete employee,( 4 ) View Employees,,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
             print()
@@ -146,6 +146,9 @@ class Rvk_ui:
 
             elif option == '3':
                 self.delete_employee()
+            
+            elif option == "4":
+                self.view_employees()
 
             elif option.lower() == 'r':
                 return
@@ -1066,7 +1069,6 @@ class Rvk_ui:
 
 
 #------------search vehicles in certein location--------
-
     def search_vehicles(self):
         title = "Search vehicles by location"
         information = "( c ) Cancel,,write ID below!"
@@ -1220,3 +1222,20 @@ class Rvk_ui:
                     return
                 #changing for next print
                 questions[key] = option
+
+
+    def view_employees(self):
+        options = "( r ) Return"
+        info = "id,employee_name,ssn,address,phone,email,location"
+
+        employees = self.logic.get_employees()
+        title = "View Employee"
+        emp_list = []
+        for item in employees:
+            emp_list.append(str(item))
+            
+        #Format
+        self.liner()
+        self.print.large_list_box(options,title,info,emp_list)
+        go_back = input(self.print.question("\tReturn"))
+        return 
