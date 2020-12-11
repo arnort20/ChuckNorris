@@ -18,4 +18,4 @@ id,vehicle_name,type,manufacturer,model,color,age,available,location_id,license_
 17,FWD 1,Medium road,Forward,FWD-ZK125H,blue,2019,yes,4,B
 18,seaglide,Light water,Torpedo,3500,white,2019,yes,5,scuba
 19,GR 5234,Light road,Tesla,Buggy,Pink,2020,yes,3,OK
-20,JIMBO,Light road,ANANAS,KABALOOS,POOOOOOOOOOP,99,y,3,B
+20,JIMBO,Light road,ANANAS,KABALOOS,POOOOOOOOOOP,99,yes,3,B

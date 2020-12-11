@@ -77,7 +77,7 @@ class Non_rvk_ui:
             
             title = ("Register new vehicle")
             information = ("( c ) Cancel,( f ) Finish")
-            questions = {"vehicle_name":"empty","type":"empty","manufacturer":"empty","model":"empty","color":"empty","year_made":"empty","available":"empty","location_id":"empty","license_type":"empty"}
+            questions = {"vehicle_name":"empty","type":"empty","manufacturer":"empty","model":"empty","color":"empty","year_made":"empty","available ( yes / no )":"empty","location_id":"empty","license_type":"empty"}
             # loop to answer each question
             while True:
                 if wrong != 0:
@@ -134,6 +134,12 @@ class Non_rvk_ui:
                 questions[key] = option        
 
                 #Choices
+                contract = self.logic.get_contract(questions["Input contract ID"])
+                vehicle = self.logic.get_vehicle(contract.vehicle_id)
+
+                if vehicle != None:
+                    self.logic.change_vehicle(contract.vehicle_id,{"available":"no"})
+
                 if option == "c":
                     return
             self.liner()

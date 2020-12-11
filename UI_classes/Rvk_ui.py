@@ -686,7 +686,7 @@ class Rvk_ui:
         #Info
         title = "Changing contract"
         information = ("( c ) Cancel, ( f ) Finish,( s ) skip")
-        questions = {"start_date":contract.start_date,"end_date":contract.end_date,"vehicle_id":contract.vehicle_id,"paid":contract.paid}
+        questions = {"start_date":contract.start_date,"end_date":contract.end_date,"vehicle_id":contract.vehicle_id,"paid?":contract.paid}
 
         while True:
             for key,value in questions.items():
