@@ -1,3 +1,4 @@
+from Model_classes.Destination import Destination
 from os import read
 from Model_classes.Customer import Customer
 from Logic_classes.Logic_API import Logic_API
@@ -101,7 +102,7 @@ class Rvk_ui:
 
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Search vehicle,( 2 ) Add type,( 3 ) Change type,( 4 ) See vehicle type taxes ,( r ) Return")
+            information = ("( 1 ) Search vehicle by location,( 2 ) Add type,( 3 ) Change type,( 4 ) See vehicle type taxes ,,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
 
@@ -132,7 +133,7 @@ class Rvk_ui:
             title = "Employee Menu"
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Add employee,( 2 ) Change employee,( 3 ) Delete employee,( r ) Return")
+            information = ("( 1 ) Add employee,( 2 ) Change employee,( 3 ) Delete employee,,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
             print()
@@ -161,7 +162,7 @@ class Rvk_ui:
     def destination_menu(self):
         while True:
             self.liner()
-            title = "Employee Menu"
+            title = "Destination Menu"
             self.print.print_title(title)
             self.print.print_space()
             information = ("( 1 ) Add destination,( 2 ) Change destination,( 3 ) Delete destination,( 4 ) Look up destination,( 5 ) Destination earning reviews,,( r ) Return")
@@ -197,16 +198,22 @@ class Rvk_ui:
 
 #----------------------Branch review---------------------
     def branch_review(self):
+        title = "Earnings Report"
+        information = ("Date Format = (yy.mm.dd),( c ) Cancel")
+        wrong = 0
+
         while True:
             questions = {"Input Location ID":"empty","Input Date From":"empty","Input Date To":"empty"}
-            title = "Earnings Report"
-            information = ("Date Format = (yy.mm.dd),( c ) Cancel")
+
             employee = self.logic.get_employee(self.employee_num)
 
 
             for key,value in questions.items():
 
                 self.liner()
+                if wrong != 0:
+                    self.print.warning("invalid date input")
+                    wrong = 0
                 self.print.question_box(questions,information,title)
                 option = input(self.print.question("Enter Input here"))
 
@@ -216,8 +223,12 @@ class Rvk_ui:
 
                 if option == "c":
                     return
-            money = self.logic.filter_earnings(questions["Input Location ID"],questions["Input Date From"],questions["Input Date To"])
-            
+            try:
+                money = self.logic.filter_earnings(questions["Input Location ID"],questions["Input Date From"],questions["Input Date To"])
+            except:
+                wrong = 1
+                continue
+
             self.liner()
             self.print.question_box(questions,information,title)
             self.print.print_space()
@@ -232,9 +243,9 @@ class Rvk_ui:
 #---------------------New destination--------------------
     def new_destination(self):
 
-            info_list = {"destination_name":"empty","country_name":"empty",'airport':"empty",'phone':"empty",'opening_hours':"empty"}
+            info_list = {"destination_name":"empty","country_name":"empty",'airport code':"empty",'phone':"empty",'opening_hours':"empty"}
             title = 'New Destination'
-            information = ("( c ) Cancel, ( f ) Finish")
+            information = ("( c ) Cancel,time format: hh:mm - hh:mm, ( f ) Finish")
             option = 0
             wrong = 0
 
@@ -280,7 +291,7 @@ class Rvk_ui:
                 wrong =0         
 
             self.print.short_box(information,title)
-            destination_id = input(self.print.question("Contract ID")) 
+            destination_id = input(self.print.question("Destination ID")) 
 
             if destination_id == 'r':
                 return
@@ -297,7 +308,7 @@ class Rvk_ui:
         #Info
         title = "Changing Destination"
         information = ("( c ) Cancel, ( f ) Finish,( s ) skip")
-        questions = {"Phone":destination.Phone,"opening_hours":destination.opening_hours}
+        questions = {"phone":destination.phone,"opening_hours":destination.opening_hours}
 
         while True:
             for key,value in questions.items():
@@ -313,7 +324,7 @@ class Rvk_ui:
                 if option == 'c':
                     return
                 if option == "f":
-                    self.logic.change_contract(destination.id,questions)
+                    self.logic.change_destination(destination.id,questions)
                     return
                 #changing for next print
                 questions[key] = option
@@ -323,31 +334,41 @@ class Rvk_ui:
 #---------------------Delete Destination-----------------
     def delete_destination(self):
         #Info
+        wrong = 0
         title = "Destination search"
         information = ("( c ) Cancel,,Insert ID below")
 
         #Format
-        self.liner()
-        self.print.short_box(information,title)
-        employee_id = input(self.print.question("Destination ID"))
-
         while True:
-            #info
-            title = "Deleting Destination"
-            information = ("( c ) Cancel,( d ) Delete")
-
-            #Format
             self.liner()
+            if wrong == 1:
+                self.print.warning("wrong Destination ID")
+                wrong = 0
             self.print.short_box(information,title)
-            confirm = input(self.print.question("Confirm")) 
+            destination_id = input(self.print.question("Destination ID"))
+            destination = self.logic.get_destination(destination_id)
 
-            if confirm == "c":
-                return
-            elif confirm == "d":
-                #self.logic.delete_destination(employee_id) need to add
-                return
+            if destination != None:
+                while True:
+                    #info
+                    title = "Deleting Destination"
+                    information = ("( c ) Cancel,Are you sure you want to delete "+destination.name+",( d ) Delete")
+
+                    #Format
+                    self.liner()
+                    self.print.short_box(information,title)
+                    confirm = input(self.print.question("Confirm")) 
+
+                    if confirm == "c":
+                        return
+                    elif confirm == "d":
+                        self.logic.delete_destination(destination_id)
+                        return
+                    else:
+                        self.print.warning("Wrong input")
             else:
-                self.print.warning("Wrong input")
+                wrong =1 
+                continue
 
 
 
@@ -419,11 +440,14 @@ class Rvk_ui:
         wrong = 0
         title = "returning customer"
         questions = {"customer ID": "empty"}
-        information = ("( c ) Cancel, ( f ) Finish")
+        customer_name = "customer has not been entered"
+        
         ready =0
 
         while True:
+            information = ("( c ) Cancel,"+customer_name+", ( f ) Finish")
             for key,value in questions.items():
+                
                 self.liner()
 
 
@@ -436,8 +460,11 @@ class Rvk_ui:
                 self.print.question_box(questions,information,title)
                 option = input(self.print.question("Enter input here"))
 
-
+                customer = self.logic.get_customer(option)
                 test = self.logic.get_customer(questions["customer ID"])
+                if customer != None:
+                    customer_name = customer.customer_name
+
                 #change answer
 
                 if option == 'f' and test != None:
@@ -495,8 +522,6 @@ class Rvk_ui:
                     return
                 elif option == 'f' and info_list["license_type"] != "empty" :
                     self.logic.new_customer(info_list['ID'],info_list['customer_name'],info_list['ssn'],info_list['email'],info_list['phone'],info_list['address'],info_list['license_type'])
-                    self.new_contract(info_list['ID'])
-
                     self.liner()
                     item = self.logic.get_customers()
                     popped = item.pop()
@@ -504,8 +529,10 @@ class Rvk_ui:
                     title = "new customer id"
                     self.print.short_box(information,title)
                     go_back = input(self.print.question("return"))
+                    self.new_contract(info_list['ID'])
+                    return
 
-                    self.new_contract(questions["ID"])
+
                 elif option == 'f' and info_list["license_type"] == "empty" :
                     wrong =1
                     break                  
@@ -547,10 +574,14 @@ class Rvk_ui:
                 option = input(self.print.question("Enter Choice here"))
 
                 #check if customer can rent car
-                if questions["vehicle_id"] != "empty" and len(questions["start date (YYYY.MM.DD)"].split(".")) == 3 and questions['end date (YYYY.MM.DD)'] != "empty" :
-                    can_rent = self.logic.check_license(customer_id,questions["vehicle_id"])
-                    not_taken = self.logic.check_reservations(questions["vehicle_id"],questions['start date (YYYY.MM.DD)'],questions['end date (YYYY.MM.DD)'])
 
+                if questions["vehicle_id"] != "empty" and len(questions["start date (YYYY.MM.DD)"].split(".")) == 3 and questions['end date (YYYY.MM.DD)'] != "empty" :
+                    try:
+                        can_rent = self.logic.check_license(customer_id,questions["vehicle_id"])
+                        not_taken = self.logic.check_reservations(questions["vehicle_id"],questions['start date (YYYY.MM.DD)'],questions['end date (YYYY.MM.DD)'])
+                    except:
+                        wrong = 2
+                        break
                     if can_rent == True and not_taken == True:
                         pass
                     else:
@@ -619,7 +650,7 @@ class Rvk_ui:
                 while True:
                     #Info
                     title = "Contract: " + conID
-                    info = "ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid,day_made"
+                    info = "ident,customer_id,employee_id,vehicle_id,destination_id,start_date,end_date,paid,day_made"
                     customer = self.logic.get_customer(contract.customer_id)
                     cust_name = customer.customer_name
                     employee = self.logic.get_employee(contract.employee_id)
@@ -655,7 +686,7 @@ class Rvk_ui:
         #Info
         title = "Changing contract"
         information = ("( c ) Cancel, ( f ) Finish,( s ) skip")
-        questions = {"start_date":contract.start_date,"end_date":contract.end_date,"vehicle_id":contract.vehicle_id,"paid":contract.paid}
+        questions = {"start_date":contract.start_date,"end_date":contract.end_date,"vehicle_id":contract.vehicle_id,"paid?":contract.paid}
 
         while True:
             for key,value in questions.items():
@@ -702,7 +733,7 @@ class Rvk_ui:
         #Format
         self.liner()
         self.print.large_list_box(options,title,info,contract_str_list)
-        go_back = input(self.print.question("\tReturn"))
+        go_back = input(self.print.question("Return"))
         return
 
 
@@ -729,7 +760,7 @@ class Rvk_ui:
                 while True:
                     #info
                     title = "Deleting contract " + contract_id
-                    information = ("( c ) Cancel,( d ) Delete")
+                    information = ("( c ) Cancel,Are you sure you want to delete contract "+contract.id+",( d ) Delete")
 
                     #Format
                     self.liner()
@@ -739,7 +770,7 @@ class Rvk_ui:
                     if confirm == "c":
                         return
                     elif confirm == "d":
-                        self.logic.delete_contract(employee_id)
+                        self.logic.delete_contract(contract_id)
                         return
                     else:
                         self.print.warning("Wrong input")
@@ -847,8 +878,11 @@ class Rvk_ui:
             #Format
             self.liner()
 
-            if wrong != 0:
+            if wrong == 1:
                 self.print.warning("Wrong ID")
+                wrong = 0
+            if wrong == 2:
+                self.print.warning("Bill does not exist")
                 wrong = 0
 
             self.print.short_box(information,title)
@@ -884,6 +918,9 @@ class Rvk_ui:
                         option = input(self.print.question('Type here: ')).lower()
 
                         return
+                else:
+                    wrong = 2
+                    continue
             else:
                 wrong = 1
                 continue
@@ -992,38 +1029,46 @@ class Rvk_ui:
 #---------------Deleting/firing employee---------
     def delete_employee(self):
         #Info
+        wrong =0
         title = "employee search"
         information = ("( c ) Cancel,,Insert ID below")
-
-        #Format
-        self.liner()
-        self.print.short_box(information,title)
-        employee_id = input(self.print.question("employee ID"))
-
         while True:
-            #info
-            title = "Deleting employee"
-            information = ("( c ) Cancel,( d ) Delete")
-
             #Format
             self.liner()
+            if wrong != 0:
+                self.print.warning("Wrong employee ID")
+                wrong =0
             self.print.short_box(information,title)
-            confirm = input(self.print.question("Confirm"))
+            employee_id = input(self.print.question("employee ID"))
+            employee = self.logic.get_employee(employee_id)
+            if employee != None:
+                while True:
+                    #info
+                    title = "Deleting employee"
+                    information = ("( c ) Cancel,Are you sure you want to delete "+employee.employee_name+",( d ) Delete")
 
-            if confirm == "c":
-                return
-            elif confirm == "d":
-                self.logic.fire_employee(employee_id)
-                return
+                    #Format
+                    self.liner()
+                    self.print.short_box(information,title)
+                    confirm = input(self.print.question("Confirm"))
+
+                    if confirm == "c":
+                        return
+                    elif confirm == "d":
+                        self.logic.fire_employee(employee_id)
+                        return
+                    else:
+                        self.print.warning("Wrong input")
             else:
-                self.print.warning("Wrong input")
+                wrong = 1
+                continue
 
 
 
 #------------search vehicles in certein location--------
 
     def search_vehicles(self):
-        title = "Search vehicles"
+        title = "Search vehicles by location"
         information = "( c ) Cancel,,write ID below!"
         options = "( r ) return"
         info = "ID,vehicle_name,Type,Manufacturer,Model,Color,age,available,location_id,license_type"
@@ -1119,32 +1164,32 @@ class Rvk_ui:
 #------------------Change vehicle type-------------------
     def change_type(self):
         title = "type Search"
-        information = ("( r ) Return,,| Insert ID below |")
+        information = ("( c ) Cancel,,| Insert ID below |")
         wrong = 0
         while True:
 
             #Format
-            self.liner()
 
-            if wrong != 0:
-                self.print.warning("Wrong Destination ID")
-                wrong =0         
+
             questions = {"type_name":"empty","destination_id":"empty"}
             for key,value in questions.items():
+                self.liner()
+                if wrong != 0:
+                    self.print.warning("Wrong Destination ID")
+                    wrong =0         
                 self.print.question_box(questions,information,title)
                 option = input(self.print.question("Enter input here"))
                 questions[key] = option
             
+                if option == 'c':
+                    return
+
             destination_id = questions["destination_id"]
             name = questions["type_name"]
-
-
-            if destination_id == 'r':
-                return
-
             try:
                 
                 rate = self.logic.get_vehicle_tax(name,destination_id)
+                destination = self.logic.get_destination(destination_id)
                 print(rate)
                 break
 
@@ -1153,7 +1198,7 @@ class Rvk_ui:
                 continue
 
         #Info
-        title = "Changing type " + name +"in "+ destination_id
+        title = "Changing type " + name +" in "+ destination.name
         information = ("( c ) Cancel, ( f ) Finish,( s ) skip")
         questions = {"rate":rate}
 

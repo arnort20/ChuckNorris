@@ -8,13 +8,13 @@ id,vehicle_name,type,manufacturer,model,color,age,available,location_id,license_
 7,cani435,Light off-road,Cani-Fit,Fat Max,black,2019,yes,5,OK
 8,cani436,Light off-road,Cani-Fit,Fat Max,black,2019,yes,5,OK
 9,cani437,Light off-road,Cani-Fit,Fat Max,black,2019,yes,6,OK
-10,Jimny1,Light road,Toyota,Jimny,green,2017,20,yes,B
-11,Jimny2,Light road,Toyota,Jimny,green,2017,20,yes,B
-12,Jimny3,Light road,Toyota,Jimny,green,2017,20,yes,B
-13,Jimny4,Light road,Toyota,Jimny,green,2017,yes,no,B
-14,Jimny5,Light road,Toyota,Jimny,green,2017,20,yes,B
-15,Jimny6,Light road,Toyota,Jimny,green,2017,20,yes,B
-16,Jimny7,Light road,Toyota,Jimny,green,2017,20,yes,B
-17,FWD 1,Medium road,Forward,FWD-ZK125H,blue,2019,30,yes,B
-18,seaglide,Light water,Torpedo,3500,white,2019,100,yes,scuba
+10,Jimny1,Light road,Toyota,Jimny,green,2017,yes,4,B
+11,Jimny2,Light road,Toyota,Jimny,green,2017,yes,5,B
+12,Jimny3,Light road,Toyota,Jimny,green,2017,yes,7,B
+13,Jimny4,Light road,Toyota,Jimny,green,2017,no,6,B
+14,Jimny5,Light road,Toyota,Jimny,green,2017,yes,7,B
+15,Jimny6,Light road,Toyota,Jimny,green,2017,yes,5,B
+16,Jimny7,Light road,Toyota,Jimny,green,2017,yes,4,B
+17,FWD 1,Medium road,Forward,FWD-ZK125H,blue,2019,yes,4,B
+18,seaglide,Light water,Torpedo,3500,white,2019,yes,5,scuba
 19,GR 5234,Light road,Tesla,Buggy,Pink,2020,yes,3,OK

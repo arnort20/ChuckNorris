@@ -208,7 +208,7 @@ class Logic_API:
 
     def get_customers(self):
         self.customer_wrapper()
-        self.customer.get_all_customers()
+        return self.customer.get_all_customers()
 
 
 
@@ -261,6 +261,11 @@ class Logic_API:
         #change the destination based on what keys to change and the new values for each key
         self.destination_wrapper()
         self.destination.change_destination(dest_ID, change_dict)
+
+    def delete_destination(self,destination_id):
+        self.destination_wrapper()
+        self.destination.remove_destination(destination_id)
+
 
 
     #billing stuff

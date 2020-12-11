@@ -20,3 +20,6 @@ class Destination_logic:
     def change_destination(self, dest_ID, change_dict):
         #change the destination based on what keys to change and the new values for each key
         self.dAPI.change_Destination(dest_ID, change_dict)
+    
+    def remove_destination(self,destination_id):
+        self.dAPI.delete_destination(destination_id)

@@ -27,7 +27,7 @@ class Chuck_ui():
             self.liner()
             Print_format.print_title(self,title)
             self.printer.print_space()
-            option = "( 1 ) Review Earnings Report,( 2 ) View Vehicle Reports,( 3 ) View Bill Overview,( 4 ) Round House Kick,( 5 ) View All Contracts,( 6 ) Register New Employee,( 7 ) Most Popular Vehicles,,( q ) Quit"
+            option = "( 1 ) Review Earnings Report,( 2 ) View Vehicle Reports,( 3 ) View Bill Overview,( 4 ) Roundhouse Kick,( 5 ) View All Contracts,( 6 ) Register New Employee,( 7 ) Most Popular Vehicles,,( q ) Quit"
             self.printer.print_main_menu(option)
             Print_format.print_line(self,len(title)*"_")
 
@@ -67,60 +67,39 @@ class Chuck_ui():
         #--------------Title,question and information are input in to print formats--------------#
         title = 'New Employee'
         questions = {"name":"empty","ssn":"empty","address":"empty","location_id":"empty","email":"empty","phone":"empty","password":"empty","confirm password":"empty"}
-        information = ("( c ) Cancel, ( f ) Finish")        
-        wrong = 0
+        information = ("( c ) Cancel, ( f ) Finish, ( s ) skip")        
+    
         while True:
-            if wrong != 0:
-                questions = {"name":"empty","ssn":"empty","address":"empty","location_id":"empty","email":"empty","phone":"empty","password":"empty","confirm password":"empty"}
             for key,value in questions.items():
 
-                #Format
+                # Format
                 self.liner()
-                if wrong == 1:
-                    self.printer.warning("passwords don't match")
-                    wrong = 0
-                elif wrong == 2:
-                    self.printer.warning("not all info filled in yet")
-                    wrong = 0
-
-
                 self.printer.question_box(questions,information,title)
                 option = input(self.printer.question('Type here: '))
 
-                #change for next print
-            
+                
                 #Choices
-                if option == "f" and questions["password"] != questions["confirm password"]:
-                    wrong = 1
-                    break
-                elif option == 'c':
+                if questions["password"] != questions["confirm password"]:
+                    self.printer.warning("passwords don't match")
+                if option == 'c':
                     return
-                elif option == 'f' and questions["confirm password"] != "empty" :
+                if option == 's':
+                    pass
+                elif option == 'f' and questions["confirm password"] != "empty" and questions["confirm password"] == questions["password"]:
                     questions["emp_name"] = questions["name"]
-                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["location_id"],questions["password"])
-
-                    self.liner()
-                    item = self.logic.get_employees()
-                    popped = item.pop()
-                    information = popped.id + "Is the new Employee's ID"
-                    title = "Employee ID"
-                    self.printer.short_box(information,title)
-                    go_back = input(self.printer.question("return"))
+                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["location_id"],questions["password"],)
                     return
-                elif option == 'f' and questions["confirm password"] == "empty" :
-                    wrong =2
-                    break
                 else:
+                    # Change for next print
                     questions[key] = option
 
-                
 #--------------Lets Chuck Norris see earnings reports between given dates--------------#
     def Earnings_report(self):
         # Her we need to get the over all earnings report from Logic,(Finished)
         #--------------Title,question and information are input in to print formats--------------#
         questions = {"Input Location ID":"empty","Input Date From":"empty","Input Date To":"empty"}
         title = "Earnings Report"
-        information = ("Date Format = (yy.mm.dd),( c ) Cancel")
+        information = ("Date Format = (YYYY.MM.DD),( c ) Cancel")
 
         for key,value in questions.items():
             
@@ -188,7 +167,7 @@ class Chuck_ui():
 #--------------Hidden Feature to everyone but Chuck Him Self, Lets him fire employees and kick customers(WARNING, DO NOT TRY TO INPUT CHUCK INTO THIS)--------------#
     def Round_house(self):
         #Something Something Something Dark Side, Somethin Something Something Complete.
-        rhk = "Round House Kick"
+        rhk = "Roundhouse Kick"
         information = ("( 1 ) Kill Customer,( 2 ) Fire Employee ")
         
         # Format
