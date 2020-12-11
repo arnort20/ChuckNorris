@@ -141,18 +141,6 @@ class Non_rvk_ui:
             option = input(self.format.question("Return"))
             return
 
-            # cheeck if contract and customer
-            try:
-                fetch_date = input(self.format.question("date when vehicle is picked up (YYYY.MM.DD): "))
-                self.logic.handover_vehicle(contract_id, fetch_date)
-                break
-
-            except:
-                wrong = 1
-                continue
-
-        return
-
     # Taka a moti bilnum ur utleigu
     def Recieve_vehicle_(self):
         wrong =0 
