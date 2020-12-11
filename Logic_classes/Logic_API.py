@@ -208,7 +208,7 @@ class Logic_API:
 
     def get_customers(self):
         self.customer_wrapper()
-        self.customer.get_all_customers()
+        return self.customer.get_all_customers()
 
 
 
