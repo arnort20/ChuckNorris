@@ -97,8 +97,16 @@ class Chuck_ui():
                     return
                 elif option == 'f' and questions["confirm password"] != "empty" :
                     questions["emp_name"] = questions["name"]
-                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["location_id"],questions["password"],)
-                    break
+                    self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["location_id"],questions["password"])
+
+                    self.liner()
+                    item = self.logic.get_employees()
+                    popped = item.pop()
+                    information = popped.id + " is the new Employee ID"
+                    title = "Employee ID"
+                    self.printer.short_box(information,title)
+                    go_back = input(self.printer.question("return"))
+                    return
                 elif option == 'f' and questions["confirm password"] == "empty" :
                     wrong =2
                     break
