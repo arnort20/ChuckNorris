@@ -608,7 +608,16 @@ class Rvk_ui:
                     #Info
                     title = "Contract: " + conID
                     info = "ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid,day_made"
-                    second_str = str(contract)
+                    customer = self.logic.get_customer(contract.customer_id)
+                    cust_name = customer.customer_name
+                    employee = self.logic.get_employee(contract.employee_id)
+                    emp_name = employee.employee_name
+                    vehicle = self.logic.get_vehicle(contract.vehicle_id)
+                    vehi_name = vehicle.vehicle_name
+                    destination = self.logic.get_destination(contract.destination_id)
+                    dest_name = destination.name
+                    second_str = str(contract.id)+','+cust_name+','+emp_name+','+vehi_name+','+dest_name+','+str(contract.start_date)+','+str(contract.end_date)+','+str(contract.paid)+','+str(contract.day_made)
+                    
 
 
                     #Format
@@ -659,16 +668,29 @@ class Rvk_ui:
 
 #------------------View all contracts----------------
     def all_contracts(self):
+        # Hérna kallar hann í að sjá lista yfir alla contracts sem hafa gengið í geggnum fyrirtækið.(Finished)
+        # Option,info input into a format for sexy print. 
         options = "( r ) return"
-        info = "ID,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid,day_made"
+        info = "ID,Signed employee,Customer,Vehicle,Destination,Start date,End date,Paid,Day made"
 
         contracts = self.logic.all_contracts()
         title = "Contract list"
-
+        contract_str_list = []
+        for contract in contracts:
+            customer = self.logic.get_customer(contract.customer_id)
+            cust_name = customer.customer_name
+            employee = self.logic.get_employee(contract.employee_id)
+            emp_name = employee.employee_name
+            vehicle = self.logic.get_vehicle(contract.vehicle_id)
+            vehi_name = vehicle.vehicle_name
+            destination = self.logic.get_destination(contract.destination_id)
+            dest_name = destination.name
+            modified_str = str(contract.id)+','+cust_name+','+emp_name+','+vehi_name+','+dest_name+','+str(contract.start_date)+','+str(contract.end_date)+','+str(contract.paid)+','+str(contract.day_made)
+            contract_str_list.append(modified_str)
         #Format
         self.liner()
-        self.print.large_list_box(options,title,info,contracts)
-        go_back = input(self.print.question("Return"))
+        self.print.large_list_box(options,title,info,contract_str_list)
+        go_back = input(self.print.question("\tReturn"))
         return
 
 
