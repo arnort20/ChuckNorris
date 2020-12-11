@@ -68,27 +68,44 @@ class Chuck_ui():
         title = 'New Employee'
         questions = {"name":"empty","ssn":"empty","address":"empty","location_id":"empty","email":"empty","phone":"empty","password":"empty","confirm password":"empty"}
         information = ("( c ) Cancel, ( f ) Finish")        
-    
+        wrong = 0
         while True:
+            if wrong != 0:
+                questions = {"name":"empty","ssn":"empty","address":"empty","location_id":"empty","email":"empty","phone":"empty","password":"empty","confirm password":"empty"}
             for key,value in questions.items():
 
-                # Format
+                #Format
                 self.liner()
+                if wrong == 1:
+                    self.printer.warning("passwords don't match")
+                    wrong = 0
+                elif wrong == 2:
+                    self.printer.warning("not all info filled in yet")
+                    wrong = 0
+
+
                 self.printer.question_box(questions,information,title)
                 option = input(self.printer.question('Type here: '))
 
-                # Change for next print
-                questions[key] = option
-
+                #change for next print
+            
                 #Choices
-                if questions["password"] != questions["confirm password"]:
-                    self.printer.warning("passwords don't match")
-                if option == 'c':
+                if option == "f" and questions["password"] != questions["confirm password"]:
+                    wrong = 1
+                    break
+                elif option == 'c':
                     return
                 elif option == 'f' and questions["confirm password"] != "empty" :
                     questions["emp_name"] = questions["name"]
                     self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["location_id"],questions["password"],)
-                    return
+                    break
+                elif option == 'f' and questions["confirm password"] == "empty" :
+                    wrong =2
+                    break
+                else:
+                    questions[key] = option
+
+                
 #--------------Lets Chuck Norris see earnings reports between given dates--------------#
     def Earnings_report(self):
         # Her we need to get the over all earnings report from Logic,(Finished)
