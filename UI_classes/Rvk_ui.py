@@ -101,7 +101,7 @@ class Rvk_ui:
 
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Search vehicle,( 2 ) add type,( 3 ) change type,( 4 ) See vehicle type taxes,,( r ) Return")
+            information = ("( 1 ) Search vehicle,( 2 ) Add type,( 3 ) Change type,( 4 ) See vehicle type taxes ,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
 
@@ -164,7 +164,7 @@ class Rvk_ui:
             title = "Employee Menu"
             self.print.print_title(title)
             self.print.print_space()
-            information = ("( 1 ) Add destination,( 2 ) Change destination,( 3 ) Delete destination,( 4 ) look up destination,( 5 ) Destination earning reviews,,( r ) Return")
+            information = ("( 1 ) Add destination,( 2 ) Change destination,( 3 ) Delete destination,( 4 ) Look up destination,( 5 ) Destination earning reviews,,( r ) Return")
             self.print.print_main_menu(information)
             self.print.print_line(len(title)*"_")
             print()
