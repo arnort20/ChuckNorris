@@ -7,4 +7,4 @@ id,customer_name,ssn,email,phone,address,license_type,gbp,bbp
 037188556,Johann Loftsson,301078-0509,jonnicool@aol.com,6969420,Dufnaholar 10 101,B,24,5
 094166234,Bjarni Benediktsson,230267-1109,icehot1@hotmasil.com,7234141,adalstraeti 2 105,B,3,0
 141000,Halimal,141000,SUperSOCK@POOP.com,1234567,boobtown,B,0,0
-037188558,Ljotur Karlsson,060969-0420,ljotur@simnet.is,6969420,Stufgata 1,B,0,0
+037188558,Ljotur Karlsson,060969-0420,ljotur@simnet.is,6969420,Stufgata 1,B,0,1
