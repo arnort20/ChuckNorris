@@ -723,6 +723,8 @@ class Rvk_ui:
         title = "Contract list"
         contract_str_list = []
         for contract in contracts:
+
+            # select info for printing
             customer = self.logic.get_customer(contract.customer_id)
             cust_name = customer.customer_name
             employee = self.logic.get_employee(contract.employee_id)
@@ -733,6 +735,8 @@ class Rvk_ui:
             dest_name = destination.name
             modified_str = str(contract.id)+','+cust_name+','+emp_name+','+vehi_name+','+dest_name+','+str(contract.start_date)+','+str(contract.end_date)+','+str(contract.paid)+','+str(contract.day_made)
             contract_str_list.append(modified_str)
+
+
         #Format
         self.liner()
         self.print.large_list_box(options,title,info,contract_str_list)
@@ -755,6 +759,8 @@ class Rvk_ui:
                 self.print.warning("wrong contract ID!")
                 wrong =0
 
+
+            #Format
             self.print.short_box(information,title)
             contract_id = input(self.print.question("Contract ID"))
             contract = self.logic.get_contract(contract_id)
@@ -808,6 +814,8 @@ class Rvk_ui:
 
             contract = self.logic.get_contract(conID)
             if contract != None:
+
+                #getting info
                 employee = self.logic.get_employee(contract.employee_id)
                 customer = self.logic.get_customer(contract.customer_id)
                 vehicle = self.logic.get_vehicle(contract.vehicle_id)
@@ -893,6 +901,7 @@ class Rvk_ui:
             contract = self.logic.get_contract(conID)
 
 
+            # Getting model classes
             if conID == 'c':
                 return
             if contract != None:
@@ -906,7 +915,7 @@ class Rvk_ui:
                 if bill != None and contract != None:
                     while True:
 
-                        #Info
+                        #Format date stuff
                         title = "Bill of contract #" + conID
                         #info = "ident,employee_id,customer_id,vehicle_id,destination_id,start_date,end_date,paid"
                         info = "Contract ID,Start date,End date,Pickup date,Return date,Destination,Customer,Vehicle type,Paid,Final price"
@@ -965,6 +974,7 @@ class Rvk_ui:
                     questions["emp_name"] = questions["name"]
                     self.logic.hire_employee(questions["emp_name"],questions["ssn"],questions["address"],questions["phone"],questions["email"],questions["location_id"],questions["password"])
 
+                    #info
                     self.liner()
                     item = self.logic.get_employees()
                     popped = item.pop()
@@ -1068,13 +1078,18 @@ class Rvk_ui:
 
 
 
+
+
 #------------search vehicles in certein location--------
     def search_vehicles(self):
+        #Info
         title = "Search vehicles by location"
         information = "( c ) Cancel,,write ID below!"
         options = "( r ) return"
         info = "ID,vehicle_name,Type,Manufacturer,Model,Color,age,available,location_id,license_type"
         wrong = 0
+
+    
         while True:
             self.liner()
 
@@ -1083,6 +1098,7 @@ class Rvk_ui:
                 self.print.warning("No vehicles at location " + location_id)
                 wrong = 0
 
+            #format
             self.print.short_box(information,title)
             location_id = input(self.print.question("Destination ID"))
             vehicles = self.logic.locate_vehicles(location_id)
@@ -1108,6 +1124,8 @@ class Rvk_ui:
 
     def vehicle_taxes(self):
         self.liner()
+
+        #info
         options = "( r ) Return"
         title = "Vehicle type taxes"
         vehicle_types = self.logic.get_vehicle_types()
@@ -1121,6 +1139,7 @@ class Rvk_ui:
                 destination = self.logic.get_destination(vtype["destination_id"])
                 destination_name = destination.name
 
+            # print out tje types
             the_type = [str(vtype["name"]),str(destination_name),str(vtype["rate"])]
             str_the_type = ','.join(the_type)
             type_list.append(str_the_type)
@@ -1131,7 +1150,7 @@ class Rvk_ui:
 
 #----------------Add vehicle type-----------------------
     def add_type(self):
-        
+            #Info
             questions = {"name":"empty","destination_id":"empty","rate":"empty"}
             title = 'New Type'
             information = ("( c ) Cancel, ( f ) Finish")
@@ -1165,15 +1184,16 @@ class Rvk_ui:
 
 #------------------Change vehicle type-------------------
     def change_type(self):
+        #info
         title = "type Search"
         information = ("( c ) Cancel,,| Insert ID below |")
         wrong = 0
         while True:
+            questions = {"type_name":"empty","destination_id":"empty"}
+
+
 
             #Format
-
-
-            questions = {"type_name":"empty","destination_id":"empty"}
             for key,value in questions.items():
                 self.liner()
                 if wrong != 0:
@@ -1185,7 +1205,7 @@ class Rvk_ui:
             
                 if option == 'c':
                     return
-
+            #info
             destination_id = questions["destination_id"]
             name = questions["type_name"]
             try:
@@ -1225,12 +1245,15 @@ class Rvk_ui:
 
 
     def view_employees(self):
+        
+        # info
         options = "( r ) Return"
         info = "id,employee_name,ssn,address,phone,email,location"
-
         employees = self.logic.get_employees()
         title = "View Employee"
         emp_list = []
+
+
         for item in employees:
             emp_list.append(str(item))
             

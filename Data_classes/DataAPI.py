@@ -22,6 +22,7 @@ class DataAPI(object):
         self.add = Adder
         self.dell = Dell
         self.chang = Changer
+        
 # laga i utf encoding
 
 
@@ -53,7 +54,7 @@ class DataAPI(object):
 
 
 
-    # get single-------------done
+    # get single------------- they all take in a dictionary and return it as model class object
     def get_vehicle(self,ident):
         try:
             vehicle = self.get.get_certein(ident,"Data_files\Vehicles.csv")
@@ -99,7 +100,7 @@ class DataAPI(object):
 
 
 
-    # get multiple-------------done
+    # get multiple------------- they all take in list of dictionaries and return them as list of model class objects
     def get_vehicles(self):
         vehicle_list = []
         vehicles = self.get.get_csv("Data_files\Vehicles.csv")
@@ -154,7 +155,7 @@ class DataAPI(object):
         return self.get.get_csv("Data_files\Vehicle_types.csv")
 
 
-    #make,ident-------------done
+    #make,ident------------- get next id to be put for all csv files by looking at last id and making it plus 1
     def vehicles_makeID(self):
         return self.get.get_id("Data_files\Vehicles.csv")
 
@@ -177,7 +178,7 @@ class DataAPI(object):
 
 
 
-    #add single-------------done
+    #add single------------- adds single piece of each item by recieving all variables and adding them to file
     def add_vehicle(self,ident,vehicle_name,Type,Manufacturer,Model,Color,age,available,location_id,license_type):
         vehicle_dict = {"id":ident,"vehicle_name":vehicle_name,"type":Type,"manufacturer":Manufacturer,"model":Model,"color":Color,"age":age,"available":available,"location_id":location_id,"license_type":license_type}
         self.add.add(vehicle_dict,"Data_files\Vehicles.csv")
@@ -208,7 +209,9 @@ class DataAPI(object):
 
 
 
-    # change single
+    # change single------------ 
+    # these take in a dictionary and id and change whatever is named in the dictionary in the id named
+    #by saving changed item with its id in one variable and rest of file in other and deleting and rewriting it with changes
     def change_vehicle(self,ident,changes):
         self.chang.change("Data_files\Vehicles.csv",ident,changes)
 
@@ -232,7 +235,7 @@ class DataAPI(object):
 
 
 
-    #delete single-------------done
+    #delete single------------- finds a single item and rewrites the file without it
     def delete_vehicle(self,ident):
         self.dell.dell("Data_files\Vehicles.csv",ident)
 

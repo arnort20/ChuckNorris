@@ -6,6 +6,7 @@ class Changer(object):
     def __init__(self) -> None:
         pass
     
+    # this one is made to find item change it and rewrite the file with it changed
     def change(filename,ident,changes):
         item = Getter.get_certein(ident,filename)
         new_item = item
@@ -26,6 +27,9 @@ class Changer(object):
 
         Dell.rewrite_file(list_dict,list_dict,filename)
     
+
+    #this one is specially made for the type file since it has to find 2 items and match them to find it
+    #i would have made this easier to use for other things but there was no reason to
     def change_2(filename,ident,second_id,changes):
         list_dict = Getter.get_csv(filename)
 

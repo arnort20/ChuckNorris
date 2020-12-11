@@ -272,6 +272,7 @@ class Non_rvk_ui:
             if wrong == 1:
                 self.format.warning("Incorrect Vehicle ID")
 
+            #Format
             self.format.short_box("Enter Vehicle ID below",title)
             checking_vehicle_ID = input(self.format.question("Enter vehicle ID",self.width))
             info = ("ID,Plate,Type,Manufacturer,Model,Color,Year made,Available,Location id,License type")
@@ -294,7 +295,7 @@ class Non_rvk_ui:
         return
 
 
-
+    #users can go here to remove vehicles from a state of being in repair to being available and to change its color
     def change_vehicle(self):
         #Info
         title = "Vehicle Search"

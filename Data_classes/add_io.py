@@ -3,7 +3,8 @@ import csv
 class Adder(object):
     def __init__(self) -> None:
         pass
-
+    
+    # adds item into csv file
     def add(dicter,filename):
 
         filed = open(filename,"at", newline='',encoding="utf-8")

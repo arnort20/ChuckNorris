@@ -5,7 +5,9 @@ import csv
 class Dell(object):
     def __init__(self) -> None:
         pass
+    
 
+    #this guy deletes item with the id that is inputted in it
     def dell(filename,ident):
         new_list = []
         got_whole = Getter.get_csv(filename)
@@ -20,6 +22,7 @@ class Dell(object):
         Dell.rewrite_file(got_whole,new_list,filename)
 
 
+    # this guy rewrites the file with and saves the old list and writes in the new list
     def rewrite_file(old_list,new_list,filename):
         filed = open(filename,"w", newline="",encoding="utf-8")
         fields = old_list[0].keys()

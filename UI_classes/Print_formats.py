@@ -81,25 +81,27 @@ class Print_format():
         print(fixer*" "+"|")
 
 
-
+    # printing new line with box sides
     def print_space(self,width=200):
         print("{:>20} ".format("|"),end= "")
         print("{:>{size}} ".format("|",size = width))
 
 
 
-
+    # printing question in middle of screen
     def question(self,question,width = 200):
         print("{:{size}}".format("",size = int(width/2)+20-(len(question)/2)),end="")
         print(question,end="")
         return": "
 
 
+    # printing warning in middle of screen
     def warning(self,text,width = 200):
         print(" {0:{size}}|  ".format("",size = int(width/2)+16-(len(text)/2)),end="")
         print(text+ "  |")
 
 
+    # printing shot box with choices and title
     def short_box(self,information,title):
         self.print_title(title)
         self.print_space()
@@ -107,6 +109,9 @@ class Print_format():
         self.print_space()
         self.print_line(len(title)*"_")
 
+
+
+    # printing box with questions
     def question_box(self,questions,information,title):
         self.print_title(title)
         self.print_space()
@@ -120,6 +125,8 @@ class Print_format():
         self.print_questions(questions)
         self.print_line(len(title)*"_")
 
+
+    # box with formatted item and title in it
     def list_box(self,title,options,info,second_str):
         self.print_title(title)
         self.print_space()
@@ -134,6 +141,8 @@ class Print_format():
         self.print_space()
         self.print_line(len(title)*"_")
 
+
+    # printing box with more items formatted in a list look
     def large_list_box(self,options,title,list1,list2):
         self.short_box(options,title)
         self.print_space()
